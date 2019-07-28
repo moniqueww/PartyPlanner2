@@ -1,9 +1,9 @@
 <?php
 
 
-class ControleAluno extends ControleBase {
+class ControleOrganizador extends ControleBase {
     private $visao;
-    private $aluno;
+    private $organizador;
     
     public function getVisao() {
         return $this->visao;
@@ -17,7 +17,7 @@ class ControleAluno extends ControleBase {
     
     public function __construct() {
         //Cria uma instância da classe Cliente
-        $this->aluno = new Aluno();
+        $this->organizador = new Organizador();
     }
     
     public function controleAcao($acao,$param=null,$param2=null){
@@ -33,44 +33,44 @@ class ControleAluno extends ControleBase {
     
     private function preencheModelo(){
         // Passa dados do formulário para a classe Cliente
-        $this->aluno->setNome((isset($this->visao["nome"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
-        $this->aluno->setMatricula((isset($this->visao["matricula"]) && $this->visao["matricula"] != null) ? $this->visao["matricula"] : "");
-        $this->aluno->setEmail((isset($this->visao["email"]) && $this->visao["email"] != null) ? $this->visao["email"] : "");
-		$this->aluno->setTurma((isset($this->visao["turma"]) && $this->visao["turma"] != null) ? $this->visao["turma"] : "");
-		$this->aluno->setCurso((isset($this->visao["curso"]) && $this->visao["curso"] != null) ? $this->visao["curso"] : "");
+        $this->organizador->setNome((isset($this->visao["nome"]) && $this->visao["name"] != null) ? $this->visao["name"] : "");
+        $this->organizador->setEmail((isset($this->visao["email"]) && $this->visao["email"] != null) ? $this->visao["email"] : "");
+        $this->organizador->setSenha((isset($this->visao["senha"]) && $this->visao["senha"] != null) ? $this->visao["senha"] : "");
+		$this->organizador->setNomeorg((isset($this->visao["nomeorg"]) && $this->visao["nomeorg"] != null) ? $this->visao["nomeorg"] : "");
+		$this->organizador->setCelular((isset($this->visao["celular"]) && $this->visao["celular"] != null) ? $this->visao["celular"] : "");
     }
     
     protected function inserir() {
         // Passa dados do formulário para a classe Cliente
         $this->preencheModelo();
         //Chama o método para inserir os dados no banco de dados
-        return $this->aluno->inserir();
+        return $this->organizador->inserir();
     }
     
     protected function alterar($param) {
         // Passa dados do formulário para a classe Cliente
         $this->preencheModelo();
         //Chama o método para alterar os dados no banco de dados
-        return $this->aluno->alterar($param);
+        return $this->organizador->alterar($param);
     }
 
     protected function excluir($param,$param2){
         // Passa dados do formulário (via GET) para a classe Cliente
-        $this->aluno->setMatricula((isset($this->visao["matricula"]) && $this->visao["matricula"] != null) ? $this->visao["matricula"] : "");
+        $this->organizador->setEmail((isset($this->visao["email"]) && $this->visao["email"] != null) ? $this->visao["email"] : "");
         //Chama o método para excluir os dados no banco de dados
-        return $this->aluno->excluir($param,$param2);
+        return $this->organizador->excluir($param,$param2);
     }
     
     protected function listarTodos($param=null, $param2){
         
         //Chama o método para listar os clientes do banco de dados de acordo com um filtro
-        return $this->aluno->listarTodos($param, $param2);
+        return $this->organizador->listarTodos($param, $param2);
     }
     
     protected function listarUnico($param){
         
         
         //Chama o método para listar um cliente específico do banco de dados
-        return $this->aluno->listarUnico($param);
+        return $this->organizador->listarUnico($param);
     }
 }
