@@ -51,6 +51,46 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <script type="text/javascript">
+	$(function() {
+		$('#cadastrarEvento').on('click', function(){
+			$('#cadastrarEvento').attr('disabled', '');
+			var nome = $('#nome').val();
+			$.post( "../controle/cadastraEvento.php", {'nome': nome}, function(data){
+				data = $.parseJSON( data );
+				$('#cadastrarEvento').removeAttr('disabled', '');
+				$('#cancelarCadastro').click();
+				$('#eventos').prepend(
+					$('<div>', {class: 'content co-2 photo normal-shadow'}).append(
+						$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
+							if ($(this).children('.novoEvento') != null) {
+								$(this).children('.novoEvento').fadeOut();
+							}
+						}).on('dblclick', function(){
+							eventoId = $(this).attr('data-id');
+							window.location.assign('/quadro/'+eventoId);
+						}).append(
+							$('<img>', {class: 'card-img-top', height: '200px', src: "img/background.png"}),
+							$('<div>', {class: 'card-body'}).append(
+								$('<h5>', {class: 'card-title', html: data.nome})
+							),
+							$('<div>', {class: 'novoEvento', html: 'NOVO'})
+						)
+					).hide().fadeIn("slow")
+				);
+			});
+		});
+		$('#cancelarCadastro').on('click', function(){
+			$('#nome').val('');
+		});
+
+		$('.content .card').on('click', function(){
+			eventoId = $(this).attr('data-id');
+			window.location.assign('/quadro/'+eventoId);
+		});
+	});
+	</script>
+
     <?php include_once('include/navbar.php'); ?>
 
     <div class="wrapper">
@@ -119,7 +159,7 @@
 			<div id="eventos">
 			<?php
 				if(!empty($eventos)){
-                    foreach ($eventos as $ev) {
+                    foreach (array_reverse($eventos) as $ev) {
                         echo "<div class='content co-2 photo normal-shadow'>
 				<div class='card' data-id=".$ev->getId().">
 				  <img class='card-img-top' height='200px' src='img/background.png' alt='Card image cap'>
@@ -146,54 +186,6 @@
 	  		</div>
 		</div>
     </div>
-
-	<script type="text/javascript">
-	$(function() {
-		$('#cadastrarEvento').on('click', function(){
-			$('#cadastrarEvento').attr('disabled', '');
-			var nome = $('#nome').val();
-			var url = '../ajax/cadastraEvento.php';
-			$.ajax({
-				url: url,
-				method: 'POST',
-				data: {'nome': nome},
-				dataType: 'json',
-				beforeSend : function(){
-	               	$("body").html("ENVIANDO...");
-    	      	},
-			}).done(function(data){
-				$('#eventos').prepend(
-						$('<div>', {class: 'content co-2 photo normal-shadow'}).append(
-							$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
-								if ($(this).children('.novoEvento') != null) {
-									$(this).children('.novoEvento').fadeOut();
-								}
-							}).on('dblclick', function(){
-								eventoId = $(this).attr('data-id');
-								window.location.assign('/quadro/'+eventoId);
-							}).append(
-								$('<img>', {class: 'card-img-top', height: '200px', src: "img/background.png"}),
-								$('<div>', {class: 'card-body'}).append(
-									$('<h5>', {class: 'card-title', html: data.nome})
-								),
-								$('<div>', {class: 'novoEvento', html: 'NOVO'})
-							)
-						).hide().fadeIn("slow")
-					);
-					$('#cadastrarEvento').removeAttr('disabled', '');
-					$('#cancelarCadastro').click();
-			});
-		});
-		$('#cancelarCadastro').on('click', function(){
-			$('#nome').val('');
-		});
-
-		$('.content .card').on('dblclick', function(){
-			eventoId = $(this).attr('data-id');
-			window.location.assign('/quadro/'+eventoId);
-		});
-	});
-	</script>
 	
 </body>
 </html>

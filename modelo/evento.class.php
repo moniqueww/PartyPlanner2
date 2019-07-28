@@ -51,7 +51,7 @@ class Evento implements IBaseModelo{
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
-            $this->stmt->bindValue(':idUsuario', $this->nome, PDO::PARAM_STR);
+            $this->stmt->bindValue(':idUsuario', $this->idUsuario, PDO::PARAM_STR);
 
             if($this->stmt->execute()){
                return true;
