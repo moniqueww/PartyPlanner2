@@ -46,15 +46,29 @@
     <script type="text/javascript">
 	
     primeiroNome = $('#input-nome').val();
+
+    primeiraDescricao = $('#input-descricao').val();
     
     $(function() {
         $('#input-nome').on('blur', function(){
             nomeNovo = $(this).val();
             if (nomeNovo != primeiroNome) {
+                descricaoNova = $('#input-descricao').val();
                 idEvento = $('#idEvento').val();
-                $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'id': idEvento}, function(data){
+                $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
                     alert('deu certo');
                     primeiroNome = nomeNovo;
+                })
+            }
+        });
+        $('#input-descricao').on('blur', function(){
+            descricaoNova = $(this).val();
+            if (descricaoNova != primeiraDescricao) {
+                nomeNovo = $('#input-nome').val();
+                idEvento = $('#idEvento').val();
+                $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
+                    alert('deu certo');
+                    primeiraDescricao = descricaoNova;
                 })
             }
         });
@@ -102,7 +116,13 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea style="width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Festa teste para olhar o tamanho das coisas"></textarea>
+                                    <textarea id="input-descricao" style="width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Festa teste para olhar o tamanho das coisas">
+                                        <?php 
+                                            if (isset($eventoUnico)) { 
+                                                echo $eventoUnico->getDescricao();
+                                            }
+                                        ?>
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12">

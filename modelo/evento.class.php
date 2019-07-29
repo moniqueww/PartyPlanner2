@@ -4,6 +4,7 @@
 class Evento implements IBaseModelo{
     private $id;
     private $nome;
+    private $descricao;
     private $idUsuario;
     private $conn;
     private $stmt;
@@ -23,6 +24,14 @@ class Evento implements IBaseModelo{
 
     public function setNome($nome) {
         $this->nome = $nome;
+    }
+
+    public function getDescricao() {
+        return $this->descricao;
+    }
+
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
     }
 
     public function getIdUsuario() {
@@ -66,11 +75,12 @@ class Evento implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE eventos SET nome = :nome WHERE id=:id ";
+            $query="UPDATE eventos SET nome = :nome, descricao = :descricao WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
 
 
             if($this->stmt->execute()){

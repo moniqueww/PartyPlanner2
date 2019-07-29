@@ -34,6 +34,7 @@ class ControleEvento extends ControleBase {
     private function preencheModelo(){
         // Passa dados do formulário para a classe Produto
         $this->evento->setNome((isset($this->visao["nome"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
+        $this->evento->setDescricao((isset($this->visao["descricao"]) && $this->visao["descricao"] != null) ? $this->visao["descricao"] : "");
         $this->evento->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
         $this->evento->setIdUsuario((isset($this->visao["idUsuario"]) && $this->visao["idUsuario"] != null) ? $this->visao["idUsuario"] : "");     
     }
