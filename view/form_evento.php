@@ -44,35 +44,36 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-	
-    primeiroNome = $('#input-nome').val();
-
-    primeiraDescricao = $('#input-descricao').val();
-    
     $(function() {
+        primeiroNome = $('#input-nome').val();
+        primeiraDescricao = $('#input-descricao').attr('data-descricao');
+        $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
-            nomeNovo = $(this).val();
+            nomeNovo = $('#input-nome').val();
+            alert(nomeNovo);
             if (nomeNovo != primeiroNome) {
-                descricaoNova = $('#input-descricao').val();
-                idEvento = $('#idEvento').val();
-                $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
-                    alert('deu certo');
-                    primeiroNome = nomeNovo;
-                })
+                editarEvento();
             }
         });
         $('#input-descricao').on('blur', function(){
-            descricaoNova = $(this).val();
+            descricaoNova = $('#input-descricao').val();
+            alert(descricaoNova);
             if (descricaoNova != primeiraDescricao) {
-                nomeNovo = $('#input-nome').val();
-                idEvento = $('#idEvento').val();
-                $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
-                    alert('deu certo');
-                    primeiraDescricao = descricaoNova;
-                })
+                editarEvento();
             }
         });
     });
+
+    function editarEvento() {
+        descricaoNova = $('#input-descricao').val();
+        nomeNovo = $('#input-nome').val();
+        idEvento = $('#idEvento').val();
+        $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
+            alert('deu certo');
+            primeiroNome = nomeNovo;
+            primeiraDescricao = descricaoNova;
+        })
+    }
 	</script>
 
     <?php include_once('include/navbar.php'); ?>
@@ -100,7 +101,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">Descrição</label>
-                                    <textarea class="form-control form-control-alternative" rows="3" placeholder="Write a large text here ..."></textarea>
+                                    <input type="text" style="width: auto !important;" id="input-first-name" class="form-control form-control-alternative form-edita form-title" placeholder="First name">
                                     </div>
                                 </div>
                             </div>
@@ -111,26 +112,16 @@
                             </div>
                             <div class="col-lg-12" style="margin-top: 20px;">
                                 <div class="form-group">
-                                    <input type="text" style="width: auto !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
+                                    <input type="text" style="width: 300px !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea id="input-descricao" style="width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Festa teste para olhar o tamanho das coisas">
-                                        <?php 
-                                            if (isset($eventoUnico)) { 
-                                                echo $eventoUnico->getDescricao();
-                                            }
-                                        ?>
-                                    </textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-first-name"></label>
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 </div>
                             </div>
                         </div>
+                        <div class="filtros">Quadro de organização</div>
                         <div class="content co-10 coh-4 co-ult normal-shadow">
                             <!-- We'll fill this with dummy content -->
                         </div>

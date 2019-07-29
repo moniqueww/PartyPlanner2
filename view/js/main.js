@@ -4,9 +4,7 @@ $(function() {
 	  $('#sidebar').css('transition', 'width 0.2s');
 	  $('#sidebar .sidebar-header').css('height', 'auto');
 		*/$('#sidebar .header-photo').css('position', 'relative');
-		$('#sidebar .header-photo').animate({
-			top: "-14px"
-		}, 50);/*
+/*
 	  $('#sidebar .header-photo').css('width', '40px');
 	  $('#sidebar .header-photo').css('height', '40px');
 	 */ $('#sidebar .header-nome').hide();
@@ -31,9 +29,7 @@ $(function() {
 		$('#sidebar .header-photo').css('height', '74px');
 		*/
 		$('#sidebar .header-photo').css('position', 'static');
-		$('#sidebar .header-photo').animate({
-			top: "0px"
-		}, 50);/*
+/*
 	  */$('#sidebar .header-nome').fadeIn();
 	  $('#sidebar .list-unstyled > p').fadeIn();/*
 	  $('#sidebar .list-unstyled li').css('textAlign', 'left');
