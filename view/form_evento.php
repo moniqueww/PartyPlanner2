@@ -50,14 +50,12 @@
         $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
             nomeNovo = $('#input-nome').val();
-            alert(nomeNovo);
             if (nomeNovo != primeiroNome) {
                 editarEvento();
             }
         });
         $('#input-descricao').on('blur', function(){
             descricaoNova = $('#input-descricao').val();
-            alert(descricaoNova);
             if (descricaoNova != primeiraDescricao) {
                 editarEvento();
             }
@@ -69,7 +67,7 @@
         nomeNovo = $('#input-nome').val();
         idEvento = $('#idEvento').val();
         $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
-            alert('deu certo');
+            alert('Evento modificado');
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
         })
