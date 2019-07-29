@@ -73,4 +73,11 @@ class ControleOrganizador extends ControleBase {
         //Chama o método para listar um cliente específico do banco de dados
         return $this->organizador->listarUnico($param);
     }
+
+    protected function listarPorNome($param){
+        
+        
+        //Chama o método para listar um cliente específico do banco de dados
+        return $this->organizador->listarPorNome($param);
+    }
 }

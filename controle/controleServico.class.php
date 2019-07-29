@@ -74,4 +74,11 @@ class ControleServico extends ControleBase {
         //Chama o método para listar um produto específico do banco de dados
         return $this->servico->listarUnico($param);
     }
+
+    protected function listarPorNome($param){
+        
+        
+        //Chama o método para listar um produto específico do banco de dados
+        return $this->servico->listarPorNome($param);
+    }
 }

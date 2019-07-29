@@ -38,7 +38,6 @@
 	<link href="vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<!-- Argon CSS -->
 	<link type="text/css" href="css/argon.css?v=1.0.0" rel="stylesheet">
-
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -68,7 +67,7 @@
 							}
 						}).on('dblclick', function(){
 							eventoId = $(this).attr('data-id');
-							window.location.assign('/quadro/'+eventoId);
+							window.location.assign('form_evento.php?evento='+eventoId);
 						}).append(
 							$('<img>', {class: 'card-img-top', height: '200px', src: "img/background.png"}),
 							$('<div>', {class: 'card-body'}).append(
@@ -86,7 +85,7 @@
 
 		$('.content .card').on('click', function(){
 			eventoId = $(this).attr('data-id');
-			window.location.assign('/quadro/'+eventoId);
+			window.location.assign('form_evento.php?evento='+eventoId);
 		});
 	});
 	</script>

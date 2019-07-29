@@ -21,6 +21,9 @@ abstract class ControleBase {
             case "listarUnico":  
                 return $this->listarUnico($param);
                 break; 
+            case "listarPorNome":
+                return $this->listarPorNome($param);
+                break;
             default:
                 return "Ação indefinida";
         }
@@ -35,6 +38,8 @@ abstract class ControleBase {
     abstract protected function listarTodos($param=null, $param2);
     
     abstract protected function listarUnico($param);
+
+    abstract protected function listarPorNome($param);
 }
 
 ?>

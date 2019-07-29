@@ -70,4 +70,11 @@ class ControleCategoria extends ControleBase {
         //Chama o método para listar um produto específico do banco de dados
         return $this->categoria->listarUnico($param);
     }
+
+    protected function listarPorNome($param){
+        
+        
+        //Chama o método para listar um produto específico do banco de dados
+        return $this->categoria->listarPorNome($param);
+    }
 }

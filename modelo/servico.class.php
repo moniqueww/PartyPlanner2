@@ -187,5 +187,23 @@ class Servico implements IBaseModelo{
         }
         
     }
-    
+    public function listarPorNome($nome){
+        
+        try{
+            $query="SELECT id,nome FROM eventos WHERE nome=:nome";
+            $this->stmt= $this->conn->prepare($query);
+            $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
+            
+            if($this->stmt->execute()){
+                // Associa o registro a uma classe aluno
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                
+            }
+            
+            return $evento[0];            
+        } catch(PDOException $e) {
+            echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
+            return null;
+        }    
+    }
 }
