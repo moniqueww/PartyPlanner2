@@ -24,12 +24,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lista de alunos</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+	
+	<!-- Favicon -->
+	<link href="img/brand/favicon.png" rel="icon" type="image/png">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+	<!-- Icons -->
+	<link href="vendor/nucleo/css/nucleo.css" rel="stylesheet">
+	<link href="vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<!-- Argon CSS -->
+	<link type="text/css" href="css/argon.css?v=1.0.0" rel="stylesheet">
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- jQuery -->
+    <script src="js/jquery.js" crossorigin="anonymous"></script>
+	<!-- Meu js -->
+	<script src="js/main.js"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#procure').on('input',function(e){
@@ -42,15 +63,9 @@
 	</script>
 </head>
 <body>
-	<?php include_once 'include/menu.php'; ?>
 	<div id="div2">
-		<?php include_once 'include/cabecalho.php'; ?>
 		<div class="all-content">
 			<h2 class="page-title">Lista de organizador</h2>
-			<div>
-				<input type="date" id="data" name="data"/>
-				<button class="normal-button"><i class='material-icons'>date_range</i></button>
-			</div>
 			<br clear='all'/>
 			<section class="content content-full">
 				<table id="tabela">
@@ -65,15 +80,15 @@
 					</thead>
 					<tbody>
 					<?php
-                    	if(!empty($alunos)){
-                        	foreach ($alunos as $al) {
+                    	if(!empty($organizador)){
+                        	foreach ($organizador as $org) {
                             	echo "<tr>
-                                    <td>".$al->getNome()."</td>
-									<td>".$al->getEmail()."</td>
-									<td>".$al->getCelular()."</td>
-                                    <td>".$al->getNomeorg()."</td>
+                                    <td>".$org->getName()."</td>
+									<td>".$org->getEmail()."</td>
+									<td>".$org->getCelular()."</td>
+                                    <td>".$org->getNomeorg()."</td>
                                     <td>
-                                    <button type='button' data-id=".$al->getEmail()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
+                                    <button type='button' data-id=".$org->getEmail()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
                                     </td>
                                 </tr>" ;  
                     	    }
@@ -140,7 +155,7 @@
                         },
                         function () {
                             //Redireciono passando os parametros para exclusão
-                            window.location.href = "form_aluno.php?op=exc&id=" + id;
+                            window.location.href = "form_organizador.php?op=exc&id=" + id;
                         });
                     }
                 }

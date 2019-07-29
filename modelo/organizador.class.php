@@ -64,7 +64,7 @@ class Organizador implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO Organizadors (name,email,senha,celular,nomeorg) VALUES (:nome,:email,:senha,:celular,:celular) ";
+            $query="INSERT INTO Organizadors (name,email,senha,celular,nomeorg) VALUES (:name,:email,:senha,:celular,:celular) ";
 
             $this->stmt= $this->conn->prepare($query);
 
@@ -145,7 +145,7 @@ class Organizador implements IBaseModelo{
                 
             }
             
-            return $organizador;            
+            return $organizadores;            
         } catch(PDOException $e) {
             echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
             return null;
@@ -173,12 +173,12 @@ class Organizador implements IBaseModelo{
         }
         
     }
-    public function listarPorNome($nome){
+    public function listarPorNome($name){
         
         try{
-            $query="SELECT id,nome FROM eventos WHERE nome=:nome";
+            $query="SELECT id,name FROM eventos WHERE name=:name";
             $this->stmt= $this->conn->prepare($query);
-            $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
+            $this->stmt->bindValue(':name', $name, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
