@@ -2,12 +2,12 @@
 <?php include_once 'include/banco.php';?>
 <?php
 	include_once '../autoload.php';
-	$alunoControle = new ControleAluno();
-	$alunos = array();
+	$organizadorControle = new ControleOrganizador();
+	$organizador = array();
 	if(isset($_GET['procure'])){
-		$alunos = $alunoControle->controleAcao("listarTodos", $_GET['procure']);
+		$organizador = $organizadorControle->controleAcao("listarTodos", $_GET['procure']);
 	}else{
-		$alunos = $alunoControle->controleAcao("listarTodos");
+		$organizador = $organizadorControle->controleAcao("listarTodos");
 	}
 	
 	/*$sql = "select * from aluno";
@@ -46,7 +46,7 @@
 	<div id="div2">
 		<?php include_once 'include/cabecalho.php'; ?>
 		<div class="all-content">
-			<h2 class="page-title">Lista de alunos</h2>
+			<h2 class="page-title">Lista de organizador</h2>
 			<div>
 				<input type="date" id="data" name="data"/>
 				<button class="normal-button"><i class='material-icons'>date_range</i></button>
@@ -57,9 +57,9 @@
 					<thead>
 						<tr>
 							<th>Nome</th>
-							<th>Matrícula</th>
-							<th>Curso</th>
-							<th>Turma</th>
+							<th>Email</th>
+							<th>Celular</th>
+							<th>Nomeorg</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -69,11 +69,11 @@
                         	foreach ($alunos as $al) {
                             	echo "<tr>
                                     <td>".$al->getNome()."</td>
-									<td>".$al->getMatricula()."</td>
-									<td>".$al->getCurso()."</td>
-                                    <td>".$al->getTurma()."</td>
+									<td>".$al->getEmail()."</td>
+									<td>".$al->getCelular()."</td>
+                                    <td>".$al->getNomeorg()."</td>
                                     <td>
-                                    <button type='button' data-id=".$al->getMatricula()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
+                                    <button type='button' data-id=".$al->getEmail()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
                                     </td>
                                 </tr>" ;  
                     	    }
