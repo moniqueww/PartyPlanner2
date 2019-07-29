@@ -56,6 +56,7 @@
 			$('#cadastrarEvento').attr('disabled', '');
 			var nome = $('#nome').val();
 			$.post( "../controle/cadastraEvento.php", {'nome': nome}, function(data){
+				console.log(data);
 				data = $.parseJSON( data );
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();

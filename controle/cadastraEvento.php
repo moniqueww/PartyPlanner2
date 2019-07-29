@@ -10,7 +10,9 @@
         //Verifica qual ação (inserir ou alterar) vai passar para o Controle
         $retorno = $eventoControle->controleAcao("inserir");
         if($retorno) {
-            $arrayRetorno = ['id' => 1, 'nome' => $_POST['nome']];
+            $eventoControle = new ControleEvento();
+            $eventoUnico = $eventoControle->controleAcao('listarPorNome', $_POST['nome']);
+            $arrayRetorno = ['id' => $eventoUnico->getId(), 'nome' => $eventoUnico->getNome()];
             echo json_encode($arrayRetorno);
         }
     }
