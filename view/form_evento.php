@@ -11,6 +11,9 @@
     
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
     }
+    $servicoControle = new ControleServico();
+    $servicos = [];
+    $servicos = $servicoControle->controleAcao("listarTodos");
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,21 +107,24 @@
                         </div>
                         <div class="filtros">Quadro de organização</div>
                         <div class="content co-10 co-ult normal-shadow" style="background-color: #343a40;">
-                            <div class="filtros" style="color: #aab8c5;">Segurança</div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
+                            <div class="filtros" style="color: #aab8c5;">Categoria</div>
+                            <?php
+                                if(!empty($servicos)){
+                                    foreach ($servicos as $se) {
+                                        echo "<div class='content co-2 coh-1' style='background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;'>".$se->getNome()."</div>";
+                                    }
+                                }
+                            ?>
                             <br clear="all"/>
-                            <div class="filtros" style="color: #aab8c5;">Alimentação</div>
+                            <div class="filtros" style="color: #aab8c5;">Categoria</div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
                             <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
                             </div>
                             <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
