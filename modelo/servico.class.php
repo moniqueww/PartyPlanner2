@@ -140,10 +140,10 @@ class Servico implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome, FROM servicos WHERE email = :email AND nome LIKE :nome";
+                $query="SELECT * FROM usuario WHERE email = :email AND nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,email,cnpj,categoria FROM servicos WHERE email = :email";
+                $query="SELECT * FROM usuario WHERE tipo='S'";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -190,7 +190,7 @@ class Servico implements IBaseModelo{
     public function listarPorNome($nome){
         
         try{
-            $query="SELECT id,nome FROM eventos WHERE nome=:nome";
+            $query="SELECT * FROM eventos WHERE nome=:nome";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
             
