@@ -2,17 +2,22 @@
 
 
 class Organizador implements IBaseModelo{
-    private $name;
+    private $id;
+    private $nome;
     private $email;
     private $senha;
-	private $nomeorg;
-	private $celular;
+    private $cnpj;
+    private $tipo;
     private $conn;
     private $stmt;
     
 
-    public function getName() {
-        return $this->name;
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNome() {
+        return $this->nome;
     }
 
     public function getEmail() {
@@ -22,17 +27,17 @@ class Organizador implements IBaseModelo{
     public function getSenha() {
         return $this->senha;
     }
-	
-	public function getNomeorg() {
-        return $this->nomeorg;
-    }
-	
-	public function getCelular() {
-        return $this->celular;
+
+    public function getCnpj() {
+        return $this->nome;
     }
 
-    public function setName($name) {
-        $this->name = $name;
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setNome($nome) {
+        $this->name = $nome;
     }
 
     public function setEmail($email) {
@@ -42,15 +47,15 @@ class Organizador implements IBaseModelo{
     public function setSenha($senha) {
         $this->senha = $senha;
     }
-    
-	public function setNomeorg($nomeorg) {
-        $this->nomeorg = $nomeorg;
-    }
-	
-	public function setCelular($celular) {
-        $this->celular = $celular;
+
+    public function setCnpj($cnpj) {
+        $this->cnpj = $cnpj;
     }
     
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -64,15 +69,15 @@ class Organizador implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO Organizadors (name,email,senha,celular,nomeorg) VALUES (:name,:email,:senha,:celular,:celular) ";
+            $query="INSERT INTO usuario (nome,email,senha,tipo) VALUES (:nome,:email,:senha,:tipo) ";
 
             $this->stmt= $this->conn->prepare($query);
 
-            $this->stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $this->stmt->bindValue(':id', $param, PDO::PARAM_INT);
+            $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
-            $this->stmt->bindValue(':celular', $this->celular, PDO::PARAM_STR);
-			$this->stmt->bindValue(':nomeorg', $this->nomeorg, PDO::PARAM_STR);
+			$this->stmt->bindValue(':tipo', 'O', PDO::PARAM_STR);
 
             if($this->stmt->execute()){
                return true;
@@ -87,15 +92,14 @@ class Organizador implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE Organizadors SET name = :name, email = :email, senha = :senha, celular = :celular, nomeorg = :nomeorg  WHERE id=:id ";
+            $query="UPDATE usuario SET nome = :nome, email = :email, senha = :senha WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
+            $this->stmt->bindValue(':id', $param, PDO::PARAM_INT);
             $this->stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
-            $this->stmt->bindValue(':celular', $this->celular, PDO::PARAM_STR);
-			$this->stmt->bindValue(':nomeorg', $this->nomeorg, PDO::PARAM_STR);
-			$this->stmt->bindValue(':id', $param, PDO::PARAM_STR);
+			
 
 
             if($this->stmt->execute()){
@@ -110,7 +114,7 @@ class Organizador implements IBaseModelo{
     public function excluir($param,$param2){
         try{
             //Comando SQL para inserir um aluno
-            $query="DELETE FROM Organizadors WHERE id=:id ";
+            $query="DELETE FROM usuario WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             if($this->stmt->execute()){
@@ -130,10 +134,10 @@ class Organizador implements IBaseModelo{
             //Comando SQL para inserir um organizador
             if(!is_null($name)){
                 //Pesquisa pelo nome
-                $query="SELECT name,email,senha,celular,nomeorg FROM Organizadors WHERE name LIKE :name ORDER BY email, celular, name";
+                $query="SELECT id,nome,email,senha FROM usuario WHERE nome LIKE :nome ORDER BY nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT name,email,senha,celular,nomeorg FROM Organizadors ORDER BY email, celular, name";
+                $query="SELECT id,nome,email,senha FROM usuario ORDER BY nome";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($name))$this->stmt->bindValue(':name', '%'.$name.'%', PDO::PARAM_STR);
@@ -153,12 +157,12 @@ class Organizador implements IBaseModelo{
         
     }
     
-    public function listarUnico($name){
+    public function listarUnico($id){
         
         try{
-            $query="SELECT name,email,senha,celular,nomeorg FROM Organizadors WHERE id=:id";
+            $query="SELECT id,nome,email,senha FROM usuario WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
-            $this->stmt->bindValue(':id', $name, PDO::PARAM_INT);
+            $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe organizador
@@ -173,16 +177,16 @@ class Organizador implements IBaseModelo{
         }
         
     }
-    public function listarPorNome($name){
+    public function listarPorNome($nome){
         
         try{
-            $query="SELECT id,name FROM eventos WHERE name=:name";
+            $query="SELECT id,nome FROM usuario WHERE nome=:nome";
             $this->stmt= $this->conn->prepare($query);
-            $this->stmt->bindValue(':name', $name, PDO::PARAM_INT);
+            $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Organizador");  
                 
             }
             

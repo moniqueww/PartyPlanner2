@@ -88,7 +88,7 @@
 									<td>".$org->getCelular()."</td>
                                     <td>".$org->getNomeorg()."</td>
                                     <td>
-                                    <button type='button' data-id=".$org->getEmail()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
+                                    <button type='button' data-id=".$org->getId()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
                                     </td>
                                 </tr>" ;  
                     	    }
@@ -139,7 +139,7 @@
                     var cmd = $(this).attr('data-cmd');
                     if (cmd == 'alterar') {
                         //Redireciono passando os parametros para alteração
-                        window.location.href = "form_aluno.php?op=alt&id=" + id;
+                        window.location.href = "form_organizador.php?op=alt&id=" + id;
 
                     } else if (cmd == 'excluir') {
                         //Pergunto se realmente quer excluir
