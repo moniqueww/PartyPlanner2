@@ -82,7 +82,7 @@
 	                    </ul>
 	                </li>
                 </a>-->
-				<a href="">
+				<a href="lista_evento.php">
 					<li>
                     	<i class="far fa-user"></i><span>Seus eventos</span>
                 	</li>

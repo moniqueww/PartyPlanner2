@@ -10,28 +10,11 @@
         $eventoControle->setVisao($_GET);
     
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
-
     }
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Favicon -->
-    <link href="img/brand/favicon.png" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <!-- Icons -->
-    <link href="vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link href="vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- Argon CSS -->
-    <link type="text/css" href="css/argon.css?v=1.0.0" rel="stylesheet">
-</head>
+<?php include_once('include/head.php'); ?>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -85,7 +68,7 @@
                         <!-- Page Content -->
                         <div class="content co-10 normal-shadow">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
-                            <div style="float: right;">
+                            <div style="float: right; display: none">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                     <div class="input-group input-group-alternative">
@@ -120,8 +103,26 @@
                             </div>
                         </div>
                         <div class="filtros">Quadro de organização</div>
-                        <div class="content co-10 coh-4 co-ult normal-shadow">
-                            <!-- We'll fill this with dummy content -->
+                        <div class="content co-10 co-ult normal-shadow" style="background-color: #343a40;">
+                            <div class="filtros" style="color: #aab8c5;">Segurança</div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <br clear="all"/>
+                            <div class="filtros" style="color: #aab8c5;">Alimentação</div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
+                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
+                            </div>
                         </div>
 		</div>
     </div>
