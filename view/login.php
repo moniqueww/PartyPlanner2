@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,24 +8,45 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>PartyPlanner - Login</title>
-  <!--<link type="text/css" rel="stylesheet" href="css/materialize/css/materialize.min.css"  media="screen,projection"/>-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css">
-	
-	<!-- Favicon -->
-	<link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-	<!-- Icons -->
-	<link href="assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-	<link href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<!-- Argon CSS -->
-	<link type="text/css" href="assets/css/argon.css?v=1.0.0" rel="stylesheet">
+  <?php include_once "include/head.php"; ?>
+  
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+			$('form').submit(function(){
+				var email = $("#email").val();
+				var senha = $("#senha").val();
+
+				if ((email == "" || email == " ") && senha == "" || senha == " "){
+					$("#span_email").html('Por favor, digite seu email!');
+					$("#span_senha").html('Por favor, digite sua senha!');
+					return false;
+				} else if (email == "" || email == " "){
+					$("#span_email").html('Por favor, digite seu email!');
+					return false;
+				} else if (senha == "" || senha == " "){
+					$("#span _senha").html('Por favor, digite sua senha!');
+					return false;
+				}
+
+			});
+			return true;
+		});
+
+	</script>
 </head>
 <body class="bg-default">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- jQuery -->
+  <script src="js/jquery.js" crossorigin="anonymous"></script>
+	<!-- Meu js -->
+	<script src="js/main.js"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
@@ -41,7 +63,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="#">
-                  <img src="css\argon-dashboard-master/assets/img/brand/blue.png">
+                  <img src="img/brand/blue.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">
@@ -76,13 +98,14 @@
               </div>
             </div>
             <div style="padding-bottom: 1rem !important;" class="card-header bg-transparent pb-5">
-              <form role="form">
+              <form novalidate id="form" action="login.php" method="post" name="formLog">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" id="email" value="" name="email" placeholder="Email" type="email">
+                    <span id="span_email"></span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -90,7 +113,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Senha" type="password">
+                    <input class="form-control" id="senha" value="" name="senha" placeholder="Senha" type="password">
+                    <span id="span_senha"></span>
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
@@ -100,9 +124,13 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Entrar</button>
+                  <button type="submit" name="entrar" class="btn btn-primary my-4">Entrar</button>
+                  <input type="hidden" value="1" name="validar">
                 </div>
               </form>
+              <?php
+					      include_once "seguranca.php";
+				      ?>
             </div>
             </div>
           <div style="position: relative; top: -15px;" class="row mt-3">
@@ -117,12 +145,5 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="css\argon-dashboard-master/assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="css\argon-dashboard-master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Argon JS -->
-  <script src="css\argon-dashboard-master/assets/js/argon.js?v=1.0.0"></script>
 </body>
 </html>
