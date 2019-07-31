@@ -53,16 +53,15 @@
 </head>
 <body>
 <?php include_once('include/navbar.php'); ?>
-	<div id="div2">
-			<section class="content content-full">
-				<table id="tabela">
+	<div class="wrapper">
+		<?php include_once('include/sidebar.php'); ?>
+		<div id="page">
+			<div class='content co-10 co-ult'>
+				<table id="tabela" style="width: 100%">
 					<thead>
 						<tr>
 							<th>Nome</th>
 							<th>Email</th>
-							<th>Celular</th>
-							<th>Nomeorg</th>
-							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -70,10 +69,8 @@
                     	if(!empty($organizador)){
                         	foreach ($organizador as $org) {
                             	echo "<tr>
-                                    <td>".$org->getName()."</td>
+                                    <td>".$org->getNome()."</td>
 									<td>".$org->getEmail()."</td>
-									<td>".$org->getCelular()."</td>
-                                    <td>".$org->getNomeorg()."</td>
                                     <td>
                                     <button type='button' data-id=".$org->getId()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
                                     </td>
@@ -94,6 +91,7 @@
                		?>
 					</tbody>
 				</table>
+			</div>
 				<?php
 					/*if($pagina > 1) {
 						 echo "<a href='lista_aluno.php?pagina=".($pagina - 1)."' class='controle'><button class='normal-button no-float'>&laquo;
@@ -110,6 +108,7 @@
 						}*/
 				?>
 			</section>
+		</div>
 		</div>
 	</div>
         <script type="text/javascript">
