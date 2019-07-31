@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Jul-2019 às 02:32
+-- Generation Time: 31-Jul-2019 às 02:50
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -53,7 +53,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
-(41, 1, 'Evento teste 1', 'Descrição teste para evento teste 1');
+(41, 1, 'Evento teste 1', 'Descrição teste para evento teste 1'),
+(42, 1, 'el desejo 2.0', 'Uma festa para jovens e jovenas do brasul e do rio grande do sul');
 
 -- --------------------------------------------------------
 
@@ -63,9 +64,17 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
 
 CREATE TABLE `evento_servico` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `evento_id` bigint(20) UNSIGNED NOT NULL,
-  `servico_id` bigint(20) UNSIGNED NOT NULL
+  `idEvento` bigint(20) UNSIGNED NOT NULL,
+  `idServico` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `evento_servico`
+--
+
+INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
+(1, 42, 2),
+(4, 41, 1);
 
 -- --------------------------------------------------------
 
@@ -184,8 +193,17 @@ CREATE TABLE `usuario` (
   `email` varchar(200) NOT NULL,
   `senha` varchar(20) NOT NULL,
   `tipo` char(1) NOT NULL,
-  `cnpj` int(14) NOT NULL
+  `cnpj` int(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`) VALUES
+(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', 98217389),
+(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', 127836),
+(4, 'Roberto', 'emailteste3@gmail.com', 'senha12345', 'O', NULL);
 
 --
 -- Indexes for dumped tables
@@ -267,13 +285,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -309,7 +327,7 @@ ALTER TABLE `servicos`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
