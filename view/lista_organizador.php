@@ -63,6 +63,7 @@
 	</script>
 </head>
 <body>
+	<?php include_once('include/head.php'); ?>
 	<div id="div2">
 		<div class="all-content">
 			<h2 class="page-title">Lista de organizador</h2>

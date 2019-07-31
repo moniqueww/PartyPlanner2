@@ -99,53 +99,46 @@ if($_POST){
 
 </head>
 <body>
+<?php include_once('include/navbar.php'); ?>
+
 	<?php
-        $pagina = basename( __FILE__ );
+		$pagina = basename( __FILE__ );
     ?>
-	<div id="div2">
-		<div class="all-content">
-			<h2 class="page-title">Cadastrar organizador</h2>
-			<br clear='all'/>
-			<section class="content content-full">
+	<div id="page">
 					<form action="form_organizador.php" method="post">
 						<input name="id" type="hidden" value="<?= isset($alunoAlteracao) ? $alunoAlteracao->getMatricula() : "";?>">
-						<div class="group">      
-					      	<input class="input" type="text" name="name" id="nome" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getName() : "";?>" required>
-					      	<span class="highlight"></span>
-					      	<span class="bar"></span>
-							<label class="label">Nome</label>
-							<span id="validnome"></span>
-					    </div>
-					    <div class="group">      
-						    <input class="input" type="text" name="email" id="email" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getEmail() : "";?>" required>
-					      	<span class="highlight"></span>
-					      	<span class="bar"></span>
-							<label class="label">Email</label>
-							<span id="validemail"></span>
-					    </div>
-						<div class="group">      
-						    <input class="input" type="password" id="senha" name="senha" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getSenha() : "";?>" required>
-					      	<span class="highlight"></span>
-					      	<span class="bar"></span>
-							<label class="label">Senha</label>
-							<span id="validsenha"></span>
-					    </div>
-						<div class="group">      
-						    <input class="input" type="text" id="nome" name="nomeorg" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getNomeorg() : "";?>" required>
-					      	<span class="highlight"></span>
-					      	<span class="bar"></span>
-							<label class="label">Nomeorg</label>
-							<span id="validnome"></span>
-					    </div>
-						<div class="group">      
-						    <input class="input" type="number" id="celular" name="celular" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getCelular() : "";?>" required>
-					      	<span class="highlight"></span>
-					      	<span class="bar"></span>
-							<label class="label">Celular</label>
-							<span id="validcelular"></span>
-					    </div>
+						<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
+										<small>Nome</small>
+									</div>
+									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
+								</div>
+								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
+										<small>Email</small>
+									</div>
+									<input class="form-control form-control-alternative" name="email" id="email" placeholder="Email" type="email">
+								</div>
+								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
+										<small>Senha</small>
+									</div>
+									<input class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
+								</div>
+								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
+										<small>Nome da sua organização</small>
+									</div>
+									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome da sua organização" type="text">
+								</div>
+								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
+										<small>Celular</small>
+									</div>
+									<input class="form-control form-control-alternative" name="celular" id="celular" placeholder="Celular" type="number">
+								</div>
 						<br clear="all"/>
-                        <button id="button" type="submit" class="button" name="cadastrar"><span class="spana">Cadastrar</span></button>
+						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
 					</form>
 			</section>
