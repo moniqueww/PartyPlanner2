@@ -137,10 +137,10 @@ class Usuario implements IBaseModelo{
             // Pesquisa todos
 			if(!is_null($email)){
                 //Pesquisa pelo email
-                $query="SELECT id,email,senha FROM usuario WHERE email LIKE :email";
+                $query="SELECT id,nome,email,senha,tipo,cnpj FROM usuario WHERE email LIKE :email";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,email,senha FROM usuario";
+                $query="SELECT id,nome,email,senha,tipo,cnpj FROM usuario";
             }
             $this->stmt= $this->conn->prepare($query);
 			if(!is_null($email))$this->stmt->bindValue(':email', '%'.$email.'%', PDO::PARAM_STR);
