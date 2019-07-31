@@ -9,17 +9,6 @@
 	}else{
 		$organizador = $organizadorControle->controleAcao("listarTodos");
 	}
-	
-	/*$sql = "select * from aluno";
-	$alunos = $conexao->query($sql);
-	$total = mysqli_num_rows($alunos);
-	$registros = 10;
-	$numPaginas = ceil($total/$registros);
-	$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
-	$inicio = ($registros*$pagina)-$registros;
-	$sql = "select * from aluno limit $inicio,$registros";
-	$alunos = $conexao->query($sql);
-	$total = mysqli_num_rows($alunos);*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,11 +52,8 @@
 	</script>
 </head>
 <body>
-	<?php include_once('include/head.php'); ?>
+<?php include_once('include/navbar.php'); ?>
 	<div id="div2">
-		<div class="all-content">
-			<h2 class="page-title">Lista de organizador</h2>
-			<br clear='all'/>
 			<section class="content content-full">
 				<table id="tabela">
 					<thead>

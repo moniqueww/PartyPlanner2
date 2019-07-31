@@ -91,7 +91,7 @@
 									<div>
 										<small>Nome</small>
 									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
+									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome do evento" type="text">
 								</div>
 								<div class="modal-footer">
 									<input id="cadastrarEvento" type="submit" class="btn btn-primary" value="Criar evento"/>
