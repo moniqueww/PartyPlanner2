@@ -80,12 +80,7 @@
                 <button type="button" class="btn btn-primary my-4" ><a href="form_organizador.php"> Organizador </a></button>
                 <button type="button" class="btn btn-primary my-4" ><a href="form_servico.php"> Serviço </a></button>
             </div>
-            </div>
-            <div style="position: relative; top: -15px;" class="row mt-3">
-            <div class="col-6">
               <a href="login.php" class="text-primary"><small>Voltar</small></a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

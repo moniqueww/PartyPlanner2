@@ -77,36 +77,10 @@
                                 </tr>" ;  
                     	    }
                     	}
-						/*while ($aluno = mysqli_fetch_array($alunos)) {
-							echo "<tr>
-                                    <td>".$aluno['nome']."</td>
-									<td>".$aluno['matricula']."</td>
-									<td>".$aluno['curso']."</td>
-                                    <td>".$aluno['turma']."</td>
-                                    <td>
-                                    <button type='button' data-id=".$aluno['matricula']." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
-                                    </td>
-								</tr>" ;
-						}*/
                		?>
 					</tbody>
 				</table>
 			</div>
-				<?php
-					/*if($pagina > 1) {
-						 echo "<a href='lista_aluno.php?pagina=".($pagina - 1)."' class='controle'><button class='normal-button no-float'>&laquo;
-						anterior</button></a>";
-						}
-						for($i = 1; $i < $numPaginas + 1; $i++) {
-						 $ativo = ($i == $pagina) ? 'numativo' : '';
-						 echo "<a href='lista_aluno.php?pagina=".$i."' class='numero ".$ativo."'><button class='normal-button no-float'> ".$i." </button></a>";
-						}
-
-						if($pagina < $numPaginas) {
-						 echo "<a href='lista_aluno.php?pagina=".($pagina + 1)."' class='controle'><button class='normal-button no-float'>proximo
-						&raquo;</button></a>";
-						}*/
-				?>
 			</section>
 		</div>
 		</div>

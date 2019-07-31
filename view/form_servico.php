@@ -1,31 +1,31 @@
-﻿<?php
+<?php
 include_once 'include/verifica.php';
 //Include das classes via autoload
 include_once '../autoload.php';
 //Caso tenha sido feito um POST da página
 if($_POST){
     //Cria o Controle desta View (página)
-    $organizadorControle = new ControleOrganizador();
+    $servicoControle = new ControleServico();
 
     //Passa o POST desta View para o Controle
-    $organizadorControle->setVisao($_POST);
+    $servicoControle->setVisao($_POST);
     //Verifica qual ação (inserir ou alterar) vai passar para o Controle
     if(empty($_POST["id"])){
-        $retorno = $organizadorControle->controleAcao("inserir");
-        if($retorno) {$msg="Organizador inserido com sucesso!";}
-        else{$erro="Houve um erro na inserção do organizador!";}
+        $retorno = $servicoControle->controleAcao("inserir");
+        if($retorno) {$msg="Cadastro efetuado com sucesso!";}
+        else{$erro="Houve um erro no seu cadastro!";}
     }else{
-        $retorno = $organizadorControle->controleAcao("alterar", $_POST["id"]);
-        if($retorno) {$msg="Organizador alterado com sucesso!";}
-        else{$erro="Houve um erro na alteração do organizador!";}
+        $retorno = $servicoControle->controleAcao("alterar", $_POST["id"]);
+        if($retorno) {$msg="Cadastro efetuado com sucesso!";}
+        else{$erro="Houve um erro no seu cadastro!";}
     }
    
 }elseif($_GET){ // Caso os dados sejam enviados via GET
    
     //Cria o Controle desta View (página)
-    $organizadorControle = new ControleOrganizador();
+    $servicoControle = new ControleServico();
     //Passa o GET desta View para o Controle
-    $organizadorControle->setVisao($_GET);
+    $servicoControle->setVisao($_GET);
             
     //Verifico qual operação será realizada
     if(isset($_GET["op"])){
@@ -36,8 +36,8 @@ if($_POST){
             //Verifica qual ação (excluir ou listar para alteração) vai passar para o Controle
             if($_GET["op"] == "exc"){
                 // excluir o cliente do banco de dados
-                $retorno=$organizadorControle->controleAcao("excluir");
-                if($retorno) {$msg="Aluno excluído com sucesso!";}
+                $retorno=$servicoControle->controleAcao("excluir");
+                if($retorno) {$msg="Servico excluído com sucesso!";}
                 else{$erro="Houve um erro na exclusão do aluno!";}
             }elseif ($_GET["op"] == "alt") {
                 // O $clienteAlteracao será utilizado no formulário para preencher os dados do cliente 
@@ -46,19 +46,22 @@ if($_POST){
             }
         }    
 
-    }  /*if(isset($_GET["procure"])){
-        
-        // O $clientes será utilizado para preencher a tabela com os clientes cadastrados  
-        $alunos = array();
-        $alunos = $alunoControle->controleAcao("listarTodos",$_GET["procure"]);
-        
-    }  */
+    }
 }
+
+	// include_once '../autoload.php';
+	// $categoriaControle = new ControleCategoria();
+	// $categoria = array();
+	// if(isset($_GET['procure'])){
+	// 	$categoria = $categoriaControle->controleAcao("listarTodos", $_GET['procure']);
+	// }else{
+	// 	$categoria = $categoriaControle->controleAcao("listarTodos");
+	// }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cadastrar organizador</title>
+	<title>Cadastrar serviço</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<style>
@@ -105,8 +108,7 @@ if($_POST){
 		$pagina = basename( __FILE__ );
     ?>
 	<div id="page">
-					<form action="form_organizador.php" method="post">
-						<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
+					<form action="form_servico.php" method="post">
 						<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
 										<small>Nome</small>
@@ -127,15 +129,19 @@ if($_POST){
 								</div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
-										<small>Nome da sua organização</small>
+										<small>CNPJ</small>
 									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome da sua organização" type="text">
+									<input class="form-control form-control-alternative" name="tipo" id="tipo" placeholder="CNPJ" type="number">
 								</div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
-										<small>Celular</small>
+										<small>Categoria</small>
 									</div>
-									<input class="form-control form-control-alternative" name="celular" id="celular" placeholder="Celular" type="number">
+									<select>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
 								</div>
 						<br clear="all"/>
 						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
