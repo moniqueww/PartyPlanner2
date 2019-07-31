@@ -1,13 +1,13 @@
-<?php //include_once 'include/verifica.php';?>
+<?php include_once 'verificaOrganizador.php';?>
 <?php include_once 'include/banco.php';?>
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEvento();
 	$eventos = array();
 	if(isset($_GET['procure'])){
-		$eventos = $eventoControle->controleAcao("listarTodos", $_GET['procure'], '1');
+		$eventos = $eventoControle->controleAcao("listarTodos", $_GET['procure'], $_SESSION['id']);
 	}else{
-		$eventos = $eventoControle->controleAcao("listarTodos", '', '1');
+		$eventos = $eventoControle->controleAcao("listarTodos", '', $_SESSION['id']);
 	}
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,8 @@
 		$('#cadastrarEvento').on('click', function(){
 			$('#cadastrarEvento').attr('disabled', '');
 			var nome = $('#nome').val();
-			$.post( "../controle/cadastraEvento.php", {'nome': nome}, function(data){
+			var idUsuario = $('#idUsuario').val();
+			$.post( "../controle/cadastraEvento.php", {'nome': nome, 'idUsuario': idUsuario}, function(data){
 				data = $.parseJSON( data );
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();
@@ -71,6 +72,7 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">
+			<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['id']; ?>"/>
 			<div class="filtros float-right simple-margin-right">
 				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
 					<span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
