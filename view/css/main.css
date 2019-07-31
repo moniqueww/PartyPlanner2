@@ -481,6 +481,7 @@ a, a:hover, a:focus {
 	border: none;
 	color: #fff;
 	box-shadow: none;
+	margin-bottom: 30px;
 }
 .btn-addListaServico:hover{
 	background-color: rgba(21, 17, 138, 0.22);
