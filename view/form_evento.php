@@ -5,15 +5,18 @@
 	if($_GET['evento']){ // Caso os dados sejam enviados via GET
 
         //Cria o Controle desta View (página)
+        $eventoServicoControle = new ControleEventoServico();
+
+        $eventosServicos = [];
+
+        $eventosServicos = $eventoServicoControle->controleAcao("listarTodos", $_GET["evento"]);
+
         $eventoControle = new ControleEvento();
         //Passa o GET desta View para o Controle
         $eventoControle->setVisao($_GET);
     
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
     }
-    $servicoControle = new ControleServico();
-    $servicos = [];
-    $servicos = $servicoControle->controleAcao("listarTodos");
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,29 +109,17 @@
                             </div>
                         </div>
                         <div class="filtros">Quadro de organização</div>
-                        <div class="content co-10 co-ult normal-shadow" style="background-color: #343a40;">
-                            <div class="filtros" style="color: #aab8c5;">Categoria</div>
+                        <div class="content co-10 co-ult normal-shadow">
+                            <div class="filtros">Categoria</div>
                             <?php
-                                if(!empty($servicos)){
-                                    foreach ($servicos as $se) {
-                                        echo "<div class='content co-2 coh-1' style='background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;'>".$se->getNome()."</div>";
+                                if(!empty($eventosServicos)){
+                                    foreach ($eventosServicos as $es) {
+                                        $servicoControle = new ControleServico();
+                                        $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                        echo "<div class='content co-2 coh-1' style='background-color: #6e69ff; box-shadow: 0 0 35px 0 rgba(92, 79, 196, 0.4); color: #fff;'>".$servicoUnico->getNome()."<br/><div style='    background: white; text-align: center; border-radius: 0.3rem; padding: 5px 10px; color: #8898aa;'>".$servicoUnico->getEmail()."</div></div>";
                                     }
                                 }
                             ?>
-                            <br clear="all"/>
-                            <div class="filtros" style="color: #aab8c5;">Categoria</div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
-                            <div class="content co-2 coh-1" style="background-color: #37404a; box-shadow: 0 0 35px 0 rgba(49,57,66,.5); color: #aab8c5;">awdawdwadawd
-                            </div>
                         </div>
 		</div>
     </div>
