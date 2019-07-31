@@ -9,7 +9,7 @@
 				<div class="header-photo circle">
 					<img src="img/logo.png"/>
 				</div>
-				<div class="header-nome">Partyplanner</div>
+				<div class="header-nome"><?php echo $_SESSION['usuario'];?></div>
             </div>
     		<!--<ul class="list-unstyled components">
 				<li class="active li-add">
