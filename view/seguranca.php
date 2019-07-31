@@ -15,7 +15,7 @@ if (isset($_POST['validar']) == 1){
 				unset($_SESSION['usuario']);
 				$_SESSION['usuario'] = $email;
 				$_SESSION['usuario_id'] = $us->getId();				
-				echo '<script>window.location.href = "home.php";</script>';
+				echo '<script>window.location.href = "lista_evento.php";</script>';
 				
 			}else if($us->getEmail()==$email && $us->getSenha()!=$senha){
 				echo '<script>$("#span_senha").html("Sua senha está incorreta!"); $("#email").val("'.$email.'");</script>';
