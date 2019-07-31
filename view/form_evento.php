@@ -56,6 +56,7 @@
             }
         });
         $('.btn-addServico').on('click', function(){
+            $(this).attr('disabled', '');
             idServico = $(this).attr('data-id');
             idEvento = $('#idEvento').val();
             $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
@@ -134,14 +135,14 @@
                         <div class="filtros">Quadro de organização</div>
                         <div id="addServicos" class="content co-10 co-ult normal-shadow">
                             <div class="filtros">Categoria</div>
-                            <button style="height: 100px; padding-left: 34px; padding-right: 34px; background-color: rgba(21, 17, 138, 0.18); border: none; box-shadow: none;" type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
+                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
                                 <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                             </button>
                             <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                             <div class="modal-dialog modal- modal-dialog-centered" role="document">
                             <div class="modal-content">                  
                                     <div class="modal-header">
-                                        <h6 class="modal-title" id="modal-title-default">Cadastro de organizador</h6>
+                                        <h6 class="modal-title" id="modal-title-default">Adicionar serviço ao evento</h6>
                                         <button id="cancelaListaServicos" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -149,7 +150,15 @@
                                     <div class="modal-body">
                                     <?php if(!empty($servicos)){
                                         foreach ($servicos as $se) {
-                                            echo "<button class='btn btn-primary-alternative btn-addServico' data-id='".$se->getId()."' style='margin-bottom: 10px; width: 100%; padding: .625rem .75rem; font-size: 1rem; color: #495057; background-color: #f7f8fc; border-radius: 0.3rem;'>".$se->getNome()."</button>";
+                                            $servicoDisabled = "";
+                                            if(!empty($eventosServicos)){
+                                                foreach ($eventosServicos as $es) {
+                                                    if ($se->getId() == $es->getIdServico()){
+                                                        $servicoDisabled = 'disabled';
+                                                    }
+                                                }
+                                            }
+                                            echo "<button ".$servicoDisabled." class='btn btn-primary-alternative btn-addServico' data-id='".$se->getId()."'>".$se->getNome()."</button>";
                                         }
                                     }?>
                                     </div>
@@ -160,7 +169,7 @@
                                 if(!empty($eventosServicos)){
                                     foreach ($eventosServicos as $es) {
                                         $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
-                                        echo "<div class='content co-2 coh-1' style='background-color: #6e69ff; box-shadow: 0 0 35px 0 rgba(92, 79, 196, 0.4); color: #fff;'>".$servicoUnico->getNome()."<br/><div style='    background: white; text-align: center; border-radius: 0.3rem; padding: 5px 10px; color: #8898aa;'>".$servicoUnico->getEmail()."</div></div>";
+                                        echo "<div class='content co-2 coh-1 listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div></div>";
                                     }
                                 }
                             ?>

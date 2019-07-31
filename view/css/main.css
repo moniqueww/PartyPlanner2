@@ -459,3 +459,44 @@ a, a:hover, a:focus {
 .form-title{
 	font-size: 1.5rem !important;
 }
+.listaEventoServico{
+	background-color: #6e69ff !important;
+	box-shadow: 0 0 35px 0 rgba(92, 79, 196, 0.4);
+	color: #fff;
+}
+.listaInfoEventoServico{
+	background: #fff;
+	text-align: center;
+	border-radius: 0.3rem;
+	padding: 5px 10px;
+	color: #8898aa;
+}
+.btn-addListaServico{
+	height: 100px;
+	padding-left: 34px;
+	padding-right: 34px;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	background-color: rgba(21, 17, 138, 0.18);
+	border: none;
+	color: #fff;
+	box-shadow: none;
+}
+.btn-addListaServico:hover{
+	background-color: rgba(21, 17, 138, 0.22);
+}
+.btn-addListaServico:focus{
+	outline: none;
+}
+.btn-addListaServico:active{
+	background-color: rgba(21, 17, 138, 0.26);
+}
+.btn-addServico{
+	margin-bottom: 10px;
+	width: 100%;
+	padding: .625rem .75rem;
+	font-size: 1rem;
+	color: #495057;
+	background-color: #f7f8fc;
+	border-radius: 0.3rem;'
+}
