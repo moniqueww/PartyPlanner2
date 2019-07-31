@@ -81,7 +81,7 @@
 					<div class="modal-dialog modal- modal-dialog-centered" role="document">
 						<div class="modal-content">                  
                             <div class="modal-header">
-                                <h6 class="modal-title" id="modal-title-default">Cadastro de evento</h6>
+                                <h6 class="modal-title" id="modal-title-default">Cadastro de organizador</h6>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -145,18 +145,6 @@
                     }
                 }
             ?>
-			<!--@foreach($eventos->reverse(); as $evento)
-			<a href="/quadro/{{$evento->id}}">
-			<div class="content co-2 photo normal-shadow">
-				<div class="card" data-id="{{$evento->id}}">
-				  <img class="card-img-top" height="200px" src="{{URL::asset('/img/background.png')}}" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title">{{$evento->nome}}</h5>
-				  </div>
-				</div>
-			</div>
-			</a>
-      @endforeach-->
 	  		</div>
 		</div>
     </div>
