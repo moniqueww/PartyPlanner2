@@ -1,4 +1,4 @@
-<?php include_once 'verificaOrganizador.php';?>
+<?php include_once 'include/verificaOrganizador.php';?>
 <?php include_once 'include/banco.php';?>
 <?php
 	include_once '../autoload.php';
