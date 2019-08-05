@@ -33,7 +33,7 @@ class ControleOrganizador extends ControleBase {
     
     private function preencheModelo(){
         // Passa dados do formulário para a classe Cliente
-        $this->organizador->setNome((isset($this->visao["name"]) && $this->visao["name"] != null) ? $this->visao["name"] : "");
+        $this->organizador->setNome((isset($this->visao["nome"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
         $this->organizador->setEmail((isset($this->visao["email"]) && $this->visao["email"] != null) ? $this->visao["email"] : "");
         $this->organizador->setSenha((isset($this->visao["senha"]) && $this->visao["senha"] != null) ? $this->visao["senha"] : "");
 		$this->organizador->setCnpj((isset($this->visao["cnpj"]) && $this->visao["cnpj"] != null) ? $this->visao["cnpj"] : "");
