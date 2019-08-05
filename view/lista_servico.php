@@ -72,11 +72,9 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
+				<th scope="col">Nome</th>
+				<th scope="col">E-mail</th>
                 <th scope="col">Cnpj</th>
-          
-                <th scope="col">Ação</th>
-                <th scope="col">Adicionar</th>
             </tr>
         </thead>
 		<?php
@@ -87,20 +85,8 @@
 						<tr>
 							<th scope='row'>".$serv->getId()."</th>
 							<td>".$serv->getNome()."</td>
-							<td>".$serv->getCnpj()."</td>
-							
-							<td>  
-								<a href=''>Editar</a> |
-								<a href=''>Vizualizar</a>
-							</td> 
-							// <td>
-							// 	<select id='selectAddEvento'>
-							// 		<option> </option>
-							// 		@foreach(data['evento'] as evento)
-							// 		<option value=/quadro/evento->id/servico->id>evento->nome</option>
-							// 		@endforeach
-							// 	</select>
-							// </td>      
+							<td>".$serv->getEmail()."</td>
+							<td>".$serv->getCnpj()."</td>     
 						</tr>
 					</tbody>
 				";
