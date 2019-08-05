@@ -135,6 +135,12 @@ if($_POST){
 								</div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
+										<small>Telefone</small>
+									</div>
+									<input class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number	">
+								</div>
+								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+									<div>
 										<small>Categoria</small>
 									</div>
 									<select>

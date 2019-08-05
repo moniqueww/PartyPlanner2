@@ -125,18 +125,6 @@ if($_POST){
 									</div>
 									<input class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Nome da sua organização</small>
-									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome da sua organização" type="text">
-								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Celular</small>
-									</div>
-									<input class="form-control form-control-alternative" name="celular" id="celular" placeholder="Celular" type="number">
-								</div>
 						<br clear="all"/>
 						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>

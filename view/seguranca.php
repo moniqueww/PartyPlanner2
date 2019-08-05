@@ -16,8 +16,13 @@ if (isset($_POST['validar']) == 1){
 				$_SESSION['usuario'] = $us->getNome();
 				$_SESSION['email'] = $us->getEmail();
 				$_SESSION['id'] = $us->getId();
-				$_SESSION['tipo'] = $us->getTipo();				
-				echo '<script>window.location.href = "lista_evento.php";</script>';
+				$_SESSION['tipo'] = $us->getTipo();	
+				if($_SESSION['tipo'] == 'O'){
+					echo '<script>window.location.href = "lista_evento.php";</script>';
+				}else{
+					echo '<script>window.location.href = "lista_servico.php";</script>';
+				} 		
+				
 				
 			}else if($us->getEmail()==$email && $us->getSenha()!=$senha){
 				echo '<script>$("#span_senha").html("Sua senha está incorreta!"); $("#email").val("'.$email.'");</script>';
