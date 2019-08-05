@@ -140,7 +140,7 @@ class Organizador implements IBaseModelo{
                 $query="SELECT id,nome,email,senha FROM usuario WHERE nome LIKE :nome ORDER BY nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,email,senha FROM usuario ORDER BY nome";
+                $query="SELECT id,nome,email,senha FROM usuario WHERE tipo='O' ORDER BY nome";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($name))$this->stmt->bindValue(':name', '%'.$name.'%', PDO::PARAM_STR);
