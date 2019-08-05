@@ -463,9 +463,12 @@ a, a:hover, a:focus {
 	background-color: #6e69ff !important;
 	box-shadow: 0 0 35px 0 rgba(92, 79, 196, 0.4);
 	color: #fff;
+	min-width: 18%;
 }
 .listaInfoEventoServico{
 	background-color: #f1f1f1;
+	white-space: nowrap;
+	overflow: hidden;
 	text-align: center;
 	padding: 5px 10px;
 	color: #8898aa;
@@ -505,9 +508,33 @@ a, a:hover, a:focus {
 .btn-addServico{
 	margin-bottom: 10px;
 	width: 100%;
+	height: 70px;
 	padding: .625rem .75rem;
 	font-size: 1rem;
-	color: #495057;
+	color: #525f7f !important;
 	background-color: #f7f8fc;
-	border-radius: 0.3rem;'
+	border-radius: 0px !important;
+	margin: 0px !important;
+	border-bottom: solid 1px rgba(136, 145, 169, .1) !important;
+}
+.btn-addServico:hover{
+	background-color: #edeff5;
+	color: #6e69ff !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+.btn-addServico:first-child{
+	border-top-left-radius: 0.3rem !important;
+	border-top-right-radius: 0.3rem !important;
+}
+.btn-addServico:last-child{
+	border-bottom-left-radius: 0.3rem !important;
+	border-bottom-right-radius: 0.3rem !important;
+	border: none !important;
+}
+.modal-dialog.modal-.modal-dialog-centered.servicos{
+	max-width: 900px !important;
+}
+.btn-addServico td{
+	text-align: left;
 }
