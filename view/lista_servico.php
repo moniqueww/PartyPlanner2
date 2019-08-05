@@ -5,9 +5,9 @@
 	$servicoControle = new ControleServico();
 	$servicos = array();
 	if(isset($_GET['procure'])){
-		$servicos = $servicoControle->controleAcao("listarTodos", $_GET['procure'], '1');
+		$servicos = $servicoControle->controleAcao("listarTodos", $_GET['procure']);
 	}else{
-		$servicos = $servicoControle->controleAcao("listarTodos", '', '1');
+		$servicos = $servicoControle->controleAcao("listarTodos");
 	}
 	/*$sql = "select * from categoria";
 	$categorias = $conexao->query($sql);
@@ -74,7 +74,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Cnpj</th>
-                <th scope="col">Categoria</th>
+          
                 <th scope="col">Ação</th>
                 <th scope="col">Adicionar</th>
             </tr>
@@ -88,7 +88,7 @@
 							<th scope='row'>".$serv->getId()."</th>
 							<td>".$serv->getNome()."</td>
 							<td>".$serv->getCnpj()."</td>
-							<td>".$serv->getCategoria()."</td>
+							
 							<td>  
 								<a href=''>Editar</a> |
 								<a href=''>Vizualizar</a>
