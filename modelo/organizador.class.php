@@ -36,8 +36,12 @@ class Organizador implements IBaseModelo{
         return $this->tipo;
     }
 
+    public function setId($id) {
+        $this->id = $id;
+    }
+
     public function setNome($nome) {
-        $this->name = $nome;
+        $this->nome = $nome;
     }
 
     public function setEmail($email) {
@@ -73,7 +77,6 @@ class Organizador implements IBaseModelo{
 
             $this->stmt= $this->conn->prepare($query);
 
-            $this->stmt->bindValue(':id', $param, PDO::PARAM_INT);
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
@@ -96,7 +99,7 @@ class Organizador implements IBaseModelo{
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':id', $param, PDO::PARAM_INT);
-            $this->stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $this->stmt->bindValue(':nome', $this->name, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
 			
