@@ -139,16 +139,7 @@ if($_POST){
 									</div>
 									<input class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number	">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Categoria</small>
-									</div>
-									<select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-								</div>
+								
 						<br clear="all"/>
 						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
