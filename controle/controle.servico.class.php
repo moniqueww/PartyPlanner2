@@ -35,6 +35,7 @@ class ControleServico extends ControleBase {
         // Passa dados do formulário para a classe Produto
         $this->servico->setNome((isset($this->visao["nome"]) && $this->visao["nome"] != null) ? $this->visao["nome"] : "");
         $this->servico->setEmail((isset($this->visao["email"]) && $this->visao["email"] != null) ? $this->visao["email"] : "");
+        $this->servico->setTelefone((isset($this->visao["telefone"]) && $this->visao["telefone"] != null) ? $this->visao["telefone"] : "");
         $this->servico->setCnpj((isset($this->visao["cnpj"]) && $this->visao["cnpj"] != null) ? $this->visao["cnpj"] : "");
         $this->servico->setSenha((isset($this->visao["senha"]) && $this->visao["senha"] != null) ? $this->visao["senha"] : "");
         $this->servico->setTipo((isset($this->visao["tipo"]) && $this->visao["tipo"] != null) ? $this->visao["tipo"] : "");

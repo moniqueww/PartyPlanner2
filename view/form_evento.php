@@ -63,11 +63,14 @@
                 data = $.parseJSON( data );
                 $('#cancelaListaServicos').click();
                 $('#addServicos').append(
-                    $('<div>', {class: 'content co-2 coh-1', style: 'background-color: #6e69ff; box-shadow: 0 0 35px 0 rgba(92, 79, 196, 0.4); color: #fff;'}).append(
+                    $('<div>', {class: 'content co-2 listaEventoServico'}).append(
                         data.nome,
                         $('<br/>'),
-                        $('<div>', {style: 'background: white; text-align: center; border-radius: 0.3rem; padding: 5px 10px; color: #8898aa;'}).append(
+                        $('<div>', {class: 'listaInfoEventoServico'}).append(
                             data.email
+                        ),
+                        $('<div>', {class: 'listaInfoEventoServico'}).append(
+                            data.telefone
                         )
                     )
                 );
@@ -169,7 +172,7 @@
                                 if(!empty($eventosServicos)){
                                     foreach ($eventosServicos as $es) {
                                         $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
-                                        echo "<div class='content co-2 coh-1 listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div></div>";
+                                        echo "<div class='content co-2 listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                     }
                                 }
                             ?>

@@ -465,11 +465,21 @@ a, a:hover, a:focus {
 	color: #fff;
 }
 .listaInfoEventoServico{
-	background: #fff;
+	background-color: #f1f1f1;
 	text-align: center;
-	border-radius: 0.3rem;
 	padding: 5px 10px;
 	color: #8898aa;
+}
+.listaEventoServico .listaInfoEventoServico:nth-child(2){
+	border-top-right-radius: 0.3rem;
+	border-top-left-radius: 0.3rem;
+}
+.listaEventoServico .listaInfoEventoServico:nth-child(2n){
+	background-color: #fff;
+}
+.listaEventoServico .listaInfoEventoServico:last-child{
+	border-bottom-right-radius: 0.3rem;
+	border-bottom-left-radius: 0.3rem;
 }
 .btn-addListaServico{
 	height: 100px;

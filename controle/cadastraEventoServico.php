@@ -10,7 +10,7 @@
         if($retorno) {
             $servicoControle = new ControleServico();
             $servicoUnico = $servicoControle->controleAcao("listarUnico", $_POST['idServico']);
-            $arrayRetorno = ['idEvento' => $_POST['idEvento'], 'idServico' => $_POST['idServico'], 'nome' => $servicoUnico->getNome(), 'email' => $servicoUnico->getEmail()];
+            $arrayRetorno = ['idEvento' => $_POST['idEvento'], 'idServico' => $_POST['idServico'], 'nome' => $servicoUnico->getNome(), 'email' => $servicoUnico->getEmail(), 'telefone' => $servicoUnico->getTelefone()];
             echo json_encode($arrayRetorno);
         }
     }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31-Jul-2019 às 02:50
--- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.4
+-- Generation Time: 05-Ago-2019 às 21:07
+-- Versão do servidor: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -54,7 +54,12 @@ CREATE TABLE `eventos` (
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
 (41, 1, 'Evento teste 1', 'Descrição teste para evento teste 1'),
-(42, 1, 'el desejo 2.0', 'Uma festa para jovens e jovenas do brasul e do rio grande do sul');
+(42, 1, 'Festa 3', 'Uma festa para jovens e jovenas do brasul e do rio grande do sulq2ea2qed2'),
+(43, 1, 'Evento teste 3', NULL),
+(45, 4, 'Evento teste 310', NULL),
+(46, 6, 'Meu evento', NULL),
+(47, 6, 'teste 1 2', NULL),
+(48, 7, 'Evento teste Grégori', NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +79,18 @@ CREATE TABLE `evento_servico` (
 
 INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (1, 42, 2),
-(4, 41, 1);
+(4, 41, 1),
+(5, 42, 1),
+(6, 41, 2),
+(7, 46, 2),
+(8, 46, 1),
+(9, 46, 5),
+(10, 47, 2),
+(11, 47, 5),
+(12, 48, 1),
+(13, 48, 2),
+(14, 48, 10),
+(15, 48, 8);
 
 -- --------------------------------------------------------
 
@@ -193,17 +209,22 @@ CREATE TABLE `usuario` (
   `email` varchar(200) NOT NULL,
   `senha` varchar(20) NOT NULL,
   `tipo` char(1) NOT NULL,
-  `cnpj` int(14) DEFAULT NULL
+  `cnpj` char(14) DEFAULT NULL,
+  `telefone` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', 98217389),
-(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', 127836),
-(4, 'Roberto', 'emailteste3@gmail.com', 'senha12345', 'O', NULL);
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`) VALUES
+(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454),
+(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344),
+(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677),
+(7, 'Partyplanner', 'partyplanner@gmail.com', 'partyplanner123', 'O', NULL, NULL),
+(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454),
+(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454),
+(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454);
 
 --
 -- Indexes for dumped tables
@@ -285,13 +306,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -327,7 +348,7 @@ ALTER TABLE `servicos`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
