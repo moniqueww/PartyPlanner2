@@ -63,7 +63,7 @@
                 data = $.parseJSON( data );
                 $('#cancelaListaServicos').click();
                 $('#addServicos').append(
-                    $('<div>', {class: 'content co-2 listaEventoServico'}).append(
+                    $('<div>', {class: 'content listaEventoServico'}).append(
                         data.nome,
                         $('<br/>'),
                         $('<div>', {class: 'listaInfoEventoServico'}).append(
@@ -135,14 +135,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filtros">Quadro de organização</div>
                         <div id="addServicos" class="content co-10 co-ult normal-shadow">
                             <div class="filtros">Categoria</div>
-                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
-                                <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                            </button>
                             <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                            <div class="modal-dialog modal- modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal- modal-dialog-centered servicos" role="document">
                             <div class="modal-content">                  
                                     <div class="modal-header">
                                         <h6 class="modal-title" id="modal-title-default">Adicionar serviço ao evento</h6>
@@ -161,7 +157,7 @@
                                                     }
                                                 }
                                             }
-                                            echo "<button ".$servicoDisabled." class='btn btn-primary-alternative btn-addServico' data-id='".$se->getId()."'>".$se->getNome()."</button>";
+                                            echo "<button ".$servicoDisabled." class='btn btn-addServico' data-id='".$se->getId()."'><table style='width: 100%;'><tr><td>".$se->getNome()."</td><td>".$se->getEmail()."</td></tr></table></button>";
                                         }
                                     }?>
                                     </div>
@@ -172,10 +168,18 @@
                                 if(!empty($eventosServicos)){
                                     foreach ($eventosServicos as $es) {
                                         $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
-                                        echo "<div class='content co-2 listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                        echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                     }
                                 }
                             ?>
+                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
+                                <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                            </button>
+                            <br clear="all"/>
+                            <div class="filtros">Outra categoria</div>
+                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
+                                <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                            </button>
                         </div>
 		</div>
     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Ago-2019 às 21:07
+-- Generation Time: 05-Ago-2019 às 21:57
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -59,7 +59,8 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
 (45, 4, 'Evento teste 310', NULL),
 (46, 6, 'Meu evento', NULL),
 (47, 6, 'teste 1 2', NULL),
-(48, 7, 'Evento teste Grégori', NULL);
+(48, 7, 'Evento teste Grégori', NULL),
+(56, 7, 'Novo evento teste', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,15 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (12, 48, 1),
 (13, 48, 2),
 (14, 48, 10),
-(15, 48, 8);
+(15, 48, 8),
+(16, 48, 9),
+(17, 48, 5),
+(18, 56, 5),
+(19, 56, 1),
+(20, 56, 10),
+(21, 56, 8),
+(22, 56, 2),
+(23, 56, 19);
 
 -- --------------------------------------------------------
 
@@ -224,7 +233,15 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone
 (7, 'Partyplanner', 'partyplanner@gmail.com', 'partyplanner123', 'O', NULL, NULL),
 (8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454),
 (9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454),
-(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454);
+(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454),
+(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454),
+(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
+(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453);
 
 --
 -- Indexes for dumped tables
@@ -306,13 +323,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -348,7 +365,7 @@ ALTER TABLE `servicos`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

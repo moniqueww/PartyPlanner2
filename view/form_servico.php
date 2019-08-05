@@ -135,14 +135,11 @@ if($_POST){
 								</div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
-										<small>Categoria</small>
+										<small>Telefone</small>
 									</div>
-									<select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
+									<input class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number	">
 								</div>
+								
 						<br clear="all"/>
 						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
