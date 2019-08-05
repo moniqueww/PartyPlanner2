@@ -131,7 +131,7 @@ if($_POST){
 									<div>
 										<small>CNPJ</small>
 									</div>
-									<input class="form-control form-control-alternative" name="tipo" id="tipo" placeholder="CNPJ" type="number">
+									<input class="form-control form-control-alternative" name="cnpj" id="cnpj" placeholder="CNPJ" type="number">
 								</div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>

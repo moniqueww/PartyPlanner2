@@ -73,7 +73,7 @@ class Servico implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO usuario (nome, email, senha, cnpj, tipo) VALUES (:nome, :email, :senha, :cnpj, :tipo) ";
+            $query="INSERT INTO usuario (nome, email, senha, cnpj, tipo) VALUES (:nome, :email, :senha, :cnpj, :tipo)";
 
             $this->stmt= $this->conn->prepare($query);
 
