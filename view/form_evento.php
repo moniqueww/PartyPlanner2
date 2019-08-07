@@ -46,6 +46,7 @@
 
     <script type="text/javascript">
     $(function() {
+        nome = "";
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
         $('#input-descricao').html(primeiraDescricao);
@@ -63,6 +64,10 @@
         });
         $('#categoriaPesq').on('change', function(){
             idCategoriaSelecionada = $(this).val();
+            listar();
+        });
+        $('#nomePesq').on('input', function(){
+            nome = $(this).val();
             listar();
         });
         $('.btn-addListaServico').on('click', function(){
@@ -97,8 +102,24 @@
     function listar() {
         $('.btn-addServico').hide();
         $('.btn-addServico[data-categoria='+idCategoriaSelecionada+']').show();
+        $.post( "../controle/buscaServico.php", {'nome': nome}, function(data){
+            data = $.parseJSON( data );
+            $('#tabela_servicos').html('');
+            for(i = 0; i < data.length; i++){
+                $('#tabela_servicos').append(
+                    $('<tr>', {'data-categoria': 1, class: 'btn btn-addServico', 'data-id': data[i].id}).append(
+                        $('<td>').append(
+                            data[i].nome
+                        ),
+                        $('<td>').append(
+                            data[i].email
+                        )
+                    )
+                );
+            }
+        })
     }
-
+    
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
@@ -162,6 +183,7 @@
                                 <div class="modal-content">                  
                                         <div class="modal-header" style="padding: 1.5rem;">
                                             <select id="categoriaPesq" class="form-control form-control-alternative" style="width: 40%;">
+                                                <option value="">Todos</option>
                                                 <?php
                                                     if(!empty($categorias)) {
                                                         foreach($categorias as $ca) {
@@ -170,26 +192,13 @@
                                                     }
                                                 ?>
                                             </select>
-                                            <input type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%; position: absolute; right: 64px;"/>
+                                            <input id="nomePesq" type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%; position: absolute; right: 64px;"/>
                                             <button id="cancelaListaServicos" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                        <table style="width: 100%;">
-                                        <?php if(!empty($servicos)){
-                                            foreach ($servicos as $se) {
-                                                $servicoDisabled = "";
-                                                if(!empty($eventosServicos)){
-                                                    foreach ($eventosServicos as $es) {
-                                                        if ($se->getId() == $es->getIdServico()){
-                                                            $servicoDisabled = 'disabled';
-                                                        }
-                                                    }
-                                                }
-                                                echo "<tr data-categoria='1' class='btn btn-addServico ".$servicoDisabled."' data-id='".$se->getId()."'><td>".$se->getNome()."</td><td>".$se->getEmail()."</td></tr>";
-                                            }
-                                        }?>
+                                        <table id="tabela_servicos" style="width: 100%;">
                                         </table>
                                         </div>
                                     </div>

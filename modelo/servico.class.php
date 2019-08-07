@@ -151,7 +151,7 @@ class Servico implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE email = :email AND nome LIKE :nome AND tipo='S'";
+                $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE nome LIKE :nome AND tipo='S'";
             }else{
                 // Pesquisa todos
                 $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE tipo='S'";

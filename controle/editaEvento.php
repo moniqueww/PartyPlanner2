@@ -1,6 +1,6 @@
 <?php
     include_once '../autoload.php';
-    if($_POST){
+    if(isset($_POST)){
         //Cria o Controle desta View (página)
         $eventoControle = new ControleEvento();
 
