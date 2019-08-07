@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Ago-2019 às 21:57
+-- Generation Time: 07-Ago-2019 às 20:17
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -30,10 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categorias` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nome`) VALUES
+(1, 'Segurança'),
+(2, 'Estabelecimento'),
+(3, 'Decoração'),
+(4, 'Bebidas'),
+(5, 'Artista');
 
 -- --------------------------------------------------------
 
@@ -60,7 +69,8 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
 (46, 6, 'Meu evento', NULL),
 (47, 6, 'teste 1 2', NULL),
 (48, 7, 'Evento teste Grégori', NULL),
-(56, 7, 'Novo evento teste', NULL);
+(56, 7, 'Novo evento teste', NULL),
+(57, 7, 'Outro evento', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,7 +109,10 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (20, 56, 10),
 (21, 56, 8),
 (22, 56, 2),
-(23, 56, 19);
+(23, 56, 19),
+(29, 57, 10),
+(30, 57, 8),
+(31, 57, 14);
 
 -- --------------------------------------------------------
 
@@ -317,19 +330,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `migrations`
