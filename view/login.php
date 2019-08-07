@@ -37,7 +37,7 @@
 
 	</script>
 </head>
-<body style="background-color: #fff !important;">
+<body class="bg-white">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
   <script src="js/jquery.js" crossorigin="anonymous"></script>

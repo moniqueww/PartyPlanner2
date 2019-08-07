@@ -37,7 +37,7 @@ class Categoria implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO categoria (nome) VALUES (:nome) ";
+            $query="INSERT INTO categorias (nome) VALUES (:nome) ";
 
             $this->stmt= $this->conn->prepare($query);
 
@@ -56,7 +56,7 @@ class Categoria implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE categoria SET nome = :nome WHERE id=:id ";
+            $query="UPDATE categorias SET nome = :nome WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
@@ -75,7 +75,7 @@ class Categoria implements IBaseModelo{
     public function excluir($param,$param2){
         try{
             //Comando SQL para inserir um aluno
-            $query="DELETE FROM categoria WHERE id=:id ";
+            $query="DELETE FROM categorias WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             if($this->stmt->execute()){
@@ -95,10 +95,10 @@ class Categoria implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome FROM categoria WHERE nome LIKE :nome";
+                $query="SELECT id,nome FROM categorias WHERE nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome FROM categoria";
+                $query="SELECT id,nome FROM categorias";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -121,7 +121,7 @@ class Categoria implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome FROM categoria WHERE id=:id";
+            $query="SELECT id,nome FROM categorias WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
@@ -141,7 +141,7 @@ class Categoria implements IBaseModelo{
     public function listarPorNome($nome){
         
         try{
-            $query="SELECT id,nome FROM categoria WHERE nome=:nome";
+            $query="SELECT id,nome FROM categorias WHERE nome=:nome";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
             
