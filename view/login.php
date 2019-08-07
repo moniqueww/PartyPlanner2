@@ -10,6 +10,29 @@
   <title>PartyPlanner - Login</title>
   <?php include_once "include/head.php"; ?>
   
+  <style>
+
+    #email{
+      position: relative;
+      margin-bottom: 25px;
+    }
+    #senha{
+      position: relative;
+      margin-bottom: 25px;
+    }
+    #span_email{
+      position: absolute;
+      margin-top: 50px;
+      left: 15px;
+    }
+    #span_senha{
+      position: absolute;
+      margin-top: 50px;
+      left: 15px;
+    }
+
+  </style>
+
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 	<script type="text/javascript">
@@ -19,7 +42,7 @@
 				var email = $("#email").val();
 				var senha = $("#senha").val();
 
-				if ((email == "" || email == " ") && senha == "" || senha == " "){
+				if ((email == "" || email == " ") && (senha == "" || senha == " ")){
 					$("#span_email").html('Por favor, digite seu email!');
 					$("#span_senha").html('Por favor, digite sua senha!');
 					return false;
@@ -27,7 +50,7 @@
 					$("#span_email").html('Por favor, digite seu email!');
 					return false;
 				} else if (senha == "" || senha == " "){
-					$("#span _senha").html('Por favor, digite sua senha!');
+					$("#span_senha").html('Por favor, digite sua senha!');
 					return false;
 				}
 
@@ -48,41 +71,7 @@
   <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <div class="main-content">
-    <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-      <div class="container px-4">
-        <a class="navbar-brand" href="#">
-          <img width="250px" src="img/outrologo2.png" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-collapse-main">
-          <!-- Collapse header -->
-          <div class="navbar-collapse-header d-md-none">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a href="#">
-                  <img src="img/brand/blue.png">
-                </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Navbar items -->
-        </div>
-      </div>
-    </nav>
-    <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-      <div class="separator separator-bottom separator-skew zindex-100">
-      </div>
-    </div>
+  <?php include_once "include/cabecalho.php"?>
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
@@ -102,7 +91,7 @@
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span style="height: 46px;" class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     <input class="form-control" id="email" value="" name="email" placeholder="Email" type="email">
                     <span id="span_email"></span>
@@ -111,7 +100,7 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      <span style="height: 46px;" class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control" id="senha" value="" name="senha" placeholder="Senha" type="password">
                     <span id="span_senha"></span>

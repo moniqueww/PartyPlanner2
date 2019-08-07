@@ -99,12 +99,13 @@ if($_POST){
 
 </head>
 <body>
-<?php include_once('include/navbar.php'); ?>
+	<div class="main-content">
+	<?php include_once "include/cabecalho.php"?>
 
-	<?php
-		$pagina = basename( __FILE__ );
-    ?>
-	<div id="page">
+		<?php
+			$pagina = basename( __FILE__ );
+		?>
+		<div id="page">
 					<form action="form_organizador.php" method="post">
 						<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
 						<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
@@ -126,12 +127,12 @@ if($_POST){
 									<input class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
 								</div>
 						<br clear="all"/>
-						<button id="button" type="submit" class="button" name="cadastrar">Cadastrar</button>
+						<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
 					</form>
 			</section>
 		</div>
 	</div>
-        
+</div>
 </body>
 </html>
