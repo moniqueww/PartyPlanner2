@@ -24,7 +24,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 
     <?php include_once('include/navbar.php'); ?>
@@ -51,6 +52,7 @@
                                 </div>
                                 
                             </div>
+                      
                             <div class="content-header" style="float: left;">
                                 <div class="header-photo alternative-shadow">
                                     <img src="img/blog-neon-6.jpg">
@@ -66,18 +68,16 @@
                                     <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></textarea>
-                                </div>
+                            <div class="row">
+                            <div class="rating">
+                                <input type="radio" id="star10" name="rating" value="10" /><label for="star10" title="Rocks!">5 stars</label>
+                                <input type="radio" id="star9" name="rating" value="9" /><label for="star9" title="Rocks!">4 stars</label>
+                                <input type="radio" id="star8" name="rating" value="8" /><label for="star8" title="Pretty good">3 stars</label>
+                                <input type="radio" id="star7" name="rating" value="7" /><label for="star7" title="Pretty good">2 stars</label>
+                                <input type="radio" id="star6" name="rating" value="6" /><label for="star6" title="Meh">1 star</label>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?></textarea>
-                                </div>
-                            </div>
+	                    </div>
                         </div>
-                        
 		</div>
     </div>
 	
