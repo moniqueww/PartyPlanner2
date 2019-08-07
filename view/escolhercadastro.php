@@ -55,8 +55,8 @@
             </div>
             <div style="padding-bottom: 1rem !important;" class="card-header bg-transparent pb-5">
             <div class="form-group" style="text-align:center">
-                <button type="button" class="btn btn-primary my-4" ><a href="form_organizador.php"> Organizador </a></button>
-                <button type="button" class="btn btn-primary my-4" ><a href="form_servico.php"> Serviço </a></button>
+              <a href="form_organizador.php"><button type="button" style="margin-right: 15px;" class="btn btn-primary my-4" > Organizador </button></a>
+              <a href="form_servico.php"><button type="button" class="btn btn-primary my-4" > Serviço </button></a>
             </div>
               <a href="login.php" class="text-primary"><small>Voltar</small></a>
         </div>
