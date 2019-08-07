@@ -108,43 +108,44 @@ if($_POST){
 		<?php
 			$pagina = basename( __FILE__ );
 		?>
-		<div id="page">
-					<form action="form_servico.php" method="post">
-						<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+		<div style="width: 80%;" id="page">
+					<form action="form_servico.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
+						<div class="modal-body" style="padding: 15px;">
 									<div>
-										<small>Nome</small>
+										<span>Nome</span>
 									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
+									<input style="padding: 15px;" class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+								<div class="modal-body" style="padding: 15px;">
 									<div>
-										<small>Email</small>
+										<span>Email</span>
 									</div>
-									<input class="form-control form-control-alternative" name="email" id="email" placeholder="Email" type="email">
+									<input style="padding: 15px;" class="form-control form-control-alternative" name="email" id="email" placeholder="Email" type="email">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+								<div class="modal-body" style="padding: 15px;">
 									<div>
-										<small>Senha</small>
+										<span>Senha</span>
 									</div>
-									<input class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
+									<input style="padding: 15px;" class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+								<div class="modal-body" style="padding: 15px;">
 									<div>
-										<small>CNPJ</small>
+										<span>CNPJ</span>
 									</div>
-									<input class="form-control form-control-alternative" name="cnpj" id="cnpj" placeholder="CNPJ" type="number">
+									<input style="padding: 15px;" class="form-control form-control-alternative" name="cnpj" id="cnpj" placeholder="CNPJ" type="number">
 								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+								<div class="modal-body" style="padding: 15px;">
 									<div>
-										<small>Telefone</small>
+										<span>Telefone</span>
 									</div>
-									<input class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number	">
+									<input style="padding: 15px;" class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number">
 								</div>
 								
 						<br clear="all"/>
 						<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
 					</form>
+					<a href="escolhercadastro.php" class="text-primary"><span>Voltar</span></a>
 			</section>
 		</div>
 	</div>

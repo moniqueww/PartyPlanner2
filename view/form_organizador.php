@@ -105,33 +105,34 @@ if($_POST){
 		<?php
 			$pagina = basename( __FILE__ );
 		?>
-		<div id="page">
-					<form action="form_organizador.php" method="post">
-						<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
-						<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Nome</small>
-									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
-								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Email</small>
-									</div>
-									<input class="form-control form-control-alternative" name="email" id="email" placeholder="Email" type="email">
-								</div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
-									<div>
-										<small>Senha</small>
-									</div>
-									<input class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
-								</div>
-						<br clear="all"/>
-						<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
-						<br clear="all"/>
-					</form>
-			</section>
-		</div>
+		<div style="width: 80%;" id="page">
+			<form action="form_organizador.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
+				<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
+				<div class="modal-body" style="padding: 15px;">
+					<div>
+						<span>Nome</span>
+					</div>
+					<input style="padding: 15px;" class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome" type="text">
+				</div>
+				<div class="modal-body" style="padding: 15px;">
+					<div>
+						<span>Email</span>
+					</div>
+				<input style="padding: 15px;" class="form-control form-control-alternative" name="email" id="email" placeholder="Email" type="email">
+					</div>
+					<div class="modal-body" style="padding: 15px;">
+						<div>
+							<span>Senha</span>
+						</div>
+						<input style="padding: 15px;" class="form-control form-control-alternative" name="senha" id="senha" placeholder="Senha" type="password">
+					</div>
+				<br clear="all"/>
+				<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
+				<br clear="all"/>
+			</form>
+			<a href="escolhercadastro.php" class="text-primary"><span>Voltar</span></a>
+		</section>
+	</div>
 	</div>
 </div>
 </body>

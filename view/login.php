@@ -118,10 +118,10 @@
             </div>
           <div style="position: relative; top: -15px;" class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-primary"><small>Esqueceu sua senha?</small></a>
+              <a class="text-primary"><span>Esqueceu sua senha?</span></a>
             </div>
             <div class="col-6 text-right">
-              <a href="escolhercadastro.php" class="text-primary"><small>Criar nova conta</small></a>
+              <a href="escolhercadastro.php" class="text-primary"><span>Criar nova conta</span></a>
             </div>
           </div>
         </div>
