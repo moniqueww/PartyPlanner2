@@ -66,6 +66,16 @@
                                     <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></textarea>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?></textarea>
+                                </div>
+                            </div>
                         </div>
                         
 		</div>
