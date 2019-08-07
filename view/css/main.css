@@ -515,6 +515,7 @@ a, a:hover, a:focus {
 	background-color: #f7f8fc;
 	border-radius: 0px !important;
 	margin: 0px !important;
+	line-height: 48px !important;
 	border-bottom: solid 1px rgba(136, 145, 169, .1) !important;
 }
 .btn-addServico:hover{
@@ -522,6 +523,10 @@ a, a:hover, a:focus {
 	color: #6e69ff !important;
 	box-shadow: none !important;
 	transform: none !important;
+}
+.btn-addServico.disabled{
+	background-color: #6e69ff !important;
+	color: rgba(255,255,255,.75) !important;
 }
 .btn-addServico:first-child{
 	border-top-left-radius: 0.3rem !important;
@@ -535,6 +540,6 @@ a, a:hover, a:focus {
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;
 }
-.btn-addServico td{
+.btn-addServico{
 	text-align: left;
 }

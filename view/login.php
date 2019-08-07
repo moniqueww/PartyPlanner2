@@ -37,7 +37,7 @@
 
 	</script>
 </head>
-<body class="bg-default">
+<body style="background-color: #fff !important;">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
   <script src="js/jquery.js" crossorigin="anonymous"></script>
@@ -51,9 +51,6 @@
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
-        <a class="navbar-brand" href="#">
-          <img width="250px" src="img/outrologo2.png" />
-        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -86,8 +83,8 @@
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
-        <div border="solid black 1px" class="col-lg-5 col-md-7">
-          <div class="card bg-secondary shadow border">
+        <div class="col-lg-5 col-md-7">
+          <div style="border: none !important;" class="card bg-secondary shadow border">
             <div style="height: 90px;" class="container">
               <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
@@ -97,7 +94,7 @@
                 </div>
               </div>
             </div>
-            <div style="padding-bottom: 1rem !important;" class="card-header bg-transparent pb-5">
+            <div style="padding-bottom: 1rem !important; border: none !important;" class="card-header bg-transparent pb-5">
               <form novalidate id="form" action="login.php" method="post" name="formLog">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
