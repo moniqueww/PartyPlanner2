@@ -528,21 +528,48 @@ a, a:hover, a:focus {
 	background-color: #6e69ff !important;
 	color: rgba(255,255,255,.75) !important;
 }
-.btn-addServico:first-child{
-	border-top-left-radius: 0.3rem !important;
-	border-top-right-radius: 0.3rem !important;
-}
-.btn-addServico:last-child{
-	border-bottom-left-radius: 0.3rem !important;
-	border-bottom-right-radius: 0.3rem !important;
-	border: none !important;
-}
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;
 }
 .btn-addServico{
 	text-align: left;
 }
+#tabela_servicos td{
+	padding: 10px 20px;
+	cursor: pointer;
+}
+#tabela_servicos tr:first-child td:first-child{
+	border-top-left-radius: 0.3rem;
+}
+#tabela_servicos tr:first-child td:last-child{
+	border-top-right-radius: 0.3rem;
+}
+#tabela_servicos tr:last-child td:first-child{
+	border-bottom-left-radius: 0.3rem;
+}
+#tabela_servicos tr:last-child td:last-child{
+	border-bottom-right-radius: 0.3rem;
+}
+#tabela_servicos th{
+	padding: 10px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .rating {
 	float:left;
   }

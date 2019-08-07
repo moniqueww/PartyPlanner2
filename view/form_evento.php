@@ -75,7 +75,7 @@
             $('#categoriaPesq').val(idCategoriaSelecionada);
             listar();
         });
-        $('.btn-addServico').on('click', function(){
+        $('#tabela_servicos tbody tr').on('click', function(){
             if(!$(this).hasClass('disabled')) {
                 $(this).addClass('disabled');
                 idServico = $(this).attr('data-id');
@@ -104,15 +104,18 @@
         $('.btn-addServico[data-categoria='+idCategoriaSelecionada+']').show();
         $.post( "../controle/buscaServico.php", {'nome': nome}, function(data){
             data = $.parseJSON( data );
-            $('#tabela_servicos').html('');
+            $('#tabela_servicos tbody').html('');
             for(i = 0; i < data.length; i++){
-                $('#tabela_servicos').append(
-                    $('<tr>', {'data-categoria': 1, class: 'btn btn-addServico', 'data-id': data[i].id}).append(
+                $('#tabela_servicos tbody').append(
+                    $('<tr>', {'data-categoria': 1, class: 'btn-addServico', 'data-id': data[i].id}).append(
                         $('<td>').append(
                             data[i].nome
                         ),
                         $('<td>').append(
                             data[i].email
+                        ),
+                        $('<td>').append(
+                            data[i].telefone
                         )
                     )
                 );
@@ -199,6 +202,15 @@
                                         </div>
                                         <div class="modal-body">
                                         <table id="tabela_servicos" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>Email</th>
+                                                    <th>Telefone</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
                                         </table>
                                         </div>
                                     </div>
