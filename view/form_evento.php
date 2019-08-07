@@ -2,7 +2,13 @@
 <?php include_once 'include/banco.php';?>
 <?php
     include_once '../autoload.php'; 
-	if($_GET['evento']){ // Caso os dados sejam enviados via GET
+    if($_GET['evento']){ // Caso os dados sejam enviados via GET
+        
+        $categoriaControle = new ControleCategoria();
+
+        $categorias = [];
+
+        $categorias = $categoriaControle->controleAcao('listarTodos');
 
         $servicoControle = new ControleServico();
 
@@ -55,28 +61,43 @@
                 editarEvento();
             }
         });
+        $('#categoriaPesq').on('change', function(){
+            idCategoriaSelecionada = $(this).val();
+            listar();
+        });
+        $('.btn-addListaServico').on('click', function(){
+            idCategoriaSelecionada = $(this).attr('data-categoria');
+            $('#categoriaPesq').val(idCategoriaSelecionada);
+            listar();
+        });
         $('.btn-addServico').on('click', function(){
-            $(this).attr('disabled', '');
-            idServico = $(this).attr('data-id');
-            idEvento = $('#idEvento').val();
-            $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
-                data = $.parseJSON( data );
-                $('#cancelaListaServicos').click();
-                $('#addServicos').append(
-                    $('<div>', {class: 'content listaEventoServico'}).append(
-                        data.nome,
-                        $('<br/>'),
-                        $('<div>', {class: 'listaInfoEventoServico'}).append(
-                            data.email
-                        ),
-                        $('<div>', {class: 'listaInfoEventoServico'}).append(
-                            data.telefone
+            if(!$(this).hasClass('disabled')) {
+                $(this).addClass('disabled');
+                idServico = $(this).attr('data-id');
+                idEvento = $('#idEvento').val();
+                $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
+                    data = $.parseJSON( data );
+                    $('#cancelaListaServicos').click();
+                    $('#categoria'+idCategoriaSelecionada).append(
+                        $('<div>', {class: 'content listaEventoServico'}).append(
+                            data.nome,
+                            $('<br/>'),
+                            $('<div>', {class: 'listaInfoEventoServico'}).append(
+                                data.email
+                            ),
+                            $('<div>', {class: 'listaInfoEventoServico'}).append(
+                                data.telefone
+                            )
                         )
-                    )
-                );
-            })
+                    );
+                })
+            }
         });
     });
+    function listar() {
+        $('.btn-addServico').hide();
+        $('.btn-addServico[data-categoria='+idCategoriaSelecionada+']').show();
+    }
 
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
@@ -135,51 +156,68 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="addServicos" class="content co-10 co-ult normal-shadow">
-                            <div class="filtros">Categoria</div>
-                            <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                            <div class="modal-dialog modal- modal-dialog-centered servicos" role="document">
-                            <div class="modal-content">                  
-                                    <div class="modal-header">
-                                        <h6 class="modal-title" id="modal-title-default">Adicionar serviço ao evento</h6>
-                                        <button id="cancelaListaServicos" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <?php if(!empty($servicos)){
-                                        foreach ($servicos as $se) {
-                                            $servicoDisabled = "";
-                                            if(!empty($eventosServicos)){
-                                                foreach ($eventosServicos as $es) {
-                                                    if ($se->getId() == $es->getIdServico()){
-                                                        $servicoDisabled = 'disabled';
+
+                        <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                <div class="modal-dialog modal- modal-dialog-centered servicos" role="document">
+                                <div class="modal-content">                  
+                                        <div class="modal-header" style="padding: 1.5rem;">
+                                            <select id="categoriaPesq" class="form-control form-control-alternative" style="width: 40%;">
+                                                <?php
+                                                    if(!empty($categorias)) {
+                                                        foreach($categorias as $ca) {
+                                                            echo "<option value=".$ca->getId().">".$ca->getNome()."</option>";
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                            <input type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%; position: absolute; right: 64px;"/>
+                                            <button id="cancelaListaServicos" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <table style="width: 100%;">
+                                        <?php if(!empty($servicos)){
+                                            foreach ($servicos as $se) {
+                                                $servicoDisabled = "";
+                                                if(!empty($eventosServicos)){
+                                                    foreach ($eventosServicos as $es) {
+                                                        if ($se->getId() == $es->getIdServico()){
+                                                            $servicoDisabled = 'disabled';
+                                                        }
                                                     }
                                                 }
+                                                echo "<tr data-categoria='1' class='btn btn-addServico ".$servicoDisabled."' data-id='".$se->getId()."'><td>".$se->getNome()."</td><td>".$se->getEmail()."</td></tr>";
                                             }
-                                            echo "<button ".$servicoDisabled." class='btn btn-addServico' data-id='".$se->getId()."'><table style='width: 100%;'><tr><td>".$se->getNome()."</td><td>".$se->getEmail()."</td></tr></table></button>";
-                                        }
-                                    }?>
+                                        }?>
+                                        </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                            <?php
-                                if(!empty($eventosServicos)){
-                                    foreach ($eventosServicos as $es) {
-                                        $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
-                                        echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                </div>
+
+                        <div class="content co-10 co-ult normal-shadow">
+                            <div class="filtros">Categoria</div>
+                            <div id="categoria1">
+                                <?php
+                                    if(!empty($eventosServicos)){
+                                        foreach ($eventosServicos as $es) {
+                                            $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                            echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                        }
                                     }
-                                }
-                            ?>
-                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
-                                <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                            </button>
+                                ?>
+                                <button type="button" data-categoria="1" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
+                                    <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                </button>
+                            </div>
                             <br clear="all"/>
                             <div class="filtros">Outra categoria</div>
-                            <button type="button" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
-                                <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                            </button>
+                            <div id="categoria2">
+                                <button type="button" data-categoria="2" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
+                                    <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                </button>
+                            </div>
                         </div>
 		</div>
     </div>

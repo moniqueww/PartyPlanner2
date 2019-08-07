@@ -58,7 +58,7 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">      
-<h1 class="text-center mb-3">Listagem de categorias</h1>
+<h1 class="text-center mb-3">Listagem de Serviços</h1>
     <!-- <form  action="{{ route('search') }}" method="GET" class="form-horizontal"> 
         <div class="form-group row mb-4"> 
             <div class="col-10">
@@ -67,7 +67,6 @@
             <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Pesquisar</button>
         </div>
     </form> -->
-    <a class="btn btn-primary mb-3" href="form_servico.php" role="button">Novo serviço</a> 
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -83,11 +82,12 @@
 				echo "
 					<tbody>
 						<tr>
-							<th scope='row'>".$serv->getId()."</th>
-							<td>".$serv->getNome()."</td>
-							<td>".$serv->getEmail()."</td>
-							<td>".$serv->getCnpj()."</td>     
-						</tr>
+						
+							<th scope='row'><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getId()."</a></th>
+							<td><a style='' href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getNome()."</a></td>  
+							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getEmail()."</a></td>  
+							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getCnpj()."</a></td>  
+						</tr>	
 					</tbody>
 				";
 			}

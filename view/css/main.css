@@ -515,6 +515,7 @@ a, a:hover, a:focus {
 	background-color: #f7f8fc;
 	border-radius: 0px !important;
 	margin: 0px !important;
+	line-height: 48px !important;
 	border-bottom: solid 1px rgba(136, 145, 169, .1) !important;
 }
 .btn-addServico:hover{
@@ -522,6 +523,10 @@ a, a:hover, a:focus {
 	color: #6e69ff !important;
 	box-shadow: none !important;
 	transform: none !important;
+}
+.btn-addServico.disabled{
+	background-color: #6e69ff !important;
+	color: rgba(255,255,255,.75) !important;
 }
 .btn-addServico:first-child{
 	border-top-left-radius: 0.3rem !important;
@@ -535,6 +540,60 @@ a, a:hover, a:focus {
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;
 }
-.btn-addServico td{
+.btn-addServico{
 	text-align: left;
 }
+.rating {
+	float:left;
+  }
+
+  /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+	follow these rules. Every browser that supports :checked also supports :not(), so
+	it doesn’t make the test unnecessarily selective */
+  .rating:not(:checked) > input {
+	  position:absolute;
+	  top:-9999px;
+	  clip:rect(0,0,0,0);
+  }
+
+  .rating:not(:checked) > label {
+	  float:right;
+	  width:1em;
+	  /* padding:0 .1em; */
+	  overflow:hidden;
+	  white-space:nowrap;
+	  cursor:pointer;
+	  font-size:200%;
+	  /* line-height:1.2; */
+	  color:#ddd;
+  }
+
+  .rating:not(:checked) > label:before {
+	  content: '★ ';
+  }
+
+  .rating > input:checked ~ label {
+	  color: rgb(220, 245, 1);
+	  
+  }
+
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+	  color: yellow;
+	  
+  }
+
+  .rating > input:checked + label:hover,
+  .rating > input:checked + label:hover ~ label,
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+	  color: yellow;
+	  
+  }
+
+  .rating > label:active {
+	  position:relative;
+	  top:2px;
+	  left:2px;
+  }
