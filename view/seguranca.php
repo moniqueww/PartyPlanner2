@@ -22,10 +22,8 @@ if (isset($_POST['validar']) == 1){
 				}else{
 					echo '<script>window.location.href = "lista_servico.php";</script>';
 				}
-			}else if($us->getEmail()==$email && $us->getSenha()!=$senha){
-				echo '<script>$("#span_senha").html("Sua senha está incorreta!"); $("#email").val("'.$email.'");</script>';
-			}else if($us->getEmail()!=$email && $us->getSenha()!=$senha){
-				echo '<script>$("#span_email").html("Por favor, digite um email válido!"); $("#span_senha").html("Por favor, digite uma senha válida!");</script>';
+			}else if($us->getSenha()!=$senha){
+				echo '<script>$("#span_alertas").html("Email e/ou senha incorretos"); $("#email").val("'.$email.'");</script>';
 			}
         }
     }
