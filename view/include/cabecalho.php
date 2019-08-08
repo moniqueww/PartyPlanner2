@@ -1,8 +1,8 @@
 <!-- Navbar -->
-<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-      <div class="container px-4">
+<nav style="height: 166px;" class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div style="margin-left: 50px;" class="container px-4">
         <a class="navbar-brand" href="#">
-          <img width="250px" src="img/outrologo2.png" />
+          <img style="width: 300px;" src="img/brand/logo-branco.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="#">
-                  <img src="img/brand/blue.png">
+                  <img src="img/brand/logo-padrao.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">

@@ -1,4 +1,4 @@
-<nav id="sidebar" class="minimized normal-shadow">
+<nav id="sidebar" class="minimized">
 				<button id="encolheMenu" class="btn-diferente" style="display: none">
 						<i class="fas fa-angle-left"></i>
 				</button>
@@ -7,7 +7,7 @@
 				</button>
             <div class="sidebar-header">
 				<div class="header-photo circle">
-					<img src="img/logo.png"/>
+					<img src="img/brand/logo-icone.png"/>
 				</div>
 				<div class="header-nome"><?php echo $_SESSION['usuario'];?></div>
             </div>
@@ -58,12 +58,7 @@
                 <p>NAVIGATION</p>
                 <a href="" data-toggle="collapse" aria-expanded="false">
 	                <li class="active">
-	                    <i class="far fa-newspaper"></i><span>Página incial</span>
-	                </li>
-                </a>
-                <a href="">
-	                <li>
-	                    <i class="far fa-user"></i><span>Seu perfil</span>
+	                    <i class="fas fa-home"></i><span>Página incial</span>
 	                </li>
                 </a>
                 <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -84,12 +79,12 @@
                 </a>-->
 				<a href="lista_evento.php">
 					<li>
-                    	<i class="far fa-user"></i><span>Seus eventos</span>
+                    	<i class="fas fa-user"></i><span>Seus eventos</span>
                 	</li>
                 </a>
                 <a href="">
 					<li>
-                    	<i class="fab fa-slideshare"></i><span>Compartilhados</span>
+                    	<i class="fas fa-share-alt-square"></i><span>Compartilhados</span>
                 	</li>
                 </a>
             </ul>

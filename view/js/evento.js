@@ -9,7 +9,7 @@ $(function() {
             dataType: 'json',
             success:function(data) {
                 $('#eventos').prepend(
-                    $('<div>', {class: 'content co-2 photo normal-shadow'}).append(
+                    $('<div>', {class: 'content co-2 photo'}).append(
                         $('<div>', {class: 'card'}).append(
                             $('<img>', {class: 'card-img-top', height: '200px', src: "{{URL::asset('/img/background.png')}}"}),
                             $('<div>', {class: 'card-body'}).append(

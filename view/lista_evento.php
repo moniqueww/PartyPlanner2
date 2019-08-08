@@ -35,7 +35,7 @@
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();
 				$('#eventos').prepend(
-					$('<div>', {class: 'content co-2 photo normal-shadow'}).append(
+					$('<div>', {class: 'content co-15 photo'}).append(
 						$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
 							if ($(this).children('.novoEvento') != null) {
 								$(this).children('.novoEvento').fadeOut();
@@ -44,7 +44,7 @@
 							eventoId = $(this).attr('data-id');
 							window.location.assign('form_evento.php?evento='+eventoId);
 						}).append(
-							$('<img>', {class: 'card-img-top', height: '200px', src: "img/background.png"}),
+							$('<img>', {class: 'card-img-top', src: "img/brand/background.png"}),
 							$('<div>', {class: 'card-body'}).append(
 								$('<h5>', {class: 'card-title', html: data.nome})
 							),
@@ -135,9 +135,9 @@
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
-                        echo "<div class='content co-2 photo normal-shadow'>
+                        echo "<div class='content co-15 photo'>
 				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' height='200px' src='img/background.png' alt='Card image cap'>
+				  <img class='card-img-top' src='img/brand/background.png' alt='Card image cap'>
 				  <div class='card-body'>
 				    <h5 class='card-title'>".$ev->getNome()."</h5>
 				  </div>

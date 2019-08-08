@@ -66,12 +66,12 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <div class="main-content">
-  <?php include_once "include/cabecalho.php"?>
+  <?php include_once "include/cabecalho.php"; ?>
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div style="border: none !important;" class="card bg-secondary shadow border">
+          <div style="border: none !important;" class="card bg-secondary">
             <div style="height: 90px;" class="container">
               <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">

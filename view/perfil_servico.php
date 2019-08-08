@@ -37,7 +37,7 @@
     	<div id="page">
 			<div class="filtros">Edição do evento</div>
                         <!-- Page Content -->
-                        <div class="content co-10 normal-shadow">
+                        <div class="content co-10">
                             <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>
                             <div style="float: right; display: none">
                                 <div class="col-lg-12">
@@ -55,7 +55,7 @@
                       
                             <div class="content-header" style="float: left;">
                                 <div class="header-photo alternative-shadow">
-                                    <img src="img/blog-neon-6.jpg">
+                                    <img src="img/brand/blog-neon-6.jpg">
                                 </div>
                             </div>
                             <div class="col-lg-12" style="margin-top: 20px;">
