@@ -641,13 +641,13 @@ a, a:hover, a:focus {
   }
 
   .rating > input:checked ~ label {
-	  color: rgb(220, 245, 1);
+	  color: #ffe700;
 	  
   }
 
   .rating:not(:checked) > label:hover,
   .rating:not(:checked) > label:hover ~ label {
-	  color: yellow;
+	  color: #ffe700;
 	  
   }
 
@@ -656,7 +656,7 @@ a, a:hover, a:focus {
   .rating > input:checked ~ label:hover,
   .rating > input:checked ~ label:hover ~ label,
   .rating > label:hover ~ input:checked ~ label {
-	  color: yellow;
+	  color: #ffe700;
 	  
   }
 

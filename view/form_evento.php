@@ -93,7 +93,18 @@
                             data[i].email
                         ),
                         $('<td>').append(
-                            data[i].telefone
+                            $('<div>', {class: 'rating'}).append(
+                                $('<input>', {type: 'radio', id: data[i].id+'-10', name: data[i].id+'-rating', value: '10'}),
+                                $('<label>', {title: 'Rocks', for: data[i].id+'-10', html: '5 stars'}),
+                                $('<input>', {type: 'radio', class: 'star9', id: data[i].id+'-9', name: data[i].id+'-rating', value: '10'}),
+                                $('<label>', {title: 'Rocks', for: data[i].id+'-9', html: '4 stars'}),
+                                $('<input>', {type: 'radio', id: data[i].id+'-8', name: data[i].id+'-rating', value: '10'}),
+                                $('<label>', {title: 'Rocks', for: data[i].id+'-8', html: '3 stars'}),
+                                $('<input>', {type: 'radio', id: data[i].id+'-7', name: data[i].id+'-rating', value: '10'}),
+                                $('<label>', {title: 'Rocks', for: data[i].id+'-7', html: '2 stars'}),
+                                $('<input>', {type: 'radio', id: data[i].id+'-6', name: data[i].id+'-rating', value: '10'}),
+                                $('<label>', {title: 'Rocks', for: data[i].id+'-6', html: '1 stars'})
+                            )
                         )
                     ).on('click', function(){
                         if(!$(this).hasClass('disabled')) {
@@ -119,6 +130,10 @@
                         }
                     })
                 );
+                $('.star9').each(function(){
+                    $(this).attr('checked', '');
+                });
+                $('.rating input').attr('disabled', '');
             }
         })
     }
@@ -168,12 +183,12 @@
                                     <img src="img//brand/blog-neon-6.jpg">
                                 </div>
                             </div>
-                            <div class="col-lg-12" style="margin-top: 20px;">
+                            <div style="margin-top: 20px;">
                                 <div class="form-group">
                                     <input type="text" style="width: 300px !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div>
                                 <div class="form-group">
                                     <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 </div>
