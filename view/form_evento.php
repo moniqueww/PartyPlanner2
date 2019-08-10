@@ -14,14 +14,13 @@
 
         $servicos = [];
 
-        $servicos = $servicoControle->controleAcao("listarTodos");
-
-        //Cria o Controle desta View (página)
         $eventoServicoControle = new ControleEventoServico();
 
         $eventosServicos = [];
 
         $eventosServicos = $eventoServicoControle->controleAcao("listarTodos", $_GET["evento"]);
+
+        $servicos = $servicoControle->controleAcao("listarTodos");
 
         $eventoControle = new ControleEvento();
         //Passa o GET desta View para o Controle
@@ -46,6 +45,7 @@
 
     <script type="text/javascript">
     $(function() {
+        idEvento = $('#idEvento').val();
         nome = "";
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
@@ -75,49 +75,49 @@
             $('#categoriaPesq').val(idCategoriaSelecionada);
             listar();
         });
-        $('#tabela_servicos tbody tr').on('click', function(){
-            if(!$(this).hasClass('disabled')) {
-                $(this).addClass('disabled');
-                idServico = $(this).attr('data-id');
-                idEvento = $('#idEvento').val();
-                $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
-                    data = $.parseJSON( data );
-                    $('#cancelaListaServicos').click();
-                    $('#categoria'+idCategoriaSelecionada).append(
-                        $('<div>', {class: 'content listaEventoServico'}).append(
-                            data.nome,
-                            $('<br/>'),
-                            $('<div>', {class: 'listaInfoEventoServico'}).append(
-                                data.email
-                            ),
-                            $('<div>', {class: 'listaInfoEventoServico'}).append(
-                                data.telefone
-                            )
-                        )
-                    );
-                })
-            }
-        });
     });
     function listar() {
         $('.btn-addServico').hide();
         $('.btn-addServico[data-categoria='+idCategoriaSelecionada+']').show();
-        $.post( "../controle/buscaServico.php", {'nome': nome}, function(data){
+        $.post( "../controle/buscaServico.php", {'nome': nome, 'evento': idEvento}, function(data){
             data = $.parseJSON( data );
             $('#tabela_servicos tbody').html('');
-            for(i = 0; i < data.length; i++){
+            for(i = 0; i < data.length; i++){ 
                 $('#tabela_servicos tbody').append(
-                    $('<tr>', {'data-categoria': 1, class: 'btn-addServico', 'data-id': data[i].id}).append(
+                    $('<tr>', {'data-categoria': 1, class: 'btn-addServico '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<td>').append(
-                            data[i].nome
-                        ),
-                        $('<td>').append(
+                            $('<span>', {style: 'font-weight: bold;'}).append(
+                                data[i].nome
+                            ),
+                            $('<br>'),
                             data[i].email
                         ),
                         $('<td>').append(
                             data[i].telefone
                         )
-                    )
+                    ).on('click', function(){
+                        if(!$(this).hasClass('disabled')) {
+                            $(this).addClass('disabled');
+                            idServico = $(this).attr('data-id');
+                            idEvento = $('#idEvento').val();
+                            $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
+                                data = $.parseJSON( data );
+                                $('#cancelaListaServicos').click();
+                                $('#categoria'+idCategoriaSelecionada).append(
+                                    $('<div>', {class: 'content listaEventoServico'}).append(
+                                        data.nome,
+                                        $('<br/>'),
+                                        $('<div>', {class: 'listaInfoEventoServico'}).append(
+                                            data.email
+                                        ),
+                                        $('<div>', {class: 'listaInfoEventoServico'}).append(
+                                            data.telefone
+                                        )
+                                    )
+                                );
+                            })
+                        }
+                    })
                 );
             }
         })
@@ -126,7 +126,6 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        idEvento = $('#idEvento').val();
         $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
             alert('Evento modificado');
             primeiroNome = nomeNovo;
@@ -144,7 +143,7 @@
     	<div id="page">
 			<div class="filtros">Edição do evento</div>
                         <!-- Page Content -->
-                        <div class="content co-8">
+                        <div class="content co-10">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                             <div style="float: right; display: none">
                                 <div class="col-lg-12">
@@ -202,13 +201,6 @@
                                         </div>
                                         <div class="modal-body">
                                         <table id="tabela_servicos" style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nome</th>
-                                                    <th>Email</th>
-                                                    <th>Telefone</th>
-                                                </tr>
-                                            </thead>
                                             <tbody>
                                             </tbody>
                                         </table>
@@ -217,7 +209,7 @@
                                 </div>
                                 </div>
 
-                        <div class="content co-8 co-ult">
+                        <div class="content co-10 co-ult">
                             <div class="filtros">Categoria</div>
                             <div id="categoria1">
                                 <?php
@@ -240,7 +232,10 @@
                                 </button>
                             </div>
                         </div>
-		</div>
+        </div>
+        <div id="action-bar">
+                
+            </div>
     </div>
 	
 </body>

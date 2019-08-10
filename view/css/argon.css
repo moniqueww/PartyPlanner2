@@ -2973,15 +2973,15 @@ fieldset:disabled a.btn
 .btn-primary
 {
     color: #fff;
-    border-color: #6e69ff;
-    background-color: #6e69ff;
+    border-color: #697cff;
+    background-color: #697cff;
     box-shadow: 0 2px 6px 0 rgba(110, 105, 255, 0.58);
 }
 .btn-primary:hover
 {
     color: #fff;
-	border-color: #6e69ff;
-    background-color: #6e69ff;
+	border-color: #697cff;
+    background-color: #697cff;
 	box-shadow: 0 5px 10px rgba(110, 105, 255, 0.4) !important;
 }
 .btn-primary:focus,
@@ -3014,15 +3014,15 @@ fieldset:disabled a.btn
 
 .btn-primary-alternative
 {
-    color: #6e69ff;
+    color: #697cff;
     border-color: #f1f3fa;
     background-color: #f1f3fa;
 }
 .btn-primary-alternative:hover
 {
     color: #fff;
-    border-color: #6e69ff;
-    background-color: #6e69ff;
+    border-color: #697cff;
+    background-color: #697cff;
     box-shadow: 0 5px 10px rgba(110, 105, 255, 0.4) !important;
 }
 .btn-primary-alternative:focus,
@@ -19005,7 +19005,7 @@ textarea[resize='horizontal']
 }
 .nav-link:hover
 {
-    color: #6e69ff;
+    color: #697cff;
 }
 .nav-link i.ni
 {
@@ -20042,7 +20042,7 @@ textarea[resize='horizontal']
 
 .navbar-search-light .input-group-text
 {
-    color: rgba(110, 105, 255, 1);
+    color: #697cff;
 }
 
 .navbar-search-light .form-control

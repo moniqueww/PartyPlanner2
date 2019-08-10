@@ -56,10 +56,15 @@
 			</ul>-->
             <ul class="list-unstyled components">
                 <p>NAVIGATION</p>
-                <a href="" data-toggle="collapse" aria-expanded="false">
+                <a href="">
 	                <li class="active">
 	                    <i class="fas fa-home"></i><span>Página incial</span>
 	                </li>
+                </a>
+                <a href="">
+					<li>
+                    	<i class="fas fa-user"></i><span>Seu perfil</span>
+                	</li>
                 </a>
                 <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
 	                <li>
@@ -79,7 +84,7 @@
                 </a>-->
 				<a href="lista_evento.php">
 					<li>
-                    	<i class="fas fa-user"></i><span>Seus eventos</span>
+                    	<i class="fas fa-calendar-day"></i><span>Seus eventos</span>
                 	</li>
                 </a>
                 <a href="">
