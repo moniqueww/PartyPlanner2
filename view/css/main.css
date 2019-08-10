@@ -542,6 +542,9 @@ a, a:hover, a:focus {
 	border-bottom-color: #fff !important;
 	cursor: default !important;
 }
+.btn-addServico:last-child{
+	border-bottom: none;
+}
 #tabela_servicos td{
 	padding: 10px 20px;
 }
