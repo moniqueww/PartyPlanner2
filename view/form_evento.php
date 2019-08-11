@@ -45,6 +45,7 @@
 
     <script type="text/javascript">
     $(function() {
+        idCategoria = "";
         idEvento = $('#idEvento').val();
         nome = "";
         primeiroNome = $('#input-nome').val();
@@ -63,7 +64,11 @@
             }
         });
         $('#categoriaPesq').on('change', function(){
-            idCategoriaSelecionada = $(this).val();
+            if($(this).val() == 'todos'){
+                idCategoria = "";    
+            } else {
+                idCategoria = $(this).val();
+            }
             listar();
         });
         $('#nomePesq').on('input', function(){
@@ -71,20 +76,28 @@
             listar();
         });
         $('.btn-addListaServico').on('click', function(){
-            idCategoriaSelecionada = $(this).attr('data-categoria');
-            $('#categoriaPesq').val(idCategoriaSelecionada);
+            if($(this).attr('data-categoria') != 'todos'){
+                idCategoria = $(this).attr('data-categoria');
+                $('#categoriaPesq').val(idCategoria);
+            }
             listar();
+        });
+        $('.categoria').each(function(){
+            if($(this).find('.listaEventoServico').length>0){
+                console.log($(this).find('.listaEventoServico'));
+                $(this).show();
+            }
         });
     });
     function listar() {
-        $('.btn-addServico').hide();
-        $('.btn-addServico[data-categoria='+idCategoriaSelecionada+']').show();
-        $.post( "../controle/buscaServico.php", {'nome': nome, 'evento': idEvento}, function(data){
+        $.post( "../controle/buscaServico.php", {'nome': nome, 'evento': idEvento, 'idCategoria': idCategoria}, function(data){
             data = $.parseJSON( data );
+            categoriaServico = '';
             $('#tabela_servicos tbody').html('');
-            for(i = 0; i < data.length; i++){ 
+            for(i = 0; i < data.length; i++){
+                categoriaServico =  data[i].categoria;
                 $('#tabela_servicos tbody').append(
-                    $('<tr>', {'data-categoria': 1, class: 'btn-addServico '+data[i].disabled, 'data-id': data[i].id}).append(
+                    $('<tr>', {'data-categoria': data[i].categoria, class: 'btn-addServico '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<td>').append(
                             $('<span>', {style: 'font-weight: bold;'}).append(
                                 data[i].nome
@@ -111,10 +124,11 @@
                             $(this).addClass('disabled');
                             idServico = $(this).attr('data-id');
                             idEvento = $('#idEvento').val();
+                            servicoElement = $(this);
                             $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
                                 data = $.parseJSON( data );
                                 $('#cancelaListaServicos').click();
-                                $('#categoria'+idCategoriaSelecionada).append(
+                                $('#categoria'+servicoElement.attr('data-categoria')).show().append(
                                     $('<div>', {class: 'content listaEventoServico'}).append(
                                         data.nome,
                                         $('<br/>'),
@@ -180,7 +194,7 @@
                             </div>
                             <div class="content-header" style="float: left;">
                                 <div class="header-photo alternative-shadow">
-                                    <img src="img//brand/blog-neon-6.jpg">
+                                    <img src="img/brand/foto-festa.png">
                                 </div>
                             </div>
                             <div style="margin-top: 20px;">
@@ -200,7 +214,7 @@
                                 <div class="modal-content">                  
                                         <div class="modal-header" style="padding: 1.5rem;">
                                             <select id="categoriaPesq" class="form-control form-control-alternative" style="width: 40%;">
-                                                <option value="">Todos</option>
+                                                <option value="todos">Todos</option>
                                                 <?php
                                                     if(!empty($categorias)) {
                                                         foreach($categorias as $ca) {
@@ -225,27 +239,31 @@
                                 </div>
 
                         <div class="content co-10 co-ult">
-                            <div class="filtros">Categoria</div>
-                            <div id="categoria1">
-                                <?php
-                                    if(!empty($eventosServicos)){
-                                        foreach ($eventosServicos as $es) {
-                                            $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
-                                            echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
-                                        }
-                                    }
-                                ?>
-                                <button type="button" data-categoria="1" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
-                                    <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                                </button>
-                            </div>
+                            <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
+                                + Adicionar serviço
+                            </button>
                             <br clear="all"/>
-                            <div class="filtros">Outra categoria</div>
-                            <div id="categoria2">
-                                <button type="button" data-categoria="2" class="btn-addListaServico" data-toggle="modal" data-target="#modal-form">
-                                    <span style="font-size: 2rem;" class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                                </button>
-                            </div>
+                            <?php
+                                if(!empty($categorias)) {
+                                    foreach($categorias as $ca) {
+                                        echo "<div style='display: none;' class='categoria' id='categoria".$ca->getId()."'>";
+                                        echo "<div class='filtros categorias'>".$ca->getNome()."</div>";
+                                        echo "<button type='button' data-categoria='".$ca->getId()."' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
+                                            <span style='font-size: 2rem;' class='circle btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                                        </button>";
+                                        if(!empty($eventosServicos)){
+                                            foreach ($eventosServicos as $es) {
+                                                $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                                if($ca->getId() == $servicoUnico->getIdCategoria()){
+                                                echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                                }
+                                            }
+                                        }
+                                        echo "</div>";
+                                        echo "<br clear='all'/>";
+                                    }
+                                }
+                            ?>
                         </div>
         </div>
         <div id="action-bar">

@@ -9,6 +9,7 @@ class Servico implements IBaseModelo{
     private $telefone;
     private $senha;
     private $tipo;
+    private $idCategoria;
     private $conn;
     private $stmt;
     
@@ -69,6 +70,14 @@ class Servico implements IBaseModelo{
         $this->tipo = $tipo;
     }
 
+    public function getIdCategoria() {
+        return $this->idCategoria;
+    }
+
+    public function setIdCategoria($idCategoria) {
+        $this->idCategoria = $idCategoria;
+    }
+
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -82,7 +91,7 @@ class Servico implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO usuario (nome, email, telefone, senha, cnpj, tipo) VALUES (:nome, :email, :telefone, :senha, :cnpj, :tipo)";
+            $query="INSERT INTO usuario (nome, email, telefone, senha, cnpj, tipo, idCategoria) VALUES (:nome, :email, :telefone, :senha, :cnpj, :tipo, :idCategoria)";
 
             $this->stmt= $this->conn->prepare($query);
 
@@ -92,6 +101,7 @@ class Servico implements IBaseModelo{
             $this->stmt->bindValue(':cnpj', $this->cnpj, PDO::PARAM_STR);
             $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
             $this->stmt->bindValue(':tipo', 'S', PDO::PARAM_STR);
+            $this->stmt->bindValue(':idCategoria', $this->idCategoria, PDO::PARAM_STR);
 
 
             if($this->stmt->execute()){
@@ -143,22 +153,29 @@ class Servico implements IBaseModelo{
         }
     }
     
-    public function listarTodos($nome=null, $email){
+    public function listarTodos($nome=null, $idCategoria){
         
         try{
             $alunos = array();
             
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
+                if (!is_null($idCategoria)) {
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria FROM usuario WHERE nome LIKE :nome AND idCategoria=:idCategoria AND tipo='S'";
+                }else {
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria FROM usuario WHERE nome LIKE :nome AND tipo='S'";
+                }
                 //Pesquisa pelo nome
-                $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE nome LIKE :nome AND tipo='S'";
             }else{
-                // Pesquisa todos
-                $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE tipo='S'";
+                if (!is_null($idCategoria)) {
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria FROM usuario WHERE idCategoria=:idCategoria AND tipo='S'";
+                }else {
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria FROM usuario WHERE tipo='S'";
+                }
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
-            if(!is_null($email))$this->stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            if(!is_null($idCategoria))$this->stmt->bindValue(':idCategoria', $idCategoria, PDO::PARAM_STR);
 
 
             if($this->stmt->execute()){
@@ -179,7 +196,7 @@ class Servico implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id, nome, email, telefone, senha, cnpj FROM usuario WHERE id=:id AND tipo='S'";
+            $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria FROM usuario WHERE id=:id AND tipo='S'";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             

@@ -7,7 +7,7 @@
 				</button>
             <div class="sidebar-header">
 				<div class="header-photo circle">
-					<img src="img/brand/logo-icone.png"/>
+					<img src="img/fotosPerfil/noimage5.png"/>
 				</div>
 				<div class="header-nome"><?php echo $_SESSION['usuario'];?></div>
             </div>

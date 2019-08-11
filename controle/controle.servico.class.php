@@ -39,6 +39,7 @@ class ControleServico extends ControleBase {
         $this->servico->setCnpj((isset($this->visao["cnpj"]) && $this->visao["cnpj"] != null) ? $this->visao["cnpj"] : "");
         $this->servico->setSenha((isset($this->visao["senha"]) && $this->visao["senha"] != null) ? $this->visao["senha"] : "");
         $this->servico->setTipo((isset($this->visao["tipo"]) && $this->visao["tipo"] != null) ? $this->visao["tipo"] : "");
+        $this->servico->setIdCategoria((isset($this->visao["idCategoria"]) && $this->visao["idCategoria"] != null) ? $this->visao["idCategoria"] : "");
         $this->servico->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
     }
     

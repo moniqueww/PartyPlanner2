@@ -6,7 +6,11 @@
 
         $servicos = [];
 
-        $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome']);
+        if(empty($_POST['idCategoria'])) {
+            $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome']);
+        } else {
+            $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome'],$_POST['idCategoria']);
+        }
 
         $eventoServicoControle = new ControleEventoServico();
 
@@ -23,7 +27,7 @@
                     $disabled = 'disabled';
                 }
             }
-            $resposta[] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'disabled' => $disabled];
+            $resposta[] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'categoria' => $se->getIdCategoria(),'disabled' => $disabled];
         }
 
         echo json_encode($resposta);
