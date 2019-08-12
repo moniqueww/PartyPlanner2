@@ -38,7 +38,21 @@
 			<div class="filtros">Edição do evento</div>
                         <!-- Page Content -->
                         <div class="content co-10">
-                            <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>                     
+                            <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>
+                            <div style="float: right; display: none">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input class="form-control-alternative datepicker" placeholder="Select date" type="text" value="06/20/2019">
+                                    </div>
+                                </div>
+                                </div>
+                                
+                            </div>
+                      
                             <div class="content-header" style="float: left;">
                                 <div class="header-photo alternative-shadow">
                                     <img src="img/brand/blog-neon-6.jpg">
@@ -54,15 +68,6 @@
                                     <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></textarea>
                                 </div>
                             </div>
-                            <div class="row">
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                            </div>
-	                    </div>
                         </div>
 		</div>
     </div>
