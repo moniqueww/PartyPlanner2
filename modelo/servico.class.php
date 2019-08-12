@@ -117,15 +117,15 @@ class Servico implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE servicos SET nome = :nome, email = :email, telefone = :telefone, cnpj = :cnpj, senha = :senha, categoria = :categoria WHERE id=:id ";
+            $query="UPDATE usuario SET nome = :nome, email = :email, telefone = :telefone, cnpj = :cnpj WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $this->stmt->bindValue(':telefone', $this->telefone, PDO::PARAM_STR);
             $this->stmt->bindValue(':cnpj', $this->cnpj, PDO::PARAM_STR);
-            $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
-            $this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
+            //$this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
+            //$this->stmt->bindValue(':categoria', $this->categoria, PDO::PARAM_STR);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
 

@@ -30,6 +30,8 @@
     <script type="text/javascript">
     $(function() {
         idServico = $('#idServico').val();
+        emailNovo = "teste@email.com";
+        telefoneNovo = "88889999";
         nome = "";
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
@@ -51,8 +53,8 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
-            alert('Evento modificado');
+        $.post( "../controle/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
+            alert('Servico modificado');
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
         })
