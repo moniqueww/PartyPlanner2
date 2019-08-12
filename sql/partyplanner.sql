@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Ago-2019 às 20:17
--- Versão do servidor: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: 12-Ago-2019 às 15:23
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -232,29 +232,27 @@ CREATE TABLE `usuario` (
   `senha` varchar(20) NOT NULL,
   `tipo` char(1) NOT NULL,
   `cnpj` char(14) DEFAULT NULL,
-  `telefone` bigint(20) DEFAULT NULL
+  `telefone` bigint(20) DEFAULT NULL,
+  `idCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454),
-(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344),
-(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677),
-(7, 'Partyplanner', 'partyplanner@gmail.com', 'partyplanner123', 'O', NULL, NULL),
-(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454),
-(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454),
-(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454),
-(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454),
-(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454),
-(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453);
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`, `idCategoria`) VALUES
+(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 0),
+(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 0),
+(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 0),
+(7, 'Partyplanner', 'partyplanner@gmail.com', 'partyplanner123', 'O', NULL, NULL, 0),
+(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 0),
+(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 0),
+(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 0),
+(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 0),
+(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
+(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
+(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
+(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0);
 
 --
 -- Indexes for dumped tables
