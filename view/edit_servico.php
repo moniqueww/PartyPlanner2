@@ -30,10 +30,10 @@
     <script type="text/javascript">
     $(function() {
         idServico = $('#idServico').val();
-        emailNovo = "teste@email.com";
-        telefoneNovo = "88889999";
         nome = "";
         primeiroNome = $('#input-nome').val();
+        primeiroEmail = $('#input-email').val();
+        primeiroTelefone = $('#input-telefone').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
         $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
@@ -48,15 +48,31 @@
                 editarEvento();
             }
         });
+        $('#input-email').on('blur', function(){
+            emailNovo = $('#input-email').val();
+            if (emailNovo != primeiroEmail) {
+                editarEvento();
+            }
+        });
+        $('#input-telefone').on('blur', function(){
+            telefoneNovo = $('#input-telefone').val();
+            if (telefoneNovo != primeiroTelefone) {
+                editarEvento();
+            }
+        });
     });
 
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
+        emailNovo = $('#input-email').val();
+        telefoneNovo = $('#input-telefone').val();
         $.post( "../controle/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
             alert('Servico modificado');
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
+            primeiroTelefone = telefoneNovo;
+            primeiroEmail = emailNovo;
         })
     }
     </script>
@@ -101,7 +117,12 @@
                                     <textarea data-descricao="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 </div>
                             </div>
+                            <div class="col-3">
+                                <input type='number' style="width: 300px !important;" id="input-telefone" class="form-control form-control-alternative form-edita" value="<?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?>">
+                                <input type='text' style="width: 300px !important;" id="input-email" class="form-control form-control-alternative form-edita" value="<?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?>">
+                            </div>
                         </div>
+                        
 		</div>
     </div>
 	
