@@ -35,7 +35,7 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">
-			<div class="filtros">Edição do evento</div>
+			<div class="filtros">serviço</div>
                         <!-- Page Content -->
                         <div class="content co-10">
                             <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>                     
@@ -44,26 +44,31 @@
                                     <img src="img/brand/blog-neon-6.jpg">
                                 </div>
                             </div>
-                            <div class="col-lg-12" style="margin-top: 20px;">
-                                <div class="form-group">
-                                    <p style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?></p>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <p  style="resize: none; width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>
-                                </div>
-                            </div>
                             <div class="row">
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
-                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
-                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
-                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
-                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                            <div class="col-9">
+                                <div style="margin-top: 20px;">    
+                                    <p style="font-weight: bold; width: 300px !important; font-size: 20px;" ><?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?></p>
+                                </div>
+                                <div >
+                                    <p style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>
+                                </div>
+                                <div class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                </div>
                             </div>
-	                    </div>
+                            <div class="col-3">
+                                <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></p>
+                                <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?></p>
+                            </div>
                         </div>
+                    </div>
+                    <div class="content co-10">
+                        div do portifolio
+                    </div>
 		</div>
     </div>
 	
