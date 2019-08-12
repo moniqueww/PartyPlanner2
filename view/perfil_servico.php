@@ -46,12 +46,12 @@
                             </div>
                             <div class="col-lg-12" style="margin-top: 20px;">
                                 <div class="form-group">
-                                    <input type="text" style="width: 300px !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?>">
+                                    <p style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?></p>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></textarea>
+                                    <p  style="resize: none; width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>
                                 </div>
                             </div>
                             <div class="row">
