@@ -27,6 +27,37 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
+    <script type="text/javascript">
+    $(function() {
+        idServico = $('#idServico').val();
+        nome = "";
+        primeiroNome = $('#input-nome').val();
+        primeiraDescricao = $('#input-descricao').attr('data-descricao');
+        $('#input-descricao').html(primeiraDescricao);
+        $('#input-nome').on('blur', function(){
+            nomeNovo = $('#input-nome').val();
+            if (nomeNovo != primeiroNome) {
+                editarEvento();
+            }
+        });
+        $('#input-descricao').on('blur', function(){
+            descricaoNova = $('#input-descricao').val();
+            if (descricaoNova != primeiraDescricao) {
+                editarEvento();
+            }
+        });
+    });
+
+    function editarEvento() {
+        descricaoNova = $('#input-descricao').val();
+        nomeNovo = $('#input-nome').val();
+        $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
+            alert('Evento modificado');
+            primeiroNome = nomeNovo;
+            primeiraDescricao = descricaoNova;
+        })
+    }
+    </script>
 
     <?php include_once('include/navbar.php'); ?>
 
@@ -65,7 +96,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></textarea>
+                                    <textarea data-descricao="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 </div>
                             </div>
                         </div>
