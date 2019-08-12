@@ -79,6 +79,9 @@
             if($(this).attr('data-categoria') != 'todos'){
                 idCategoria = $(this).attr('data-categoria');
                 $('#categoriaPesq').val(idCategoria);
+            } else {
+                idCategoria = "";
+                $('#categoriaPesq').val('todos');
             }
             listar();
         });
@@ -128,7 +131,8 @@
                             $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
                                 data = $.parseJSON( data );
                                 $('#cancelaListaServicos').click();
-                                $('#categoria'+servicoElement.attr('data-categoria')).show().append(
+                                $('#categoria'+servicoElement.attr('data-categoria')).show();
+                                $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
                                     $('<div>', {class: 'content listaEventoServico'}).append(
                                         data.nome,
                                         $('<br/>'),
@@ -250,6 +254,7 @@
                                         echo "<button type='button' data-categoria='".$ca->getId()."' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
                                             <span style='font-size: 2rem;' class='circle btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                                         </button>";
+                                        echo "<div class='categoria-eventos'>";
                                         if(!empty($eventosServicos)){
                                             foreach ($eventosServicos as $es) {
                                                 $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
@@ -260,6 +265,7 @@
                                         }
                                         echo "</div>";
                                         echo "<br clear='all'/>";
+                                        echo "</div>";
                                     }
                                 }
                             ?>
