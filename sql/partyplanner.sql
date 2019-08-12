@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 12-Ago-2019 às 15:23
+-- Generation Time: 13-Ago-2019 às 01:23
 -- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.2
+-- versão do PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -70,7 +70,11 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
 (47, 6, 'teste 1 2', NULL),
 (48, 7, 'Evento teste Grégori', NULL),
 (56, 7, 'Novo evento teste', NULL),
-(57, 7, 'Outro evento', NULL);
+(57, 7, 'Outro evento', NULL),
+(70, 20, 'Novo evento', NULL),
+(71, 20, 'Novo teste', NULL),
+(72, 20, 'aaaaaaaaa', NULL),
+(73, 21, 'Evento teste', '');
 
 -- --------------------------------------------------------
 
@@ -112,7 +116,12 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (23, 56, 19),
 (29, 57, 10),
 (30, 57, 8),
-(31, 57, 14);
+(31, 57, 14),
+(74, 70, 5),
+(75, 71, 17),
+(76, 71, 16),
+(77, 71, 1),
+(78, 72, 8);
 
 -- --------------------------------------------------------
 
@@ -208,16 +217,16 @@ CREATE TABLE `servicos` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cnpj` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `senha` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categoria` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `idCategoria` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `servicos`
 --
 
-INSERT INTO `servicos` (`id`, `name`, `email`, `cnpj`, `senha`, `categoria`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', '21983719283', 'senha123', 'Segurança'),
-(2, 'Bebidas e Alimentos LTDA', 'emailteste2@gmail.com', '219837982173', 'senha1234', 'Alimento');
+INSERT INTO `servicos` (`id`, `name`, `email`, `cnpj`, `senha`, `idCategoria`) VALUES
+(1, 'Segurança LTDA', 'emailteste@gmail.com', '21983719283', 'senha123', 0),
+(2, 'Bebidas e Alimentos LTDA', 'emailteste2@gmail.com', '219837982173', 'senha1234', 0);
 
 -- --------------------------------------------------------
 
@@ -233,7 +242,7 @@ CREATE TABLE `usuario` (
   `tipo` char(1) NOT NULL,
   `cnpj` char(14) DEFAULT NULL,
   `telefone` bigint(20) DEFAULT NULL,
-  `idCategoria` int(11) NOT NULL
+  `idCategoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -241,18 +250,23 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`, `idCategoria`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 0),
-(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 0),
-(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 0),
-(7, 'Partyplanner', 'partyplanner@gmail.com', 'partyplanner123', 'O', NULL, NULL, 0),
-(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 0),
-(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 0),
-(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 0),
-(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 0),
-(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
-(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
-(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0),
-(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 0);
+(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 1),
+(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 4),
+(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 3),
+(7, 'Partyplanner', 'partyplanner', 'partyplanner123', 'O', NULL, NULL, NULL),
+(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 1),
+(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 4),
+(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 3),
+(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 1),
+(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 2),
+(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3),
+(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4),
+(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 5),
+(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4),
+(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3),
+(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2),
+(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL),
+(21, 'gregori teste', 'gregori@g', '123', 'O', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -334,13 +348,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -376,7 +390,7 @@ ALTER TABLE `servicos`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

@@ -156,7 +156,6 @@
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
         $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
-            alert('Evento modificado');
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
         })

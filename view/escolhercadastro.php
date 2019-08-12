@@ -5,10 +5,10 @@
 <body class="bg-white">
   <div class="main-content">
     <!-- Navbar -->
-    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
-      <div class="container px-4">
+    <nav style="height: 166px;" class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div style="margin-left: 50px;" class="container px-4">
         <a class="navbar-brand" href="#">
-          <img width="250px" src="img/brand/logo-branco.png" />
+          <img style="width: 300px;" src="img/brand/logo-branco.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div border="solid black 1px" class="col-lg-5 col-md-7">
-          <div class="card bg-secondary shadow border">
+          <div style="border: none;" class="card bg-secondary">
             <div style="height: 90px;" class="container">
               <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </div>
-            <div style="padding-bottom: 1rem !important;" class="card-header bg-transparent pb-5">
+            <div style="padding-bottom: 1rem !important; border-bottom: none;" class="card-header bg-transparent pb-5">
             <div class="form-group" style="text-align:center">
               <a href="form_organizador.php"><button type="button" style="margin-right: 15px;" class="btn btn-primary my-4" > Organizador </button></a>
               <a href="form_servico.php"><button type="button" class="btn btn-primary my-4" > Serviço </button></a>
