@@ -39,6 +39,16 @@
 	<!-- Argon CSS -->
 	<link type="text/css" href="css/argon.css?v=1.0.0" rel="stylesheet">
 
+	<style>
+	.estrelas input[type=radio]{
+	display: none;
+}.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+}.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+}
+	</style>
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -74,6 +84,7 @@
 				<th scope="col">Nome</th>
 				<th scope="col">E-mail</th>
                 <th scope="col">Cnpj</th>
+				<th scope="col">Avaliar</th>
             </tr>
         </thead>
 		<?php
@@ -86,7 +97,30 @@
 							<th scope='row'><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getId()."</a></th>
 							<td><a style='' href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getNome()."</a></td>  
 							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getEmail()."</a></td>  
-							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getCnpj()."</a></td>  
+							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getCnpj()."</a></td> 
+							<td><form method='POST' action='processa.php' enctype='multipart/form-data'>
+							<div class='estrelas'>
+								<input type='radio' id='vazio' name='estrela' value='' checked>
+								
+								<label for='estrela_um'><i class='fa'></i></label>
+								<input type='radio' id='estrela_um' name='estrela' value='1'>
+								
+								<label for='estrela_dois'><i class='fa'></i></label>
+								<input type='radio' id='estrela_dois' name='estrela' value='2'>
+								
+								<label for='estrela_tres'><i class='fa'></i></label>
+								<input type='radio' id='estrela_tres' name='estrela' value='3'>
+								
+								<label for='estrela_quatro'><i class='fa'></i></label>
+								<input type='radio' id='estrela_quatro' name='estrela' value='4'>
+								
+								<label for='estrela_cinco'><i class='fa'></i></label>
+								<input type='radio' id='estrela_cinco' name='estrela' value='5'><br><br>
+								
+								<input type='submit' value='Cadastrar'>
+								
+							</div>
+						</form> </td> 
 						</tr>	
 					</tbody>
 				";
