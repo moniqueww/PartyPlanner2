@@ -39,6 +39,16 @@
 	<!-- Argon CSS -->
 	<link type="text/css" href="css/argon.css?v=1.0.0" rel="stylesheet">
 
+	<style>
+	.estrelas input[type=radio]{
+	display: none;
+}.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+}.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+}
+	</style>
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
