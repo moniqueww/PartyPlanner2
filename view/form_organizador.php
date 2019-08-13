@@ -105,8 +105,9 @@ if($_POST){
 		<?php
 			$pagina = basename( __FILE__ );
 		?>
-		<div style="width: 80%;" id="page">
+		<div style="width: 80%; margin-top:0px" id="page">
 			<form action="form_organizador.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
+			<h1> Cadastrar-se como organizador </h1>
 				<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
 				<div class="modal-body" style="padding: 15px;">
 					<div>
