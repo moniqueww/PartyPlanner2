@@ -58,7 +58,7 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">      
-<h1 class="text-center mb-3">Listagem de Serviços</h1>
+		<div class="filtros">Serviços</div>
     <!-- <form  action="{{ route('search') }}" method="GET" class="form-horizontal"> 
         <div class="form-group row mb-4"> 
             <div class="col-10">
@@ -67,28 +67,17 @@
             <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Pesquisar</button>
         </div>
     </form> -->
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-				<th scope="col">Nome</th>
-				<th scope="col">E-mail</th>
-                <th scope="col">Cnpj</th>
-            </tr>
-        </thead>
-		<?php
+	<?php
 		if(!empty($servicos)){
 			foreach ($servicos as $serv) {
-				echo "
-					<tbody>
-						<tr>
-						
-							<th scope='row'><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getId()."</a></th>
-							<td><a style='' href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getNome()."</a></td>  
-							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getEmail()."</a></td>  
-							<td><a href='perfil_servico.php?servico=".$serv->getId()."'>".$serv->getCnpj()."</a></td>  
-						</tr>	
-					</tbody>
+				echo "<a style='cursor: default;' href='perfil_servico.php?servico=".$serv->getId()."'><div class='content co-15 photo'>
+				<div class='card' data-id=".$serv->getId().">
+				  <img class='card-img-top' src='img/brand/background.png' alt='Card image cap'>
+				  <div class='card-body'>
+				    <h5 class='card-title'>".$serv->getNome()."</h5>
+				  </div>
+				</div>
+			</div></a>
 				";
 			}
 		}
