@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Ago-2019 às 01:23
+-- Generation Time: 13-Ago-2019 às 21:04
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -54,27 +54,33 @@ CREATE TABLE `eventos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `idUsuario` bigint(20) NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descricao` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `descricao` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`) VALUES
-(41, 1, 'Evento teste 1', 'Descrição teste para evento teste 1'),
-(42, 1, 'Festa 3', 'Uma festa para jovens e jovenas do brasul e do rio grande do sulq2ea2qed2'),
-(43, 1, 'Evento teste 3', NULL),
-(45, 4, 'Evento teste 310', NULL),
-(46, 6, 'Meu evento', NULL),
-(47, 6, 'teste 1 2', NULL),
-(48, 7, 'Evento teste Grégori', NULL),
-(56, 7, 'Novo evento teste', NULL),
-(57, 7, 'Outro evento', NULL),
-(70, 20, 'Novo evento', NULL),
-(71, 20, 'Novo teste', NULL),
-(72, 20, 'aaaaaaaaa', NULL),
-(73, 21, 'Evento teste', '');
+INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `status`) VALUES
+(41, 1, 'Evento teste 1', 'Descrição teste para evento teste 1', 0),
+(42, 1, 'Festa 3', 'Uma festa para jovens e jovenas do brasul e do rio grande do sulq2ea2qed2', 0),
+(43, 1, 'Evento teste 3', NULL, 0),
+(45, 4, 'Evento teste 310', NULL, 0),
+(46, 6, 'Meu evento', NULL, 0),
+(47, 6, 'teste 1 2', NULL, 0),
+(48, 7, 'Evento teste Grégori', '', 1),
+(56, 7, 'Novo evento teste', NULL, 0),
+(57, 7, 'Outro evento', NULL, 0),
+(70, 20, 'Novo evento', NULL, 0),
+(71, 20, 'Novo teste', NULL, 0),
+(72, 20, 'aaaaaaaaa', NULL, 0),
+(73, 21, 'Evento teste', '', 0),
+(74, 20, 'awdwad', NULL, 0),
+(75, 20, 'aaaa', NULL, 0),
+(76, 20, 'Teste publica', '1233', 1),
+(77, 20, 'aaa', NULL, 0),
+(78, 20, 'aaasdadwer4352', 'descricao a9ujs kakas idis as da s dosidsk soaos dkdu skais dpd s', 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,26 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (75, 71, 17),
 (76, 71, 16),
 (77, 71, 1),
-(78, 72, 8);
+(78, 72, 8),
+(79, 70, 16),
+(80, 70, 1),
+(81, 70, 8),
+(82, 70, 11),
+(83, 70, 14),
+(84, 70, 19),
+(85, 70, 13),
+(86, 74, 1),
+(87, 74, 11),
+(88, 74, 8),
+(89, 74, 13),
+(90, 74, 16),
+(91, 74, 19),
+(92, 74, 10),
+(93, 75, 8),
+(94, 75, 16),
+(102, 78, 1),
+(103, 78, 8),
+(104, 78, 13);
 
 -- --------------------------------------------------------
 
@@ -348,13 +373,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `migrations`
