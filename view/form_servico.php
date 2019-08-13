@@ -110,6 +110,7 @@ if($_POST){
 		?>
 		<div style="width: 80%;" id="page">
 					<form action="form_servico.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
+					<h1> Cadastrar-se como serviço </h1>
 						<div class="modal-body" style="padding: 15px;">
 									<div>
 										<span>Nome</span>

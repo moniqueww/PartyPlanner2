@@ -14,6 +14,16 @@
 <!DOCTYPE html>
 <html>
 <?php include_once('include/head.php'); ?>
+<style>
+	.estrelas input[type=radio]{
+	display: none;
+}.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+}.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+}
+	</style>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -52,13 +62,30 @@
                                 <div >
                                     <p style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>
                                 </div>
-                                <div class="rating">
-                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
-                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
-                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
-                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
-                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                                </div>
+                                <form method='POST' action='processa.php' enctype='multipart/form-data'>
+							<div class='estrelas'>
+								<input type='radio' id='vazio' name='estrela' value='' checked>
+								<input type='hidden' name='id_servico' value='".$serv->getId()."'>
+								
+								<label for='estrela_um'><i class='fa'></i></label>
+								<input type='radio' id='estrela_um' name='estrela' value='1'>
+								
+								<label for='estrela_dois'><i class='fa'></i></label>
+								<input type='radio' id='estrela_dois' name='estrela' value='2'>
+								
+								<label for='estrela_tres'><i class='fa'></i></label>
+								<input type='radio' id='estrela_tres' name='estrela' value='3'>
+								
+								<label for='estrela_quatro'><i class='fa'></i></label>
+								<input type='radio' id='estrela_quatro' name='estrela' value='4'>
+								
+								<label for='estrela_cinco'><i class='fa'></i></label>
+								<input type='radio' id='estrela_cinco' name='estrela' value='5'><br><br>
+								
+								<input type='submit' value='Cadastrar'>
+								
+							</div>
+						</form>
                             </div>
                             <div class="col-3">
                                 <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></p>

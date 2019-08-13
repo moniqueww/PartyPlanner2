@@ -71,9 +71,6 @@
                             	echo "<tr>
                                     <td>".$org->getNome()."</td>
 									<td>".$org->getEmail()."</td>
-                                    <td>
-                                    <button type='button' data-id=".$org->getId()." data-cmd='alterar' class='normal-button btn btn-xs btn-default'><i class='material-icons'>create</i></button></a>
-                                    </td>
                                 </tr>" ;  
                     	    }
                     	}

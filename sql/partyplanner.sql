@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Ago-2019 às 21:04
+-- Generation Time: 13-Ago-2019 às 23:42
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -47,6 +47,18 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `estrelas`
+--
+
+CREATE TABLE `estrelas` (
+  `id` int(11) NOT NULL,
+  `id_servico` int(11) NOT NULL,
+  `qnt_estrelas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `eventos`
 --
 
@@ -71,7 +83,7 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `status`) VALUES
 (47, 6, 'teste 1 2', NULL, 0),
 (48, 7, 'Evento teste Grégori', '', 1),
 (56, 7, 'Novo evento teste', NULL, 0),
-(57, 7, 'Outro evento', NULL, 0),
+(57, 7, 'Outro evento', 'um evento com evento evento ', 0),
 (70, 20, 'Novo evento', NULL, 0),
 (71, 20, 'Novo teste', NULL, 0),
 (72, 20, 'aaaaaaaaa', NULL, 0),
@@ -80,7 +92,8 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `status`) VALUES
 (75, 20, 'aaaa', NULL, 0),
 (76, 20, 'Teste publica', '1233', 1),
 (77, 20, 'aaa', NULL, 0),
-(78, 20, 'aaasdadwer4352', 'descricao a9ujs kakas idis as da s dosidsk soaos dkdu skais dpd s', 0);
+(78, 20, 'aaasdadwer4352', 'descricao a9ujs kakas idis as da s dosidsk soaos dkdu skais dpd s', 0),
+(79, 7, 'Mais um evento', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -304,6 +317,12 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `estrelas`
+--
+ALTER TABLE `estrelas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `eventos`
 --
 ALTER TABLE `eventos`
@@ -370,10 +389,16 @@ ALTER TABLE `categorias`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `estrelas`
+--
+ALTER TABLE `estrelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
