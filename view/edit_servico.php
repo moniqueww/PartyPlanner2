@@ -67,7 +67,7 @@
         nomeNovo = $('#input-nome').val();
         emailNovo = $('#input-email').val();
         telefoneNovo = $('#input-telefone').val();
-        $.post( "../controle/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
+        $.post( "../ajax/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': descricaoNova, 'id': idServico}, function(data){
             alert('Servico modificado');
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;

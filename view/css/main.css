@@ -491,7 +491,7 @@ a, a:hover, a:focus {
 	padding: 5px 10px;
 	color: #8898aa;
 }
-.listaEventoServico .listaInfoEventoServico:nth-child(2){
+.listaEventoServico .listaInfoEventoServico:nth-child(3){
 	border-top-right-radius: 0.3rem;
 	border-top-left-radius: 0.3rem;
 }
@@ -616,9 +616,19 @@ a, a:hover, a:focus {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+	margin-bottom: 0px;
 }
 #semCategoria:hover{
 	background-color: #f3f5ff;
+}
+.exc-evento-servico{
+	float: right;
+	position: relative;
+	bottom: 10px;
+	left: 25px;
+	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 0px 12px;
 }
 
 

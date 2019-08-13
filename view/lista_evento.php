@@ -30,7 +30,7 @@
 			$('#cadastrarEvento').attr('disabled', '');
 			var nome = $('#nome').val();
 			var idUsuario = $('#idUsuario').val();
-			$.post( "../controle/cadastraEvento.php", {'nome': nome, 'idUsuario': idUsuario}, function(data){
+			$.post( "../ajax/cadastraEvento.php", {'nome': nome, 'idUsuario': idUsuario}, function(data){
 				data = $.parseJSON( data );
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();

@@ -150,11 +150,11 @@ class EventoServico implements IBaseModelo{
         
     }
 
-    public function listarPorNome($nome){
+    public function listarPorNome($idEvento){
         try{
-            $query="SELECT id,nome FROM eventos WHERE nome=:nome";
+            $query="SELECT id,idEvento,idServico FROM evento_servico WHERE id = (SELECT MAX(ID) FROM evento_servico WHERE idEvento = :idEvento)";
             $this->stmt= $this->conn->prepare($query);
-            $this->stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+            $this->stmt->bindValue(':idEvento', $idEvento, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno

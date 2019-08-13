@@ -87,13 +87,20 @@
         });
         $('.categoria').each(function(){
             if($(this).find('.listaEventoServico').length>0){
-                console.log($(this).find('.listaEventoServico'));
                 $(this).show();
             }
         });
+        $('.exc-evento-servico').on('click', function(){
+            idEventoServico = $(this).attr('data-id');
+            $.post( "../ajax/excluiEventoServico.php", {'id': idEventoServico}, function(data){
+                data = $.parseJSON( data );
+                $(".listaEventoServico[data-id="+data.id+"]").fadeOut();
+                $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
+            })
+        });
     });
     function listar() {
-        $.post( "../controle/buscaServico.php", {'nome': nome, 'evento': idEvento, 'idCategoria': idCategoria}, function(data){
+        $.post( "../ajax/buscaServico.php", {'nome': nome, 'evento': idEvento, 'idCategoria': idCategoria}, function(data){
             data = $.parseJSON( data );
             categoriaServico = '';
             $('#tabela_servicos tbody').html('');
@@ -128,13 +135,21 @@
                             idServico = $(this).attr('data-id');
                             idEvento = $('#idEvento').val();
                             servicoElement = $(this);
-                            $.post( "../controle/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
+                            $.post( "../ajax/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
                                 data = $.parseJSON( data );
                                 $('#cancelaListaServicos').click();
                                 $('#categoria'+servicoElement.attr('data-categoria')).show();
                                 $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
-                                    $('<div>', {class: 'content listaEventoServico'}).append(
+                                    $('<div>', {'data-id': data.idEventoServico, class: 'content listaEventoServico'}).append(
                                         data.nome,
+                                        $('<span>', {class: 'exc-evento-servico', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                            idEventoServico = $(this).attr('data-id');
+                                            $.post( "../ajax/excluiEventoServico.php", {'id': idEventoServico}, function(data){
+                                                data = $.parseJSON( data );
+                                                $(".listaEventoServico[data-id="+data.id+"]").fadeOut();
+                                                $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
+                                            })
+                                        }),
                                         $('<br/>'),
                                         $('<div>', {class: 'listaInfoEventoServico'}).append(
                                             data.email
@@ -159,7 +174,7 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        $.post( "../controle/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
+        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
         })
@@ -245,7 +260,6 @@
                             <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
                                 + Adicionar serviço
                             </button>
-                            <br clear="all"/>
                             <?php
                                 if(!empty($categorias)) {
                                     foreach($categorias as $ca) {
@@ -259,7 +273,7 @@
                                             foreach ($eventosServicos as $es) {
                                                 $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
-                                                echo "<div class='content listaEventoServico'>".$servicoUnico->getNome()."<br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                                echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                                 }
                                             }
                                         }
