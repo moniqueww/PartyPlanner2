@@ -1,7 +1,7 @@
 <?php
 
 
-class Evento implements IBaseModelo{
+class EventoPublicado implements IBaseModelo{
     private $id;
     private $nome;
     private $descricao;
@@ -125,19 +125,19 @@ class Evento implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,status FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
+                $query="SELECT id,nome,descricao,status FROM eventos WHERE status = :status AND nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,status FROM eventos WHERE idUsuario = :idUsuario";
+                $query="SELECT id,nome,descricao,status FROM eventos WHERE status = :status";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
-            if(!is_null($idUsuario))$this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_STR);
+            $this->stmt->bindValue(':status', 1, PDO::PARAM_INT);
 
             if($this->stmt->execute()){
                 // Associa cada registro a uma classe aluno
                 // Depois, coloca os resultados em um array
-                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");  
                 
             }
             
@@ -158,7 +158,7 @@ class Evento implements IBaseModelo{
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");  
                 
             }
             

@@ -1,7 +1,7 @@
 <?php
 
 
-class ControleEvento extends ControleBase {
+class ControleEventoPublicado extends ControleBase {
     private $visao;
     private $evento;
     
@@ -17,7 +17,7 @@ class ControleEvento extends ControleBase {
     
     public function __construct() {
         //Cria uma instância da classe Produto
-        $this->evento = new Evento();
+        $this->evento = new EventoPublicado();
     }
     
     public function controleAcao($acao,$param=null,$param2=null){

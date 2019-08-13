@@ -56,7 +56,7 @@
 			</ul>-->
             <ul class="list-unstyled components">
                 <p>NAVIGATION</p>
-                <a href="">
+                <a href="home.php">
 	                <li class="active">
 	                    <i class="fas fa-home"></i><span>Página incial</span>
 	                </li>

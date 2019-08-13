@@ -575,7 +575,7 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: 170px;
+	height: 15vh;
 }
 .card-title{
 	white-space: nowrap;

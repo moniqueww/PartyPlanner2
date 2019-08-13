@@ -50,6 +50,7 @@
         nome = "";
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
+        statusEvento = $('#statusEvento').val();
         $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
             nomeNovo = $('#input-nome').val();
@@ -97,6 +98,13 @@
                 $(".listaEventoServico[data-id="+data.id+"]").fadeOut();
                 $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
             })
+        });
+        $('#publica-evento').on('click', function(){
+            if (statusEvento == 0) {
+                statusEvento = 1;
+                editarEvento();
+                $(this).attr('disabled', '');
+            }
         });
     });
     function listar() {
@@ -174,7 +182,7 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento}, function(data){
+        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
         })
@@ -188,10 +196,17 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">
+            <div class="filtros float-right simple-margin-right">
+                <button <?= ($eventoUnico->getStatus() == 1) ? 'disabled' : '' ?> id="publica-evento" type="button" class="btn btn-primary btn-add">
+                    <span class="circle btn-inner--icon"><i class="fas fa-copy"></i></span>
+                    <span class="btn-inner--text">Publicar</span>
+                </button>
+            </div>
 			<div class="filtros">Edição do evento</div>
                         <!-- Page Content -->
                         <div class="content co-10">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
+                            <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
                             <div style="float: right; display: none">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -258,7 +273,7 @@
 
                         <div class="content co-10 co-ult">
                             <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
-                                + Adicionar serviço
+                                <span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span> Adicionar serviço
                             </button>
                             <?php
                                 if(!empty($categorias)) {
