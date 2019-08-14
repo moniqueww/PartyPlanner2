@@ -62,7 +62,7 @@
                                 <form method='POST' action='processa.php' enctype='multipart/form-data'>
 							<div class='estrelas'>
 								<input type='radio' id='vazio' name='estrela' value='' checked>
-								<input type='hidden' name='id_servico' value='".$serv->getId()."'>
+								<input type='hidden' name='id_servico' value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>">
 								
 								<label for='estrela_um'><i class='fa'></i></label>
 								<input type='radio' id='estrela_um' name='estrela' value='1'>

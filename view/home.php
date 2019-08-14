@@ -41,7 +41,7 @@
     	<?php include_once('include/sidebar.php'); ?>
 
     	<div id="page">
-			<div class="filtros">Seus eventos</div>
+			<div class="filtros">Eventos publicados</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php
