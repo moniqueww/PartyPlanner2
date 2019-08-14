@@ -152,7 +152,7 @@ class EventoPublicado implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome,descricao,status FROM eventos WHERE id=:id";
+            $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
