@@ -65,7 +65,7 @@
 
     <div class="wrapper">
 
-    	<?php include_once('include/sidebar.php'); ?>
+    	<?php include_once('include/sidebarServico.php'); ?>
 
     	<div id="page">      
 		<div class="filtros">Serviços</div>
