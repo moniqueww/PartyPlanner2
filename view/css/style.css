@@ -241,7 +241,7 @@ button:focus {
 .mu-logo-area {
 	display: inline;
 	float: left;
-	text-align: center;
+	text-align: left;
 	width: 100%;
 }
 
@@ -282,15 +282,24 @@ button:focus {
 .mu-hero-featured-area {
 	display: inline;
 	float: left;
-	padding: 60px 0 150px;
+	padding: 60px 0 150px 300px;
 	width: 100%;
+}
+
+.mu-hero-evento-photo-area{
+	width: 250px;
+	height: 250px;
+	background-color: #fff;
+	margin-left: -300px;
+ 	position: absolute;
+	box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
 }
 
 .mu-hero-featured-content {
 	display: inline;
 	float: right;
 	margin-top: 50px;
-	text-align: center;
+	text-align: left;
 	width: 100%;
 }
 
@@ -437,7 +446,6 @@ button:focus {
 .mu-about-right {
 	display: inline;
 	float: left;
-	margin-top: 30px;
 	width: 100%;
 }
 
@@ -739,11 +747,31 @@ button:focus {
 }
 
 .mu-single-speakers {
-	padding: 0 10px;
+	padding: 0 10px 0 20px;
 	outline: none;
 	text-align: center;
 	-webkit-transition: all 0.3s ease 0s;
 	transition: all 0.3s ease 0s;
+}
+
+.mu-speakers-slider{
+	max-height: 500px;
+	overflow: auto;
+}
+
+.mu-speakers-slider::-webkit-scrollbar {
+  width: 10px;
+}
+.mu-speakers-slider::-webkit-scrollbar-track {
+  background: transparent; 
+}
+.mu-speakers-slider::-webkit-scrollbar-thumb {
+  background: rgb(228, 231, 242); 
+  border-radius: 0.3rem;
+  margin-right: 2px;
+}
+.mu-speakers-slider::-webkit-scrollbar-thumb:hover {
+  background: rgb(189, 193, 209); 
 }
 
 .mu-speakers-slider .slick-next {

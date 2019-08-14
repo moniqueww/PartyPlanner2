@@ -26,6 +26,10 @@
         $eventoControle->setVisao($_GET);
     
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
+
+        $organizadorControle = new ControleOrganizador();
+
+        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
     }
 ?>
 <!DOCTYPE html>
@@ -35,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Eventoz : Home</title>
+    <title><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?> - Partyplanner</title>
     <!-- Favicon -->
     <link href="img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Font Awesome -->
@@ -71,6 +75,7 @@
   	<!-- Start Header -->
 	<header id="mu-hero" class="" role="banner">
 		<!-- Start menu  -->
+		<div style="position: absolute; z-index: 99999; right: 20px; top: 0px;" id="mu-mu-logo"><img style="width: 200px; height: auto;" src="img/brand/logo-branco.png"/></div>
 		<nav class="navbar navbar-fixed-top navbar-default mu-navbar">
 		  	<div class="container">
 			    <!-- Brand and toggle get grouped for better mobile display -->
@@ -109,10 +114,13 @@
 
 					<!-- Start hero featured area -->
 					<div class="mu-hero-featured-area">
+						<div class="mu-hero-evento-photo-area">
+    						<img style="height: 100%; width: 100%;" src="img/brand/foto-festa.png">
+    					</div>
 						<!-- Start center Logo -->
 						<div class="mu-logo-area">
 							<!-- text based logo -->
-							<a class="mu-logo" href="#">Teste</a>
+							<a class="mu-logo" href="#"><?= isset($organizadorUnico) ? $organizadorUnico->getNome() : "";?></a>
 							<!-- image based logo -->
 							<!-- <a class="mu-logo" href="#"><img src="assets/images/logo.jpg" alt="logo img"></a> -->
 						</div>
@@ -121,7 +129,7 @@
 						<div class="mu-hero-featured-content">
 
 							<h1><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?></h1>
-							<p class="mu-event-date-line">19 - 21 February, 2018. New York, USA</p>
+							<p class="mu-event-date-line">29 de outubro de 2019. Bento Gonçalves, RS</p>
 
 							<div class="mu-event-counter-area">
 								<div id="mu-event-counter">
@@ -145,41 +153,24 @@
 		<section id="mu-about">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-4">
 						<div class="mu-about-area">
 							<!-- Start Feature Content -->
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mu-about-left">
-										<img class="" src="img/brand/background.png" alt="Men Speaker">
-									</div>
-								</div>
-								<div class="col-md-6">
 									<div class="mu-about-right">
 										<h2>Sobre o evento</h2>
-										<p><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></p>
+										<p style="margin: 0 20px 10px 0;"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></p>
 									</div>
-								</div>
-							</div>
 							<!-- End Feature Content -->
 
 						</div>
 					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End About -->
-
-		<!-- Start Speakers -->
-		<section id="mu-speakers">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
+				
+					<div class="col-md-8">
 						<div class="mu-speakers-area">
 
 							<div class="mu-title-area">
-								<h2 class="mu-title">Our Speakers</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis unde, ut sapiente et voluptatum facilis consectetur incidunt provident asperiores at necessitatibus nulla sequi voluptas libero quasi explicabo veritatis minima porro.</p>
+								<h2 class="mu-title">Publicações</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							</div>
 
 							<!-- Start Speakers Content -->
@@ -189,7 +180,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Karl Groves</h3>
 											<p>Digital Artist</p>
@@ -204,7 +195,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Sarah Dransner</h3>
 											<p>Business Consultant</p>
@@ -220,7 +211,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Ned Stark</h3>
 											<p>UI/UX Specialist</p>
@@ -236,7 +227,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Michaela Lehr </h3>
 											<p>Digital Marketer</p>
@@ -251,7 +242,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Karl Groves</h3>
 											<p>Digital Artist</p>
@@ -266,7 +257,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Sarah Dransner</h3>
 											<p>Business Consultant</p>
@@ -282,7 +273,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Ned Stark</h3>
 											<p>UI/UX Specialist</p>
@@ -298,7 +289,7 @@
 
 									<!-- Start single speaker -->
 									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
+										<img src="img/brand/background3.png" alt="speaker img">
 										<div class="mu-single-speakers-info">
 											<h3>Michaela Lehr </h3>
 											<p>Digital Marketer</p>
@@ -310,6 +301,7 @@
 										</div>
 									</div>
 									<!-- End single speaker -->
+
 								</div>
 							</div>
 							<!-- End Speakers Content -->
@@ -354,7 +346,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">10.00 AM</p>
 								    				<h3>Advanced SVG Animations</h3>
 								    				<span>By Karl Groves</span>
@@ -362,7 +354,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">11.00 AM</p>
 								    				<h3>Presenting Work with Confidence</h3>
 								    				<span>By Sarah Dransner</span>
@@ -370,7 +362,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">12.00 AM</p>
 								    				<h3>Keynote on UX & UI Design</h3>
 								    				<span>By Ned Stark</span>
@@ -394,7 +386,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">10.00 AM</p>
 								    				<h3>Advanced SVG Animations</h3>
 								    				<span>By Karl Groves</span>
@@ -402,7 +394,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">11.00 AM</p>
 								    				<h3>Presenting Work with Confidence</h3>
 								    				<span>By Sarah Dransner</span>
@@ -410,7 +402,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">12.00 AM</p>
 								    				<h3>Keynote on UX & UI Design</h3>
 								    				<span>By Ned Stark</span>
@@ -434,7 +426,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">10.00 AM</p>
 								    				<h3>Advanced SVG Animations</h3>
 								    				<span>By Karl Groves</span>
@@ -442,7 +434,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">11.00 AM</p>
 								    				<h3>Presenting Work with Confidence</h3>
 								    				<span>By Sarah Dransner</span>
@@ -450,7 +442,7 @@
 								    		</li>
 								    		<li>
 								    			<div class="mu-single-event">
-								    				<img src="img/brand/background.png" alt="event speaker">
+								    				<img src="img/brand/background3.png" alt="event speaker">
 								    				<p class="mu-event-time">12.00 AM</p>
 								    				<h3>Keynote on UX & UI Design</h3>
 								    				<span>By Ned Stark</span>
@@ -493,129 +485,7 @@
 
 								<div class="mu-speakers-slider">
 
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Karl Groves</h3>
-											<p>Digital Artist</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Sarah Dransner</h3>
-											<p>Business Consultant</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Ned Stark</h3>
-											<p>UI/UX Specialist</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Michaela Lehr </h3>
-											<p>Digital Marketer</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Karl Groves</h3>
-											<p>Digital Artist</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Sarah Dransner</h3>
-											<p>Business Consultant</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Ned Stark</h3>
-											<p>UI/UX Specialist</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
-
-
-									<!-- Start single speaker -->
-									<div class="mu-single-speakers">
-										<img src="img/brand/background.png" alt="speaker img">
-										<div class="mu-single-speakers-info">
-											<h3>Michaela Lehr </h3>
-											<p>Digital Marketer</p>
-											<ul class="mu-single-speakers-social">
-												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End single speaker -->
+									
 								</div>
 							</div>
 							<!-- End Speakers Content -->
@@ -755,73 +625,73 @@
 								
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 										<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 										<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
 									<div class="col-md-2 col-sm-4 col-xs-4">
 										<div class="mu-sponsors-single">
-											<img src="img/brand/background.png" alt="Brand Logo">
+											<img src="img/brand/background3.png" alt="Brand Logo">
 										</div>
 									</div>
 
