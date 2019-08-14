@@ -59,9 +59,6 @@
                                 <div style="margin-top: 20px;">    
                                     <p style="font-weight: bold; width: 300px !important; font-size: 20px;" ><?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?></p>
                                 </div>
-                                <div >
-                                    <p style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>
-                                </div>
                                 <form method='POST' action='processa.php' enctype='multipart/form-data'>
 							<div class='estrelas'>
 								<input type='radio' id='vazio' name='estrela' value='' checked>
@@ -87,7 +84,10 @@
 							</div>
 						</form>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 pt-3">
+                                <p class="font-weight-bold">Informações do serviço:</p>
+                                <p style="width: 300px !important;" >CNPJ: <?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>                                
+                                <p class="font-weight-bold">Contatos:</p>
                                 <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></p>
                                 <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?></p>
                             </div>

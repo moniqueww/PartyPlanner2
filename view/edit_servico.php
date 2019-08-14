@@ -108,17 +108,16 @@
                                     <img src="img/brand/blog-neon-6.jpg">
                                 </div>
                             </div>
-                            <div class="col-lg-12" style="margin-top: 20px;">
+                            <div class="row">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <input type="text" style="width: 300px !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?>">
                                 </div>
+                                <div class="font-weight-bold" style="padding-left:10px;">CNPJ:</div>
+                                <textarea data-descricao="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <textarea data-descricao="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" placeholder="Adicione aqui a descrição do seu evento"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-3">
+                            <div class="col-6">
+                                <p class="font-weight-bold" style="padding-left:10px;">Contatos:</p>
                                 <input type='number' style="width: 300px !important;" id="input-telefone" class="form-control form-control-alternative form-edita" value="<?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?>">
                                 <input type='text' style="width: 300px !important;" id="input-email" class="form-control form-control-alternative form-edita" value="<?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?>">
                             </div>
