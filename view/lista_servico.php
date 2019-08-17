@@ -61,13 +61,14 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-    <?php include_once('include/navbar.php'); ?>
-
     <div class="wrapper">
 
     	<?php include_once('include/sidebarServico.php'); ?>
 
     	<div id="page">      
+
+    		<?php include_once('include/navbar.php'); ?>
+    		
 		<div class="filtros">Serviços</div>
     <!-- <form  action="{{ route('search') }}" method="GET" class="form-horizontal"> 
         <div class="form-group row mb-4"> 

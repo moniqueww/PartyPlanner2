@@ -109,6 +109,7 @@ if($_POST){
 			$pagina = basename( __FILE__ );
 		?>
 		<div style="width: 80%;" id="page">
+			<div class="content co-10">
 					<form action="form_servico.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
 					<h1> Cadastrar-se como serviço </h1>
 						<div class="modal-body" style="padding: 15px;">
@@ -146,6 +147,7 @@ if($_POST){
 						<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
 						<br clear="all"/>
 					</form>
+				</div>
 					<a href="escolhercadastro.php" class="text-primary"><span>Voltar</span></a>
 			</section>
 		</div>

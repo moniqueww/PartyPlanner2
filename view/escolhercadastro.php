@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 
-<?php include_once 'include/head.php'; ?>
+<?php
+$tituloHead = 'Cadastrar';
+include_once('include/head.php');
+?>
 <body class="bg-white">
   <div class="main-content">
     <!-- Navbar -->

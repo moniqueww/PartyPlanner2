@@ -14,7 +14,10 @@
 ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('include/head.php'); ?>
+<?php
+$tituloHead = 'Edita servico';
+include_once('include/head.php');
+?>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -78,13 +81,14 @@
     }
     </script>
 
-    <?php include_once('include/navbar.php'); ?>
-
     <div class="wrapper">
 
     	<?php include_once('include/sidebarServico.php'); ?>
 
     	<div id="page">
+
+            <?php include_once('include/navbar.php'); ?>
+
 			<div class="filtros">Edição do evento</div>
                         <!-- Page Content -->
                         <div class="content co-10">

@@ -125,10 +125,10 @@ class Evento implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,status FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
+                $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,status FROM eventos WHERE idUsuario = :idUsuario";
+                $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE idUsuario = :idUsuario";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);

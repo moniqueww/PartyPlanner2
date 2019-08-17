@@ -9,10 +9,14 @@
 	}else{
 		$eventos = $eventoControle->controleAcao("listarTodos");
 	}
+	$usuarioControle = new ControleOrganizador();
 ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('include/head.php'); ?>
+<?php
+$tituloHead = 'Home';
+include_once('include/head.php');
+?>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -34,24 +38,33 @@
 	});
 	</script>
 
-    <?php include_once('include/navbar.php'); ?>
+    <?php //include_once('include/navbar.php'); ?>
 
     <div class="wrapper">
 
-    	<?php include_once('include/sidebar.php'); ?>
+    	<?php
+    	$paginaHome = "class='active'";
+    	$paginaLista = '';
+    	include_once('include/sidebar.php');
+    	?>
 
     	<div id="page">
-			<div class="filtros">Eventos publicados</div>
+
+    		<?php include_once('include/navbar.php'); ?>
+
+			<div class="filtros">Home</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
-                        echo "<div class='content co-15 photo'>
+                    	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+                        echo "<div class='content co-2 photo'>
 				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' src='img/brand/background.png' alt='Card image cap'>
+				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
 				  <div class='card-body'>
 				    <h5 class='card-title'>".$ev->getNome()."</h5>
+				    <h5 class='card-title' style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
 				</div>
 			</div>";
@@ -62,7 +75,7 @@
 		</div>
 		<div id="action-bar">
 		        
-		    </div>
+		</div>
     </div>
 	
 </body>

@@ -13,7 +13,10 @@
 ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('include/head.php'); ?>
+<?php
+$tituloHead = 'Perfil de serviço';
+include_once('include/head.php');
+?>
 <style>
 	.estrelas input[type=radio]{
 	display: none;
@@ -38,13 +41,14 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 
-    <?php include_once('include/navbar.php'); ?>
-
     <div class="wrapper">
 
     	<?php include_once('include/sidebarServico.php'); ?>
 
     	<div id="page">
+
+            <?php include_once('include/navbar.php'); ?>
+
 			<div class="filtros">serviço</div>
                         <!-- Page Content -->
                         <div class="content co-10">

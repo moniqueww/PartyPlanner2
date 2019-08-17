@@ -18,7 +18,7 @@ if (isset($_POST['validar']) == 1){
 				$_SESSION['id'] = $us->getId();
 				$_SESSION['tipo'] = $us->getTipo();	
 				if($_SESSION['tipo'] == 'O'){
-					echo '<script>window.location.href = "lista_evento.php";</script>';
+					echo '<script>window.location.href = "home.php";</script>';
 				}else{
 					echo "<script>window.location.href='edit_servico.php?servico=".$_SESSION['id']."';</script>";
 				}

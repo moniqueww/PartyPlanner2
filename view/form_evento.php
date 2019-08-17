@@ -31,7 +31,10 @@
 ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('include/head.php'); ?>
+<?php
+$tituloHead = 'Editar evento';
+include_once('include/head.php');
+?>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -189,13 +192,18 @@
     }
 	</script>
 
-    <?php include_once('include/navbar.php'); ?>
-
     <div class="wrapper">
 
-    	<?php include_once('include/sidebar.php'); ?>
+    	<?php
+        $paginaHome = '';
+        $paginaLista = '';
+        include_once('include/sidebar.php');
+        ?>
 
     	<div id="page">
+
+            <?php include_once('include/navbar.php'); ?>
+
             <div class="filtros float-right simple-margin-right">
                 <button <?= ($eventoUnico->getStatus() == 1) ? 'disabled' : '' ?> id="publica-evento" type="button" class="btn btn-primary btn-add">
                     <span class="circle btn-inner--icon"><i class="fas fa-copy"></i></span>
@@ -227,7 +235,7 @@
                             </div>
                             <div class="content-header" style="float: left;">
                                 <div class="header-photo alternative-shadow">
-                                    <img src="img/brand/foto-festa.png">
+                                    <img src="img/brand/background4.png">
                                 </div>
                             </div>
                             <div style="margin-top: 20px;">

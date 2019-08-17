@@ -2,6 +2,9 @@
 principal: #697cff
 vermelha: #f5365c
 verde: #66e218
+cinza: #f1f3fa;
+cinza2: #f8f9fa;
+cinza3: #f2f7fc;
 
 
 
@@ -60,7 +63,7 @@ html{
 }
 body {
     font-family: 'Quicksand' !important;
-    background-color: #f1f3fa !important; /*#fafbfe*/
+    background-color: #fff !important; /*#fafbfe*/
     height: 100%;
 }
 
@@ -80,7 +83,7 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: rgb(228, 231, 242);
+    background: #f2f7fc;
     color: inherit;
 	width: 83px;
 	min-height: 100vh;
@@ -94,16 +97,15 @@ a, a:hover, a:focus {
 	border-top-left-radius: 0.3rem;
 	border-top-right-radius: 0.3rem;
 }
-#sidebar .header-photo {
-	width: 74px;
-	height: 74px;
+.header-photo {
+	width: 40px;
+	height: 40px;
 	margin: auto;
 	/*border: solid 2px #fff;*/
 	padding: 2px;
 	/*background-image: url('../img/noimage4.png');*/
-	background-size: 100% 100%;
 }
-#sidebar .header-photo img{
+.header-photo img{
 	width: 100%;
 	height: 100%;;
 	border-radius: 50px;
@@ -119,8 +121,12 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul.components {
-    padding: 20px 0 0 0;
+    padding: 15px 0 0 0;
 	font-size: .8rem;
+}
+#sidebar ul li.active{
+	background-color: #697cff;
+	color: #fff;
 }
 #sidebar .list-unstyled li span{
 	position: absolute;
@@ -230,7 +236,7 @@ a, a:hover, a:focus {
 }
 .navbar{
 	width: 100%;
-	padding: 0.5rem 15px !important;
+	padding: 0.5rem 0px !important;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -249,7 +255,7 @@ a, a:hover, a:focus {
 }
 #page{
 	width: 100%;
-	margin: 30px 0px 0px 30px;
+	margin: 0px 0px 0px 30px;
 	text-align: left;
 }
 #page .content{
@@ -355,6 +361,11 @@ a, a:hover, a:focus {
 }
 .photo{
 	padding: 0px !important;
+	background-color: transparent !important;
+}
+
+.photo .card{
+	background-color: transparent !important;
 }
 
 .li-add{
@@ -406,7 +417,11 @@ a, a:hover, a:focus {
 .filtros{
 	margin: 0px 0px 20px 0px;
 	font-weight: bold;
-	line-height: 43px;
+	line-height: 100px;
+	font-family: Montserrat;
+	font-size: 2.5rem;
+	letter-spacing: -0.1rem;
+	color: #525265;
 }
 .filtros.categorias{
 	border-top: solid 1px #f7f8fc;
@@ -453,20 +468,35 @@ a, a:hover, a:focus {
 .no-margin-right{
 	margin-right: 0px !important;
 }
-.novoEvento{
+.publicadoEvento{
 	position: absolute;
 	padding: 0px 5px;
-    min-width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 50px;
-    background: #66e218;
-    right: -10px;
-    top: -10px;
+	min-width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 50px;
+	right: -10px;
+	top: -10px;
 	color: white;
 	font-size: 10px;
 	font-weight: bold;
+	background-color: #697cff;
+}
+.novoEvento{
+		position: absolute;
+		padding: 0px 5px;
+	    min-width: 30px;
+	    height: 30px;
+	    text-align: center;
+	    line-height: 30px;
+	    border-radius: 50px;
+	    right: -10px;
+	    top: -10px;
+		color: white;
+		font-size: 10px;
+		font-weight: bold;
+	background-color: #66e218;
 }
 .form-edita{
 	color: #525f7f !important;
@@ -575,17 +605,27 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: 15vh;
+	height: 29vh;
+	background-color: #f2f7fc;
+	border-radius: 0px !important;
+	cursor: pointer;
+}
+.content .card .card-img-top:hover{
+	filter: brightness(0.7);
 }
 .card-title{
 	white-space: nowrap;
 	overflow: hidden;
 }
+.card-body{
+	padding: 0.8rem 0px !important;
+	font-weight: bold;
+}
 #action-bar{
 	width: 350px;
 	min-height: 100vh;
 	display: inline-block;
-	background-color: rgb(228, 231, 242);
+	background-color: #f2f7fc;
 }
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;

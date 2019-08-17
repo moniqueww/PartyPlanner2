@@ -5,12 +5,6 @@
 				<button id="expandeMenu" class="btn-diferente">
                     	<i class="fas fa-angle-right"></i>
 				</button>
-            <div class="sidebar-header">
-				<div class="header-photo circle">
-					<img src="img/fotosPerfil/noimage5.png"/>
-				</div>
-				<div class="header-nome"><?php echo $_SESSION['usuario'];?></div>
-            </div>
     		<!--<ul class="list-unstyled components">
 				<li class="active li-add">
 					<div>
@@ -57,7 +51,7 @@
             <ul class="list-unstyled components">
                 <p>NAVIGATION</p>
                 <a href="home.php">
-	                <li class="active">
+	                <li <?php echo $paginaHome; ?>>
 	                    <i class="fas fa-home"></i><span>Página incial</span>
 	                </li>
                 </a>
@@ -83,7 +77,7 @@
 	                </li>
                 </a>-->
 				<a href="lista_evento.php">
-					<li>
+					<li <?php echo $paginaLista; ?>>
                     	<i class="fas fa-calendar-day"></i><span>Seus eventos</span>
                 	</li>
                 </a>

@@ -106,6 +106,7 @@ if($_POST){
 			$pagina = basename( __FILE__ );
 		?>
 		<div style="width: 80%; margin-top:0px" id="page">
+			<div class="content co-10">
 			<form action="form_organizador.php" style="width: 80%; margin-left: auto; margin-roght: auto;" method="post">
 			<h1> Cadastrar-se como organizador </h1>
 				<input name="id" type="hidden" value="<?= isset($organizadorAlteracao) ? $organizadorAlteracao->getId() : "";?>">
@@ -131,6 +132,7 @@ if($_POST){
 				<button id="button" type="submit" class="btn btn-primary my-4" name="cadastrar">Cadastrar</button>
 				<br clear="all"/>
 			</form>
+		</div>
 			<a href="escolhercadastro.php" class="text-primary"><span>Voltar</span></a>
 		</section>
 	</div>

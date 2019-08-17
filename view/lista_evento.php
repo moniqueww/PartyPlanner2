@@ -9,10 +9,14 @@
 	}else{
 		$eventos = $eventoControle->controleAcao("listarTodos", '', $_SESSION['id']);
 	}
+	$usuarioControle = new ControleOrganizador();
 ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('include/head.php'); ?>
+<?php
+$tituloHead = 'Seus eventos';
+include_once('include/head.php');
+?>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -35,7 +39,7 @@
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();
 				$('#eventos').prepend(
-					$('<div>', {class: 'content co-15 photo'}).append(
+					$('<div>', {class: 'content co-2 photo'}).append(
 						$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
 							if ($(this).children('.novoEvento') != null) {
 								$(this).children('.novoEvento').fadeOut();
@@ -44,7 +48,7 @@
 							eventoId = $(this).attr('data-id');
 							window.location.assign('form_evento.php?evento='+eventoId);
 						}).append(
-							$('<img>', {class: 'card-img-top', src: "img/brand/background.png"}),
+							$('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}),
 							$('<div>', {class: 'card-body'}).append(
 								$('<h5>', {class: 'card-title', html: data.nome})
 							),
@@ -65,13 +69,20 @@
 	});
 	</script>
 
-    <?php include_once('include/navbar.php'); ?>
+    <?php //include_once('include/navbar.php'); ?>
 
     <div class="wrapper">
 
-    	<?php include_once('include/sidebar.php'); ?>
+    	<?php 
+    	$paginaHome = '';
+    	$paginaLista = "class='active'";
+    	include_once('include/sidebar.php');
+    	?>
 
     	<div id="page">
+
+    		<?php include_once('include/navbar.php'); ?>
+
 			<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['id']; ?>"/>
 			<div class="filtros float-right simple-margin-right">
 				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
@@ -135,18 +146,28 @@
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
-                        echo "<div class='content co-15 photo'>
+                    	$publicado = '';
+                    	if ($ev->getStatus() == 1) {
+                    		$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
+                    	}
+                    	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+                        echo "<div class='content co-2 photo'>
 				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' src='img/brand/background.png' alt='Card image cap'>
+				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
 				  <div class='card-body'>
 				    <h5 class='card-title'>".$ev->getNome()."</h5>
+				    <h5 class='card-title' style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
+				  ".$publicado."
 				</div>
 			</div>";
                     }
                 }
             ?>
 	  		</div>
+		</div>
+		<div id="action-bar">
+		        
 		</div>
     </div>
 	

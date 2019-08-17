@@ -52,10 +52,16 @@
 	</script>
 </head>
 <body>
-<?php include_once('include/navbar.php'); ?>
 	<div class="wrapper">
-		<?php include_once('include/sidebar.php'); ?>
+		<?php
+		$paginaHome = '';
+    	$paginaLista = '';
+		include_once('include/sidebar.php');
+		?>
 		<div id="page">
+
+			<?php include_once('include/navbar.php'); ?>
+
 			<div class='content co-10 co-ult'>
 				<table id="tabela" style="width: 100%">
 					<thead>
