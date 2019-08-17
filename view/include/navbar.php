@@ -1,4 +1,4 @@
-<div class="navigation bg-light">
+<div class="navigation">
 	<nav class="navbar navbar-horizontal navbar-expand-lg">
 		<div class="container container-menu">
 			<div class="collapse navbar-collapse" id="navbar-default">
