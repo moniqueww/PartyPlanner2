@@ -28,6 +28,8 @@ include_once('include/head.php');
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <script src="js/pesquisa.js"></script>
+
     <script type="text/javascript">
 	$(function() {
 		$('#cadastrarEvento').on('click', function(){
@@ -39,7 +41,7 @@ include_once('include/head.php');
 				$('#cadastrarEvento').removeAttr('disabled', '');
 				$('#cancelarCadastro').click();
 				$('#eventos').prepend(
-					$('<div>', {class: 'content co-2 photo'}).append(
+					$('<div>', {class: 'content photo'}).append(
 						$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
 							if ($(this).children('.novoEvento') != null) {
 								$(this).children('.novoEvento').fadeOut();
@@ -140,7 +142,7 @@ include_once('include/head.php');
 					</div>
 				</div>
 			</div>
-			<div class="filtros">Seus eventos</div>
+			<div class="filtros">Seus Eventos</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php
@@ -151,7 +153,7 @@ include_once('include/head.php');
                     		$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
                     	}
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content co-2 photo'>
+                        echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">
 				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
 				  <div class='card-body'>

@@ -46,6 +46,8 @@ include_once('include/head.php');
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <script src="js/pesquisa.js"></script>
+
     <script type="text/javascript">
     $(function() {
         idCategoria = "";
@@ -210,7 +212,7 @@ include_once('include/head.php');
                     <span class="btn-inner--text">Publicar</span>
                 </button>
             </div>
-			<div class="filtros">Edição do evento</div>
+			<div class="filtros">Edição de Evento</div>
                         <!-- Page Content -->
                         <div class="content co-10">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>

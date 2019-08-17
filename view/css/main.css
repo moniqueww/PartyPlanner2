@@ -362,6 +362,7 @@ a, a:hover, a:focus {
 .photo{
 	padding: 0px !important;
 	background-color: transparent !important;
+	width: 14.6%;
 }
 
 .photo .card{
@@ -379,15 +380,15 @@ a, a:hover, a:focus {
 }
 .btn-diferente{
 	padding: 5px 21px;
+	width: 100%;
 	border: none;
-	background-color: #fff;
-	color: #525f7f;
-	border-radius: 0.3rem;
+	background-color: #697cff;
+	color: #fff;
 	cursor: pointer;
 	outline: none;
 }
 .btn-diferente:hover{
-	background-color: rgba(103,117,176,0.15);
+	background-color: #909ffe;
 }
 .btn-diferente:active{
 	outline: none;
@@ -397,13 +398,10 @@ a, a:hover, a:focus {
 	outline: none;
 }
 #encolheMenu{
-	position: fixed;
 	bottom: 15px;
-	padding: 5px 91px;
 	left: 13px;
 }
 #expandeMenu{
-	position: fixed;
 	left: 15px;
 	bottom: 15px;
 }
@@ -605,7 +603,7 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: 29vh;
+	height: 24vh;
 	background-color: #f2f7fc;
 	border-radius: 0px !important;
 	cursor: pointer;

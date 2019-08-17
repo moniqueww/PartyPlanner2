@@ -28,13 +28,24 @@ include_once('include/head.php');
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-    <script src="js/pesquisa.js"></script>
-
     <script type="text/javascript">
 	$(function() {
+
 		$('.content .card').on('click', function(){
 			eventoId = $(this).attr('data-id');
 			window.location.assign('divulgacao_evento.php?evento='+eventoId);
+		});
+
+		$('#geralPesq').focus();
+
+		$('#geralPesq').on('input', function(){
+			if ($(this).val() != ''){
+				$('.filtros').hide();
+				$('#eventos').hide();
+			} else {
+				$('.filtros').show();
+				$('#eventos').show();
+			}
 		});
 	});
 	</script>
@@ -44,7 +55,7 @@ include_once('include/head.php');
     <div class="wrapper">
 
     	<?php
-    	$paginaHome = "class='active'";
+    	$paginaHome = '';
     	$paginaLista = '';
     	include_once('include/sidebar.php');
     	?>
@@ -53,7 +64,7 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
-			<div class="filtros">Home</div>
+			<div class="filtros">Pesquisas Recentes</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php
@@ -68,7 +79,7 @@ include_once('include/head.php');
 				    <h5 class='card-title' style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
 				</div>
-			</div>";
+			</div><br clear='all'/>";
                     }
                 }
             ?>
