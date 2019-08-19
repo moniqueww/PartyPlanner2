@@ -86,7 +86,8 @@ include_once('include/head.php');
     		<?php include_once('include/navbar.php'); ?>
 
 			<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['id']; ?>"/>
-			<div class="filtros float-right simple-margin-right">
+			<div class="filtros no-margin">Seus Eventos</div>
+			<div class="filtros-right simple-margin-right">
 				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
 					<span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
 					<span class="btn-inner--text">Novo Evento</span>
@@ -142,7 +143,6 @@ include_once('include/head.php');
 					</div>
 				</div>
 			</div>
-			<div class="filtros">Seus Eventos</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php

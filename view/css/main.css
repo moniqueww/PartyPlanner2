@@ -256,6 +256,8 @@ a, a:hover, a:focus {
 #page{
 	width: 100%;
 	padding: 0px 0px 0px 30px;
+	overflow: auto;
+	max-height: 100vh;
 	text-align: left;
 }
 #page .content{
@@ -412,6 +414,10 @@ a, a:hover, a:focus {
 	border-radius: 50%;
 }
 
+.no-margin{
+	margin: 0px !important;
+}
+
 .filtros{
 	margin: 0px 0px 20px 0px;
 	font-weight: bold;
@@ -420,6 +426,9 @@ a, a:hover, a:focus {
 	font-size: 2.5rem;
 	letter-spacing: -0.1rem;
 	color: #525265;
+}
+.filtros-right{
+	margin-bottom: 40px;
 }
 .filtros.categorias{
 	border-top: solid 1px #f7f8fc;
@@ -632,18 +641,17 @@ a, a:hover, a:focus {
 	max-height: 90vh;
 	overflow: auto;
 }
-.modal-content::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 10px;
 }
-.modal-content::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent; 
 }
-.modal-content::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: rgb(228, 231, 242); 
   border-radius: 0.3rem;
-  margin-right: 2px;
 }
-.modal-content::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: rgb(189, 193, 209); 
 }
 #semCategoria{
