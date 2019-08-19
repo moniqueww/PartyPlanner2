@@ -377,6 +377,12 @@ a, a:hover, a:focus {
 .btn-add{
 	text-align: left !important;
 }
+.btn-outro{
+	background-color: transparent;
+	border: solid 2px #525265 !important;
+	color: #525265 !important;
+	padding: 8px 11px !important;
+}
 .btn-icon i{
 	font-size: 16px;
 }

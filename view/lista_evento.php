@@ -89,7 +89,6 @@ include_once('include/head.php');
 			<div class="filtros no-margin">Seus Eventos</div>
 			<div class="filtros-right simple-margin-right">
 				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
-					<span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span>
 					<span class="btn-inner--text">Novo Evento</span>
 				</button>
 				<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -116,8 +115,8 @@ include_once('include/head.php');
                         </div>
 					</div>
 				</div>
-				<button type="button" class="btn btn-danger btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
-					<i class="far fa-trash-alt"></i>
+				<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
+					<i class="fas fa-ellipsis-h"></i>
 				</button>
 				<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
 					<div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
