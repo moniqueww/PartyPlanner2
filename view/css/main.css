@@ -111,6 +111,9 @@ a, a:hover, a:focus {
 	border-radius: 50px;
 	margin: 0px;
 }
+.no-padding {
+	padding: 0px !important;
+}
 #sidebar .header-nome {
 	text-align: center;
 	margin-top: 10px;
@@ -263,6 +266,60 @@ a, a:hover, a:focus {
 #page .content{
 	display: inline-block;
 }
+#background{
+	background: linear-gradient(30deg, #62acff, #7349ff);
+	padding: 0px 0px 50px 30px;
+}
+#background .filtros{
+	margin-top: 61px;
+	line-height: initial;
+	color: #fff !important;
+	letter-spacing: -0.05rem;
+}
+#background > img{
+	margin-top: 30px;
+	width: 250px;
+	height: auto;
+	background-color: #fff;
+	float: left;
+	margin-right: 30px;
+	box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
+}
+#background .filtros-right button{
+	border-color: #fff !important;
+	background: #fff !important;
+	color: #697cff !important;
+}
+#background .navbar-search-light .input-group{
+	background-color: #fff !important;
+}
+#background .nav-link{
+	color: #fff !important;
+}
+#background .filtros .filtros-tipo{
+	letter-spacing: 0.1rem;
+	font-family: Quicksand;
+	font-size: 0.7rem;
+	line-height: initial;
+	margin-left: 2px;
+    color: #fff;
+    margin-bottom: 0px;
+    display: inline-block;
+}
+#background .filtros .filtros-by{
+	letter-spacing: 0.1rem;
+	font-family: Quicksand;
+	font-size: 0.9rem;
+	font-weight: 100;
+	margin-left: 2px;
+	line-height: initial;
+    color: #fff;
+    margin-bottom: 0px;
+    display: inline-block;
+}
+#background .filtros .filtros-nome{
+	font-size: 3rem;
+}
 .content{
 	background: #fff;
 	border-radius: 0.3rem;
@@ -367,6 +424,10 @@ a, a:hover, a:focus {
 	width: 14.6%;
 }
 
+.photo:active{
+	transform: scale(0.97);
+}
+
 .photo .card{
 	background-color: transparent !important;
 }
@@ -432,6 +493,17 @@ a, a:hover, a:focus {
 	font-size: 2.5rem;
 	letter-spacing: -0.1rem;
 	color: #525265;
+}
+.filtros-mini{
+	margin: 0px 0px 20px 0px;
+	font-weight: bold;
+	padding-bottom: 5px;
+	font-family: Montserrat;
+	color: #525265;
+	line-height: 30px;
+	font-size: 1.5rem;
+	letter-spacing: -0.05rem;
+	border-bottom: solid 1px #f2f7fc;
 }
 .filtros-right{
 	margin-bottom: 40px;
@@ -681,6 +753,26 @@ a, a:hover, a:focus {
 	font-size: 1.1rem;
 	cursor: pointer;
 	padding: 0px 12px;
+}
+.mini-card{
+	border-radius: 0px;
+	cursor: pointer;
+}
+.mini-card img{
+	width: 70px; height: 70px; float: left; background-color: #f2f7fc; margin-right: 15px;
+}
+.mini-card > div{
+	font-size: 0.875rem; height: 70px; padding-top: 10px;
+	line-height: 25px;
+}
+.mini-card > div div:first-child{
+	font-weight: bold;
+}
+.mini-card:hover{
+	background-color: #f2f7fc;
+}
+.mini-card:active{
+	transform: scale(0.97);
 }
 
 

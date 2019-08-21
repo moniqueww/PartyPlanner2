@@ -115,7 +115,7 @@ include_once('include/head.php');
                         </div>
 					</div>
 				</div>
-				<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
+				<!--<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
 					<i class="fas fa-ellipsis-h"></i>
 				</button>
 				<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
@@ -140,7 +140,7 @@ include_once('include/head.php');
 							</div>        
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 			<!-- Page Content -->
 			<div id="eventos">

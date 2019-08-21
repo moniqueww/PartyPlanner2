@@ -27,6 +27,10 @@
         $eventoControle->setVisao($_GET);
     
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
+
+        $organizadorControle = new ControleOrganizador();
+
+        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
     }
 ?>
 <!DOCTYPE html>
@@ -202,17 +206,30 @@ include_once('include/head.php');
         include_once('include/sidebar.php');
         ?>
 
-    	<div id="page">
+    	<div id="page" class="no-padding">
+
+            <div id="background">
 
             <?php include_once('include/navbar.php'); ?>
 
-            <div class="filtros float-right simple-margin-right">
+            <img src="img/brand/background4.png"/>
+
+			<div class="filtros">
+                <div class="filtros-tipo">EVENTO</div>
+                <div class="filtros-nome"><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?></div>
+                <div class="filtros-by">
+                    <span style="color: rgba(255, 255, 255, 0.62);">Por</span>
+                    <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
+                </div>   
+            </div>
+            <div class="filtros-right simple-margin-right">
                 <button <?= ($eventoUnico->getStatus() == 1) ? 'disabled' : '' ?> id="publica-evento" type="button" class="btn btn-primary btn-add">
                     <span class="circle btn-inner--icon"><i class="fas fa-copy"></i></span>
                     <span class="btn-inner--text">Publicar</span>
                 </button>
             </div>
-			<div class="filtros">Edição de Evento</div>
+            <br clear="all">
+            </div>
                         <!-- Page Content -->
                         <div class="content co-10">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>

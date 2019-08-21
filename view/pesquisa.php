@@ -40,13 +40,64 @@ include_once('include/head.php');
 
 		$('#geralPesq').on('input', function(){
 			if ($(this).val() != ''){
-				$('.filtros').hide();
-				$('#eventos').hide();
+				$('#filtro-recente').hide();
+				$('#recentes').hide();
+				$('#procura').show();
+				$.post( "../ajax/buscaTudo.php", {'nome': $(this).val()}, function(data){
+					data = $.parseJSON( data );
+					$('#eventos .conteudo').html('');
+					if (data.eventos.length){
+						$('#eventos').show();
+						for (var i = 0; i < data.eventos.length; i++) {
+							if (i > 3) {
+								break;
+							}
+							$('#eventos .conteudo').append(
+								$('<div>', {'data-id': data.eventos[i].id, id: 'eventos_'+data.eventos[i].id, class: 'content co-5 mini-card no-padding'}).append(
+									$('<img>', {src: 'img/brand/background4.png'}),
+									$('<div>').append(
+										$('<div>', {html: data.eventos[i].nome}),
+										$('<div>', {html: data.eventos[i].nome})
+									)
+								).on('click', function(){
+									eventoId = $(this).attr('data-id');
+									window.location.assign('divulgacao_evento.php?evento='+eventoId);
+								})
+							);
+						}
+					} else {
+						$('#eventos').hide();
+					}
+					$('#servicos .conteudo').html('');
+					if (data.servicos.length){
+						$('#servicos').show();
+						for (var h = 0; h < data.servicos.length; h++) {
+							if (h > 3) {
+								break;
+							}
+							$('#servicos .conteudo').append(
+								$('<div>', {'data-id': data.servicos[h].id, id: 'servico_'+data.servicos[h].id, class: 'content co-5 mini-card no-padding'}).append(
+									$('<img>', {src: 'img/brand/background4.png'}),
+									$('<div>').append(
+										$('<div>', {html: data.servicos[h].nome}),
+										$('<div>', {html: data.servicos[h].nome})
+									)
+								)
+							);
+						}
+					} else {
+						$('#servicos').hide();
+					}
+				})
 			} else {
-				$('.filtros').show();
-				$('#eventos').show();
+				$('#filtro-recente').show();
+				$('#recentes').show();
+				$('#procura').hide();
 			}
 		});
+		if ($('#geralPesq').val() != '') {
+			$('#geralPesq').trigger('input');
+		}
 	});
 	</script>
 
@@ -64,25 +115,34 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
-			<div class="filtros">Pesquisas Recentes</div>
+			<div id="filtro-recente" class="filtros">Pesquisas Recentes</div>
 			<!-- Page Content -->
-			<div id="eventos">
+			<div id="recentes">
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content photo'>
-				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
-				  <div class='card-body'>
-				    <h5 class='card-title'>".$ev->getNome()."</h5>
-				    <h5 class='card-title' style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+                        echo "<div class='content co-2 mini-card no-padding'>
+				  <img src='img/brand/background4.png'/>
+				  <div>
+				    <div>".$ev->getNome()."</div>
+				    <div style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</div>
 				  </div>
-				</div>
 			</div><br clear='all'/>";
                     }
                 }
             ?>
+	  		</div>
+	  		<div id="procura" style="display: none;">
+	  			<div id="filtro-procura" class="filtros">Resultados</div>
+	  			<div style="width: 45%; float: left; display: inline-block; margin-right: 4%;" id="eventos">
+	  				<div class="filtros-mini">Eventos</div>
+	  				<div class="conteudo"></div>
+	  			</div>
+	  			<div style="width: 45%; float: left; display: inline-block; margin-right: 4%;" id="servicos">
+	  				<div class="filtros-mini">Serviços</div>
+	  				<div class="conteudo"></div>
+	  			</div>
 	  		</div>
 		</div>
 		<div id="action-bar">
