@@ -8,9 +8,10 @@
     <!-- Favicon -->
     <link href="img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link href="vendor/nucleo/css/nucleo.css" rel="stylesheet">
     <link href="vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">

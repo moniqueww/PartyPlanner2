@@ -218,7 +218,7 @@ include_once('include/head.php');
                 <div class="filtros-tipo">EVENTO</div>
                 <div class="filtros-nome"><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?></div>
                 <div class="filtros-by">
-                    <span style="color: rgba(255, 255, 255, 0.62);">Por</span>
+                    <span style="color: rgba(255, 255, 255, 0.7);">Por</span>
                     <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
                 </div>   
             </div>
@@ -315,6 +315,15 @@ include_once('include/head.php');
                                             foreach ($eventosServicos as $es) {
                                                 $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
+                                                echo "<div class='content photo'>
+                                                                <div class='card' data-id=".$es->getId().">
+                                                                  <img class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                                                  <div class='card-body'>
+                                                                    <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
+                                                                    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
+                                                                  </div>
+                                                                </div>
+                                                            </div>";
                                                 echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                                 }
                                             }

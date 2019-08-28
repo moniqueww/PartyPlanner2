@@ -5,6 +5,7 @@ verde: #66e218
 cinza: #f1f3fa;
 cinza2: #f8f9fa;
 cinza3: #f2f7fc;
+#F7F8FC
 
 
 
@@ -62,13 +63,13 @@ html{
 	height: 100%;
 }
 body {
-    font-family: 'Quicksand' !important;
+    font-family: 'Montserrat' !important;
     background-color: #fff !important; /*#fafbfe*/
     height: 100%;
 }
 
 p {
-    font-family: 'Quicksand';
+    font-family: 'Montserrat';
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -83,9 +84,9 @@ a, a:hover, a:focus {
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #f2f7fc;
+    background: #F7F8FC;
     color: inherit;
-	width: 83px;
+	width: 4%;
 	min-height: 100vh;
 }
 
@@ -102,7 +103,7 @@ a, a:hover, a:focus {
 	height: 40px;
 	margin: auto;
 	/*border: solid 2px #fff;*/
-	padding: 2px;
+	padding: 5px;
 	/*background-image: url('../img/noimage4.png');*/
 }
 .header-photo img{
@@ -127,11 +128,15 @@ a, a:hover, a:focus {
     padding: 15px 0 0 0;
 	font-size: .8rem;
 }
-#sidebar ul li.active{
+#sidebar ul a.active > div{
+	position: absolute;
+	width: 6px;
+	margin-top: 9.5px;
+	height: 30px;
 	background-color: #697cff;
-	color: #fff;
 }
 #sidebar .list-unstyled li span{
+	font-weight: 500;
 	position: absolute;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -156,11 +161,11 @@ a, a:hover, a:focus {
 	display: block;
 }
 #sidebar ul > a i{
-    font-size: 1em;
+    font-size: 1.05rem;
 	margin-right: 13px;
 }
 #sidebar ul > a:hover {
-    color: #697cff;
+    color: #525f7f;
     background-color: #ccd0df;
 }
 
@@ -204,13 +209,16 @@ a, a:hover, a:focus {
 }
 #sidebar.minimized .list-unstyled li{
 	text-align: center;
-	padding: 15px 25px 15px 25px;
+	padding: 15px 0px;
 }
 #sidebar.minimized .list-unstyled li span{
 	display: none;
 }
+#sidebar.minimized .list-unstyled li div{
+	display: none;
+}
 #sidebar.minimized .list-unstyled li i{
-	font-size: 1.3em;
+	font-size: 1.05rem;
 	margin-right: 0px;
 }
 #sidebar.minimized ul button{
@@ -257,7 +265,7 @@ a, a:hover, a:focus {
 	margin-left: 0px !important;
 }
 #page{
-	width: 100%;
+	width: 84%;
 	padding: 0px 0px 0px 30px;
 	overflow: auto;
 	max-height: 100vh;
@@ -267,7 +275,7 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	background: linear-gradient(30deg, #62acff, #7349ff);
+	background: linear-gradient(45deg, #62acff, #7349ff);
 	padding: 0px 0px 50px 30px;
 }
 #background .filtros{
@@ -298,8 +306,9 @@ a, a:hover, a:focus {
 }
 #background .filtros .filtros-tipo{
 	letter-spacing: 0.1rem;
-	font-family: Quicksand;
+	font-family: Montserrat;
 	font-size: 0.7rem;
+	font-weight: 600;
 	line-height: initial;
 	margin-left: 2px;
     color: #fff;
@@ -308,8 +317,8 @@ a, a:hover, a:focus {
 }
 #background .filtros .filtros-by{
 	letter-spacing: 0.1rem;
-	font-family: Quicksand;
-	font-size: 0.9rem;
+	font-family: Montserrat;
+	font-size: 0.875rem;
 	font-weight: 100;
 	margin-left: 2px;
 	line-height: initial;
@@ -503,7 +512,7 @@ a, a:hover, a:focus {
 	line-height: 30px;
 	font-size: 1.5rem;
 	letter-spacing: -0.05rem;
-	border-bottom: solid 1px #f2f7fc;
+	border-bottom: solid 1px #F7F8FC;
 }
 .filtros-right{
 	margin-bottom: 40px;
@@ -565,7 +574,7 @@ a, a:hover, a:focus {
 	top: -10px;
 	color: white;
 	font-size: 10px;
-	font-weight: bold;
+	font-weight: 600;
 	background-color: #697cff;
 }
 .novoEvento{
@@ -690,10 +699,13 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: 24vh;
-	background-color: #f2f7fc;
-	border-radius: 0px !important;
+	height: calc(84vw / 6.98) !important;
+	background-color: #F7F8FC;
+	border-radius: 0px;
 	cursor: pointer;
+}
+.card-img-top.servicos{
+	border-radius: 50% !important;
 }
 .content .card .card-img-top:hover{
 	filter: brightness(0.7);
@@ -707,10 +719,10 @@ a, a:hover, a:focus {
 	font-weight: bold;
 }
 #action-bar{
-	width: 350px;
+	width: 12%;
 	min-height: 100vh;
 	display: inline-block;
-	background-color: #f2f7fc;
+	background-color: #F7F8FC;
 }
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;
@@ -720,14 +732,13 @@ a, a:hover, a:focus {
 	overflow: auto;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 20px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: #fff; 
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(228, 231, 242); 
-  border-radius: 0.3rem;
+  background: rgb(228, 231, 242);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(189, 193, 209); 
@@ -759,7 +770,7 @@ a, a:hover, a:focus {
 	cursor: pointer;
 }
 .mini-card img{
-	width: 70px; height: 70px; float: left; background-color: #f2f7fc; margin-right: 15px;
+	width: 70px; height: 70px; float: left; background-color: #F7F8FC; margin-right: 15px;
 }
 .mini-card > div{
 	font-size: 0.875rem; height: 70px; padding-top: 10px;
@@ -769,12 +780,18 @@ a, a:hover, a:focus {
 	font-weight: bold;
 }
 .mini-card:hover{
-	background-color: #f2f7fc;
+	background-color: #F7F8FC;
 }
 .mini-card:active{
 	transform: scale(0.97);
 }
-
+#geralPesq{
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+.sidebar-evento:hover{
+	background-color: transparent !important;
+}
 
 
 

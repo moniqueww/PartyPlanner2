@@ -2917,7 +2917,7 @@ textarea.form-control
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; 
+    transition: /*color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out*/none; 
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
@@ -2957,6 +2957,7 @@ textarea.form-control
 .btn:not(:disabled):not(.disabled).active
 {
     box-shadow: none;
+    transform: scale(1);
 }
 .btn:not(:disabled):not(.disabled):active:focus,
 .btn:not(:disabled):not(.disabled).active:focus
@@ -2975,19 +2976,19 @@ fieldset:disabled a.btn
     color: #fff;
     border-color: #697cff;
     background-color: #697cff;
-    box-shadow: 0 2px 6px 0 rgba(105, 124, 255, .5);
+    /*box-shadow: 0 2px 6px 0 rgba(105, 124, 255, .5);*/
 }
 .btn-primary:hover
 {
     color: #fff;
-	border-color: #697cff;
-    background-color: #697cff;
+	border-color: #596fff;
+    background-color: #596fff;
 	/*box-shadow: 0 2px 6px 0 rgba(105, 124, 255, .5) !important;*/
 }
 .btn-primary:focus,
 .btn-primary.focus
 {
-    box-shadow: 0 2px 6px 0 rgba(105, 124, 255, .5);
+    box-shadow: /*0 2px 6px 0 rgba(105, 124, 255, .5)*/ none;
 }
 .btn-primary.disabled,
 .btn-primary:disabled
@@ -3001,15 +3002,15 @@ fieldset:disabled a.btn
 .show > .btn-primary.dropdown-toggle
 {
     color: #fff;
-    border-color: #5e72e4; 
-    background-color: #324cdd;
+    border-color: #94a2ff; 
+    background-color: #94a2ff;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus
 {
-    box-shadow: 0 2px 6px 0 rgba(105, 124, 255, .5);
+    box-shadow: /*0 2px 6px 0 rgba(105, 124, 255, .5)*/ none;
 }
 
 .btn-primary-alternative
@@ -16920,7 +16921,7 @@ a.text-lighter:focus
 
     position: relative;
 
-    transition: all .15s ease;
+    /*transition: all .15s ease;*/
     letter-spacing: .025em;
     text-transform: none;
 
@@ -19155,7 +19156,7 @@ textarea[resize='horizontal']
     }
     .navbar-horizontal .navbar-nav .nav-link-icon
     {
-        font-size: 1rem;
+        font-size: 0.8rem;
 
         padding-right: .5rem !important;
         padding-left: .5rem !important;
@@ -20037,7 +20038,7 @@ textarea[resize='horizontal']
 .navbar-search-light .input-group
 {
     border: none;
-    background: #f2f7fc;
+    background: #f7f8fc;
 }
 
 .navbar-search-light .input-group-text

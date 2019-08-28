@@ -49,15 +49,16 @@
 				</li>
 			</ul>-->
             <ul class="list-unstyled components">
-                <p>NAVIGATION</p>
-                <a href="home.php">
-	                <li <?php echo $paginaHome; ?>>
-	                    <i class="fas fa-home"></i><span>Página incial</span>
+                <a <?php echo $paginaHome; ?> href="home.php">
+                	<div class="paginaAtiva"></div>
+	                <li>
+	                    <i class="fas fa-home"></i><span>Início</span>
 	                </li>
                 </a>
                 <a href="">
+                	<div class="paginaAtiva"></div>
 					<li>
-                    	<i class="fas fa-user"></i><span>Seu perfil</span>
+                    	<i class="fas fa-user"></i><span>Perfil</span>
                 	</li>
                 </a>
                 <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -76,15 +77,32 @@
 	                    </ul>
 	                </li>
                 </a>-->
-				<a href="lista_evento.php">
-					<li <?php echo $paginaLista; ?>>
-                    	<i class="fas fa-calendar-day"></i><span>Seus eventos</span>
+				<a <?php echo $paginaLista; ?> href="lista_evento.php">
+					<div class="paginaAtiva"></div>
+					<li>
+                    	<i class="fas fa-calendar-day"></i><span>Eventos</span>
                 	</li>
                 </a>
+                <!--
+				<p>NAVIGATION</p>
                 <a href="">
+                	<div class="paginaAtiva"></div>
 					<li>
                     	<i class="fas fa-share-alt-square"></i><span>Compartilhados</span>
                 	</li>
-                </a>
+                </a>-->
+                <?php
+                	if (isset($eventos)) {
+                		echo "<p style='padding-top: 30px'>SEUS EVENTOS</p>";
+                		foreach ($eventos as $evs) {
+                			echo "<a href='lista_evento.php' class='sidebar-evento'>
+					<div class='paginaAtiva'></div>
+					<li style='padding: 5px 30px'>
+                    	<div>".$evs->getNome()."</div>
+                	</li>
+                </a>";
+                		}
+                	}
+                ?>
             </ul>
         </nav>

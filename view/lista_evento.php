@@ -157,7 +157,7 @@ include_once('include/head.php');
 				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
 				  <div class='card-body'>
 				    <h5 class='card-title'>".$ev->getNome()."</h5>
-				    <h5 class='card-title' style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+				    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
 				  ".$publicado."
 				</div>

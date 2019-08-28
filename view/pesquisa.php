@@ -122,7 +122,7 @@ include_once('include/head.php');
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content co-2 mini-card no-padding'>
+                        echo "<div class='content co-10 mini-card no-padding'>
 				  <img src='img/brand/background4.png'/>
 				  <div>
 				    <div>".$ev->getNome()."</div>
