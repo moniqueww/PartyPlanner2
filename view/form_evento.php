@@ -96,7 +96,7 @@ include_once('include/head.php');
             listar();
         });
         $('.categoria').each(function(){
-            if($(this).find('.listaEventoServico').length>0){
+            if($(this).find('.content.photo').length>0){
                 $(this).show();
             }
         });
@@ -104,7 +104,7 @@ include_once('include/head.php');
             idEventoServico = $(this).attr('data-id');
             $.post( "../ajax/excluiEventoServico.php", {'id': idEventoServico}, function(data){
                 data = $.parseJSON( data );
-                $(".listaEventoServico[data-id="+data.id+"]").fadeOut();
+                $(".content.photo[data-id="+data.id+"]").fadeOut();
                 $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
@@ -157,22 +157,14 @@ include_once('include/head.php');
                                 $('#cancelaListaServicos').click();
                                 $('#categoria'+servicoElement.attr('data-categoria')).show();
                                 $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
-                                    $('<div>', {'data-id': data.idEventoServico, class: 'content listaEventoServico'}).append(
-                                        data.nome,
-                                        $('<span>', {class: 'exc-evento-servico', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'}).on('click', function(){
-                                            idEventoServico = $(this).attr('data-id');
-                                            $.post( "../ajax/excluiEventoServico.php", {'id': idEventoServico}, function(data){
-                                                data = $.parseJSON( data );
-                                                $(".listaEventoServico[data-id="+data.id+"]").fadeOut();
-                                                $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
-                                            })
-                                        }),
-                                        $('<br/>'),
-                                        $('<div>', {class: 'listaInfoEventoServico'}).append(
-                                            data.email
-                                        ),
-                                        $('<div>', {class: 'listaInfoEventoServico'}).append(
-                                            data.telefone
+                                    $('<div>', {'data-id': data.idEventoServico, class: 'content photo'}).append(
+                                        $('<div>', {class: 'card servicos'}).append(
+                                            $('<img>', {class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                                            $('<div>', {class: 'card-body'}).append(
+                                                $('<h5>', {class: 'card-title', html: data.nome}),
+                                                $('<h5>', {class: 'card-title', html: data.email})
+                                            ),
+                                            $('<span>', {class: 'exc-evento-servico', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'})
                                         )
                                     )
                                 );
@@ -216,7 +208,7 @@ include_once('include/head.php');
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>
-                <div class="filtros-nome"><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?></div>
+                <div class="filtros-nome"><input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>"></div>
                 <div class="filtros-by">
                     <span style="color: rgba(255, 255, 255, 0.7);">Por</span>
                     <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
@@ -231,7 +223,7 @@ include_once('include/head.php');
             <br clear="all">
             </div>
                         <!-- Page Content -->
-                        <div class="content co-10">
+                        <div class="content big-content">
                             <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                             <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
                             <div style="float: right; display: none">
@@ -252,14 +244,31 @@ include_once('include/head.php');
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-header" style="float: left;">
-                                <div class="header-photo alternative-shadow">
-                                    <img src="img/brand/background4.png">
+                            <div>
+                                <div class="form-group">
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; width: 300px !important;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 </div>
                             </div>
-                            <div style="margin-top: 20px;">
-                                <div class="form-group">
-                                    <input type="text" style="width: 300px !important;" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
+                        </div>
+                        <div class="content big-content">
+                            <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
+                            <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
+                            <div style="float: right; display: none">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input class="form-control-alternative datepicker" placeholder="Select date" type="text" value="06/20/2019">
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Descrição</label>
+                                    <input type="text" style="width: auto !important;" id="input-first-name" class="form-control form-control-alternative form-edita form-title" placeholder="First name">
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -315,16 +324,17 @@ include_once('include/head.php');
                                             foreach ($eventosServicos as $es) {
                                                 $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
-                                                echo "<div class='content photo'>
-                                                                <div class='card' data-id=".$es->getId().">
+                                                echo "<div class='content photo' data-id=".$es->getId().">
+                                                                <div class='card servicos'>
                                                                   <img class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
                                                                   </div>
+                                                                  <span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span>
                                                                 </div>
                                                             </div>";
-                                                echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                                //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                                 }
                                             }
                                         }

@@ -65,7 +65,8 @@ html{
 body {
     font-family: 'Montserrat' !important;
     background-color: #fff !important; /*#fafbfe*/
-    height: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 p {
@@ -326,18 +327,30 @@ a, a:hover, a:focus {
     margin-bottom: 0px;
     display: inline-block;
 }
-#background .filtros .filtros-nome{
-	font-size: 3rem;
+#background .filtros .filtros-nome input{
+	height: 58px !important;
+	font-size: 3rem !important;
+	font-weight: 600 !important;
+	color: #fff !important;
+	width: auto !important;
+	padding: 0px;
+}
+#background .filtros .filtros-nome input:focus{
+	background-color: transparent !important;
 }
 .content{
-	background: #fff;
-	border-radius: 0.3rem;
+	/*background: #fff;*/
 	margin-right: 2%;
 	margin-bottom: 30px;
 	float: left;
 	box-sizing: border-box;
     padding: 10px 30px;
     line-height: 30px;
+}
+.content.big-content{
+	padding: 100px 100px !important;
+	margin-right: 0px !important;
+	width: 100%;
 }
 
 .co-1{
@@ -504,7 +517,7 @@ a, a:hover, a:focus {
 	color: #525265;
 }
 .filtros-mini{
-	margin: 0px 0px 20px 0px;
+	margin: 0px 2% 20px 0px;
 	font-weight: bold;
 	padding-bottom: 5px;
 	font-family: Montserrat;
@@ -699,13 +712,19 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: calc(84vw / 6.98) !important;
+	height: calc(84vw / 6.98);
 	background-color: #F7F8FC;
 	border-radius: 0px;
 	cursor: pointer;
 }
 .card-img-top.servicos{
 	border-radius: 50% !important;
+	height: calc(84vw / 13.96) !important;
+	width: 50%;
+	margin: auto;
+}
+.card.servicos{
+	text-align: center;
 }
 .content .card .card-img-top:hover{
 	filter: brightness(0.7);
@@ -758,9 +777,8 @@ a, a:hover, a:focus {
 }
 .exc-evento-servico{
 	float: right;
-	position: relative;
-	bottom: 10px;
-	left: 25px;
+	position: absolute;
+	right: 10px;
 	font-size: 1.1rem;
 	cursor: pointer;
 	padding: 0px 12px;

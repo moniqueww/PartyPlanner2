@@ -56,6 +56,7 @@ include_once('include/head.php');
 			<div class="filtros">Home</div>
 			<!-- Page Content -->
 			<div id="eventos">
+			<div class="filtros-mini">Mais populares</div>
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
