@@ -30,46 +30,7 @@ include_once('include/head.php');
 
     <script src="js/pesquisa.js"></script>
 
-    <script type="text/javascript">
-	$(function() {
-		$('#cadastrarEvento').on('click', function(){
-			$('#cadastrarEvento').attr('disabled', '');
-			var nome = $('#nome').val();
-			var idUsuario = $('#idUsuario').val();
-			$.post( "../ajax/cadastraEvento.php", {'nome': nome, 'idUsuario': idUsuario}, function(data){
-				data = $.parseJSON( data );
-				$('#cadastrarEvento').removeAttr('disabled', '');
-				$('#cancelarCadastro').click();
-				$('#eventos').prepend(
-					$('<div>', {class: 'content photo'}).append(
-						$('<div>', {class: 'card', 'data-id': data.id}).on('mouseover', function(){
-							if ($(this).children('.novoEvento') != null) {
-								$(this).children('.novoEvento').fadeOut();
-							}
-						}).on('click', function(){
-							eventoId = $(this).attr('data-id');
-							window.location.assign('form_evento.php?evento='+eventoId);
-						}).append(
-							$('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}),
-							$('<div>', {class: 'card-body'}).append(
-								$('<h5>', {class: 'card-title', html: data.nome})
-							),
-							$('<div>', {class: 'novoEvento', html: 'NOVO'})
-						)
-					).hide().fadeIn("slow")
-				);
-			});
-		});
-		$('#cancelarCadastro').on('click', function(){
-			$('#nome').val('');
-		});
-
-		$('.content .card').on('click', function(){
-			eventoId = $(this).attr('data-id');
-			window.location.assign('form_evento.php?evento='+eventoId);
-		});
-	});
-	</script>
+    <script src="js/eventos.js"></script>
 
     <?php //include_once('include/navbar.php'); ?>
 
@@ -100,7 +61,6 @@ include_once('include/head.php');
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
 										<small>Nome</small>
@@ -111,7 +71,6 @@ include_once('include/head.php');
 									<input id="cadastrarEvento" type="submit" class="btn btn-primary" value="Criar evento"/>
 									<button id="cancelarCadastro" type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Cancelar</button> 
 								</div>
-							</form>
                         </div>
 					</div>
 				</div>
@@ -160,6 +119,7 @@ include_once('include/head.php');
 				    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
 				  ".$publicado."
+				  <div class='excluirEvento'>x</div>
 				</div>
 			</div>";
                     }

@@ -23,9 +23,9 @@
 							<span><?php echo $_SESSION['usuario']; ?></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-							<a class="dropdown-item" href="">Action</a>
+							<!--<a class="dropdown-item" href="">Action</a>
 							<a class="dropdown-item" href="">Another action</a>
-							<div class="dropdown-divider"></div>
+							<div class="dropdown-divider"></div>-->
 							<a class="dropdown-item" href="sair.php">Sair</a>
 						</div>
 					</li>

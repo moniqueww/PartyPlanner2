@@ -9,8 +9,10 @@
         $retorno = $eventoControle->controleAcao("inserir");
         if($retorno) {
             $eventoControle = new ControleEvento();
-            $eventoUnico = $eventoControle->controleAcao('listarPorNome', $_POST['nome']);
-            $arrayRetorno = ['id' => $eventoUnico->getId(), 'nome' => $eventoUnico->getNome()];
+            $eventoUnico = $eventoControle->controleAcao('listarPorNome', $_POST['idUsuario']);
+            $usuarioControle = new ControleOrganizador();
+            $usuarioUnico = $usuarioControle->controleAcao('listarUnico', $_POST['idUsuario']);
+            $arrayRetorno = ['id' => $eventoUnico->getId(), 'nome' => $eventoUnico->getNome(), 'nomeUsuario' => $usuarioUnico->getNome()];
             echo json_encode($arrayRetorno);
         }
     }
