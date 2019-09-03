@@ -150,7 +150,7 @@ class EventoServico implements IBaseModelo{
         
     }
 
-    public function listarPorNome($idEvento){
+    public function listarUltimo($idEvento){
         try{
             $query="SELECT id,idEvento,idServico FROM evento_servico WHERE id = (SELECT MAX(ID) FROM evento_servico WHERE idEvento = :idEvento)";
             $this->stmt= $this->conn->prepare($query);

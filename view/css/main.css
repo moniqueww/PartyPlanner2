@@ -89,6 +89,7 @@ a, a:hover, a:focus {
     color: inherit;
 	width: 4%;
 	min-height: 100vh;
+	border-right: solid 1px #eaedfa;
 }
 
 #sidebar .sidebar-header {
@@ -446,12 +447,16 @@ a, a:hover, a:focus {
 	width: 14.6%;
 }
 
-.photo:active{
+.photo .card > img:active{
 	transform: scale(0.97);
 }
 
 .photo .card{
 	background-color: transparent !important;
+}
+
+.photo .card:hover > img{
+	filter: brightness(0.7);
 }
 
 .li-add{
@@ -525,7 +530,7 @@ a, a:hover, a:focus {
 	line-height: 30px;
 	font-size: 1.5rem;
 	letter-spacing: -0.05rem;
-	border-bottom: solid 1px #F7F8FC;
+	border-bottom: solid 1px #eaedfa;
 }
 .filtros-right{
 	margin-bottom: 40px;
@@ -716,6 +721,7 @@ a, a:hover, a:focus {
 	background-color: #F7F8FC;
 	border-radius: 0px;
 	cursor: pointer;
+	border: solid 1px #eaedfa;
 }
 .card-img-top.servicos{
 	border-radius: 50% !important;
@@ -725,9 +731,6 @@ a, a:hover, a:focus {
 }
 .card.servicos{
 	text-align: center;
-}
-.content .card .card-img-top:hover{
-	filter: brightness(0.7);
 }
 .card-title{
 	white-space: nowrap;
@@ -742,6 +745,7 @@ a, a:hover, a:focus {
 	min-height: 100vh;
 	display: inline-block;
 	background-color: #F7F8FC;
+	border-left: solid 1px #eaedfa;
 }
 .modal-dialog.modal-.modal-dialog-centered.servicos{
 	max-width: 900px !important;
@@ -809,6 +813,31 @@ a, a:hover, a:focus {
 }
 .sidebar-evento:hover{
 	background-color: transparent !important;
+}
+.excluirEvento{
+	display: none;
+	position: absolute;
+    left: -10px;
+    top: -10px;
+    font-size: 1.25rem;
+    color: #f7f8fc;
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    text-align: center;
+    padding: 0.3rem;
+    box-sizing: content-box;
+    background-color: #f5365c;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.excluirEvento:hover{
+	background-color: #ff5f7f;
+	transform: scale(1.05);
+}
+.excluirEvento:active{
+	background-color: #f5365c;
+	transform: scale(1);
 }
 
 

@@ -74,10 +74,10 @@ class ControleEvento extends ControleBase {
         return $this->evento->listarUnico($param);
     }
 
-    protected function listarPorNome($param){
+    protected function listarUltimo($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->evento->listarPorNome($param);
+        return $this->evento->listarUltimo($param);
     }
 }

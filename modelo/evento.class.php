@@ -170,7 +170,7 @@ class Evento implements IBaseModelo{
         
     }
 
-    public function listarPorNome($idUsuario){
+    public function listarUltimo($idUsuario){
         try{
             $query="SELECT id,nome FROM eventos WHERE id = (SELECT MAX(ID) FROM eventos WHERE idUsuario = :idUsuario)";
             $this->stmt= $this->conn->prepare($query);

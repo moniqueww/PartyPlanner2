@@ -17,5 +17,5 @@ interface IBaseModelo {
     public function excluir($param,$param2);
     public function listarTodos($param=null, $param2);
     public function listarUnico($param);
-    public function listarPorNome($param);
+    public function listarUltimo($param);
 }

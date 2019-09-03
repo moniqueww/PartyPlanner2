@@ -75,10 +75,10 @@ class ControleUsuario extends ControleBase {
         return $this->usuario->listarUnico($param);
     }
 
-    protected function listarPorNome($param){
+    protected function listarUltimo($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->usuario->listarPorNome($param);
+        return $this->usuario->listarUltimo($param);
     }
 }

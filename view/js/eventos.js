@@ -14,17 +14,27 @@ $(function() {
                             if ($(this).children('.novoEvento') != null) {
                                 $(this).children('.novoEvento').fadeOut();
                             }
-                        }).on('click', function(){
-                            eventoId = $(this).attr('data-id');
-                            window.location.assign('form_evento.php?evento='+eventoId);
                         }).append(
-                            $('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}),
+                            $('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}).on('click', function(){
+                                var eventoId = $(this).parents('.card').attr('data-id');
+                                window.location.assign('form_evento.php?evento='+eventoId);
+                            }),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65)',class: 'card-title', html: data.nomeUsuario})
                             ),
-                            $('<div>', {class: 'novoEvento', html: 'NOVO'})
-                        )
+                            $('<div>', {class: 'novoEvento', html: 'NOVO'}),
+                            $('<div>', {class: 'excluirEvento', 'data-toggle': 'modal', 'data-target': '#modal-notification'}).append(
+                                $('<i>', {class: 'fas fa-times'})
+                            ).on('click', function(){
+                                var eventoId = $(this).parents('.card').attr('data-id');
+                                $('#confirmarExclusao').attr('data-id', eventoId);
+                            })
+                        ).mouseover(function() {
+                            $(this).children('.excluirEvento').show();
+                        }).mouseout(function(){
+                            $(this).children('.excluirEvento').hide();
+                        })
                     ).hide().fadeIn("slow")
                 );
             });
@@ -36,8 +46,25 @@ $(function() {
         $('#nome').val('');
     });
 
-    $('.content .card').on('click', function(){
-        eventoId = $(this).attr('data-id');
+    $('.content .card > img').on('click', function(){
+        var eventoId = $(this).parents('.card').attr('data-id');
         window.location.assign('form_evento.php?evento='+eventoId);
+    });
+    $('.card').mouseover(function() {
+        $(this).children('.excluirEvento').show();
+    }).mouseout(function(){
+        $(this).children('.excluirEvento').hide();
+    });
+    $('.excluirEvento').on('click', function(){
+        var eventoId = $(this).parents('.card').attr('data-id');
+        $('#confirmarExclusao').attr('data-id', eventoId);
+    });
+    $('#confirmarExclusao').on('click', function(){
+        var eventoId = $(this).attr('data-id');
+        $.post( "../ajax/excluiEvento.php", {'id': eventoId}, function(data){
+            data = $.parseJSON( data );
+            $(".card[data-id="+data.id+"]").parents('.photo').fadeOut();
+            $("#cancelarExclusao").click();
+        });
     });
 });

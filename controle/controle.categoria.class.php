@@ -71,10 +71,10 @@ class ControleCategoria extends ControleBase {
         return $this->categoria->listarUnico($param);
     }
 
-    protected function listarPorNome($param){
+    protected function listarUltimo($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->categoria->listarPorNome($param);
+        return $this->categoria->listarUltimo($param);
     }
 }

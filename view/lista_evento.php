@@ -56,16 +56,16 @@ include_once('include/head.php');
 					<div class="modal-dialog modal- modal-dialog-centered" role="document">
 						<div class="modal-content">                  
                             <div class="modal-header">
-                                <h6 class="modal-title" id="modal-title-default">Cadastro de organizador</h6>
+                                <h6 class="modal-title" id="modal-title-default">Cadastro</h6>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
 								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
 									<div>
-										<small>Nome</small>
+										<h4 class="heading mt-4">Nome do evento</h4>
 									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Nome do evento" type="text">
+									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Escreva aqui..." type="text">
 								</div>
 								<div class="modal-footer">
 									<input id="cadastrarEvento" type="submit" class="btn btn-primary" value="Criar evento"/>
@@ -76,12 +76,12 @@ include_once('include/head.php');
 				</div>
 				<!--<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
 					<i class="fas fa-ellipsis-h"></i>
-				</button>
+				</button>-->
 				<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
 					<div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-						<div class="modal-content bg-gradient-danger">
+						<div class="modal-content">
 							<div class="modal-header">
-								<h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+								<h6 class="modal-title" id="modal-title-notification">Atenção</h6>
 								<button id="cancelarCadastroMini" type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
@@ -89,17 +89,16 @@ include_once('include/head.php');
 							<div class="modal-body">
 								<div class="py-3 text-center">
 									<i class="ni ni-bell-55 ni-3x"></i>
-									<h4 class="heading mt-4">You should read this!</h4>
-									<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+									<h4 class="heading mt-4">Tem certeza que deseja excluir o evento?</h4>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-white">Ok, Got it</button>
-								<button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button> 
+								<button type="button" id="confirmarExclusao" class="btn btn-danger">Confirmar</button>
+								<button type="button" id="cancelarExclusao" class="btn btn-link text-danger ml-auto" data-dismiss="modal">Cancelar</button> 
 							</div>        
 						</div>
 					</div>
-				</div>-->
+				</div>
 			</div>
 			<!-- Page Content -->
 			<div id="eventos">
@@ -119,7 +118,7 @@ include_once('include/head.php');
 				    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
 				  </div>
 				  ".$publicado."
-				  <div class='excluirEvento'>x</div>
+				  <div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
 				</div>
 			</div>";
                     }

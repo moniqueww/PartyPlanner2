@@ -1,4 +1,5 @@
 $(function() {
+    console.log('aaaaaaaa');
     $('#cadastrarEvento').on('click', function(){
         var nome = $('#nome').val();
         
@@ -27,5 +28,10 @@ $(function() {
     });
     $('#cancelarCadastro').on('click', function(){
         $('#nome').val('');
+    });
+    $('.card-img-top').each(function(){
+        $(this).mouseover(function() {
+            alert('aaaaa');
+        });
     });
 });

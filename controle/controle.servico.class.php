@@ -77,10 +77,10 @@ class ControleServico extends ControleBase {
         return $this->servico->listarUnico($param);
     }
 
-    protected function listarPorNome($param){
+    protected function listarUltimo($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->servico->listarPorNome($param);
+        return $this->servico->listarUltimo($param);
     }
 }

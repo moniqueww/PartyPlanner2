@@ -180,7 +180,7 @@ class Organizador implements IBaseModelo{
         }
         
     }
-    public function listarPorNome($nome){
+    public function listarUltimo($nome){
         
         try{
             $query="SELECT id,nome FROM usuario WHERE nome=:nome";
