@@ -670,6 +670,7 @@ a, a:hover, a:focus {
 .btn-addListaServico:active{
 	background-color: rgba(21, 17, 138, 0.26);
 }
+
 .btn-addServico{
 	margin-bottom: 10px;
 	width: 100%;
@@ -790,6 +791,14 @@ a, a:hover, a:focus {
 	cursor: pointer;
 	padding: 0px 12px;
 }
+.exc-evento-artista{
+	float: right;
+	position: absolute;
+	right: 10px;
+	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 0px 12px;
+}
 .mini-card{
 	border-radius: 0px;
 	cursor: pointer;
@@ -841,6 +850,27 @@ a, a:hover, a:focus {
 .excluirEvento:active{
 	background-color: #f5365c;
 	transform: scale(1);
+}
+#atracoes .photo {
+	width: 23% !important;
+}
+#navegacaoEvento{
+	margin-top: 20px;
+	padding: 0px 15vw;
+}
+#navegacaoEvento > div{
+	float: left;
+	padding: 15px 0px 5px 0px;
+    margin-right: 60px;
+	text-transform: uppercase;
+	color: rgba(139, 146, 173, 0.75);
+	font-size: 0.875rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+#navegacaoEvento > div.selected{
+	border-bottom: solid 3px #697cff;
+	color: #525f7f;
 }
 
 

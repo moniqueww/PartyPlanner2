@@ -92,9 +92,16 @@ include_once('include/head.php');
             </div>
 
             <?php include_once('include/procuraServico.php'); ?>
+            <?php include_once('include/procuraArtista.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
+                        <div id="navegacaoEvento">
+                            <div id="showEdita" class="selected">Edição do evento</div>
+                            <div id="showQuadro">Quadro de organização</div>
+                            <div id="showPublicacao">Publicações</div>
+                        </div>
+                        <div id="edicaoEvento">
                         <div class="content big-content">
                             <div class='filtros'>Sobre o evento</div>
                             <div>
@@ -103,15 +110,44 @@ include_once('include/head.php');
                                 </div>
                             </div>
                         </div>
-                        <div style="background-color: #f7f8fc;
-    border-right: solid 1px #eaedfa;
-    border-top: solid 1px #eaedfa;
-    border-bottom: solid 1px #eaedfa;" class="content big-content">
+                        <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
                             <div class='filtros'>Atrações</div>
+                            <div class="filtros-right simple-margin-right">
+                            <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target='#modal-artista'>
+                                <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                            </button>
+                            </div>
+                            <div id="atracoes">
+                                <?php
+                                    if(!empty($eventosServicos)){
+                                        foreach ($eventosServicos as $es) {
+                                            $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                            if($servicoUnico->getIdCategoria() == 5){
+                                            echo "<div class='content photo' data-id=".$es->getId().">
+                                                            <div class='card servicos'>
+                                                              <img style='background-color: #fff;' class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                                              <div class='card-body'>
+                                                                <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
+                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
+                                                              </div>
+                                                              <span class='exc-evento-artista' data-id='".$es->getId()."' aria-hidden='true'>×</span>
+                                                            </div>
+                                                        </div>";
+                                            //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="content big-content">
+                            <div class='filtros'>Localização</div>
                             <div>
                                 
                             </div>
                         </div>
+                    </div>
+                    <div id="quadroEvento" style='display: none;'>
 
                         <div class="content co-10 co-ult">
                             <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
@@ -151,6 +187,7 @@ include_once('include/head.php');
                                 }
                             ?>
                         </div>
+                    </div>
         </div>
         <div id="action-bar">
                 

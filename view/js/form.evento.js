@@ -40,6 +40,9 @@
             }
             listar();
         });
+        $('.btn-addListaArtista').on('click', function(){
+            listarArtistas();
+        });
         $('.categoria').each(function(){
             if($(this).find('.content.photo').length>0){
                 $(this).show();
@@ -53,12 +56,32 @@
                 $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
+        $('.exc-evento-artista').on('click', function(){
+            idEventoServico = $(this).attr('data-id');
+            $.post( "../ajax/excluiEventoServico.php", {'id': idEventoServico}, function(data){
+                data = $.parseJSON( data );
+                $(".content.photo[data-id="+data.id+"]").fadeOut();
+                $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
+            })
+        });
         $('#publica-evento').on('click', function(){
             if (statusEvento == 0) {
                 statusEvento = 1;
                 editarEvento();
                 $(this).attr('disabled', '');
             }
+        });
+        $('#showEdita').on('click', function(){
+            $('#navegacaoEvento > div').removeClass('selected');
+            $(this).addClass('selected');
+            $('#edicaoEvento').show();
+            $('#quadroEvento').hide();
+        });
+        $('#showQuadro').on('click', function(){
+            $('#navegacaoEvento > div').removeClass('selected');
+            $(this).addClass('selected');
+            $('#edicaoEvento').hide();
+            $('#quadroEvento').show();
         });
     });
     function listar() {
@@ -119,6 +142,55 @@
                                                 $('<h5>', {class: 'card-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc-evento-servico', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'})
+                                        )
+                                    )
+                                );
+                            })
+                        }
+                    })
+                );
+                $('.star9').each(function(){
+                    $(this).attr('checked', '');
+                });
+                $('.rating input').attr('disabled', '');
+            }
+        })
+    }
+
+    function listarArtistas() {
+        $.post( "../ajax/buscaServico.php", {'nome': nome, 'evento': idEvento, 'idCategoria': 5}, function(data){
+            data = $.parseJSON( data );
+            categoriaServico = '';
+            $('#tabela_artistas').html('');
+            for(i = 0; i < data.length; i++){
+                categoriaServico =  data[i].categoria;
+                $('#tabela_artistas').append(
+                    $('<div>', {class: 'artista content photo '+data[i].disabled, 'data-id': data[i].id}).append(
+                        $('<div>', {class: 'card servicos'}).append(
+                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                            $('<div>', {class: 'card-body'}).append(
+                                $('<h5>', {class: 'card-title', html: data[i].nome}),
+                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
+                            )
+                        )
+                    ).on('click', function(){
+                        if(!$(this).hasClass('disabled')) {
+                            $(this).addClass('disabled');
+                            idServico = $(this).attr('data-id');
+                            idEvento = $('#idEvento').val();
+                            servicoElement = $(this);
+                            $.post( "../ajax/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
+                                data = $.parseJSON( data );
+                                $('#cancelaListaServicos').click();
+                                $('#atracoes').append(
+                                    $('<div>', {'data-id': data.idEventoServico, class: 'content photo'}).append(
+                                        $('<div>', {class: 'card servicos'}).append(
+                                            $('<img>', {style: 'background-color: #fff;', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                                            $('<div>', {class: 'card-body'}).append(
+                                                $('<h5>', {class: 'card-title', html: data.nome}),
+                                                $('<h5>', {class: 'card-title', html: data.email})
+                                            ),
+                                            $('<span>', {class: 'exc-evento-artista', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'})
                                         )
                                     )
                                 );
