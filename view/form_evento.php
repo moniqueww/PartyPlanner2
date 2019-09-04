@@ -5,32 +5,34 @@
     if($_GET['evento']){ // Caso os dados sejam enviados via GET
         
         $categoriaControle = new ControleCategoria();
-
         $categorias = [];
-
         $categorias = $categoriaControle->controleAcao('listarTodos');
 
         $servicoControle = new ControleServico();
-
         $servicos = [];
-
-        $eventoServicoControle = new ControleEventoServico();
-
-        $eventosServicos = [];
-
-        $eventosServicos = $eventoServicoControle->controleAcao("listarTodos", $_GET["evento"]);
-
         $servicos = $servicoControle->controleAcao("listarTodos");
 
+        $eventoServicoControle = new ControleEventoServico();
+        $eventosServicos = [];
+        $eventosServicos = $eventoServicoControle->controleAcao("listarTodos", $_GET["evento"]);
+
         $eventoControle = new ControleEvento();
-        //Passa o GET desta View para o Controle
         $eventoControle->setVisao($_GET);
-    
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
 
         $organizadorControle = new ControleOrganizador();
-
-        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
+        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $_SESSION['id']);
+        
+        if (!$eventoUnico->getStatus()) {
+            if (!($organizadorUnico->getId() == $eventoUnico->getIdUsuario())) {
+                header("Location: login.php");
+                exit;
+            }
+        } else {
+            if (!($organizadorUnico->getId() == $eventoUnico->getIdUsuario())) {
+                $convidado = true;
+            }
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -75,18 +77,30 @@ include_once('include/head.php');
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>
-                <div class="filtros-nome"><input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>"></div>
+                <div class="filtros-nome">
+                    <?php if (!isset($convidado)) {?>
+                    <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
+                    <?php } else {
+                         if (isset($eventoUnico)) {
+                            echo $eventoUnico->getNome();
+                        } else {
+                            echo "";
+                        }
+                    } ?>
+                </div>
                 <div class="filtros-by">
                     <span style="color: rgba(255, 255, 255, 0.7);">Por</span>
                     <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
                 </div>   
             </div>
+            <?php if (!isset($convidado)) {?>
             <div class="filtros-right simple-margin-right">
                 <button <?= ($eventoUnico->getStatus() == 1) ? 'disabled' : '' ?> id="publica-evento" type="button" class="btn btn-primary btn-add">
                     <span class="circle btn-inner--icon"><i class="fas fa-copy"></i></span>
                     <span class="btn-inner--text">Publicar</span>
                 </button>
             </div>
+            <?php } ?>
             <br clear="all">
             </div>
             </div>
@@ -97,8 +111,10 @@ include_once('include/head.php');
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
                         <div id="navegacaoEvento">
-                            <div id="showEdita" class="selected">Edição do evento</div>
+                            <div id="showEdita" class="selected"><?= isset($convidado) ? "Sobre o evento" : "Edição do evento";?></div>
+                            <?php if (!isset($convidado)) {?>
                             <div id="showQuadro">Quadro de organização</div>
+                            <?php } ?>
                             <div id="showPublicacao">Publicações</div>
                         </div>
                         <div id="edicaoEvento">
@@ -106,17 +122,23 @@ include_once('include/head.php');
                             <div class='filtros'>Sobre o evento</div>
                             <div>
                                 <div class="form-group">
+                                <?php if (!isset($convidado)) {?>
                                     <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
+                                <?php } else {?>
+                                    <div style="border: none; height: 200px;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
+                                <?php } ?>
                                 </div>
                             </div>
                         </div>
                         <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
                             <div class='filtros'>Atrações</div>
+                            <?php if (!isset($convidado)) {?>
                             <div class="filtros-right simple-margin-right">
                             <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target='#modal-artista'>
                                 <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                             </button>
                             </div>
+                            <?php } ?>
                             <div id="atracoes">
                                 <?php
                                     if(!empty($eventosServicos)){
