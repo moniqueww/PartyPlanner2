@@ -49,15 +49,16 @@ if($_POST){
     }
 }
 
-	// include_once '../autoload.php';
-	// $categoriaControle = new ControleCategoria();
-	// $categoria = array();
-	// if(isset($_GET['procure'])){
-	// 	$categoria = $categoriaControle->controleAcao("listarTodos", $_GET['procure']);
-	// }else{
-	// 	$categoria = $categoriaControle->controleAcao("listarTodos");
-	// }
+	include_once '../autoload.php';
+	$categoriaControle = new ControleCategoria();
+	$categoria = array();
+	if(isset($_GET['procure'])){
+		$categoria = $categoriaControle->controleAcao("listarTodos", $_GET['procure']);
+	}else{
+		$categoria = $categoriaControle->controleAcao("listarTodos");
+	}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,6 +142,22 @@ if($_POST){
 										<span>Telefone</span>
 									</div>
 									<input style="padding: 15px;" class="form-control form-control-alternative" name="telefone" id="telefone" placeholder="Telefone" type="number">
+								</div>
+								<div class="modal-body" style="padding: 15px;">
+									<div>
+										<span>Categoria</span>
+									</div>
+									<select name="categoria">
+                						<option value='' disabled selected> </option>
+										<?php
+                    						if(!empty($categoria)){
+                        						foreach ($categoria as $cat) {
+                            						echo "<option value=''>".$cat->getNome()." </option>" ;  
+                    	    					}
+                    						}
+               							?>
+                						<option value=''>  </option>
+             					 	</select>								
 								</div>
 								
 						<br clear="all"/>
