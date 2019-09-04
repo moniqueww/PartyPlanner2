@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Login - Partyplanner</title>
+  <title>Login - Partyplann</title>
   <?php include_once "include/head.php"; ?>
   
   <style>

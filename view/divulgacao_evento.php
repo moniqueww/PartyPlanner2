@@ -39,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?> - Partyplanner</title>
+    <title><?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?> - Partyplann</title>
     <!-- Favicon -->
     <link href="img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Font Awesome -->
