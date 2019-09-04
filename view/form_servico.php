@@ -147,12 +147,12 @@ if($_POST){
 									<div>
 										<span>Categoria</span>
 									</div>
-									<select name="categoria">
+									<select name="idCategoria">
                 						<option value='' disabled selected> </option>
 										<?php
                     						if(!empty($categoria)){
                         						foreach ($categoria as $cat) {
-                            						echo "<option value=''>".$cat->getNome()." </option>" ;  
+												echo "<option value='".$cat->getId()."'>".$cat->getNome()." </option>" ;  
                     	    					}
                     						}
                							?>
