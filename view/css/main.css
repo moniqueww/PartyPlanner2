@@ -277,19 +277,19 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	background: linear-gradient(45deg, #62acff 40%, #7349ffc7), url(https://wallpaperaccess.com/full/127026.jpg);
+	/*background: linear-gradient(45deg, rgba(115, 73, 255, 0.95) 40%, rgba(98, 172, 255, .75)), url(https://wallpaperaccess.com/full/127026.jpg);*/
+	background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));
 	background-size: cover;
 	background-position: center;
-	padding: 0px 0px 50px 30px;
+	padding: 0px 0px 100px 30px;
 }
 #background .filtros{
-	margin-top: 61px;
+	margin-top: 111px;
 	line-height: initial;
 	color: #fff !important;
 	letter-spacing: -0.05rem;
 }
-#background > img{
-	margin-top: 30px;
+#background > div > img{
 	width: 250px;
 	height: auto;
 	background-color: #fff;
@@ -322,13 +322,14 @@ a, a:hover, a:focus {
 #background .filtros .filtros-by{
 	letter-spacing: 0.1rem;
 	font-family: Montserrat;
-	font-size: 0.875rem;
-	font-weight: 100;
+	font-size: 0.7rem;
+	font-weight: 600;
 	margin-left: 2px;
+	text-transform: uppercase;
 	line-height: initial;
-    color: #fff;
-    margin-bottom: 0px;
-    display: inline-block;
+	color: #fff;
+	margin-bottom: 0px;
+	display: inline-block;
 }
 #background .filtros .filtros-nome input{
 	height: 58px !important;
@@ -351,9 +352,10 @@ a, a:hover, a:focus {
     line-height: 30px;
 }
 .content.big-content{
-	padding: 100px 100px !important;
+	padding: 100px 15vw !important;
 	margin-right: 0px !important;
 	width: 100%;
+	margin-bottom: 0px !important;
 }
 
 .co-1{
@@ -477,7 +479,8 @@ a, a:hover, a:focus {
 	font-size: 16px;
 }
 .btn-diferente{
-	padding: 5px 21px;
+	padding: 5px 1px 5px 0px;
+	box-sizing: content-box;
 	width: 100%;
 	border: none;
 	background-color: #697cff;
@@ -615,9 +618,7 @@ a, a:hover, a:focus {
 .form-edita{
 	color: #525f7f !important;
 	background-color: transparent !important;
-}
-.form-edita:focus{
-	background-color: #ebeef9 !important;
+	padding: 0px !important;
 }
 .form-title{
 	font-size: 1.5rem !important;
@@ -750,7 +751,7 @@ a, a:hover, a:focus {
 	border-left: solid 1px #eaedfa;
 }
 .modal-dialog.modal-.modal-dialog-centered.servicos{
-	max-width: 900px !important;
+	max-width: 70vw !important;
 }
 .modal-content{
 	max-height: 90vh;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Ago-2019 às 23:42
+-- Generation Time: 04-Set-2019 às 03:02
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -66,7 +66,7 @@ CREATE TABLE `eventos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `idUsuario` bigint(20) NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descricao` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descricao` varchar(9999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -81,19 +81,13 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `status`) VALUES
 (45, 4, 'Evento teste 310', NULL, 0),
 (46, 6, 'Meu evento', NULL, 0),
 (47, 6, 'teste 1 2', NULL, 0),
-(48, 7, 'Evento teste Grégori', '', 1),
+(48, 7, 'Minha festa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum nisi ut ante malesuada, quis ullamcorper lectus elementum. Morbi ut eros tempus, pretium ligula ut, egestas lectus. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam magna ante, feugiat ac ', 1),
 (56, 7, 'Novo evento teste', NULL, 0),
 (57, 7, 'Outro evento', 'um evento com evento evento ', 0),
-(70, 20, 'Novo evento', NULL, 0),
-(71, 20, 'Novo teste', NULL, 0),
-(72, 20, 'aaaaaaaaa', NULL, 0),
 (73, 21, 'Evento teste', '', 0),
-(74, 20, 'awdwad', NULL, 0),
-(75, 20, 'aaaa', NULL, 0),
-(76, 20, 'Teste publica', '1233', 1),
-(77, 20, 'aaa', NULL, 0),
-(78, 20, 'aaasdadwer4352', 'descricao a9ujs kakas idis as da s dosidsk soaos dkdu skais dpd s', 0),
-(79, 7, 'Mais um evento', NULL, 0);
+(79, 7, 'Mais um evento', NULL, 0),
+(81, 7, 'Super novo evento 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum nisi ut ante malesuada, quis ullamcorper lectus elementum. Morbi ut eros tempus, pretium ligula ut, egestas lectus. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam magna ante, feugiat ac ', 1),
+(105, 20, 'Meu aniverawdsár', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis ullamcorper magna. Etiam tristique et neque eu auctor. Phasellus eu condimentum nunc, ut rhoncus velit. Quisque interdum lectus in elit ultrices, id laoreet turpis mattis. Proin erat massa, aliquam quis nisl et, sagittis mattis ante. Donec sagittis ligula nec fermentum congue. Aliquam erat volutpat.\n\nVivamus et erat lacus. Pellentesque iaculis vel est vitae ullamcorper. Maecenas a suscipit dolor, eget aliquet ante. Nullam mattis commodo accumsan. Etiam fermentum libero vel risus ornare, a egestas risus varius. Vivamus euismod orci id aliquet lobortis. Mauris sapien odio, fermentum a eleifend aliquam, vehicula nec arcu. Pellentesque id iaculis nulla, nec semper neque. Sed malesuada augue ac est posuere, sed rhoncus lacus placerat. Proin pretium suscipit orci vitae tristique. Vestibulum sodales sapien eget massa auctor semper. Curabitur sit amet dapibus turpis. Vestibulum porta imperdiet nunc. Donec at est et magna aliquet suscipit eget ultricies erat.', 0);
 
 -- --------------------------------------------------------
 
@@ -136,30 +130,10 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (29, 57, 10),
 (30, 57, 8),
 (31, 57, 14),
-(74, 70, 5),
-(75, 71, 17),
-(76, 71, 16),
-(77, 71, 1),
-(78, 72, 8),
-(79, 70, 16),
-(80, 70, 1),
-(81, 70, 8),
-(82, 70, 11),
-(83, 70, 14),
-(84, 70, 19),
-(85, 70, 13),
-(86, 74, 1),
-(87, 74, 11),
-(88, 74, 8),
-(89, 74, 13),
-(90, 74, 16),
-(91, 74, 19),
-(92, 74, 10),
-(93, 75, 8),
-(94, 75, 16),
-(102, 78, 1),
-(103, 78, 8),
-(104, 78, 13);
+(105, 81, 1),
+(106, 81, 10),
+(107, 81, 8),
+(108, 105, 1);
 
 -- --------------------------------------------------------
 
@@ -398,13 +372,13 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `migrations`
