@@ -332,11 +332,12 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background .filtros .filtros-nome input{
-	height: 58px !important;
-	font-size: 3rem !important;
-	font-weight: 600 !important;
+	height: 2.5rem !important;
+	font-size: 2.5rem !important;
+	font-weight: 700 !important;
 	color: #fff !important;
 	width: auto !important;
+	letter-spacing: -0.05rem;
 	padding: 0px;
 }
 #background .filtros .filtros-nome input:focus{
@@ -871,6 +872,9 @@ a, a:hover, a:focus {
 #navegacaoEvento > div.selected{
 	border-bottom: solid 3px #697cff;
 	color: #525f7f;
+}
+.form-transparente{
+	border: none !important;
 }
 
 

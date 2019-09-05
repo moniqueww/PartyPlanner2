@@ -7188,7 +7188,7 @@ button.close
     pointer-events: auto;
 
     border: 0 solid rgba(0, 0, 0, .2);
-    border-radius: .4375rem;
+    border-radius: 0;
     outline: 0; 
     background-color: #fff;
     background-clip: padding-box;
@@ -7220,6 +7220,11 @@ button.close
     display: flex;
 
     padding: 1.25rem;
+
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    background-color: #fff;
 
     border-bottom: 0 solid #e9ecef;
     border-top-left-radius: .4375rem;
@@ -18169,7 +18174,8 @@ textarea[resize='horizontal']
     background-color: #f7f8fc;
 	transition: box-shadow .15s ease; 
 
-    border: 0;
+    border: solid 1px #eaedfa;
+    border-radius: 0px !important;
     /*box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);*/
 }
 .form-control-alternative:hover

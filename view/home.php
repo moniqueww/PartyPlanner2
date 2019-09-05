@@ -3,11 +3,11 @@
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEventoPublicado();
-	$eventos = array();
+	$eventosPublicados = array();
 	if(isset($_GET['procure'])){
-		$eventos = $eventoControle->controleAcao("listarTodos", $_GET['procure']);
+		$eventosPublicados = $eventoControle->controleAcao("listarTodos", $_GET['procure']);
 	}else{
-		$eventos = $eventoControle->controleAcao("listarTodos");
+		$eventosPublicados = $eventoControle->controleAcao("listarTodos");
 	}
 	$usuarioControle = new ControleOrganizador();
 ?>
@@ -34,7 +34,7 @@ include_once('include/head.php');
 	$(function() {
 		$('.content .card').on('click', function(){
 			eventoId = $(this).attr('data-id');
-			window.location.assign('divulgacao_evento.php?evento='+eventoId);
+			window.location.assign('form_evento.php?evento='+eventoId);
 		});
 	});
 	</script>
@@ -58,8 +58,8 @@ include_once('include/head.php');
 			<div id="eventos">
 			<div class="filtros-mini">Mais populares</div>
 			<?php
-				if(!empty($eventos)){
-                    foreach (array_reverse($eventos) as $ev) {
+				if(!empty($eventosPublicados)){
+                    foreach (array_reverse($eventosPublicados) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
                         echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">

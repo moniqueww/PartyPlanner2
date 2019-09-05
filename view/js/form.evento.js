@@ -181,14 +181,14 @@
                             servicoElement = $(this);
                             $.post( "../ajax/cadastraEventoServico.php", {'idEvento': idEvento, 'idServico': idServico}, function(data){
                                 data = $.parseJSON( data );
-                                $('#cancelaListaServicos').click();
+                                $('#cancelaListaArtistas').click();
                                 $('#atracoes').append(
                                     $('<div>', {'data-id': data.idEventoServico, class: 'content photo'}).append(
                                         $('<div>', {class: 'card servicos'}).append(
                                             $('<img>', {style: 'background-color: #fff;', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
-                                                $('<h5>', {class: 'card-title', html: data.email})
+                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc-evento-artista', 'data-id': data.idEventoServico, 'aria-hidden': 'true', html: '×'})
                                         )

@@ -17,7 +17,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding: calc(1.5rem + 86px) 1.5rem 1.5rem 1.5rem;">
                 <table id="tabela_servicos" style="width: 100%;">
                     <tbody>
                     </tbody>

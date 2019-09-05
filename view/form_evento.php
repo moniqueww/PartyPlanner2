@@ -21,15 +21,15 @@
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
 
         $organizadorControle = new ControleOrganizador();
-        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $_SESSION['id']);
+        $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
         
         if (!$eventoUnico->getStatus()) {
-            if (!($organizadorUnico->getId() == $eventoUnico->getIdUsuario())) {
+            if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
                 header("Location: login.php");
                 exit;
             }
         } else {
-            if (!($organizadorUnico->getId() == $eventoUnico->getIdUsuario())) {
+            if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
                 $convidado = true;
             }
         }
@@ -79,7 +79,7 @@ include_once('include/head.php');
                 <div class="filtros-tipo">EVENTO</div>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
-                    <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
+                    <input type="text" id="input-nome" class="form-control form-control-alternative form-transparente form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
                     <?php } else {
                          if (isset($eventoUnico)) {
                             echo $eventoUnico->getNome();
@@ -112,10 +112,10 @@ include_once('include/head.php');
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
                         <div id="navegacaoEvento">
                             <div id="showEdita" class="selected"><?= isset($convidado) ? "Sobre o evento" : "Edição do evento";?></div>
+                            <div id="showPublicacao">Publicações</div>
                             <?php if (!isset($convidado)) {?>
                             <div id="showQuadro">Quadro de organização</div>
                             <?php } ?>
-                            <div id="showPublicacao">Publicações</div>
                         </div>
                         <div id="edicaoEvento">
                         <div class="content big-content">
@@ -123,7 +123,7 @@ include_once('include/head.php');
                             <div>
                                 <div class="form-group">
                                 <?php if (!isset($convidado)) {?>
-                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px" class="form-control form-control-alternative form-edita form-transparente" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 <?php } else {?>
                                     <div style="border: none; height: 200px;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
                                 <?php } ?>

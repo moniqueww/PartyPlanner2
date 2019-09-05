@@ -61,7 +61,7 @@ include_once('include/head.php');
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-								<div class="modal-body" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+								<div class="modal-body" style="padding: 60px 1.5rem 1.5rem 1.5rem;">
 									<div>
 										<h4 class="heading mt-4">Nome do evento</h4>
 									</div>
@@ -86,7 +86,7 @@ include_once('include/head.php');
 									<span aria-hidden="true">×</span>
 								</button>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" style="padding: 60px 1.5rem 1.5rem 1.5rem;">
 								<div class="py-3 text-center">
 									<i class="ni ni-bell-55 ni-3x"></i>
 									<h4 class="heading mt-4">Tem certeza que deseja excluir o evento?</h4>
