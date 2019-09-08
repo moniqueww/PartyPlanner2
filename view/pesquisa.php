@@ -43,9 +43,13 @@ include_once('include/head.php');
 				$('#filtro-recente').hide();
 				$('#recentes').hide();
 				$('#procura').show();
+				nomePesquisa = $(this).val();
 				$.post( "../ajax/buscaTudo.php", {'nome': $(this).val()}, function(data){
 					data = $.parseJSON( data );
 					$('#eventos .conteudo').html('');
+					if (data.eventos.length || data.servicos.length || data.organizadores.length) {
+					$('#filtro-procura').show();
+					$('#not-found').hide();
 					if (data.eventos.length){
 						$('#eventos').show();
 						for (var i = 0; i < data.eventos.length; i++) {
@@ -61,7 +65,7 @@ include_once('include/head.php');
 									)
 								).on('click', function(){
 									eventoId = $(this).attr('data-id');
-									window.location.assign('divulgacao_evento.php?evento='+eventoId);
+									window.location.assign('form_evento.php?evento='+eventoId);
 								})
 							);
 						}
@@ -77,7 +81,7 @@ include_once('include/head.php');
 							}
 							$('#servicos .conteudo').append(
 								$('<div>', {'data-id': data.servicos[h].id, id: 'servico_'+data.servicos[h].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {src: 'img/brand/background4.png'}),
+									$('<img>', {class: 'circle', src: 'img/brand/background4.png'}),
 									$('<div>').append(
 										$('<div>', {html: data.servicos[h].nome}),
 										$('<div>', {html: data.servicos[h].nome})
@@ -87,6 +91,34 @@ include_once('include/head.php');
 						}
 					} else {
 						$('#servicos').hide();
+					}
+					$('#organizadores .conteudo').html('');
+					if (data.organizadores.length){
+						$('#organizadores').show();
+						for (var h = 0; h < data.organizadores.length; h++) {
+							if (h > 3) {
+								break;
+							}
+							$('#organizadores .conteudo').append(
+								$('<div>', {'data-id': data.organizadores[h].id, id: 'servico_'+data.organizadores[h].id, class: 'content co-5 mini-card no-padding'}).append(
+									$('<img>', {class: 'circle', src: 'img/brand/background4.png'}),
+									$('<div>').append(
+										$('<div>', {html: data.organizadores[h].nome}),
+										$('<div>', {html: data.organizadores[h].nome})
+									)
+								)
+							);
+						}
+					} else {
+						$('#organizadores').hide();
+					}
+					} else {
+						$('#filtro-procura').hide();
+						$('#eventos').hide();
+						$('#servicos').hide();
+						$('#organizadores').hide();
+						$('#not-found').show();
+						$('#not-found .filtros').html('Nenhum resultado encontrado para "'+nomePesquisa+'"');
 					}
 				})
 			} else {
@@ -142,6 +174,15 @@ include_once('include/head.php');
 	  			<div style="width: 45%; float: left; display: inline-block; margin-right: 4%;" id="servicos">
 	  				<div class="filtros-mini">Serviços</div>
 	  				<div class="conteudo"></div>
+	  			</div>
+	  			<div style="width: 45%; float: left; display: inline-block; margin-right: 4%;" id="organizadores">
+	  				<div class="filtros-mini">Organizadores</div>
+	  				<div class="conteudo"></div>
+	  			</div>
+	  			<div id="not-found" style="display: none; text-align: center; margin-top: 20vh;">
+	  				<img style="width: 25%;" src="img/svg/not-found.svg"/>
+	  				<div class="filtros"></div>
+	  				<p style="width: 30%; margin: auto;">Verifique se ocorreu algum erro de digitação ou tente usar outras palavras-chave</p>
 	  			</div>
 	  		</div>
 		</div>

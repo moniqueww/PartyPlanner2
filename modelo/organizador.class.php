@@ -137,13 +137,13 @@ class Organizador implements IBaseModelo{
             //Comando SQL para inserir um organizador
             if(!is_null($name)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,email,senha FROM usuario WHERE nome LIKE :nome ORDER BY nome";
+                $query="SELECT id,nome,email,senha FROM usuario WHERE nome LIKE :nome AND tipo='O'";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,email,senha FROM usuario WHERE tipo='O' ORDER BY nome";
+                $query="SELECT id,nome,email,senha FROM usuario WHERE tipo='O'";
             }
             $this->stmt= $this->conn->prepare($query);
-            if(!is_null($name))$this->stmt->bindValue(':name', '%'.$name.'%', PDO::PARAM_STR);
+            if(!is_null($name))$this->stmt->bindValue(':nome', '%'.$name.'%', PDO::PARAM_STR);
 
             if($this->stmt->execute()){
                 // Associa cada registro a uma classe organizador

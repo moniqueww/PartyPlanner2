@@ -151,10 +151,11 @@ include_once('include/head.php');
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
-                                                              </div>
-                                                              <span class='exc-evento-artista' data-id='".$es->getId()."' aria-hidden='true'>×</span>
-                                                            </div>
-                                                        </div>";
+                                                              </div>";
+                                            if (!isset($convidado)) {
+                                                echo "<span class='exc-evento-artista' data-id='".$es->getId()."' aria-hidden='true'>×</span>";
+                                            }
+                                            echo "</div></div>";
                                             //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                             }
                                         }

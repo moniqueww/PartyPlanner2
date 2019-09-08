@@ -46,13 +46,7 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
-			<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['id']; ?>"/>
-			<div class="filtros no-margin">Seus Eventos</div>
-			<div class="filtros-right simple-margin-right">
-				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
-					<span class="btn-inner--text">Novo Evento</span>
-				</button>
-				<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    		<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
 					<div class="modal-dialog modal- modal-dialog-centered" role="document">
 						<div class="modal-content">                  
                             <div class="modal-header">
@@ -74,9 +68,7 @@ include_once('include/head.php');
                         </div>
 					</div>
 				</div>
-				<!--<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
-					<i class="fas fa-ellipsis-h"></i>
-				</button>-->
+
 				<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
 					<div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
 						<div class="modal-content">
@@ -99,31 +91,48 @@ include_once('include/head.php');
 						</div>
 					</div>
 				</div>
+
+			<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION['id']; ?>"/>
+			<div class="filtros no-margin">Seus Eventos</div>
+			<div class="filtros-right simple-margin-right">
+				 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
+					<span class="btn-inner--text">Novo Evento</span>
+				</button>
+				<!--<button type="button" class="btn btn-outro btn-add no-margin-right" data-toggle="modal" data-target="#modal-notification">
+					<i class="fas fa-ellipsis-h"></i>
+				</button>-->
 			</div>
 			<!-- Page Content -->
 			<div id="eventos">
 			<?php
 				if(!empty($eventos)){
-                    foreach (array_reverse($eventos) as $ev) {
-                    	$publicado = '';
-                    	if ($ev->getStatus() == 1) {
-                    		$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
-                    	}
-                    	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content photo'>
+					foreach (array_reverse($eventos) as $ev) {
+						$publicado = '';
+						if ($ev->getStatus() == 1) {
+							$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
+						}
+						$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+						echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
-				  <div class='card-body'>
-				    <h5 class='card-title'>".$ev->getNome()."</h5>
-				    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
-				  </div>
-				  ".$publicado."
-				  <div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
+					<img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+					<div class='card-body'>
+						<h5 class='card-title'>".$ev->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+				</div>
+				".$publicado."
+				<div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
 				</div>
 			</div>";
-                    }
-                }
-            ?>
+					}
+				}
+			?>
+	  		</div>
+	  		<div id="not-found" style="display: none; text-align: center; margin-top: 20vh;">
+	  			<img style="width: 25%;" src="img/svg/create-event.svg">
+	  			<div class="filtros">Você não possui eventos criados</div>
+	  			 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
+	  				<span class="btn-inner--text">Novo Evento</span>
+	  			</button>
 	  		</div>
 		</div>
 		<div id="action-bar">

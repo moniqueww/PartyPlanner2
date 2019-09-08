@@ -304,6 +304,7 @@ a, a:hover, a:focus {
 }
 #background .navbar-search-light .input-group{
 	background-color: #fff !important;
+	border: none !important;
 }
 #background .nav-link{
 	color: #fff !important;
@@ -705,7 +706,7 @@ a, a:hover, a:focus {
 #tabela_servicos td{
 	padding: 10px 20px;
 }
-#tabela_servicos tr:first-child td:first-child{
+/*#tabela_servicos tr:first-child td:first-child{
 	border-top-left-radius: 0.3rem;
 }
 #tabela_servicos tr:first-child td:last-child{
@@ -716,7 +717,7 @@ a, a:hover, a:focus {
 }
 #tabela_servicos tr:last-child td:last-child{
 	border-bottom-right-radius: 0.3rem;
-}
+}*/
 #tabela_servicos th{
 	padding: 10px 20px;
 }
@@ -806,6 +807,7 @@ a, a:hover, a:focus {
 }
 .mini-card img{
 	width: 70px; height: 70px; float: left; background-color: #F7F8FC; margin-right: 15px;
+	border: solid 1px #eaedfa;
 }
 .mini-card > div{
 	font-size: 0.875rem; height: 70px; padding-top: 10px;
