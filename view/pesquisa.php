@@ -180,8 +180,8 @@ include_once('include/head.php');
 	  				<div class="conteudo"></div>
 	  			</div>
 	  			<div id="not-found" style="display: none; text-align: center; margin-top: 20vh;">
-	  				<img style="width: 25%;" src="img/svg/not-found.svg"/>
-	  				<div class="filtros"></div>
+	  				<img style="width: 20%;" src="img/svg/not-found.svg"/>
+	  				<div class="filtros" style="font-size: 2rem; margin: 0;"></div>
 	  				<p style="width: 30%; margin: auto;">Verifique se ocorreu algum erro de digitação ou tente usar outras palavras-chave</p>
 	  			</div>
 	  		</div>

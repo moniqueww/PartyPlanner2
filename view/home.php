@@ -57,24 +57,46 @@ include_once('include/head.php');
 			<!-- Page Content -->
 			<div id="eventos">
 			<div class="filtros-mini">Mais populares</div>
-			<?php
-				if(!empty($eventosPublicados)){
-                    foreach (array_reverse($eventosPublicados) as $ev) {
-                    	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content photo'>
-				<div class='card' data-id=".$ev->getId().">
-				  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
-				  <div class='card-body'>
-				    <h5 class='card-title'>".$ev->getNome()."</h5>
-				    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
-				  </div>
-				</div>
-			</div>";
-                    }
-                }
-            ?>
-	  		</div>
-		</div>
+			<div id="mais-populares" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
+				<?php
+					if(!empty($eventosPublicados)){
+						foreach (array_reverse($eventosPublicados) as $ev) {
+							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+							echo "<div class='content photo' style='float: none; margin-right: 2.1%;'>
+					<div class='card' data-id=".$ev->getId().">
+					<img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+					<div class='card-body'>
+						<h5 class='card-title'>".$ev->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+					</div>
+					</div>
+				</div>";
+						}
+					}
+				?>
+			</div>
+			</div>
+			<div class="filtros-mini">Mais recentes</div>
+			<div id="mais-recentes" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
+				<?php
+					if(!empty($eventosPublicados)){
+						foreach (array_reverse($eventosPublicados) as $ev) {
+							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+							echo "<div class='content photo' style='float: none; margin-right: 2.1%;'>
+					<div class='card' data-id=".$ev->getId().">
+					<img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+					<div class='card-body'>
+						<h5 class='card-title'>".$ev->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+					</div>
+					</div>
+				</div>";
+						}
+					}
+				?>
+			</div>
+			</div>
+			</div>
 		<div id="action-bar">
 		        
 		</div>

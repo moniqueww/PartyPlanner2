@@ -309,6 +309,10 @@ a, a:hover, a:focus {
 #background .nav-link{
 	color: #fff !important;
 }
+#background .filtros .filtros-nome{
+	white-space: nowrap;
+    overflow: hidden;
+}
 #background .filtros .filtros-tipo{
 	letter-spacing: 0.1rem;
 	font-family: Montserrat;
@@ -333,7 +337,7 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background .filtros .filtros-nome input{
-	height: 2.5rem !important;
+	height: auto !important;
 	font-size: 2.5rem !important;
 	font-weight: 700 !important;
 	color: #fff !important;

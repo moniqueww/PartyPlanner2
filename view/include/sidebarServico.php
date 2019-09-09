@@ -63,7 +63,7 @@
                 </a>
                 <a href="<?php echo "edit_servico.php?servico=".$_SESSION['id'];?>">
 					<li>
-                    	<i class="fas fa-user"></i><span>Seu perfil</span>
+                    	<i href="meu_perfil.php" class="fas fa-user"></i><span>Seu perfil</span>
                 	</li>
                 </a>
                 <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">

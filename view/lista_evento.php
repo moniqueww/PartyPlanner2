@@ -128,9 +128,10 @@ include_once('include/head.php');
 			?>
 	  		</div>
 	  		<div id="not-found" style="display: none; text-align: center; margin-top: 20vh;">
-	  			<img style="width: 25%;" src="img/svg/create-event.svg">
-	  			<div class="filtros">Você não possui eventos criados</div>
-	  			 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
+	  			<img style="width: 20%;" src="img/svg/create-event3.svg">
+				  <div class="filtros" style="font-size: 2rem; margin: 0;">Você não possui eventos criados</div>
+				  <p style="margin-bottom: 35px;">Crie e organize um evento agora mesmo clicando no botão abaixo!</p>
+	  			  <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
 	  				<span class="btn-inner--text">Novo Evento</span>
 	  			</button>
 	  		</div>
