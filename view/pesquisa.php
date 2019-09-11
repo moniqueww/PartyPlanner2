@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$tituloHead = 'Home';
+$tituloHead = 'Pesquisa';
 include_once('include/head.php');
 ?>
 <body>

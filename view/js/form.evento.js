@@ -2,6 +2,7 @@
         idCategoria = "";
         idEvento = $('#idEvento').val();
         nome = "";
+        nomeArtista = "";
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
         statusEvento = $('#statusEvento').val();
@@ -29,6 +30,10 @@
         $('#nomePesq').on('input', function(){
             nome = $(this).val();
             listar();
+        });
+        $('#nomePesqArtista').on('input', function(){
+            nomeArtista = $(this).val();
+            listarArtistas();
         });
         $('.btn-addListaServico').on('click', function(){
             if($(this).attr('data-categoria') != 'todos'){
@@ -158,7 +163,7 @@
     }
 
     function listarArtistas() {
-        $.post( "../ajax/buscaServico.php", {'nome': nome, 'evento': idEvento, 'idCategoria': 5}, function(data){
+        $.post( "../ajax/buscaServico.php", {'nome': nomeArtista, 'evento': idEvento, 'idCategoria': 5}, function(data){
             data = $.parseJSON( data );
             categoriaServico = '';
             $('#tabela_artistas').html('');
@@ -183,7 +188,7 @@
                                 data = $.parseJSON( data );
                                 $('#cancelaListaArtistas').click();
                                 $('#atracoes').append(
-                                    $('<div>', {'data-id': data.idEventoServico, class: 'content photo'}).append(
+                                    $('<div>', {style: 'float: none;', 'data-id': data.idEventoServico, class: 'content photo'}).append(
                                         $('<div>', {class: 'card servicos'}).append(
                                             $('<img>', {style: 'background-color: #fff;', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
                                             $('<div>', {class: 'card-body'}).append(

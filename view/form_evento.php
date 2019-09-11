@@ -38,7 +38,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$tituloHead = 'Editar evento';
+$tituloHead = $eventoUnico->getNome();
 include_once('include/head.php');
 ?>
 <body>
@@ -119,11 +119,11 @@ include_once('include/head.php');
                         </div>
                         <div id="edicaoEvento">
                         <div class="content big-content">
-                            <div class='filtros'>Sobre o evento</div>
+                            <div class='filtros filtros-evento'>Sobre o evento</div>
                             <div>
                                 <div class="form-group">
                                 <?php if (!isset($convidado)) {?>
-                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px" class="form-control form-control-alternative form-edita form-transparente" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px; text-indent: 10%;" class="form-control form-control-alternative form-edita form-transparente" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
                                 <?php } else {?>
                                     <div style="border: none; height: 200px;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
                                 <?php } ?>
@@ -131,21 +131,21 @@ include_once('include/head.php');
                             </div>
                         </div>
                         <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
-                            <div class='filtros'>Atrações</div>
+                            <div class='filtros filtros-evento'>Atrações</div>
                             <?php if (!isset($convidado)) {?>
-                            <div class="filtros-right simple-margin-right">
+                            <div class="filtros-right simple-margin-right" style="text-align: center;">
                             <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target='#modal-artista'>
                                 <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                             </button>
                             </div>
                             <?php } ?>
-                            <div id="atracoes">
+                            <div id="atracoes" style="text-align: center;">
                                 <?php
                                     if(!empty($eventosServicos)){
                                         foreach ($eventosServicos as $es) {
                                             $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                             if($servicoUnico->getIdCategoria() == 5){
-                                            echo "<div class='content photo' data-id=".$es->getId().">
+                                            echo "<div style='float: none;' class='content photo' data-id=".$es->getId().">
                                                             <div class='card servicos'>
                                                               <img style='background-color: #fff;' class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
                                                               <div class='card-body'>
@@ -163,8 +163,37 @@ include_once('include/head.php');
                                 ?>
                             </div>
                         </div>
+                        <div id="localizacao" class="content big-content">
+                            <div class="filtros filtros-evento">Localização</div>
+                            <div class="localizacao-div">
+                                <div>
+                                    <img src="https://www.zyrgon.com/wp-content/uploads/2019/06/googlemaps-Zyrgon.jpg" style="height: 100%;">
+                                </div>
+                                <div>
+                                    <div class="filtros" style="color: #fff;">Zyrgon Portugal</div>
+                                    <p style="color: #fff;">awkjdhawjkhdkjawjdhkjawhdkjawhdjkawhdkjawhdkjhawkdkawd</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="content big-content">
-                            <div class='filtros'>Localização</div>
+                            <div class='filtros filtros-evento'>Preços</div>
+                            <div>
+                                <div class="filtros-right simple-margin-right" style="text-align: center;">
+                                <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target=''>
+                                    <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                                </button>
+                                </div>
+                                <div id="precos"></div>
+                            </div>
+                        </div>
+                        <div class="content big-content">
+                            <div class='filtros filtros-evento'>Representantes</div>
+                            <div>
+                                
+                            </div>
+                        </div>
+                        <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
+                            <div class='filtros filtros-evento'>Contate-nos</div>
                             <div>
                                 
                             </div>
