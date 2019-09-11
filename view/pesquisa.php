@@ -86,7 +86,10 @@ include_once('include/head.php');
 										$('<div>', {html: data.servicos[h].nome}),
 										$('<div>', {html: data.servicos[h].nome})
 									)
-								)
+								).on('click', function(){
+									servicoId = $(this).attr('data-id');
+									window.location.assign('perfil_servico.php?servico='+servicoId);
+								})
 							);
 						}
 					} else {

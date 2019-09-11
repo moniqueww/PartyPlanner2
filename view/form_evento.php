@@ -133,7 +133,7 @@ include_once('include/head.php');
                         <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
                             <div class='filtros filtros-evento'>Atrações</div>
                             <?php if (!isset($convidado)) {?>
-                            <div class="filtros-right simple-margin-right" style="text-align: center;">
+                            <div class="filtros-right" style="text-align: center;">
                             <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target='#modal-artista'>
                                 <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                             </button>
@@ -178,18 +178,39 @@ include_once('include/head.php');
                         <div class="content big-content">
                             <div class='filtros filtros-evento'>Preços</div>
                             <div>
-                                <div class="filtros-right simple-margin-right" style="text-align: center;">
+								<?php if (!isset($convidado)) {?>
+                                <div class="filtros-right" style="text-align: center;">
                                 <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target=''>
                                     <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                                 </button>
                                 </div>
+								<?php } ?>
                                 <div id="precos"></div>
                             </div>
                         </div>
                         <div class="content big-content">
                             <div class='filtros filtros-evento'>Representantes</div>
-                            <div>
-                                
+							<?php if (!isset($convidado)) {?>
+							<div class="filtros-right" style="text-align: center;">
+                                <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target=''>
+                                    <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                                </button>
+                            </div>
+							<?php } ?>
+                            <div style="text-align: center;">
+                                <?php
+									if (isset($organizadorUnico)) {
+										echo "<div style='margin-right: 0; float: none; width: 25%;' class='content photo' data-id=".$organizadorUnico->getId().">
+                                                            <div class='card servicos'>
+                                                              <img style='background-color: #fff;' class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                                              <div class='card-body'>
+                                                                <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
+                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
+                                                              </div>
+															</div>
+														</div>";
+									}
+								?>
                             </div>
                         </div>
                         <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">

@@ -1,4 +1,4 @@
-<?php //include_once 'include/verificaOrganizador.php';?>
+<?php include_once 'include/verificaOrganizador.php';?>
 <?php include_once 'include/banco.php';?>
 <?php
     include_once '../autoload.php'; 
@@ -43,13 +43,17 @@ include_once('include/head.php');
 
     <div class="wrapper">
 
-    	<?php include_once('include/sidebarServico.php'); ?>
+    	<?php
+		$paginaHome = '';
+        $paginaLista = '';
+		include_once('include/sidebar.php');
+		?>
 
     	<div id="page">
 
             <?php include_once('include/navbar.php'); ?>
 
-			<div class="filtros">serviço</div>
+			<div class="filtros">Serviço</div>
                         <!-- Page Content -->
                         <div class="content co-10">
                             <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>                     
