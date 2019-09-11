@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Set-2019 às 03:02
+-- Generation Time: 11-Set-2019 às 02:39
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -84,10 +84,9 @@ INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `status`) VALUES
 (48, 7, 'Minha festa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum nisi ut ante malesuada, quis ullamcorper lectus elementum. Morbi ut eros tempus, pretium ligula ut, egestas lectus. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam magna ante, feugiat ac ', 1),
 (56, 7, 'Novo evento teste', NULL, 0),
 (57, 7, 'Outro evento', 'um evento com evento evento ', 0),
-(73, 21, 'Evento teste', '', 0),
 (79, 7, 'Mais um evento', NULL, 0),
 (81, 7, 'Super novo evento 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum nisi ut ante malesuada, quis ullamcorper lectus elementum. Morbi ut eros tempus, pretium ligula ut, egestas lectus. Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam magna ante, feugiat ac ', 1),
-(105, 20, 'Meu aniverawdsár', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis ullamcorper magna. Etiam tristique et neque eu auctor. Phasellus eu condimentum nunc, ut rhoncus velit. Quisque interdum lectus in elit ultrices, id laoreet turpis mattis. Proin erat massa, aliquam quis nisl et, sagittis mattis ante. Donec sagittis ligula nec fermentum congue. Aliquam erat volutpat.\n\nVivamus et erat lacus. Pellentesque iaculis vel est vitae ullamcorper. Maecenas a suscipit dolor, eget aliquet ante. Nullam mattis commodo accumsan. Etiam fermentum libero vel risus ornare, a egestas risus varius. Vivamus euismod orci id aliquet lobortis. Mauris sapien odio, fermentum a eleifend aliquam, vehicula nec arcu. Pellentesque id iaculis nulla, nec semper neque. Sed malesuada augue ac est posuere, sed rhoncus lacus placerat. Proin pretium suscipit orci vitae tristique. Vestibulum sodales sapien eget massa auctor semper. Curabitur sit amet dapibus turpis. Vestibulum porta imperdiet nunc. Donec at est et magna aliquet suscipit eget ultricies erat.', 0);
+(105, 20, 'Meu aniversário', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis ullamcorper magna. Etiam tristique et neque eu auctor. Phasellus eu condimentum nunc, ut rhoncus velit. Quisque interdum lectus in elit ultrices, id laoreet turpis mattis. Proin erat massa, aliquam quis nisl et, sagittis mattis ante. Donec sagittis ligula nec fermentum congue. Aliquam erat volutpat.\n\nVivamus et erat lacus. Pellentesque iaculis vel est vitae ullamcorper. Maecenas a suscipit dolor, eget aliquet ante. Nullam mattis commodo accumsan. Etiam fermentum libero vel risus ornare, a egestas risus varius. Vivamus euismod orci id aliquet lobortis. Mauris sapien odio, fermentum a eleifend aliquam, vehicula nec arcu. Pellentesque id iaculis nulla, nec semper neque. Sed malesuada augue ac est posuere, sed rhoncus lacus placerat. Proin pretium suscipit orci vitae tristique. Vestibulum sodales sapien eget massa auctor semper. Curabitur sit amet dapibus turpis. Vestibulum porta imperdiet nunc. Donec at est et magna aliquet suscipit eget ultricies erat.', 0);
 
 -- --------------------------------------------------------
 
@@ -133,7 +132,16 @@ INSERT INTO `evento_servico` (`id`, `idEvento`, `idServico`) VALUES
 (105, 81, 1),
 (106, 81, 10),
 (107, 81, 8),
-(108, 105, 1);
+(108, 105, 1),
+(109, 105, 9),
+(110, 105, 5),
+(111, 105, 2),
+(112, 105, 8),
+(113, 105, 17),
+(114, 105, 16),
+(116, 105, 11),
+(119, 105, 24),
+(120, 105, 23);
 
 -- --------------------------------------------------------
 
@@ -278,7 +286,15 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone
 (18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3),
 (19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2),
 (20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL),
-(21, 'gregori teste', 'gregori@g', '123', 'O', NULL, NULL, NULL);
+(22, 'Dj khalid fodase', 'ajklw@awkjdyh', '123', 'S', '12093712378', 129873617823, 5),
+(23, 'Aviccii', 'avitifodase@akwjd', '123', 'S', '123987612387', 1982347789124, 5),
+(24, 'Deivid gueta', 'deivid@wajdhjk', '123', 'S', '217367812368', 123124214, 5),
+(25, 'Chatuba', '29837@218937', '123', 'S', '123124124', 123123124, 5),
+(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL),
+(27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL),
+(28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL),
+(29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL),
+(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -372,13 +388,13 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -414,7 +430,7 @@ ALTER TABLE `servicos`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
