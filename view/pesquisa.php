@@ -1,5 +1,4 @@
 <?php include_once 'include/verificaOrganizador.php';?>
-<?php include_once 'include/banco.php';?>
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEventoPublicado();
@@ -58,7 +57,7 @@ include_once('include/head.php');
 							}
 							$('#eventos .conteudo').append(
 								$('<div>', {'data-id': data.eventos[i].id, id: 'eventos_'+data.eventos[i].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {src: 'img/brand/background4.png'}),
+									$('<img>', {src: 'img/brand/no-image-event.png'}),
 									$('<div>').append(
 										$('<div>', {html: data.eventos[i].nome}),
 										$('<div>', {html: data.eventos[i].nome})
@@ -81,7 +80,7 @@ include_once('include/head.php');
 							}
 							$('#servicos .conteudo').append(
 								$('<div>', {'data-id': data.servicos[h].id, id: 'servico_'+data.servicos[h].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {class: 'circle', src: 'img/brand/background4.png'}),
+									$('<img>', {class: 'circle', src: 'img/brand/no-image-service.png'}),
 									$('<div>').append(
 										$('<div>', {html: data.servicos[h].nome}),
 										$('<div>', {html: data.servicos[h].nome})
@@ -104,7 +103,7 @@ include_once('include/head.php');
 							}
 							$('#organizadores .conteudo').append(
 								$('<div>', {'data-id': data.organizadores[h].id, id: 'servico_'+data.organizadores[h].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {class: 'circle', src: 'img/brand/background4.png'}),
+									$('<img>', {class: 'circle', src: 'img/brand/no-image-service.png'}),
 									$('<div>').append(
 										$('<div>', {html: data.organizadores[h].nome}),
 										$('<div>', {html: data.organizadores[h].nome})
@@ -158,7 +157,7 @@ include_once('include/head.php');
                     foreach (array_reverse($eventos) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
                         echo "<div class='content co-10 mini-card no-padding'>
-				  <img src='img/brand/background4.png'/>
+				  <img src='img/brand/no-image-event.png'/>
 				  <div>
 				    <div>".$ev->getNome()."</div>
 				    <div style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</div>

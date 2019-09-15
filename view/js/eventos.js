@@ -26,7 +26,7 @@ $(function() {
                                 $(this).children('.novoEvento').fadeOut();
                             }
                         }).append(
-                            $('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}).on('click', function(){
+                            $('<img>', {class: 'card-img-top', src: "img/brand/no-image-event.png"}).on('click', function(){
                                 var eventoId = $(this).parents('.card').attr('data-id');
                                 window.location.assign('form_evento.php?evento='+eventoId);
                             }),
@@ -99,7 +99,7 @@ $(function() {
                             $(this).children('.novoEvento').fadeOut();
                         }
                     }).append(
-                        $('<img>', {class: 'card-img-top', src: "img/brand/background4.png"}).on('click', function(){
+                        $('<img>', {class: 'card-img-top', src: "img/brand/no-image-event.png"}).on('click', function(){
                             var eventoId = $(this).parents('.card').attr('data-id');
                             window.location.assign('form_evento.php?evento='+eventoId);
                         }),

@@ -2,7 +2,7 @@
         <div class="modal-dialog modal- modal-dialog-centered servicos" role="document">
         <div class="modal-content">                  
                 <div class="modal-header" style="padding: 1.5rem;">
-                    <input id="nomePesqArtista" type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%;"/>
+                    <input id="nomePesqArtista" type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%;" placeholder="Pesquise pelo nome" />
                     <button id="cancelaListaArtistas" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

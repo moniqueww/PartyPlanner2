@@ -61,6 +61,7 @@ include_once('include/head.php');
     	<?php
         $paginaHome = '';
         $paginaLista = '';
+        $paginaEvento = $eventoUnico->getId();
         include_once('include/sidebar.php');
         ?>
 
@@ -73,13 +74,13 @@ include_once('include/head.php');
             <div style="padding-right: 15vw;
     padding-left: calc(15vw - 30px);">
 
-            <img src="img/brand/background4.png"/>
+            <img src="img/brand/no-image-event.png"/>
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
-                    <input type="text" id="input-nome" class="form-control form-control-alternative form-transparente form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
+                    <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($eventoUnico) ? $eventoUnico->getNome() : "";?>">
                     <?php } else {
                          if (isset($eventoUnico)) {
                             echo $eventoUnico->getNome();
@@ -123,7 +124,7 @@ include_once('include/head.php');
                             <div>
                                 <div class="form-group">
                                 <?php if (!isset($convidado)) {?>
-                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 200px; text-indent: 10%;" class="form-control form-control-alternative form-edita form-transparente" rows="3" placeholder="Adicione aqui a descrição do seu evento"></textarea>
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 250px; text-indent: 10%;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione a descrição do seu evento"></textarea>
                                 <?php } else {?>
                                     <div style="border: none; height: 200px;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
                                 <?php } ?>
@@ -145,9 +146,9 @@ include_once('include/head.php');
                                         foreach ($eventosServicos as $es) {
                                             $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                             if($servicoUnico->getIdCategoria() == 5){
-                                            echo "<div style='float: none;' class='content photo' data-id=".$es->getId().">
-                                                            <div class='card servicos'>
-                                                              <img style='background-color: #fff;' class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                            echo "<div style='float: none;' class='content atracao photo' data-id=".$es->getId().">
+                                                            <div class='card card-redondo'>
+                                                              <img style='background-color: #fff;' class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
@@ -167,7 +168,7 @@ include_once('include/head.php');
                             <div class="filtros filtros-evento">Localização</div>
                             <div class="localizacao-div">
                                 <div>
-                                    <img src="https://www.zyrgon.com/wp-content/uploads/2019/06/googlemaps-Zyrgon.jpg" style="height: 100%;">
+                                    <img src="http://alataj.com.br/wp-content/uploads/2018/01/Cultive.png" style="height: 100%;">
                                 </div>
                                 <div>
                                     <div class="filtros" style="color: #fff;">Zyrgon Portugal</div>
@@ -201,8 +202,8 @@ include_once('include/head.php');
                                 <?php
 									if (isset($organizadorUnico)) {
 										echo "<div style='margin-right: 0; float: none; width: 25%;' class='content photo' data-id=".$organizadorUnico->getId().">
-                                                            <div class='card servicos'>
-                                                              <img style='background-color: #fff;' class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                                            <div class='card card-redondo'>
+                                                              <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
@@ -240,8 +241,8 @@ include_once('include/head.php');
                                                 $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
                                                 echo "<div class='content photo' data-id=".$es->getId().">
-                                                                <div class='card servicos'>
-                                                                  <img class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
+                                                                <div class='card card-redondo'>
+                                                                  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>

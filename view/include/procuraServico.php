@@ -12,7 +12,7 @@
                             }
                         ?>
                     </select>
-                    <input id="nomePesq" type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%; position: absolute; right: 64px;"/>
+                    <input id="nomePesq" type="text" class="form-control form-control-alternative" style="height: calc(2.25rem + 2px); width: 50%; position: absolute; right: 64px;" placeholder="Pesquise pelo nome"/>
                     <button id="cancelaListaServicos" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

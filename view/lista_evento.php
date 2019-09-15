@@ -114,7 +114,7 @@ include_once('include/head.php');
 						$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 						echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>

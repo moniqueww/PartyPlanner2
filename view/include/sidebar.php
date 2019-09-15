@@ -1,8 +1,13 @@
-<nav id="sidebar" class="minimized">
-				<button id="encolheMenu" class="btn-diferente" style="display: none">
+<?php
+	$seusEventosControle = new ControleEvento();
+	$seusEventos = array();
+	$seusEventos = $seusEventosControle->controleAcao("listarTodos", '', $_SESSION['id']);
+?>
+<nav id="sidebar">
+				<button id="encolheMenu" class="btn-diferente">
 						<i class="fas fa-angle-left"></i>
 				</button>
-				<button id="expandeMenu" class="btn-diferente">
+				<button id="expandeMenu" class="btn-diferente" style="display: none">
                     	<i class="fas fa-angle-right"></i>
 				</button>
     		<!--<ul class="list-unstyled components">
@@ -83,22 +88,39 @@
                     	<i class="fas fa-calendar-day"></i><span>Eventos</span>
                 	</li>
                 </a>
-                <!--
-				<p>NAVIGATION</p>
+				<p style='padding-top: 30px'>FAVORITOS</p>
                 <a href="">
-                	<div class="paginaAtiva"></div>
-					<li>
-                    	<i class="fas fa-share-alt-square"></i><span>Compartilhados</span>
+                	<div class="paginaAtiva paginaAtiva-menor"></div>
+					<li class='li-menor'>
+                    	<div>Eventos</div>
                 	</li>
-                </a>-->
+                </a>
+                <a href="">
+                	<div class="paginaAtiva paginaAtiva-menor"></div>
+					<li class='li-menor'>
+                    	<div>Serviços</div>
+                	</li>
+                </a>
+                <a href="">
+                	<div class="paginaAtiva paginaAtiva-menor"></div>
+					<li class='li-menor'>
+                    	<div>Artistas</div>
+                	</li>
+                </a>
                 <?php
-                	if (isset($eventos)) {
+                	if (isset($seusEventos)) {
                 		echo "<p style='padding-top: 30px'>SEUS EVENTOS</p>";
-                		foreach ($eventos as $evs) {
-                			echo "<a href='lista_evento.php' class='sidebar-evento'>
-					<div class='paginaAtiva'></div>
-					<li style='padding: 5px 30px'>
-                    	<div>".$evs->getNome()."</div>
+                		foreach ($seusEventos as $sevs) {
+                			$eventoSelecionado = '';
+                			if (isset($paginaEvento)) {
+                				if ($paginaEvento == $sevs->getId()) {
+                					$eventoSelecionado = "active";
+                				}
+                			}
+                			echo "<a href='form_evento.php?evento=".$sevs->getId()."' class='sidebar-evento ".$eventoSelecionado."'>
+					<div class='paginaAtiva paginaAtiva-menor'></div>
+					<li class='li-menor'>
+                    	<div>".$sevs->getNome()."</div>
                 	</li>
                 </a>";
                 		}

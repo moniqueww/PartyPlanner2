@@ -97,15 +97,6 @@
             for(i = 0; i < data.length; i++){
                 categoriaServico =  data[i].categoria;
                 $('#tabela_servicos tbody').append(
-                    /*<div class='card servicos'>
-                      <img class='card-img-top servicos' src='img/brand/background4.png' alt='Card image cap'>
-                      <div class='card-body'>
-                        <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
-                        <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
-                      </div>
-                      <span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span>
-                    </div>*/
-                    //$('')
                     $('<tr>', {'data-categoria': data[i].categoria, class: 'btn-addServico '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<td>').append(
                             $('<span>', {style: 'font-weight: bold;'}).append(
@@ -140,8 +131,8 @@
                                 $('#categoria'+servicoElement.attr('data-categoria')).show();
                                 $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
                                     $('<div>', {'data-id': data.idEventoServico, class: 'content photo'}).append(
-                                        $('<div>', {class: 'card servicos'}).append(
-                                            $('<img>', {class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                                        $('<div>', {class: 'card card-redondo'}).append(
+                                            $('<img>', {class: 'card-img-top', src: 'img/brand/background4.png'}),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {class: 'card-title', html: data.email})
@@ -171,8 +162,8 @@
                 categoriaServico =  data[i].categoria;
                 $('#tabela_artistas').append(
                     $('<div>', {class: 'artista content photo '+data[i].disabled, 'data-id': data[i].id}).append(
-                        $('<div>', {class: 'card servicos'}).append(
-                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                        $('<div>', {class: 'card card-redondo'}).append(
+                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/brand/background4.png'}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
@@ -188,9 +179,9 @@
                                 data = $.parseJSON( data );
                                 $('#cancelaListaArtistas').click();
                                 $('#atracoes').append(
-                                    $('<div>', {style: 'float: none;', 'data-id': data.idEventoServico, class: 'content photo'}).append(
-                                        $('<div>', {class: 'card servicos'}).append(
-                                            $('<img>', {style: 'background-color: #fff;', class: 'card-img-top servicos', src: 'img/brand/background4.png'}),
+                                    $('<div>', {style: 'float: none;', 'data-id': data.idEventoServico, class: 'content atracao photo'}).append(
+                                        $('<div>', {class: 'card card-redondo'}).append(
+                                            $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/brand/background4.png'}),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})

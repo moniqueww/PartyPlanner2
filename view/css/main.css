@@ -87,7 +87,8 @@ a, a:hover, a:focus {
     /* don't forget to add all the previously mentioned styles here too */
     background: #F7F8FC;
     color: inherit;
-	width: 4%;
+	width: 240px;
+	transition: width 0.4s;
 	min-height: 100vh;
 	border-right: solid 1px #eaedfa;
 }
@@ -129,17 +130,22 @@ a, a:hover, a:focus {
 #sidebar ul.components {
     padding: 15px 0 0 0;
 	font-size: .8rem;
+	max-height: calc(100vh - 34px);
+    overflow: auto;
 }
-#sidebar ul a.active > div{
-	position: absolute;
-	width: 3px;
+#sidebar ul a.active > .paginaAtiva{
+	float: left;
+	width: 4px;
 	margin-top: 9.5px;
 	height: 30px;
 	background-color: #697cff;
 }
+#sidebar ul a.active > .paginaAtiva.paginaAtiva-menor{
+	margin-top: 5px !important;
+	height: 20px !important;
+}
 #sidebar .list-unstyled li span{
 	font-weight: 500;
-	position: absolute;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
@@ -158,6 +164,11 @@ a, a:hover, a:focus {
 	padding: 15px 30px 15px 30px;
 	font-size: 0.8rem;
 }
+#sidebar li.li-menor{
+	padding: 5px 0px 5px 30px !important;
+	margin-right: 30px;
+	overflow: hidden;
+}
 #sidebar ul > a {
     font-size: 1.1em;
 	display: block;
@@ -168,7 +179,7 @@ a, a:hover, a:focus {
 }
 #sidebar ul > a:hover {
     color: #525f7f;
-    background-color: #ccd0df;
+    background-color: #e0e2eb;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -191,7 +202,8 @@ a, a:hover, a:focus {
 }
 
 #sidebar.minimized{
-	/*width: auto;*/
+	width: 70px !important;
+	transition: width 0.4s;
 	text-align: center;
 }
 #sidebar.minimized .sidebar-header{
@@ -217,6 +229,9 @@ a, a:hover, a:focus {
 	display: none;
 }
 #sidebar.minimized .list-unstyled li div{
+	display: none;
+}
+#sidebar.minimized .list-unstyled .paginaAtiva-menor{
 	display: none;
 }
 #sidebar.minimized .list-unstyled li i{
@@ -267,11 +282,16 @@ a, a:hover, a:focus {
 	margin-left: 0px !important;
 }
 #page{
-	width: 84%;
+	width: calc(100vw - 480px);
+	transition: width 0.4s;
 	padding: 0px 0px 0px 30px;
 	overflow: auto;
 	max-height: 100vh;
 	text-align: left;
+}
+#page.minimized{
+	width: calc(100vw - 310px) !important;
+	transition: width 0.4s;
 }
 #page .content{
 	display: inline-block;
@@ -313,6 +333,12 @@ a, a:hover, a:focus {
 	white-space: nowrap;
     overflow: hidden;
 }
+#background .filtros .filtros-nome input:hover {
+    border: solid 2px rgba(255, 255, 255, 0.5) !important;
+}
+#background .filtros .filtros-nome input:focus {
+    border: solid 2px rgba(255, 255, 255, 1) !important;
+}
 #background .filtros .filtros-tipo{
 	letter-spacing: 0.1rem;
 	font-family: Montserrat;
@@ -337,6 +363,7 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background .filtros .filtros-nome input{
+	border: solid 2px transparent; 
 	height: auto !important;
 	font-size: 2.5rem !important;
 	font-weight: 700 !important;
@@ -727,20 +754,23 @@ a, a:hover, a:focus {
 }
 
 .content .card .card-img-top{
-	height: calc(84vw / 6.98);
+	height: calc((100vw - 480px) / 6.98);
 	background-color: #F7F8FC;
 	border-radius: 0px;
 	cursor: pointer;
 	border: solid 1px #eaedfa;
 }
-.card-img-top.servicos{
+.card-redondo .card-img-top{
 	border-radius: 50% !important;
-	height: calc(84vw / 13.96) !important;
+	height: calc((100vw - 480px) / 13.96) !important;
 	width: 50%;
 	margin: auto;
 }
-.card.servicos{
+.card.card-redondo{
 	text-align: center;
+}
+.content.atracao{
+	margin-right: 0 !important;
 }
 .card-title{
 	white-space: nowrap;
@@ -751,7 +781,7 @@ a, a:hover, a:focus {
 	font-weight: bold;
 }
 #action-bar{
-	width: 12%;
+	width: 240px;
 	min-height: 100vh;
 	display: inline-block;
 	background-color: #F7F8FC;
@@ -768,13 +798,13 @@ a, a:hover, a:focus {
   width: 20px;
 }
 ::-webkit-scrollbar-track {
-  background: #fff; 
+  background: transparent; 
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(228, 231, 242);
+  background: #e0e2eb;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(189, 193, 209); 
+  background: #b4b9c7; 
 }
 #semCategoria{
 	width: 100%;
@@ -816,6 +846,8 @@ a, a:hover, a:focus {
 .mini-card > div{
 	font-size: 0.875rem; height: 70px; padding-top: 10px;
 	line-height: 25px;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .mini-card > div div:first-child{
 	font-weight: bold;
