@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Set-2019 às 21:50
+-- Generation Time: 16-Set-2019 às 04:34
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -67,9 +67,16 @@ CREATE TABLE `eventos` (
   `idUsuario` bigint(20) NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descricao` varchar(9999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `idEstabelecimento` int(11) DEFAULT NULL,
+  `idEstabelecimento` int(11) DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `eventos`
+--
+
+INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`) VALUES
+(127, 20, 'aaaaa', '', 31, 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +89,13 @@ CREATE TABLE `evento_artista` (
   `idEvento` int(11) NOT NULL,
   `idServico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evento_artista`
+--
+
+INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
+(1, 127, 23);
 
 -- --------------------------------------------------------
 
@@ -118,6 +132,18 @@ CREATE TABLE `quadro` (
   `idEvento` int(11) NOT NULL,
   `idServico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `quadro`
+--
+
+INSERT INTO `quadro` (`id`, `idEvento`, `idServico`) VALUES
+(11, 127, 2),
+(12, 127, 9),
+(13, 127, 13),
+(14, 127, 8),
+(15, 127, 15),
+(17, 127, 23);
 
 -- --------------------------------------------------------
 
@@ -164,7 +190,8 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone
 (27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL),
 (28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL),
 (29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL),
-(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL);
+(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL),
+(31, 'Cultive Bar', 'cultivebar@gmail.com', '123', 'S', '23534534646', 54996233793, 2);
 
 --
 -- Indexes for dumped tables
@@ -238,13 +265,13 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `evento_representante`
@@ -256,19 +283,19 @@ ALTER TABLE `evento_representante`
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

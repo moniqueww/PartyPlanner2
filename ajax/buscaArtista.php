@@ -5,25 +5,18 @@
         $servicoControle = new ControleServico();
 
         $servicos = [];
+        $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome'],5);
 
-        if(empty($_POST['idCategoria'])) {
-            $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome']);
-        } else {
-            $servicos = $servicoControle->controleAcao("listarTodos",$_POST['nome'],$_POST['idCategoria']);
-        }
-
-        $quadroControle = new ControleQuadro();
-
-        $quadros = [];
-
-        $quadros = $quadroControle->controleAcao("listarTodos", $_POST['evento']);
+        $eventoArtistaControle = new ControleEventoArtista();
+        $eventoArtistas = [];
+        $eventoArtistas = $eventoArtistaControle->controleAcao("listarTodos", $_POST['evento']);
 
         $resposta = [];
 
         foreach($servicos as $se) {
             $disabled = '';
-            foreach ($quadros as $qu) {
-                if($qu->getIdServico() == $se->getId()){
+            foreach ($eventoArtistas as $ea) {
+                if($ea->getIdServico() == $se->getId()){
                     $disabled = 'disabled';
                 }
             }

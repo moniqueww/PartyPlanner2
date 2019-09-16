@@ -3,7 +3,7 @@
 
 class ControleEventoServico extends ControleBase {
     private $visao;
-    private $evento;
+    private $eventoServico;
     
     public function getVisao() {
         return $this->visao;
@@ -17,7 +17,7 @@ class ControleEventoServico extends ControleBase {
     
     public function __construct() {
         //Cria uma instância da classe Produto
-        $this->evento = new EventoServico();
+        $this->eventoServico = new EventoServico();
     }
     
     public function controleAcao($acao,$param=null,$param2=null){
@@ -33,49 +33,49 @@ class ControleEventoServico extends ControleBase {
     
     private function preencheModelo(){
         // Passa dados do formulário para a classe Produto
-        $this->evento->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
-        $this->evento->setIdEvento((isset($this->visao["idEvento"]) && $this->visao["idEvento"] != null) ? $this->visao["idEvento"] : "");
-        $this->evento->setIdServico((isset($this->visao["idServico"]) && $this->visao["idServico"] != null) ? $this->visao["idServico"] : "");     
+        $this->eventoServico->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->eventoServico->setIdEvento((isset($this->visao["idEvento"]) && $this->visao["idEvento"] != null) ? $this->visao["idEvento"] : "");
+        $this->eventoServico->setIdServico((isset($this->visao["idServico"]) && $this->visao["idServico"] != null) ? $this->visao["idServico"] : "");     
     }
     
     protected function inserir() {
         // Passa dados do formulário para a classe Produto
         $this->preencheModelo();
         //Chama o método para inserir os dados no banco de dados
-        return $this->evento->inserir();
+        return $this->eventoServico->inserir();
     }
     
     protected function alterar($param) {
         // Passa dados do formulário para a classe Produto
         $this->preencheModelo();
         //Chama o método para alterar os dados no banco de dados
-        return $this->evento->alterar($param);
+        return $this->eventoServico->alterar($param);
     }
 
     protected function excluir($param, $param2){
         // Passa dados do formulário (via GET) para a classe Produto
-        $this->evento->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->eventoServico->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
         //Chama o método para excluir os dados no banco de dados
-        return $this->evento->excluir($param,$param2);
+        return $this->eventoServico->excluir($param,$param2);
     }
     
     protected function listarTodos($param=null, $param2){
         
         //Chama o método para listar os produtos do banco de dados de acordo com um filtro
-        return $this->evento->listarTodos($param, $param2);
+        return $this->eventoServico->listarTodos($param, $param2);
     }
     
     protected function listarUnico($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->evento->listarUnico($param);
+        return $this->eventoServico->listarUnico($param);
     }
 
     protected function listarUltimo($param){
         
         
         //Chama o método para listar um produto específico do banco de dados
-        return $this->evento->listarUltimo($param);
+        return $this->eventoServico->listarUltimo($param);
     }
 }

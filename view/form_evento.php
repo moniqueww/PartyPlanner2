@@ -12,9 +12,13 @@
         $servicos = [];
         $servicos = $servicoControle->controleAcao("listarTodos");
 
-        $eventoServicoControle = new ControleEventoServico();
-        $eventosServicos = [];
-        $eventosServicos = $eventoServicoControle->controleAcao("listarTodos", $_GET["evento"]);
+        $quadroControle = new ControleQuadro();
+        $quadros = [];
+        $quadros = $quadroControle->controleAcao("listarTodos", $_GET["evento"]);
+
+        $eventoArtistaControle = new ControleEventoArtista();
+        $eventoArtistas = [];
+        $eventoArtistas = $eventoArtistaControle->controleAcao("listarTodos", $_GET["evento"]);
 
         $eventoControle = new ControleEvento();
         $eventoControle->setVisao($_GET);
@@ -71,8 +75,7 @@ include_once('include/head.php');
 
             <?php include_once('include/navbar.php'); ?>
 
-            <div style="padding-right: 15vw;
-    padding-left: calc(15vw - 30px);">
+            <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
             <img src="img/brand/no-image-event.png"/>
 
@@ -106,11 +109,13 @@ include_once('include/head.php');
             </div>
             </div>
 
+            <?php include_once('include/procuraEstabelecimento.php'); ?>
             <?php include_once('include/procuraServico.php'); ?>
             <?php include_once('include/procuraArtista.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
+                        <input type="hidden" id="idEstabelecimento" name="idEstabelecimento" value="<?= isset($eventoUnico) ? $eventoUnico->getIdEstabelecimento() : "";?>"/>
                         <div id="navegacaoEvento">
                             <div id="showEdita" class="selected"><?= isset($convidado) ? "Sobre o evento" : "Edição do evento";?></div>
                             <div id="showPublicacao">Publicações</div>
@@ -131,7 +136,7 @@ include_once('include/head.php');
                                 </div>
                             </div>
                         </div>
-                        <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
+                        <div class="content big-content">
                             <div class='filtros filtros-evento'>Atrações</div>
                             <?php if (!isset($convidado)) {?>
                             <div class="filtros-right" style="text-align: center;">
@@ -142,19 +147,19 @@ include_once('include/head.php');
                             <?php } ?>
                             <div id="atracoes" style="text-align: center;">
                                 <?php
-                                    if(!empty($eventosServicos)){
-                                        foreach ($eventosServicos as $es) {
-                                            $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                    if(!empty($eventoArtistas)){
+                                        foreach ($eventoArtistas as $ea) {
+                                            $servicoUnico = $servicoControle->controleAcao("listarUnico", $ea->getIdServico());
                                             if($servicoUnico->getIdCategoria() == 5){
-                                            echo "<div style='float: none;' class='content atracao photo' data-id=".$es->getId().">
+                                            echo "<div style='float: none;' class='content atracao photo' data-id=".$ea->getId().">
                                                             <div class='card card-redondo'>
-                                                              <img style='background-color: #fff;' class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+                                                              <img style='background-color: #fff;' class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
                                                               </div>";
                                             if (!isset($convidado)) {
-                                                echo "<span class='exc-evento-artista' data-id='".$es->getId()."' aria-hidden='true'>×</span>";
+                                                echo "<span class='exc-evento-artista' data-id='".$ea->getId()."' aria-hidden='true'>×</span>";
                                             }
                                             echo "</div></div>";
                                             //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
@@ -166,14 +171,27 @@ include_once('include/head.php');
                         </div>
                         <div id="localizacao" class="content big-content">
                             <div class="filtros filtros-evento">Localização</div>
+                            <?php if (!isset($convidado)) {?>
+                            <div class="filtros-right" style="text-align: center;">
+                            <button type='button' class='btn-addListaEstabelecimento btn btn-primary' data-toggle='modal' data-target='#modal-estabelecimento'>
+                                <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                            </button>
+                            </div>
+                            <?php } ?>
+                            <div id="estabelecimento">
+                            <?php if ($eventoUnico->getIdEstabelecimento() != 0) {
+                                $localizacaoUnica = $servicoControle->controleAcao('listarUnico', $eventoUnico->getIdEstabelecimento()); ?>
                             <div class="localizacao-div">
                                 <div>
-                                    <img src="http://alataj.com.br/wp-content/uploads/2018/01/Cultive.png" style="height: 100%;">
+                                    <img src="img/brand/no-image-localization.png" style="height: 100%;">
                                 </div>
                                 <div>
-                                    <div class="filtros" style="color: #fff;">Zyrgon Portugal</div>
-                                    <p style="color: #fff;">awkjdhawjkhdkjawjdhkjawhdkjawhdjkawhdkjawhdkjhawkdkawd</p>
+                                    <div class="filtros" style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getNome() : "";?></div>
+                                    <p style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getEmail() : "";?></p>
+                                    <p style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getTelefone() : "";?></p>
                                 </div>
+                            </div>
+                            <?php } ?>
                             </div>
                         </div>
                         <div class="content big-content">
@@ -201,9 +219,9 @@ include_once('include/head.php');
                             <div style="text-align: center;">
                                 <?php
 									if (isset($organizadorUnico)) {
-										echo "<div style='margin-right: 0; float: none; width: 25%;' class='content photo' data-id=".$organizadorUnico->getId().">
+										echo "<div style='margin-right: 0; float: none; width: 23%;' class='content photo' data-id=".$organizadorUnico->getId().">
                                                             <div class='card card-redondo'>
-                                                              <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+                                                              <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
@@ -214,17 +232,20 @@ include_once('include/head.php');
 								?>
                             </div>
                         </div>
-                        <div style="background-color: #f7f8fc; border-right: solid 1px #eaedfa; border-top: solid 1px #eaedfa; border-bottom: solid 1px #eaedfa;" class="content big-content">
+                        <div class="content big-content">
                             <div class='filtros filtros-evento'>Contate-nos</div>
                             <div>
                                 
                             </div>
                         </div>
                     </div>
-                    <div id="quadroEvento" style='display: none;'>
 
-                        <div class="content co-10 co-ult">
-                            <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
+                    <!--//////////////////////////////////////-->
+
+                    <div id="quadroEvento" style='display: none;'>
+                        <div class="content big-content">
+                            <div>
+                            <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaQuadro' data-toggle='modal' data-target='#modal-form'>
                                 <span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span> Adicionar serviço
                             </button>
                             <?php
@@ -232,22 +253,24 @@ include_once('include/head.php');
                                     foreach($categorias as $ca) {
                                         echo "<div style='display: none;' class='categoria' id='categoria".$ca->getId()."'>";
                                         echo "<div class='filtros categorias'>".$ca->getNome()."</div>";
-                                        echo "<button type='button' data-categoria='".$ca->getId()."' class='btn-addListaServico' data-toggle='modal' data-target='#modal-form'>
-                                            <span style='font-size: 2rem;' class='circle btn-inner--icon'><i class='ni ni-fat-add'></i></span>
-                                        </button>";
+                                        echo "<div class='filtros-right'>
+                                                <button type='button' data-categoria='".$ca->getId()."' class='btn-addListaQuadro btn btn-primary' data-toggle='modal' data-target='#modal-form'>
+                                                    <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                                                </button>
+                                                </div>";
                                         echo "<div class='categoria-eventos'>";
-                                        if(!empty($eventosServicos)){
-                                            foreach ($eventosServicos as $es) {
-                                                $servicoUnico = $servicoControle->controleAcao("listarUnico", $es->getIdServico());
+                                        if(!empty($quadros)){
+                                            foreach ($quadros as $qu) {
+                                                $servicoUnico = $servicoControle->controleAcao("listarUnico", $qu->getIdServico());
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
-                                                echo "<div class='content photo' data-id=".$es->getId().">
+                                                echo "<div class='content photo quadro' data-id=".$qu->getId().">
                                                                 <div class='card card-redondo'>
-                                                                  <img class='card-img-top' src='img/brand/background4.png' alt='Card image cap'>
+                                                                  <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
                                                                   </div>
-                                                                  <span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span>
+                                                                  <span class='exc-evento-servico' data-id='".$qu->getId()."' aria-hidden='true'>×</span>
                                                                 </div>
                                                             </div>";
                                                 //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
@@ -260,6 +283,7 @@ include_once('include/head.php');
                                     }
                                 }
                             ?>
+                        </div>
                         </div>
                     </div>
         </div>

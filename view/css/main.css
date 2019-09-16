@@ -680,29 +680,6 @@ a, a:hover, a:focus {
 	border-bottom-right-radius: 0.3rem;
 	border-bottom-left-radius: 0.3rem;
 }
-.btn-addListaServico{
-	height: 70px;
-    padding-left: 18px;
-    padding-right: 18px;
-    border-radius: 0.3rem;
-    cursor: pointer;
-   	margin-right: 2%;
-    float: left;
-    background-color: rgba(45, 68, 231, 0.24);
-	border: none;
-	color: #fff;
-	box-shadow: none;
-	margin-bottom: 30px;
-}
-.btn-addListaServico:hover{
-	background-color: rgba(21, 17, 138, 0.22);
-}
-.btn-addListaServico:focus{
-	outline: none;
-}
-.btn-addListaServico:active{
-	background-color: rgba(21, 17, 138, 0.26);
-}
 
 .btn-addServico{
 	margin-bottom: 10px;
@@ -772,6 +749,9 @@ a, a:hover, a:focus {
 .content.atracao{
 	margin-right: 0 !important;
 }
+.content.photo.quadro{
+	width: 23%; 
+}
 .card-title{
 	white-space: nowrap;
 	overflow: hidden;
@@ -822,7 +802,7 @@ a, a:hover, a:focus {
 .exc-evento-servico{
 	float: right;
 	position: absolute;
-	right: 10px;
+	left: 10px;
 	font-size: 1.1rem;
 	cursor: pointer;
 	padding: 0px 12px;
@@ -830,7 +810,7 @@ a, a:hover, a:focus {
 .exc-evento-artista{
 	float: right;
 	position: absolute;
-	right: 10px;
+	left: 10px;
 	font-size: 1.1rem;
 	cursor: pointer;
 	padding: 0px 12px;
@@ -941,6 +921,12 @@ a, a:hover, a:focus {
 }
 .filtros.filtros-evento {
 	text-align: center;
+}
+#edicaoEvento .big-content:nth-child(2), #edicaoEvento .big-content:last-child{
+	background-color: #f7f8fc;
+	border-right: solid 1px #eaedfa;
+	border-top: solid 1px #eaedfa;
+	border-bottom: solid 1px #eaedfa;
 }
 
 
