@@ -13,35 +13,27 @@
         ////////////////////////////////// imagem
 
         primeiraImagem = $('#image').attr('src').split('/').pop();
-        console.log(primeiraImagem);
+        console.log('primeiraImagem: ', primeiraImagem);
 
         $('#input-image').on('change', function() {
-            
             $('#form-image').ajaxForm({
                 target:'#visualizar_imagem'
             }).submit();
-
         });
 
         $('#visualizar_imagem').on('click', function(){
-
             $('#input-image').trigger('click');
-            
         });
 
         $('#visualizar_imagem').hover(function(){
-
             $('#visualizar_imagem').css({'cursor': 'pointer', 'filter': 'brightness(0.7)'});
-
         }, function(){
-
             $('#visualizar_imagem').css({'cursor': 'none', 'filter': 'brightness(1)'});
-
         });
 
         $('#input-image').on('change', function(){
             imagemNovo = $('#input-image').val().split('\\').pop();
-            console.log(imagemNovo);
+            console.log('imagemNovo: ', imagemNovo);
             if (imagemNovo != primeiraImagem) {
                 editarEvento();
             }
@@ -300,10 +292,12 @@
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
         imagemNovo = $('#input-image').val().split('\\').pop();
+        console.log('imagemNovo: ', imagemNovo);
         $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': imagemNovo}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
             primeiraImagem = imagemNovo;
+            console.log('primeiraImagem: ', primeiraImagem);
         })
     }
 
