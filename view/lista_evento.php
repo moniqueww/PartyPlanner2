@@ -3,13 +3,11 @@
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEvento();
+
 	$eventos = array();
-	if(isset($_GET['procure'])){
-		$eventos = $eventoControle->controleAcao("listarTodos", $_GET['procure'], $_SESSION['id']);
-	}else{
-		$eventos = $eventoControle->controleAcao("listarTodos", '', $_SESSION['id']);
-	}
-	$usuarioControle = new ControleOrganizador();
+	$eventos = $eventoControle->controleAcao("listarTodos", '', $_SESSION['id']);
+
+	$organizadorControle = new ControleOrganizador();
 ?>
 <!DOCTYPE html>
 <html>
@@ -111,13 +109,13 @@ include_once('include/head.php');
 						if ($ev->getStatus() == 1) {
 							$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
 						}
-						$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+						$organizadorUnico = $organizadorControle->controleAcao('listarUnico', $ev->getIdUsuario());
 						echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/imagens_evento/no-image.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getNome()."</h5>
 				</div>
 				".$publicado."
 				<div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Set-2019 às 04:34
+-- Generation Time: 18-Set-2019 às 00:21
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -68,15 +68,16 @@ CREATE TABLE `eventos` (
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descricao` varchar(9999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idEstabelecimento` int(11) DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0'
+  `status` int(11) NOT NULL DEFAULT '0',
+  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`) VALUES
-(127, 20, 'aaaaa', '', 31, 1);
+INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`) VALUES
+(127, 20, 'aaaaa', '', 31, 1, '0');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,29 @@ CREATE TABLE `evento_artista` (
 --
 
 INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
-(1, 127, 23);
+(5, 127, 23),
+(12, 127, 24);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `evento_preco`
+--
+
+CREATE TABLE `evento_preco` (
+  `id` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL,
+  `valor` float NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `descricao` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evento_preco`
+--
+
+INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALUES
+(4, 127, 223, 'Normal', 'awdawdawdawdawd');
 
 -- --------------------------------------------------------
 
@@ -222,6 +245,12 @@ ALTER TABLE `evento_artista`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `evento_preco`
+--
+ALTER TABLE `evento_preco`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `evento_representante`
 --
 ALTER TABLE `evento_representante`
@@ -271,6 +300,12 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `evento_preco`
+--
+ALTER TABLE `evento_preco`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -283,7 +318,7 @@ ALTER TABLE `evento_representante`
 -- AUTO_INCREMENT for table `evento_servico`
 --
 ALTER TABLE `evento_servico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quadro`

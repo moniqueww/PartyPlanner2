@@ -1,14 +1,12 @@
 <?php
 
 
-class Evento implements IBaseModelo{
+class EventoPreco implements IBaseModelo{
     private $id;
+    private $idEvento;
+    private $valor;
     private $nome;
     private $descricao;
-    private $idEstabelecimento;
-    private $status;
-    private $idUsuario;
-    private $imagem;
     private $conn;
     private $stmt;
     
@@ -19,6 +17,22 @@ class Evento implements IBaseModelo{
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getIdEvento() {
+        return $this->idEvento;
+    }
+
+    public function setIdEvento($idEvento) {
+        $this->idEvento = $idEvento;
+    }
+
+    public function getValor() {
+        return $this->valor;
+    }
+
+    public function setValor($valor) {
+        $this->valor = $valor;
     }
 
     public function getNome() {
@@ -37,38 +51,6 @@ class Evento implements IBaseModelo{
         $this->descricao = $descricao;
     }
 
-    public function getIdEstabelecimento() {
-        return $this->idEstabelecimento;
-    }
-
-    public function setIdEstabelecimento($idEstabelecimento) {
-        $this->idEstabelecimento = $idEstabelecimento;
-    }
-
-    public function getStatus() {
-        return $this->status;
-    }
-
-    public function setStatus($status) {
-        $this->status = $status;
-    }
-
-    public function getIdUsuario() {
-        return $this->idUsuario;
-    }
-
-    public function setIdUsuario($idUsuario) {
-        $this->idUsuario = $idUsuario;
-    }
-
-    public function getImagem() {
-        return $this->imagem;
-    }
-
-    public function setImagem($imagem) {
-        $this->imagem = $imagem;
-    }
-
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -82,12 +64,14 @@ class Evento implements IBaseModelo{
     public function inserir(){
         try{
             //Comando SQL para inserir um aluno
-            $query="INSERT INTO eventos (nome, idUsuario) VALUES (:nome, :idUsuario) ";
+            $query="INSERT INTO evento_preco (idEvento, valor, nome, descricao) VALUES (:idEvento, :valor, :nome, :descricao) ";
 
             $this->stmt= $this->conn->prepare($query);
 
+            $this->stmt->bindValue(':idEvento', $this->idEvento, PDO::PARAM_INT);
+            $this->stmt->bindValue(':valor', $this->valor, PDO::PARAM_STR);
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
-            $this->stmt->bindValue(':idUsuario', $this->idUsuario, PDO::PARAM_STR);
+            $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
 
             if($this->stmt->execute()){
                return true;
@@ -102,16 +86,14 @@ class Evento implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, idEstabelecimento = :idEstabelecimento, status = :status, imagem = :imagem WHERE id=:id ";
+            $query="UPDATE evento_preco SET idEvento = :idEvento, valor = :valor, nome = :nome, descricao = :descricao WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
-            $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
+            $this->stmt->bindValue(':idEvento', $this->idEvento, PDO::PARAM_INT);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $this->stmt->bindValue(':valor', $this->valor, PDO::PARAM_STR);
+            $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
-            $this->stmt->bindValue(':idEstabelecimento', $this->idEstabelecimento, PDO::PARAM_INT);
-            $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
-            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_INT);
-
 
 
             if($this->stmt->execute()){
@@ -126,7 +108,7 @@ class Evento implements IBaseModelo{
     public function excluir($param,$param2){
         try{
             //Comando SQL para inserir um aluno
-            $query="DELETE FROM eventos WHERE id=:id ";
+            $query="DELETE FROM evento_preco WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             if($this->stmt->execute()){
@@ -138,27 +120,26 @@ class Evento implements IBaseModelo{
         }
     }
     
-    public function listarTodos($nome=null, $idUsuario){
+    public function listarTodos($evento, $idUsuario){
         
         try{
             $alunos = array();
             
             //Comando SQL para inserir um aluno
-            if(!is_null($nome)){
+            if(!is_null($evento)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario,imagem FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
+                $query="SELECT id,idEvento,valor,nome,descricao FROM evento_preco WHERE idEvento = :evento";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario,imagem FROM eventos WHERE idUsuario = :idUsuario";
+                $query="SELECT id,idEvento,valor,nome,descricao FROM evento_preco";
             }
             $this->stmt= $this->conn->prepare($query);
-            if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
-            if(!is_null($idUsuario))$this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_STR);
+            if(!is_null($evento))$this->stmt->bindValue(':evento', $evento, PDO::PARAM_INT);
 
             if($this->stmt->execute()){
                 // Associa cada registro a uma classe aluno
                 // Depois, coloca os resultados em um array
-                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPreco");  
                 
             }
             
@@ -173,13 +154,13 @@ class Evento implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario,imagem FROM eventos WHERE id=:id";
+            $query="SELECT id,idEvento,valor,nome,descricao FROM evento_preco WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPreco");  
                 
             }
             
@@ -191,15 +172,15 @@ class Evento implements IBaseModelo{
         
     }
 
-    public function listarUltimo($idUsuario){
+    public function listarUltimo($idEvento){
         try{
-            $query="SELECT id,nome FROM eventos WHERE id = (SELECT MAX(ID) FROM eventos WHERE idUsuario = :idUsuario)";
+            $query="SELECT id,idEvento,valor,nome,descricao FROM evento_preco WHERE id = (SELECT MAX(ID) FROM evento_preco WHERE idEvento = :idEvento)";
             $this->stmt= $this->conn->prepare($query);
-            $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_STR);
+            $this->stmt->bindValue(':idEvento', $idEvento, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPreco");  
                 
             }
             

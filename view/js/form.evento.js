@@ -95,18 +95,18 @@
             }
         });
         $('.exc-evento-servico').on('click', function(){
-            idEventoServico = $(this).attr('data-id');
+            var idEventoServico = $(this).attr('data-id');
             $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                 data = $.parseJSON( data );
-                $(".content.photo[data-id="+data.id+"]").fadeOut();
+                $(".content.photo[data-id="+data.id+"]").remove();
                 $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
         $('.exc-evento-artista').on('click', function(){
-            idEventoServico = $(this).attr('data-id');
+            var idEventoServico = $(this).attr('data-id');
             $.post( "../ajax/excluiEventoArtista.php", {'id': idEventoServico}, function(data){
                 data = $.parseJSON( data );
-                $(".content.photo[data-id="+data.id+"]").fadeOut();
+                $(".content.photo[data-id="+data.id+"]").remove();
                 $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
@@ -128,6 +128,16 @@
             $(this).addClass('selected');
             $('#edicaoEvento').hide();
             $('#quadroEvento').show();
+        });
+        $('#cadastrarPreco').on('click', function(){
+            var valor = $('#precoValor').val();
+            var nome = $('#precoNome').val();
+            var descricao = $('#precoDescricao').val();
+            $.post( "../ajax/cadastraPreco.php", {'valor': valor, 'nome': nome, 'descricao': descricao, 'idEvento': idEvento}, function(data){
+                console.log(data);
+                data = $.parseJSON( data );
+                console.log(data);
+            })
         });
     });
     function listarQuadro() {
@@ -171,18 +181,19 @@
                                 $('#cancelaListaServicos').click();
                                 $('#categoria'+servicoElement.attr('data-categoria')).show();
                                 $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
-                                    $('<div>', {'data-id': data.idEventoServico, class: 'content photo quadro'}).append(
+                                    $('<div>', {'data-id': data.idQuadro, class: 'content photo quadro'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
                                             $('<img>', {class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
-                                                $('<h5>', {class: 'card-title', html: data.email})
+                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc-evento-servico', 'data-id': data.idQuadro, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
-                                                    $(".content.photo[data-id="+data.id+"]").fadeOut();
+                                                    console.log(data);
+                                                    $(".content.photo[data-id="+data.id+"]").remove();
                                                     $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
                                                 })
                                             })
@@ -227,18 +238,18 @@
                                 data = $.parseJSON( data );
                                 $('#cancelaListaArtistas').click();
                                 $('#atracoes').append(
-                                    $('<div>', {style: 'float: none;', 'data-id': data.idEventoServico, class: 'content atracao photo'}).append(
+                                    $('<div>', {style: 'float: none;', 'data-id': data.idEventoArtista, class: 'content atracao photo'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
                                             $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
                                             ),
-                                            $('<span>', {class: 'exc-evento-artista', 'data-id': data.idQuadro, 'aria-hidden': 'true', html: '×'}).on('click', function(){
-                                                idEventoServico = $(this).attr('data-id');
+                                            $('<span>', {class: 'exc-evento-artista', 'data-id': data.idEventoArtista, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                                var idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiEventoArtista.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
-                                                    $(".content.photo[data-id="+data.id+"]").fadeOut();
+                                                    $(".content.photo[data-id="+data.id+"]").remove();
                                                     $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
                                                 })
                                             })
@@ -275,9 +286,12 @@
                             )
                         )
                     ).on('click', function(){
-                        idEstabelecimento = $(this).attr('data-id');
-                        editarEvento();
-                        montaLocalizacao(idEstabelecimento);
+                        if(!$(this).hasClass('disabled')) {
+                            $(this).addClass('disabled');
+                            idEstabelecimento = $(this).attr('data-id');
+                            editarEvento();
+                            montaLocalizacao(idEstabelecimento);
+                        }
                     })
                 );
                 $('.star9').each(function(){

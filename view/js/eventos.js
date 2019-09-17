@@ -1,11 +1,9 @@
 $(function() {
     var idUsuario = $('#idUsuario').val();
     if ($('#eventos .content').length) {
-        console.log('tem');
         $('#not-found').hide();
         $('#page > .filtros, #page > .filtros-right').show();
     } else {
-        console.log('n tem nd');
         $('#not-found').show();
         $('#page > .filtros, #page > .filtros-right').hide();
     }
@@ -26,7 +24,7 @@ $(function() {
                                 $(this).children('.novoEvento').fadeOut();
                             }
                         }).append(
-                            $('<img>', {class: 'card-img-top', src: "img/brand/no-image-event.png"}).on('click', function(){
+                            $('<img>', {class: 'card-img-top', src: "img/imagens_evento/no-image.png"}).on('click', function(){
                                 var eventoId = $(this).parents('.card').attr('data-id');
                                 window.location.assign('form_evento.php?evento='+eventoId);
                             }),
@@ -99,7 +97,7 @@ $(function() {
                             $(this).children('.novoEvento').fadeOut();
                         }
                     }).append(
-                        $('<img>', {class: 'card-img-top', src: "img/brand/no-image-event.png"}).on('click', function(){
+                        $('<img>', {class: 'card-img-top', src: "img/imagens_evento/no-image.png"}).on('click', function(){
                             var eventoId = $(this).parents('.card').attr('data-id');
                             window.location.assign('form_evento.php?evento='+eventoId);
                         }),

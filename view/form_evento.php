@@ -83,7 +83,7 @@ include_once('include/head.php');
             <?php if (isset($convidado)) {
                 if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
                     <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event.png"/>
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/no-image.png"/>
                     </div>
                 <?php } else {?>
                     <div id="visualizar_imagem_convidado">
@@ -96,7 +96,7 @@ include_once('include/head.php');
                 $imagem_antiga = $eventoUnico->getImagem();
                 if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
                     <div id="visualizar_imagem">
-                        <img style="width: 250px; height: 250px;" id="image" src="img/brand/no-image-event.png"/>
+                        <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/no-image.png"/>
                     </div>
                     <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
                         <input id="input-image" name="imagem" type="file">
@@ -149,6 +149,7 @@ include_once('include/head.php');
             <?php include_once('include/procuraEstabelecimento.php'); ?>
             <?php include_once('include/procuraServico.php'); ?>
             <?php include_once('include/procuraArtista.php'); ?>
+            <?php include_once('include/cadastraPreco.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
@@ -236,12 +237,20 @@ include_once('include/head.php');
                             <div>
 								<?php if (!isset($convidado)) {?>
                                 <div class="filtros-right" style="text-align: center;">
-                                <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target=''>
+                                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-preco'>
                                     <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                                 </button>
                                 </div>
 								<?php } ?>
-                                <div id="precos"></div>
+                                <div id="precos">
+                                    <div class="content co-3 preco">
+                                        <div class="precoValor"><span>R$</span>22,20</div>
+                                        <div class="precoNome">VIP</div>
+                                        <div class="precoDescricao">
+                                            VIAkjahdkajdjkada agshdbaskd akjshkjashjk alskajslk jaksalksjaklsj lakajslk P
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="content big-content">

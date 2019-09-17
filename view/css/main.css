@@ -492,8 +492,21 @@ a, a:hover, a:focus {
 	background-color: transparent !important;
 }
 
-.photo .card:hover > img{
+.photo .card > img:hover{
 	filter: brightness(0.7);
+}
+
+.photo.disabled {
+	opacity: 0.4;
+}
+.photo.disabled .card .card-img-top {
+	cursor: default;
+}
+.photo.disabled .card:hover .card-img-top {
+	filter: none !important;
+}
+.photo.disabled .card:active .card-img-top {
+	transform: none !important;
 }
 
 .li-add{
@@ -927,6 +940,39 @@ a, a:hover, a:focus {
 	border-right: solid 1px #eaedfa;
 	border-top: solid 1px #eaedfa;
 	border-bottom: solid 1px #eaedfa;
+}
+#precos{
+	text-align: center;
+}
+.content.preco {
+	text-align: center;
+	background-color: #f7f8fc;
+	border: solid 1px #eaedfa;
+	padding: 50px 30px;
+	height: 400px;
+	overflow: hidden;
+	float: none !important;
+	margin-left: 2% !important;
+}
+.content.preco .precoValor{
+	font-size: 2rem;
+	font-weight: 700;
+}
+.content.preco .precoValor span{
+	font-size: 1rem;
+	margin-right: 10px;
+}
+.content.preco .precoNome{
+	font-size: 1.3rem;
+	font-weight: 700;
+	background-color: #697cff;
+	color: #fff;
+	margin: 20px 0px;
+	white-space: nowrap;
+    overflow: hidden;
+}
+.content.preco .precoDescricao{
+	text-align: left;
 }
 
 

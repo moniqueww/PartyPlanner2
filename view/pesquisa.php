@@ -57,7 +57,7 @@ include_once('include/head.php');
 							}
 							$('#eventos .conteudo').append(
 								$('<div>', {'data-id': data.eventos[i].id, id: 'eventos_'+data.eventos[i].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {src: 'img/brand/no-image-event.png'}),
+									$('<img>', {src: 'img/imagens_evento/no-image.png'}),
 									$('<div>').append(
 										$('<div>', {html: data.eventos[i].nome}),
 										$('<div>', {html: data.eventos[i].nome})
@@ -157,7 +157,7 @@ include_once('include/head.php');
                     foreach (array_reverse($eventos) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
                         echo "<div class='content co-10 mini-card no-padding'>
-				  <img src='img/brand/no-image-event.png'/>
+				  <img src='img/imagens_evento/no-image.png'/>
 				  <div>
 				    <div>".$ev->getNome()."</div>
 				    <div style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</div>

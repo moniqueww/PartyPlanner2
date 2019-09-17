@@ -64,7 +64,7 @@ include_once('include/head.php');
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/imagens_evento/no-image.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
@@ -83,7 +83,7 @@ include_once('include/head.php');
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/imagens_evento/no-image.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
@@ -102,7 +102,7 @@ include_once('include/head.php');
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/imagens_evento/no-image.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
@@ -121,7 +121,7 @@ include_once('include/head.php');
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/brand/no-image-event.png' alt='Card image cap'>
+					<img class='card-img-top' src='img/imagens_evento/no-image.png' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>

@@ -2360,7 +2360,7 @@ pre code
 .form-control:focus
 {
     color: #8898aa;
-    border-color: rgba(50, 151, 211, .25);
+    border-color: #697cff;
     outline: 0;
     background-color: #fff;
     box-shadow: none, none;
