@@ -12,8 +12,7 @@
 
         ////////////////////////////////// imagem
 
-        primeiraImagem = $('#image').attr('src').split('/').pop();
-        console.log('primeiraImagem: ', primeiraImagem);
+        nomeImagem = $('#image').attr('src').split('/').pop();
 
         $('#input-image').on('change', function() {
             $('#form-image').ajaxForm({
@@ -33,8 +32,8 @@
 
         $('#input-image').on('change', function(){
             imagemNovo = $('#input-image').val().split('\\').pop();
-            console.log('imagemNovo: ', imagemNovo);
-            if (imagemNovo != primeiraImagem) {
+            if (imagemNovo != nomeImagem) {
+                nomeImagem = imagemNovo;
                 editarEvento();
             }
         });
@@ -270,7 +269,6 @@
 
     function listarEstabelecimentos() {
         $.post( "../ajax/buscaEstabelecimento.php", {'nome': nomeEstabelecimento, 'evento': idEvento}, function(data){
-            console.log(data);
             data = $.parseJSON( data );
             categoriaServico = '';
             $('#tabela_estabelecimento').html('');
@@ -305,13 +303,9 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        imagemNovo = $('#input-image').val().split('\\').pop();
-        console.log('imagemNovo: ', imagemNovo);
-        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': imagemNovo}, function(data){
+        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': nomeImagem}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
-            primeiraImagem = imagemNovo;
-            console.log('primeiraImagem: ', primeiraImagem);
         })
     }
 

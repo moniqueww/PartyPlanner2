@@ -24,7 +24,7 @@ $(function() {
                                 $(this).children('.novoEvento').fadeOut();
                             }
                         }).append(
-                            $('<img>', {class: 'card-img-top', src: "img/imagens_evento/no-image.png"}).on('click', function(){
+                            $('<img>', {class: 'card-img-top', src: "img/imagens_evento/"+data.imagem}).on('click', function(){
                                 var eventoId = $(this).parents('.card').attr('data-id');
                                 window.location.assign('form_evento.php?evento='+eventoId);
                             }),

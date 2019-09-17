@@ -37,7 +37,8 @@ class ControleEventoPublicado extends ControleBase {
         $this->evento->setDescricao((isset($this->visao["descricao"]) && $this->visao["descricao"] != null) ? $this->visao["descricao"] : "");
         $this->evento->setStatus((isset($this->visao["status"]) && $this->visao["status"] != null) ? $this->visao["status"] : "");
         $this->evento->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
-        $this->evento->setIdUsuario((isset($this->visao["idUsuario"]) && $this->visao["idUsuario"] != null) ? $this->visao["idUsuario"] : "");     
+        $this->evento->setIdUsuario((isset($this->visao["idUsuario"]) && $this->visao["idUsuario"] != null) ? $this->visao["idUsuario"] : "");
+        $this->evento->setImagem((isset($this->visao["imagem"]) && $this->visao["imagem"] != null) ? $this->visao["imagem"] : "");     
     }
     
     protected function inserir() {

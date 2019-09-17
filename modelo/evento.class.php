@@ -110,7 +110,7 @@ class Evento implements IBaseModelo{
             $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
             $this->stmt->bindValue(':idEstabelecimento', $this->idEstabelecimento, PDO::PARAM_INT);
             $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
-            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_INT);
+            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_STR);
 
 
 
@@ -193,7 +193,7 @@ class Evento implements IBaseModelo{
 
     public function listarUltimo($idUsuario){
         try{
-            $query="SELECT id,nome FROM eventos WHERE id = (SELECT MAX(ID) FROM eventos WHERE idUsuario = :idUsuario)";
+            $query="SELECT id,nome,imagem FROM eventos WHERE id = (SELECT MAX(ID) FROM eventos WHERE idUsuario = :idUsuario)";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_STR);
             

@@ -12,7 +12,7 @@
             $eventoUnico = $eventoControle->controleAcao('listarUltimo', $_POST['idUsuario']);
             $usuarioControle = new ControleOrganizador();
             $usuarioUnico = $usuarioControle->controleAcao('listarUnico', $_POST['idUsuario']);
-            $arrayRetorno = ['id' => $eventoUnico->getId(), 'nome' => $eventoUnico->getNome(), 'nomeUsuario' => $usuarioUnico->getNome()];
+            $arrayRetorno = ['id' => $eventoUnico->getId(), 'nome' => $eventoUnico->getNome(), 'nomeUsuario' => $usuarioUnico->getNome(), 'imagem' => $eventoUnico->getImagem()];
             echo json_encode($arrayRetorno);
         }
     }

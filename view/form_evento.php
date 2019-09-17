@@ -80,41 +80,25 @@ include_once('include/head.php');
             <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
             <!--  Imagem  -->
-            <?php if (isset($convidado)) {
-                if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/no-image.png"/>
-                    </div>
-                <?php } else {?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
-                    </div>
-                <?php }
-            } ?>
+            <?php if (isset($convidado)) {?>
+                <div id="visualizar_imagem_convidado">
+                    <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
+                </div>
+            <?php } ?>
 
             <?php if (!isset($convidado)) {
-                $imagem_antiga = $eventoUnico->getImagem();
-                if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
-                    <div id="visualizar_imagem">
-                        <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/no-image.png"/>
-                    </div>
-                    <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
-                        <input id="input-image" name="imagem" type="file">
-                    </form>
-                <?php } else {?>
+                $imagem_antiga = $eventoUnico->getImagem();?>
                     <div id="visualizar_imagem">
                         <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
                     </div>       
                     <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
                         <input id="input-image" name="imagem" type="file">
                     </form>
-                <?php }
-                $imagem_nova = $eventoUnico->getImagem();
+                <?php $imagem_nova = $eventoUnico->getImagem();
                 if ($imagem_antiga != $imagem_nova){
                     unlink('img/imagens_evento/' . $imagem_antiga);
                 }
-            } ?>            
-            <!--  -----------  -->
+            } ?>
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>
