@@ -995,3 +995,20 @@ a, a:hover, a:focus {
 	  top:2px;
 	  left:2px;
   }
+
+  /*  IMAGEM EVENTO  */
+
+  #visualizar_imagem_convidado{
+	  float: left;
+	  margin-right: 30px;
+  }
+
+  #visualizar_imagem{
+	  float: left;
+	  margin-right: 30px;
+	  overflow: hidden;
+  }
+
+  #form-image{
+	  display: none;
+  }

@@ -51,6 +51,8 @@ include_once('include/head.php');
     <script src="js/jquery.js" crossorigin="anonymous"></script>
 	<!-- Meu js -->
 	<script src="js/main.js"></script>
+    <!-- AjaxForm -->
+    <script src="http://malsup.github.com/jquery.form.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -77,7 +79,42 @@ include_once('include/head.php');
 
             <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
-            <img src="img/brand/no-image-event.png"/>
+            <!--  Imagem  -->
+            <?php if (isset($convidado)) {
+                if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
+                    <div id="visualizar_imagem_convidado">
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event.png"/>
+                    </div>
+                <?php } else {?>
+                    <div id="visualizar_imagem_convidado">
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
+                    </div>
+                <?php }
+            } ?>
+
+            <?php if (!isset($convidado)) {
+                $imagem_antiga = $eventoUnico->getImagem();
+                if($eventoUnico->getImagem() == "" || $eventoUnico->getImagem() == 0) { ?>
+                    <div id="visualizar_imagem">
+                        <img style="width: 250px; height: 250px;" id="image" src="img/brand/no-image-event.png"/>
+                    </div>
+                    <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
+                        <input id="input-image" name="imagem" type="file">
+                    </form>
+                <?php } else {?>
+                    <div id="visualizar_imagem">
+                        <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
+                    </div>       
+                    <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
+                        <input id="input-image" name="imagem" type="file">
+                    </form>
+                <?php }
+                $imagem_nova = $eventoUnico->getImagem();
+                if ($imagem_antiga != $imagem_nova){
+                    unlink('img/imagens_evento/' . $imagem_antiga);
+                }
+            } ?>            
+            <!--  -----------  -->
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>

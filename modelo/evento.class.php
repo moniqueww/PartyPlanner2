@@ -8,6 +8,7 @@ class Evento implements IBaseModelo{
     private $idEstabelecimento;
     private $status;
     private $idUsuario;
+    private $imagem;
     private $conn;
     private $stmt;
     
@@ -60,6 +61,14 @@ class Evento implements IBaseModelo{
         $this->idUsuario = $idUsuario;
     }
 
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -93,7 +102,7 @@ class Evento implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, idEstabelecimento = :idEstabelecimento, status = :status WHERE id=:id ";
+            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, idEstabelecimento = :idEstabelecimento, status = :status, imagem = :imagem WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
@@ -101,6 +110,8 @@ class Evento implements IBaseModelo{
             $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
             $this->stmt->bindValue(':idEstabelecimento', $this->idEstabelecimento, PDO::PARAM_INT);
             $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
+            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_INT);
+
 
 
             if($this->stmt->execute()){
@@ -135,10 +146,10 @@ class Evento implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
+                $query="SELECT id,nome,descricao,idEstabelecimento,status,imagem FROM eventos WHERE idUsuario = :idUsuario AND nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario FROM eventos WHERE idUsuario = :idUsuario";
+                $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario,imagem FROM eventos WHERE idUsuario = :idUsuario";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -162,7 +173,7 @@ class Evento implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario FROM eventos WHERE id=:id";
+            $query="SELECT id,nome,descricao,idEstabelecimento,status,idUsuario,imagem FROM eventos WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             

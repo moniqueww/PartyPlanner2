@@ -4,10 +4,50 @@
         nome = "";
         nomeArtista = "";
         nomeEstabelecimento = "";
+        
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
         statusEvento = $('#statusEvento').val();
         idEstabelecimento = $('#idEstabelecimento').val();
+
+        ////////////////////////////////// imagem
+
+        primeiraImagem = $('#image').attr('src').split('/').pop();
+        console.log(primeiraImagem);
+
+        $('#input-image').on('change', function() {
+            
+            $('#form-image').ajaxForm({
+                target:'#visualizar_imagem'
+            }).submit();
+
+        });
+
+        $('#visualizar_imagem').on('click', function(){
+
+            $('#input-image').trigger('click');
+            
+        });
+
+        $('#visualizar_imagem').hover(function(){
+
+            $('#visualizar_imagem').css({'cursor': 'pointer', 'filter': 'brightness(0.7)'});
+
+        }, function(){
+
+            $('#visualizar_imagem').css({'cursor': 'none', 'filter': 'brightness(1)'});
+
+        });
+
+        $('#input-image').on('change', function(){
+            imagemNovo = $('#input-image').val().split('\\').pop();
+            console.log(imagemNovo);
+            if (imagemNovo != primeiraImagem) {
+                editarEvento();
+            }
+        });
+        ///////////////////////////////////
+
         $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
             nomeNovo = $('#input-nome').val();
@@ -259,9 +299,11 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento}, function(data){
+        imagemNovo = $('#input-image').val().split('\\').pop();
+        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': imagemNovo}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
+            primeiraImagem = imagemNovo;
         })
     }
 
