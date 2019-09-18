@@ -20,7 +20,7 @@ if (isset($_POST['validar']) == 1){
 				if($_SESSION['tipo'] == 'O'){
 					echo '<script>window.location.href = "home.php";</script>';
 				}else{
-					echo "<script>window.location.href='edit_servico.php?servico=".$_SESSION['id']."';</script>";
+					echo "<script>window.location.href='perfil_servico.php?servico=".$_SESSION['id']."';</script>";
 				}
 			}else if($us->getSenha()!=$senha){
 				echo '<script>$("#span_alertas").html("Email e/ou senha incorretos"); $("#email").val("'.$email.'");</script>';

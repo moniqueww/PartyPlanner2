@@ -61,7 +61,7 @@
 	                    <i class="fas fa-home"></i><span>Página incial</span>
 	                </li>
                 </a>
-                <a href="<?php echo "edit_servico.php?servico=".$_SESSION['id'];?>">
+                <a href="<?php echo "perfil_servico.php?servico=".$_SESSION['id'];?>">
 					<li>
                     	<i href="meu_perfil.php" class="fas fa-user"></i><span>Seu perfil</span>
                 	</li>
