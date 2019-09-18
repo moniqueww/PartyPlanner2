@@ -1,32 +1,25 @@
-<?php include_once 'include/verificaOrganizador.php';?>
+<?php include_once 'include/verificaServico.php';?>
 <?php include_once 'include/banco.php';?>
 <?php
     include_once '../autoload.php'; 
-	if($_GET['servico']){ // Caso os dados sejam enviados via GET
-
+    if($_GET['servico']){ // Caso os dados sejam enviados via GET
         $servicoControle = new ControleServico();
         //Passa o GET desta View para o Controle
         $servicoControle->setVisao($_GET);
-    
+      
         $servicoUnico = $servicoControle->controleAcao("listarUnico", $_GET["servico"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
+      
+        if($_SESSION['id'] != $_GET['servico']){
+          $convidado = true;;
+        } 
     }
 ?>
 <!DOCTYPE html>
 <html>
 <?php
-$tituloHead = 'Perfil de serviço';
+$tituloHead = 'Edita servico';
 include_once('include/head.php');
 ?>
-<style>
-	.estrelas input[type=radio]{
-	display: none;
-}.estrelas label i.fa:before{
-	content: '\f005';
-	color: #FC0;
-}.estrelas  input[type=radio]:checked  ~ label i.fa:before{
-	color: #CCC;
-}
-	</style>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
@@ -40,72 +33,136 @@ include_once('include/head.php');
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
+    <script type="text/javascript">
+    $(function() {
+        idServico = $('#idServico').val();
+        nome = "";
+        primeiroNome = $('#input-nome').val();
+        primeiroEmail = $('#input-email').val();
+        primeiroTelefone = $('#input-telefone').val();
+        primeiroCnpj = $('#input-cnpj').val();
+        $('#input-nome').on('blur', function(){
+            nomeNovo = $('#input-nome').val();
+            if (nomeNovo != primeiroNome) {
+                editarEvento();
+            }
+        });
+        $('#input-cnpj').on('blur', function(){
+            cnpjNovo = $('#input-cnpj').val();
+            if (cnpjNovo != primeiroCnpj) {
+                editarEvento();
+            }
+        });
+        $('#input-email').on('blur', function(){
+            emailNovo = $('#input-email').val();
+            if (emailNovo != primeiroEmail) {
+                editarEvento();
+            }
+        });
+        $('#input-telefone').on('blur', function(){
+            telefoneNovo = $('#input-telefone').val();
+            if (telefoneNovo != primeiroTelefone) {
+                editarEvento();
+            }
+        });
+    });
 
-    <div class="wrapper">
+    function editarEvento() {
+        nomeNovo = $('#input-nome').val();
+        emailNovo = $('#input-email').val();
+        telefoneNovo = $('#input-telefone').val();
+        cnpjNovo = $('#input-cnpj').val();
+        console.log(nomeNovo);
+        console.log(emailNovo);
+        console.log(telefoneNovo);
+        console.log(cnpjNovo);
+        $.post( "../ajax/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': cnpjNovo, 'id': idServico}, function(data){
+            alert('Servico modificado');
+            primeiroNome = nomeNovo;
+            primeiroCnpj = cnpjNovo;
+            primeiroTelefone = telefoneNovo;
+            primeiroEmail = emailNovo;
+        })
+    }
+    </script>
 
-    	<?php
-		$paginaHome = '';
-        $paginaLista = '';
-		include_once('include/sidebar.php');
-		?>
+        <div class="wrapper">
 
-    	<div id="page">
+        <?php
+        include_once('include/sidebarServico.php');
+        ?>
+
+        <div id="page" class="no-padding">
+
+            <div id="background">
 
             <?php include_once('include/navbar.php'); ?>
 
-			<div class="filtros">Serviço</div>
-                        <!-- Page Content -->
-                        <div class="content co-10">
-                            <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>                     
-                            <div class="content-header" style="float: left;">
-                                <div class="header-photo alternative-shadow">
-                                    <img src="img/brand/blog-neon-6.jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-9">
-                                <div style="margin-top: 20px;">    
-                                    <p style="font-weight: bold; width: 300px !important; font-size: 20px;" ><?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?></p>
-                                </div>
-                                <form method='POST' action='processa.php' enctype='multipart/form-data'>
-							<div class='estrelas'>
-								<input type='radio' id='vazio' name='estrela' value='' checked>
-								<input type='hidden' name='id_servico' value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>">
-								
-								<label for='estrela_um'><i class='fa'></i></label>
-								<input type='radio' id='estrela_um' name='estrela' value='1'>
-								
-								<label for='estrela_dois'><i class='fa'></i></label>
-								<input type='radio' id='estrela_dois' name='estrela' value='2'>
-								
-								<label for='estrela_tres'><i class='fa'></i></label>
-								<input type='radio' id='estrela_tres' name='estrela' value='3'>
-								
-								<label for='estrela_quatro'><i class='fa'></i></label>
-								<input type='radio' id='estrela_quatro' name='estrela' value='4'>
-								
-								<label for='estrela_cinco'><i class='fa'></i></label>
-								<input type='radio' id='estrela_cinco' name='estrela' value='5'><br><br>
-								
-								<input type='submit' value='Cadastrar'>
-								
-							</div>
-						</form>
-                            </div>
-                            <div class="col-3 pt-3">
-                                <p class="font-weight-bold">Informações do serviço:</p>
-                                <p style="width: 300px !important;" >CNPJ: <?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?></p>                                
-                                <p class="font-weight-bold">Contatos:</p>
-                                <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?></p>
-                                <p  style="width: 300px !important;" ><?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?></p>
-                            </div>
-                        </div>
+            <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
+
+            <!--  Imagem  -->
+            <?php if (isset($convidado)) { ?>
+                    <div id="visualizar_imagem_convidado">
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
                     </div>
-                    <div class="content co-10">
-                        div do portifolio
+            <?php } ?>
+
+            <?php if (!isset($convidado)) { ?>
+                    <div id="visualizar_imagem_convidado">
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
                     </div>
-		</div>
-    </div>
+            <?php } ?>            
+            <!--  -----------  -->
+
+            <div class="filtros">
+                <div class="filtros-tipo">SERVIÇO</div>
+                <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>
+                <div class="filtros-nome">
+                    <?php if (!isset($convidado)) {?>
+                    <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?>">
+                    <?php } else {
+                        if (isset($servicoUnico)) {
+                            echo $servicoUnico->getNome();
+                        } else {
+                            echo "";
+                        }
+                    } ?>
+                </div>
+                <div class="filtros-by">
+                    <?php if (!isset($convidado)) {?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <input type="text" id="input-email" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?>">
+                    <?php } else { ?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <span> <?= isset($servicoUnico) ? $servicoUnico->getEmail() : '';?></span>
+                    <?php } ?>
+                </div>   
+                <div class="filtros-by">
+                    <?php if (!isset($convidado)) {?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">CNPJ</span>
+                        <input type="text" id="input-cnpj" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>">
+                    <?php } else { ?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">CNPJ</span>
+                        <span> <?= isset($servicoUnico) ? $servicoUnico->getCnpj() : '';?></span>
+                    <?php } ?>
+                </div>   
+                <div class="filtros-by">
+                    <?php if (!isset($convidado)) {?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">TELEFONE</span>
+                        <input type="text" id="input-telefone" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?>">
+                    <?php } else { ?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">TELEFONE</span>
+                        <span> <?= isset($servicoUnico) ? $servicoUnico->getTelefone() : '';?></span>
+                    <?php } ?>
+                </div>   
+            </div>
+            
+            <br clear="all">
+            </div>
+            
+        </div>
+        TESTETESTESTSETSETSETSETST
+        </div>  
 	
 </body>
 </html>
