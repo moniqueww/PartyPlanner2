@@ -84,25 +84,24 @@ include_once('include/head.php');
             <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
             <!--  Imagem  -->
+
             <?php if (isset($convidado)) {?>
                 <div id="visualizar_imagem_convidado">
                     <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
                 </div>
             <?php } ?>
 
-            <?php if (!isset($convidado)) {
-                $imagem_antiga = $eventoUnico->getImagem();?>
-                    <div id="visualizar_imagem">
-                        <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
-                    </div>       
-                    <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
-                        <input id="input-image" name="imagem" type="file">
-                    </form>
-                <?php $imagem_nova = $eventoUnico->getImagem();
-                if ($imagem_antiga != $imagem_nova){
-                    unlink('img/imagens_evento/' . $imagem_antiga);
-                }
-            } ?>
+            <?php if (!isset($convidado)) { ?>
+                <div id="visualizar_imagem">
+                    <img style="width: 250px; height: 250px;" id="image" src="img/imagens_evento/<?= $eventoUnico->getImagem() ?>"/>
+                </div>       
+                <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
+                    <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $eventoUnico->getImagem(); ?>"><input>
+                    <input id="input-image" name="imagem" type="file">
+                </form>
+            <?php } ?>
+
+            <!--   ///////////////////////   -->
 
 			<div class="filtros">
                 <div class="filtros-tipo">EVENTO</div>
