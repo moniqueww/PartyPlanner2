@@ -41,6 +41,8 @@ class ControleServico extends ControleBase {
         $this->servico->setTipo((isset($this->visao["tipo"]) && $this->visao["tipo"] != null) ? $this->visao["tipo"] : "");
         $this->servico->setIdCategoria((isset($this->visao["idCategoria"]) && $this->visao["idCategoria"] != null) ? $this->visao["idCategoria"] : "");
         $this->servico->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->servico->setImagem((isset($this->visao["imagem"]) && $this->visao["imagem"] != null) ? $this->visao["imagem"] : "");     
+
     }
     
     protected function inserir() {

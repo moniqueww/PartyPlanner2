@@ -39,6 +39,8 @@ class ControleOrganizador extends ControleBase {
 		$this->organizador->setCnpj((isset($this->visao["cnpj"]) && $this->visao["cnpj"] != null) ? $this->visao["cnpj"] : "");
 		$this->organizador->setTipo((isset($this->visao["tipo"]) && $this->visao["tipo"] != null) ? $this->visao["tipo"] : "");
         $this->organizador->setId((isset($this->visao["id"]) && $this->visao["id"] != null) ? $this->visao["id"] : "");
+        $this->organizador->setImagem((isset($this->visao["imagem"]) && $this->visao["imagem"] != null) ? $this->visao["imagem"] : "");     
+
     }
     
     protected function inserir() {

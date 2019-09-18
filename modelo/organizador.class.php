@@ -8,6 +8,7 @@ class Organizador implements IBaseModelo{
     private $senha;
     private $cnpj;
     private $tipo;
+    private $imagem;
     private $conn;
     private $stmt;
     
@@ -60,6 +61,14 @@ class Organizador implements IBaseModelo{
         $this->tipo = $tipo;
     }
 
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -95,12 +104,13 @@ class Organizador implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE usuario SET nome = :nome, email = :email WHERE id=:id ";
+            $query="UPDATE usuario SET nome = :nome, email = :email, imagem = :imagem WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_STR);
 			
 
 
@@ -136,10 +146,10 @@ class Organizador implements IBaseModelo{
             //Comando SQL para inserir um organizador
             if(!is_null($name)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,email,senha FROM usuario WHERE nome LIKE :nome AND tipo='O'";
+                $query="SELECT id, nome, email, senha, imagem FROM usuario WHERE nome LIKE :nome AND tipo='O'";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,email,senha FROM usuario WHERE tipo='O'";
+                $query="SELECT id, nome, email, senha, imagem FROM usuario WHERE tipo='O'";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($name))$this->stmt->bindValue(':nome', '%'.$name.'%', PDO::PARAM_STR);
@@ -162,7 +172,7 @@ class Organizador implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome,email,senha FROM usuario WHERE id=:id";
+            $query="SELECT id, nome, email, senha, imagem FROM usuario WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
@@ -182,7 +192,7 @@ class Organizador implements IBaseModelo{
     public function listarUltimo($nome){
         
         try{
-            $query="SELECT id,nome FROM usuario WHERE nome=:nome";
+            $query="SELECT id, nome FROM usuario WHERE nome=:nome";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
             

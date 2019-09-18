@@ -27,6 +27,8 @@ include_once('include/head.php');
     <script src="js/jquery.js" crossorigin="anonymous"></script>
 	<!-- Meu js -->
 	<script src="js/main.js"></script>
+    <!-- AjaxForm -->
+    <script src="http://malsup.github.com/jquery.form.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->

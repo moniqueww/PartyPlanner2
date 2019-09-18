@@ -26,65 +26,16 @@ include_once('include/head.php');
     <script src="js/jquery.js" crossorigin="anonymous"></script>
 	<!-- Meu js -->
 	<script src="js/main.js"></script>
+    <!-- AjaxForm -->
+    <script src="http://malsup.github.com/jquery.form.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <script type="text/javascript">
-    $(function() {
-        idServico = $('#idServico').val();
-        nome = "";
-        primeiroNome = $('#input-nome').val();
-        primeiroEmail = $('#input-email').val();
-        primeiroTelefone = $('#input-telefone').val();
-        primeiroCnpj = $('#input-cnpj').val();
-        $('#input-nome').on('blur', function(){
-            nomeNovo = $('#input-nome').val();
-            if (nomeNovo != primeiroNome) {
-                editarEvento();
-            }
-        });
-        $('#input-cnpj').on('blur', function(){
-            cnpjNovo = $('#input-cnpj').val();
-            if (cnpjNovo != primeiroCnpj) {
-                editarEvento();
-            }
-        });
-        $('#input-email').on('blur', function(){
-            emailNovo = $('#input-email').val();
-            if (emailNovo != primeiroEmail) {
-                editarEvento();
-            }
-        });
-        $('#input-telefone').on('blur', function(){
-            telefoneNovo = $('#input-telefone').val();
-            if (telefoneNovo != primeiroTelefone) {
-                editarEvento();
-            }
-        });
-    });
 
-    function editarEvento() {
-        nomeNovo = $('#input-nome').val();
-        emailNovo = $('#input-email').val();
-        telefoneNovo = $('#input-telefone').val();
-        cnpjNovo = $('#input-cnpj').val();
-        console.log(nomeNovo);
-        console.log(emailNovo);
-        console.log(telefoneNovo);
-        console.log(cnpjNovo);
-        $.post( "../ajax/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': cnpjNovo, 'id': idServico}, function(data){
-            alert('Servico modificado');
-            primeiroNome = nomeNovo;
-            primeiroCnpj = cnpjNovo;
-            primeiroTelefone = telefoneNovo;
-            primeiroEmail = emailNovo;
-        })
-    }
-    </script>
+    <script src="js/perfil.servico.js"></script>
 
         <div class="wrapper">
 
@@ -101,18 +52,24 @@ include_once('include/head.php');
             <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
             <!--  Imagem  -->
-            <?php if (isset($convidado)) { ?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
-                    </div>
+
+            <?php if (isset($convidado)) {?>
+                <div id="visualizar_imagem_convidado">
+                    <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
-                    </div>
-            <?php } ?>            
-            <!--  -----------  -->
+                <div id="visualizar_imagem">
+                    <img style="width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                </div>       
+                <form id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
+                    <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $servicoUnico->getImagem(); ?>"><input>
+                    <input id="input-image" name="imagem" type="file">
+                </form>
+            <?php } ?>
+
+            <!--   ///////////////////////   -->
 
             <div class="filtros">
                 <div class="filtros-tipo">SERVIÇO</div>
