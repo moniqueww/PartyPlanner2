@@ -12,8 +12,7 @@
 
         ////////////////////////////////// imagem
 
-        primeiraImagem = $('#image').attr('src').split('/').pop();
-        console.log('primeiraImagem: ', primeiraImagem);
+        nomeImagem = $('#image').attr('src').split('/').pop();
 
         $('#input-image').on('change', function() {
             $('#form-image').ajaxForm({
@@ -33,8 +32,8 @@
 
         $('#input-image').on('change', function(){
             imagemNovo = $('#input-image').val().split('\\').pop();
-            console.log('imagemNovo: ', imagemNovo);
-            if (imagemNovo != primeiraImagem) {
+            if (imagemNovo != nomeImagem) {
+                nomeImagem = imagemNovo;
                 editarEvento();
             }
         });
@@ -98,7 +97,7 @@
             var idEventoServico = $(this).attr('data-id');
             $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                 data = $.parseJSON( data );
-                $(".content.photo[data-id="+data.id+"]").remove();
+                $(".content.photo.quadro[data-id="+data.id+"]").remove();
                 $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
@@ -106,16 +105,19 @@
             var idEventoServico = $(this).attr('data-id');
             $.post( "../ajax/excluiEventoArtista.php", {'id': idEventoServico}, function(data){
                 data = $.parseJSON( data );
-                $(".content.photo[data-id="+data.id+"]").remove();
+                $(".content.photo.atracao[data-id="+data.id+"]").remove();
                 $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
             })
         });
         $('#publica-evento').on('click', function(){
             if (statusEvento == 0) {
                 statusEvento = 1;
-                editarEvento();
-                $(this).attr('disabled', '');
+            } else {
+                statusEvento = 0;
             }
+            editarEvento();
+            $(this).children('.btn-inner--icon').children().toggleClass('fa-eye-slash');
+            $(this).children('.btn-inner--icon').children().toggleClass('fa-eye');
         });
         $('#showEdita').on('click', function(){
             $('#navegacaoEvento > div').removeClass('selected');
@@ -133,11 +135,29 @@
             var valor = $('#precoValor').val();
             var nome = $('#precoNome').val();
             var descricao = $('#precoDescricao').val();
-            $.post( "../ajax/cadastraPreco.php", {'valor': valor, 'nome': nome, 'descricao': descricao, 'idEvento': idEvento}, function(data){
-                console.log(data);
-                data = $.parseJSON( data );
-                console.log(data);
-            })
+            if (valor != '' && nome != '') {
+                $(this).attr('disabled', '');
+                $.post( "../ajax/cadastraPreco.php", {'valor': valor, 'nome': nome, 'descricao': descricao, 'idEvento': idEvento}, function(data){
+                    data = $.parseJSON( data );
+                    $('#cancelarCadastroPreco').click();
+                    $('#precoValor').val('');
+                    $('#precoNome').val('');
+                    $('#precoDescricao').val('');
+                    $('#precos').append(
+                        $('<div>', {class: 'content co-3 preco', 'data-id': data.id}).append(
+                            $('<div>', {class: 'precoValor'}).append(
+                                $('<span>', {html: 'R$'}),
+                                data.valor
+                            ),
+                            $('<div>', {class: 'precoNome', html: data.nome}),
+                            $('<div>', {class: 'precoDescricao', html: data.descricao})
+                        )
+                    );
+                    $('#cadastrarPreco').removeAttr('disabled');
+                })
+            } else {
+                $(this).removeAttr('disabled');
+            }
         });
     });
     function listarQuadro() {
@@ -193,7 +213,7 @@
                                                 $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
                                                     console.log(data);
-                                                    $(".content.photo[data-id="+data.id+"]").remove();
+                                                    $(".content.photo.quadro[data-id="+data.id+"]").remove();
                                                     $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
                                                 })
                                             })
@@ -249,7 +269,7 @@
                                                 var idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiEventoArtista.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
-                                                    $(".content.photo[data-id="+data.id+"]").remove();
+                                                    $(".content.photo.atracao[data-id="+data.id+"]").remove();
                                                     $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
                                                 })
                                             })
@@ -270,7 +290,6 @@
 
     function listarEstabelecimentos() {
         $.post( "../ajax/buscaEstabelecimento.php", {'nome': nomeEstabelecimento, 'evento': idEvento}, function(data){
-            console.log(data);
             data = $.parseJSON( data );
             categoriaServico = '';
             $('#tabela_estabelecimento').html('');
@@ -305,13 +324,9 @@
     function editarEvento() {
         descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
-        imagemNovo = $('#input-image').val().split('\\').pop();
-        console.log('imagemNovo: ', imagemNovo);
-        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': imagemNovo}, function(data){
+        $.post( "../ajax/editaEvento.php", {'nome': nomeNovo, 'descricao': descricaoNova, 'id': idEvento, 'status': statusEvento, 'idEstabelecimento': idEstabelecimento, 'imagem': nomeImagem}, function(data){
             primeiroNome = nomeNovo;
             primeiraDescricao = descricaoNova;
-            primeiraImagem = imagemNovo;
-            console.log('primeiraImagem: ', primeiraImagem);
         })
     }
 

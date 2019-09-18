@@ -25,7 +25,7 @@
         }
 
         foreach($eventos as $ev) {
-            $resposta['eventos'][] = ['id' => $ev->getId(), 'nome' => $ev->getNome(), 'descricao' => $ev->getDescricao()];
+            $resposta['eventos'][] = ['id' => $ev->getId(), 'nome' => $ev->getNome(), 'descricao' => $ev->getDescricao(), 'imagem' => $ev->getImagem()];
         }
 
         foreach($organizadores as $og) {

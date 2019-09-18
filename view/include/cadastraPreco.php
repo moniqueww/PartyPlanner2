@@ -7,15 +7,16 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
+                            <form>
 								<div class="modal-body" style="padding: 60px 1.5rem 1.5rem 1.5rem;">
 									<div>
 										<h4 class="heading mt-4">Valor</h4>
 									</div>
-									<input class="form-control form-control-alternative" name="precoValor" id="precoValor" placeholder="Escreva aqui..." type="number">
+									<input required class="form-control form-control-alternative" name="precoValor" id="precoValor" placeholder="Escreva aqui..." type="number">
 									<div>
 										<h4 class="heading mt-4">Nome</h4>
 									</div>
-									<input class="form-control form-control-alternative" name="precoNome" id="precoNome" placeholder="Escreva aqui..." type="text">
+									<input required class="form-control form-control-alternative" name="precoNome" id="precoNome" placeholder="Escreva aqui..." type="text">
 									<div>
 										<h4 class="heading mt-4">Descrição</h4>
 									</div>
@@ -23,8 +24,9 @@
 								</div>
 								<div class="modal-footer">
 									<input id="cadastrarPreco" type="submit" class="btn btn-primary" value="Adicionar preço"/>
-									<button id="cancelarCadastro" type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Cancelar</button> 
+									<button id="cancelarCadastroPreco" type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Cancelar</button> 
 								</div>
+							</form>
                         </div>
 					</div>
 				</div>

@@ -7,6 +7,7 @@ class EventoPublicado implements IBaseModelo{
     private $descricao;
     private $status;
     private $idUsuario;
+    private $imagem;
     private $conn;
     private $stmt;
     
@@ -51,6 +52,14 @@ class EventoPublicado implements IBaseModelo{
         $this->idUsuario = $idUsuario;
     }
 
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+
     public function __construct() {
         //Cria conex�o com o banco
         $this->conn = Database::conectar();
@@ -84,13 +93,14 @@ class EventoPublicado implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, status = :status WHERE id=:id ";
+            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, status = :status, imagem = :imagem WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
             $this->stmt->bindValue(':descricao', $this->descricao, PDO::PARAM_STR);
             $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
+            $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_STR);
 
 
             if($this->stmt->execute()){
@@ -125,10 +135,10 @@ class EventoPublicado implements IBaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE status = :status AND nome LIKE :nome";
+                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status AND nome LIKE :nome";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE status = :status";
+                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -152,7 +162,7 @@ class EventoPublicado implements IBaseModelo{
     public function listarUnico($id){
         
         try{
-            $query="SELECT id,nome,descricao,status,idUsuario FROM eventos WHERE id=:id";
+            $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE id=:id";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':id', $id, PDO::PARAM_INT);
             
@@ -178,7 +188,7 @@ class EventoPublicado implements IBaseModelo{
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");  
                 
             }
             
