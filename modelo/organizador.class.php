@@ -95,13 +95,12 @@ class Organizador implements IBaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE usuario SET nome = :nome, email = :email, senha = :senha WHERE id=:id ";
+            $query="UPDATE usuario SET nome = :nome, email = :email WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
-            $this->stmt->bindValue(':id', $param, PDO::PARAM_INT);
-            $this->stmt->bindValue(':nome', $this->name, PDO::PARAM_STR);
+            $this->stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-            $this->stmt->bindValue(':senha', $this->senha, PDO::PARAM_STR);
 			
 
 

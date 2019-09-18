@@ -40,18 +40,9 @@ include_once('include/head.php');
         nome = "";
         primeiroNome = $('#input-nome').val();
         primeiroEmail = $('#input-email').val();
-        primeiroTelefone = $('#input-telefone').val();
-        primeiraDescricao = $('#input-descricao').attr('data-descricao');
-        $('#input-descricao').html(primeiraDescricao);
         $('#input-nome').on('blur', function(){
             nomeNovo = $('#input-nome').val();
             if (nomeNovo != primeiroNome) {
-                editarEvento();
-            }
-        });
-        $('#input-descricao').on('blur', function(){
-            descricaoNova = $('#input-descricao').val();
-            if (descricaoNova != primeiraDescricao) {
                 editarEvento();
             }
         });
@@ -61,24 +52,16 @@ include_once('include/head.php');
                 editarEvento();
             }
         });
-        $('#input-telefone').on('blur', function(){
-            telefoneNovo = $('#input-telefone').val();
-            if (telefoneNovo != primeiroTelefone) {
-                editarEvento();
-            }
-        });
     });
 
     function editarEvento() {
-        descricaoNova = $('#input-descricao').val();
         nomeNovo = $('#input-nome').val();
         emailNovo = $('#input-email').val();
-        telefoneNovo = $('#input-telefone').val();
-        $.post( "../ajax/editaServico.php", {'nome': nomeNovo, 'email': emailNovo, 'telefone': telefoneNovo, 'cnpj': descricaoNova, 'id': idOrganizador}, function(data){
-            alert('Servico modificado');
+        console.log(nomeNovo);
+        console.log(idOrganizador);
+        $.post( "../ajax/editaOrganizador.php", {'nome': nomeNovo, 'email': emailNovo, 'id': idOrganizador}, function(data){
+            alert('Organizador modificado');
             primeiroNome = nomeNovo;
-            primeiraDescricao = descricaoNova;
-            primeiroTelefone = telefoneNovo;
             primeiroEmail = emailNovo;
         })
     }
@@ -103,22 +86,20 @@ include_once('include/head.php');
             <!--  Imagem  -->
             <?php if (isset($convidado)) { ?>
                     <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event.png"/>
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
                     </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
-                    <div id="visualizar_imagem">
-                        <img style="width: 250px; height: 250px;" id="image" src="img/brand/no-image-event.png"/>
+                    <div id="visualizar_imagem_convidado">
+                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
                     </div>
-                    <form id="form-image" enctype="multipart/form-data" action="upload-image.php" method="POST">
-                        <input id="input-image" name="imagem" type="file">
-                    </form>
             <?php } ?>            
             <!--  -----------  -->
 
             <div class="filtros">
-                <div class="filtros-tipo">EVENTO</div>
+                <div class="filtros-tipo">ORGANIZADOR</div>
+                <input type="hidden" id="idOrganizador" name="idOrganizador" value="<?= isset($organizadorUnico) ? $organizadorUnico->getId() : "";?>"/>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
                     <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($organizadorUnico) ? $organizadorUnico->getNome() : "";?>">
@@ -131,16 +112,21 @@ include_once('include/head.php');
                     } ?>
                 </div>
                 <div class="filtros-by">
-                    <span style="color: rgba(255, 255, 255, 0.7);">Por</span>
-                    <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
+                    <?php if (!isset($convidado)) {?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <input type="text" id="input-email" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($organizadorUnico) ? $organizadorUnico->getEmail() : "";?>">
+                    <?php } else { ?>
+                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <span> <?= isset($organizadorUnico) ? $organizadorUnico->getEmail() : '';?></span>
+                    <?php } ?>
                 </div>   
             </div>
             
             <br clear="all">
             </div>
-            </div>
-
-    </div>   
-	
+            
+        </div>
+        TESTETESTESTSETSETSETSETST
+    </div>  
 </body>
 </html>
