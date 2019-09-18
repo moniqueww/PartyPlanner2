@@ -297,8 +297,8 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	/*background: linear-gradient(45deg, rgba(115, 73, 255, 0.95) 40%, rgba(98, 172, 255, .75)), url(https://wallpaperaccess.com/full/127026.jpg);*/
-	background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));
+	background: linear-gradient(45deg, rgba(115, 73, 255, 0.75) 40%, rgba(98, 172, 255, .75)), url(../img/brand/background-blur.jpg);
+	/*background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));*/
 	background-size: cover;
 	background-position: center;
 	padding: 0px 0px 100px 30px;
@@ -319,8 +319,10 @@ a, a:hover, a:focus {
 }
 #background .filtros-right button{
 	border-color: #fff !important;
-	background: #fff !important;
-	color: #697cff !important;
+	background: transparent; !important;
+	border-width: 2px;
+	font-size: 1rem;
+	/*color: #697cff !important;*/
 }
 #background .navbar-search-light .input-group{
 	background-color: #fff !important;
@@ -768,6 +770,10 @@ a, a:hover, a:focus {
 	white-space: nowrap;
 	overflow: hidden;
 }
+.card-title i{
+    margin-left: 5px;
+    color: #697cff;
+}
 .card-body{
 	padding: 0.8rem 0px !important;
 	font-weight: bold;
@@ -917,19 +923,18 @@ a, a:hover, a:focus {
 	width: 100%;
 	height: 400px;
 	background-color: #697cff;
+	overflow: hidden;
 }
 .localizacao-div > div:first-child{
 	height: 100%;
-	width: 50%;
 	display: inline-block;
 	overflow: hidden;
 	float: left;
 }
 .localizacao-div > div:nth-child(2){
 	height: 100%;
-	width: 50%;
 	display: inline-block;
-	padding: 10px 50px;
+	padding: 20px 50px;
 }
 .filtros.filtros-evento {
 	text-align: center;
@@ -966,6 +971,7 @@ a, a:hover, a:focus {
 	font-weight: 700;
 	background-color: #697cff;
 	color: #fff;
+	text-transform: uppercase;
 	margin: 20px 0px;
 	white-space: nowrap;
     overflow: hidden;

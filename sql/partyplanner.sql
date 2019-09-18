@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Set-2019 às 00:21
+-- Generation Time: 18-Set-2019 às 03:58
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -77,7 +77,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`) VALUES
-(127, 20, 'aaaaa', '', 31, 1, '0');
+(127, 20, 'Neon Beats', '', 31, 0, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
+(132, 20, 'Meu aniversário', '', 0, 0, 'D7C4k_yXkAIHkn2.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,8 +97,8 @@ CREATE TABLE `evento_artista` (
 --
 
 INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
-(5, 127, 23),
-(12, 127, 24);
+(16, 127, 22),
+(17, 127, 23);
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,8 @@ CREATE TABLE `evento_preco` (
 --
 
 INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALUES
-(4, 127, 223, 'Normal', 'awdawdawdawdawd');
+(13, 127, 20, 'Normal', 'Nada demais'),
+(14, 127, 40, 'Vip', 'Tem coisas a mais');
 
 -- --------------------------------------------------------
 
@@ -163,7 +165,6 @@ CREATE TABLE `quadro` (
 INSERT INTO `quadro` (`id`, `idEvento`, `idServico`) VALUES
 (11, 127, 2),
 (12, 127, 9),
-(13, 127, 13),
 (14, 127, 8),
 (15, 127, 15),
 (17, 127, 23);
@@ -294,19 +295,19 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `evento_preco`
 --
 ALTER TABLE `evento_preco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `evento_representante`
@@ -324,7 +325,7 @@ ALTER TABLE `evento_servico`
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `usuario`

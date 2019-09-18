@@ -29,7 +29,10 @@ $(function() {
                                 window.location.assign('form_evento.php?evento='+eventoId);
                             }),
                             $('<div>', {class: 'card-body'}).append(
-                                $('<h5>', {class: 'card-title', html: data.nome}),
+                                $('<h5>', {class: 'card-title'}).append(
+                                    data.nome,
+                                    $('<i>', {class: 'fas fa-eye-slash'})
+                                ),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65)',class: 'card-title', html: data.nomeUsuario})
                             ),
                             $('<div>', {class: 'novoEvento', html: 'NOVO'}),

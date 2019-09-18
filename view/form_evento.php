@@ -22,7 +22,11 @@
 
         $eventoControle = new ControleEvento();
         $eventoControle->setVisao($_GET);
-        $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
+        $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);
+
+        $eventoPrecoControle = new ControleEventoPreco();
+        $eventoPrecos = [];
+        $eventoPrecos = $eventoPrecoControle->controleAcao("listarTodos", $_GET["evento"]);
 
         $organizadorControle = new ControleOrganizador();
         $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
@@ -120,9 +124,8 @@ include_once('include/head.php');
             </div>
             <?php if (!isset($convidado)) {?>
             <div class="filtros-right simple-margin-right">
-                <button <?= ($eventoUnico->getStatus() == 1) ? 'disabled' : '' ?> id="publica-evento" type="button" class="btn btn-primary btn-add">
-                    <span class="circle btn-inner--icon"><i class="fas fa-copy"></i></span>
-                    <span class="btn-inner--text">Publicar</span>
+                <button id="publica-evento" type="button" class="btn btn-primary btn-add">
+                    <span class="circle btn-inner--icon"><i class="<?= ($eventoUnico->getStatus() == 1) ? 'fas fa-eye' : 'fas fa-eye-slash' ?>"></i></span>
                 </button>
             </div>
             <?php } ?>
@@ -227,13 +230,17 @@ include_once('include/head.php');
                                 </div>
 								<?php } ?>
                                 <div id="precos">
-                                    <div class="content co-3 preco">
-                                        <div class="precoValor"><span>R$</span>22,20</div>
-                                        <div class="precoNome">VIP</div>
-                                        <div class="precoDescricao">
-                                            VIAkjahdkajdjkada agshdbaskd akjshkjashjk alskajslk jaksalksjaklsj lakajslk P
-                                        </div>
-                                    </div>
+                                    <?php
+                                        if(!empty($eventoPrecos)){
+                                            foreach ($eventoPrecos as $ep) {
+                                                echo "<div class='content co-3 preco' data-id=".$ep->getId().">
+                                                                    <div class='precoValor'><span>R$</span>".$ep->getValor()."</div>
+                                                                    <div class='precoNome'>".$ep->getNome()."</div>
+                                                                    <div class='precoDescricao'>".$ep->getDescricao()."</div>
+                                                                </div>";
+                                            }
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>

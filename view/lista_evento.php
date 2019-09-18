@@ -53,16 +53,18 @@ include_once('include/head.php');
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
+                            <form>
 								<div class="modal-body" style="padding: 60px 1.5rem 1.5rem 1.5rem;">
 									<div>
 										<h4 class="heading mt-4">Nome do evento</h4>
 									</div>
-									<input class="form-control form-control-alternative" name="nome" id="nome" placeholder="Escreva aqui..." type="text">
+									<input required class="form-control form-control-alternative" name="nome" id="nome" placeholder="Escreva aqui..." type="text">
 								</div>
 								<div class="modal-footer">
 									<input id="cadastrarEvento" type="submit" class="btn btn-primary" value="Criar evento"/>
 									<button id="cancelarCadastro" type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Cancelar</button> 
 								</div>
+							</form>
                         </div>
 					</div>
 				</div>
@@ -105,19 +107,18 @@ include_once('include/head.php');
 			<?php
 				if(!empty($eventos)){
 					foreach (array_reverse($eventos) as $ev) {
-						$publicado = '';
-						if ($ev->getStatus() == 1) {
-							$publicado = "<div class='publicadoEvento'>PUBLICADO</div>";
+						$publicado = 'eye-slash';
+						if ($ev->getStatus()) {
+							$publicado = "eye";
 						}
 						$organizadorUnico = $organizadorControle->controleAcao('listarUnico', $ev->getIdUsuario());
 						echo "<div class='content photo'>
 				<div class='card' data-id=".$ev->getId().">
 					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."</h5>
+						<h5 class='card-title'>".$ev->getNome()."<i class='fas fa-".$publicado."'></i></h5>
 						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getNome()."</h5>
 				</div>
-				".$publicado."
 				<div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
 				</div>
 			</div>";
