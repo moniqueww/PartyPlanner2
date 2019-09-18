@@ -4,6 +4,7 @@
         nome = "";
         nomeArtista = "";
         nomeEstabelecimento = "";
+        nomeRepresentante = "";
         
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
@@ -72,6 +73,10 @@
             nomeEstabelecimento = $(this).val();
             listarEstabelecimentos();
         });
+        $('#nomePesqRepresentante').on('input', function(){
+            nomeRepresentante = $(this).val();
+            listarRepresentantes();
+        });
         $('.btn-addListaQuadro').on('click', function(){
             if($(this).attr('data-categoria') != 'todos'){
                 idCategoria = $(this).attr('data-categoria');
@@ -87,6 +92,9 @@
         });
         $('.btn-addListaEstabelecimento').on('click', function(){
             listarEstabelecimentos();
+        });
+        $('.btn-addListaRepresentante').on('click', function(){
+            listarRepresentantes();
         });
         $('.categoria').each(function(){
             if($(this).find('.content.photo').length>0){
@@ -108,6 +116,28 @@
                 $(".content.photo.atracao[data-id="+data.id+"]").remove();
                 $(".artista.content.photo[data-id="+data.idServico+"]").removeClass('disabled');
             })
+        });
+        $('.exc-evento-preco').on('click', function(){
+            var idEventoPreco = $(this).attr('data-id');
+            $.post( "../ajax/excluiEventoPreco.php", {'id': idEventoPreco}, function(data){
+                data = $.parseJSON( data );
+                $(".content.preco[data-id="+data.id+"]").remove();
+            })
+        })
+        $('.exc-evento-representante').on('click', function(){
+            var idEventoRepresentante = $(this).attr('data-id');
+            $.post( "../ajax/excluiEventoRepresentante.php", {'id': idEventoRepresentante}, function(data){
+                data = $.parseJSON( data );
+                $(".content.photo.representante[data-id="+data.id+"]").remove();
+                $(".organizador.content.photo[data-id="+data.idUsuario+"]").removeClass('disabled');
+            })
+        });
+        $('.exc-evento-estabelecimento').on('click', function(){
+            idEstabelecimento = 0;
+            var idEstabelecimentoExcluido = $(this).attr('data-id');
+            editarEvento();
+            $('#estabelecimento').html('');
+            $('.content.photo.estabelecimento[data-id='+idEstabelecimentoExcluido+']').removeClass('disabled');
         });
         $('#publica-evento').on('click', function(){
             if (statusEvento == 0) {
@@ -145,12 +175,21 @@
                     $('#precoDescricao').val('');
                     $('#precos').append(
                         $('<div>', {class: 'content co-3 preco', 'data-id': data.id}).append(
-                            $('<div>', {class: 'precoValor'}).append(
-                                $('<span>', {html: 'R$'}),
-                                data.valor
-                            ),
-                            $('<div>', {class: 'precoNome', html: data.nome}),
-                            $('<div>', {class: 'precoDescricao', html: data.descricao})
+                            $('<div>', {class: 'card-preco'}).append(
+                                $('<div>', {class: 'precoValor'}).append(
+                                    $('<span>', {html: 'R$'}),
+                                    data.valor
+                                ),
+                                $('<div>', {class: 'precoNome', html: data.nome}),
+                                $('<div>', {class: 'precoDescricao', html: data.descricao}),
+                                $('<span>', {class: 'exc exc-evento-preco', 'data-id': data.id, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                    var idEventoPreco = $(this).attr('data-id');
+                                    $.post( "../ajax/excluiEventoPreco.php", {'id': idEventoPreco}, function(data){
+                                        data = $.parseJSON( data );
+                                        $(".content.preco[data-id="+data.id+"]").remove();
+                                    })
+                                })
+                            )
                         )
                     );
                     $('#cadastrarPreco').removeAttr('disabled');
@@ -208,7 +247,7 @@
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
                                             ),
-                                            $('<span>', {class: 'exc-evento-servico', 'data-id': data.idQuadro, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                            $('<span>', {class: 'exc exc-evento-servico', 'data-id': data.idQuadro, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
@@ -265,7 +304,7 @@
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
                                             ),
-                                            $('<span>', {class: 'exc-evento-artista', 'data-id': data.idEventoArtista, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                            $('<span>', {class: 'exc exc-evento-artista', 'data-id': data.idEventoArtista, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 var idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiEventoArtista.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
@@ -280,10 +319,6 @@
                         }
                     })
                 );
-                $('.star9').each(function(){
-                    $(this).attr('checked', '');
-                });
-                $('.rating input').attr('disabled', '');
             }
         })
     }
@@ -313,10 +348,56 @@
                         }
                     })
                 );
-                $('.star9').each(function(){
-                    $(this).attr('checked', '');
-                });
-                $('.rating input').attr('disabled', '');
+            }
+        })
+    }
+
+    function listarRepresentantes() {
+        $.post( "../ajax/buscaRepresentante.php", {'nome': nomeRepresentante, 'evento': idEvento}, function(data){
+            data = $.parseJSON( data );
+            console.log(data);
+            $('#tabela_representante').html('');
+            for(i = 0; i < data.length; i++){
+                $('#tabela_representante').append(
+                    $('<div>', {class: 'organizador content photo '+data[i].disabled, 'data-id': data[i].id}).append(
+                        $('<div>', {class: 'card card-redondo'}).append(
+                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                            $('<div>', {class: 'card-body'}).append(
+                                $('<h5>', {class: 'card-title', html: data[i].nome}),
+                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
+                            )
+                        )
+                    ).on('click', function(){
+                        if(!$(this).hasClass('disabled')) {
+                            $(this).addClass('disabled');
+                            idOrganizador = $(this).attr('data-id');
+                            idEvento = $('#idEvento').val();
+                            $.post( "../ajax/cadastraEventoRepresentante.php", {'idEvento': idEvento, 'idUsuario': idOrganizador}, function(data){
+                                data = $.parseJSON( data );
+                                $('#cancelaListaRepresentantes').click();
+                                $('#representantes').append(
+                                    $('<div>', {style: 'float: none; width: 23%;', 'data-id': data.idEventoRepresentante, class: 'content representante photo'}).append(
+                                        $('<div>', {class: 'card card-redondo'}).append(
+                                            $('<img>', {class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                                            $('<div>', {class: 'card-body'}).append(
+                                                $('<h5>', {class: 'card-title', html: data.nome}),
+                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
+                                            ),
+                                            $('<span>', {class: 'exc exc-evento-representante', 'data-id': data.idEventoRepresentante, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                                                var idEventoRepresentante = $(this).attr('data-id');
+                                                $.post( "../ajax/excluiEventoRepresentante.php", {'id': idEventoRepresentante}, function(data){
+                                                    data = $.parseJSON( data );
+                                                    $(".content.photo.representante[data-id="+data.id+"]").remove();
+                                                    $(".organizador.content.photo[data-id="+data.idUsuario+"]").removeClass('disabled');
+                                                })
+                                            })
+                                        )
+                                    )
+                                );
+                            })
+                        }
+                    })
+                );
             }
         })
     }
@@ -330,8 +411,8 @@
         })
     }
 
-    function montaLocalizacao(idEstabelecimento) {
-        $.post( "../ajax/montaLocalizacao.php", {'idEstabelecimento': idEstabelecimento}, function(data){
+    function montaLocalizacao(id) {
+        $.post( "../ajax/montaLocalizacao.php", {'idEstabelecimento': id}, function(data){
             data = $.parseJSON( data );
             $('#estabelecimento').html('');
             $('#cancelaListaEstabelecimento').click();
@@ -344,7 +425,15 @@
                         $('<div>', {class: 'filtros', style: 'color: #fff;', html: data.nome}),
                         $('<p>', {style: 'color: #fff;', html: data.email}),
                         $('<p>', {style: 'color: #fff;', html: data.telefone}),
-                    )
+                    ),
+                    $('<span>', {class: 'exc exc-evento-estabelecimento', 'data-id': data.id, 'aria-hidden': 'true', html: '×'}).on('click', function(){
+                        idEstabelecimento = 0;
+                        var idEstabelecimentoExcluido = $(this).attr('data-id');
+                        console.log(idEstabelecimentoExcluido);
+                        editarEvento();
+                        $('#estabelecimento').html('');
+                        $('.content.photo.estabelecimento[data-id='+idEstabelecimentoExcluido+']').removeClass('disabled');
+                    })
                 )
             );
         })

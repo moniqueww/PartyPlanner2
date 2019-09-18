@@ -20,6 +20,10 @@
         $eventoArtistas = [];
         $eventoArtistas = $eventoArtistaControle->controleAcao("listarTodos", $_GET["evento"]);
 
+        $eventoRepresentanteControle = new ControleEventoRepresentante();
+        $eventoRepresentantes = [];
+        $eventoRepresentantes = $eventoRepresentanteControle->controleAcao("listarTodos", $_GET["evento"]);
+
         $eventoControle = new ControleEvento();
         $eventoControle->setVisao($_GET);
         $eventoUnico = $eventoControle->controleAcao("listarUnico", $_GET["evento"]);
@@ -135,6 +139,7 @@ include_once('include/head.php');
             <?php include_once('include/procuraEstabelecimento.php'); ?>
             <?php include_once('include/procuraServico.php'); ?>
             <?php include_once('include/procuraArtista.php'); ?>
+            <?php include_once('include/procuraRepresentante.php'); ?>
             <?php include_once('include/cadastraPreco.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
@@ -183,10 +188,9 @@ include_once('include/head.php');
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
                                                               </div>";
                                             if (!isset($convidado)) {
-                                                echo "<span class='exc-evento-artista' data-id='".$ea->getId()."' aria-hidden='true'>×</span>";
+                                                echo "<span class='exc exc-evento-artista' data-id='".$ea->getId()."' aria-hidden='true'>×</span>";
                                             }
                                             echo "</div></div>";
-                                            //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";
                                             }
                                         }
                                     }
@@ -213,6 +217,9 @@ include_once('include/head.php');
                                     <div class="filtros" style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getNome() : "";?></div>
                                     <p style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getEmail() : "";?></p>
                                     <p style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getTelefone() : "";?></p>
+                                    <?php if (!isset($convidado)) {
+                                        echo "<span class='exc exc-evento-estabelecimento' data-id='".$localizacaoUnica->getId()."' aria-hidden='true'>×</span>";
+                                    }?>
                                 </div>
                             </div>
                             <?php } ?>
@@ -233,10 +240,14 @@ include_once('include/head.php');
                                         if(!empty($eventoPrecos)){
                                             foreach ($eventoPrecos as $ep) {
                                                 echo "<div class='content co-3 preco' data-id=".$ep->getId().">
+                                                        <div class='card-preco'>
                                                                     <div class='precoValor'><span>R$</span>".$ep->getValor()."</div>
                                                                     <div class='precoNome'>".$ep->getNome()."</div>
-                                                                    <div class='precoDescricao'>".$ep->getDescricao()."</div>
-                                                                </div>";
+                                                                    <div class='precoDescricao'>".$ep->getDescricao()."</div>";
+                                                if (!isset($convidado)) {
+                                                    echo "<span class='exc exc-evento-preco' data-id='".$ep->getId()."' aria-hidden='true'>×</span>";
+                                                }
+                                                echo "</div></div>";
                                             }
                                         }
                                     ?>
@@ -247,12 +258,12 @@ include_once('include/head.php');
                             <div class='filtros filtros-evento'>Representantes</div>
 							<?php if (!isset($convidado)) {?>
 							<div class="filtros-right" style="text-align: center;">
-                                <button type='button' class='btn-addListaArtista btn btn-primary' data-toggle='modal' data-target=''>
+                                <button type='button' class='btn-addListaRepresentante btn btn-primary' data-toggle='modal' data-target='#modal-representante'>
                                     <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
                                 </button>
                             </div>
 							<?php } ?>
-                            <div style="text-align: center;">
+                            <div style="text-align: center;" id="representantes">
                                 <?php
 									if (isset($organizadorUnico)) {
 										echo "<div style='margin-right: 0; float: none; width: 23%;' class='content photo' data-id=".$organizadorUnico->getId().">
@@ -264,7 +275,23 @@ include_once('include/head.php');
                                                               </div>
 															</div>
 														</div>";
-									}
+                                    }
+                                    if(!empty($eventoRepresentantes)){
+                                        foreach ($eventoRepresentantes as $er) {
+                                            $organizadorUnico = $organizadorControle->controleAcao("listarUnico", $er->getIdUsuario());
+                                            echo "<div style='float: none; width: 23%;' class='content representante photo' data-id=".$er->getId().">
+                                                            <div class='card card-redondo'>
+                                                              <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
+                                                              <div class='card-body'>
+                                                                <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
+                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
+                                                              </div>";
+                                            if (!isset($convidado)) {
+                                                echo "<span class='exc exc-evento-representante' data-id='".$er->getId()."' aria-hidden='true'>×</span>";
+                                            }
+                                            echo "</div></div>";
+                                        }
+                                    }
 								?>
                             </div>
                         </div>
@@ -306,7 +333,7 @@ include_once('include/head.php');
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
                                                                   </div>
-                                                                  <span class='exc-evento-servico' data-id='".$qu->getId()."' aria-hidden='true'>×</span>
+                                                                  <span class='exc exc-evento-servico' data-id='".$qu->getId()."' aria-hidden='true'>×</span>
                                                                 </div>
                                                             </div>";
                                                 //echo "<div data-id='".$es->getId()."' class='content listaEventoServico'>".$servicoUnico->getNome()."<span class='exc-evento-servico' data-id='".$es->getId()."' aria-hidden='true'>×</span><br/><div class='listaInfoEventoServico'>".$servicoUnico->getEmail()."</div><div class='listaInfoEventoServico'>".$servicoUnico->getTelefone()."</div></div>";

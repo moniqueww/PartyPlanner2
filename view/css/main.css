@@ -297,7 +297,7 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	background: linear-gradient(45deg, rgba(115, 73, 255, 0.75) 40%, rgba(98, 172, 255, .75)), url(../img/brand/background-blur.jpg);
+	background: linear-gradient(45deg, rgba(115, 73, 255, 0.8) 40%, rgba(98, 172, 255, .8)), url(../img/brand/background-blur.jpg);
 	/*background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));*/
 	background-size: cover;
 	background-position: center;
@@ -495,6 +495,14 @@ a, a:hover, a:focus {
 
 .photo .card > img:hover{
 	filter: brightness(0.7);
+}
+
+.card-preco{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+	word-wrap: break-word;
+	padding: 50px 30px;
 }
 
 .photo.disabled {
@@ -763,6 +771,9 @@ a, a:hover, a:focus {
 .content.atracao{
 	margin-right: 0 !important;
 }
+.content.representante{
+	margin-right: 0 !important;
+}
 .content.photo.quadro{
 	width: 23%; 
 }
@@ -817,7 +828,7 @@ a, a:hover, a:focus {
 #semCategoria:hover{
 	background-color: #f3f5ff;
 }
-.exc-evento-servico{
+.exc{
 	float: right;
 	position: absolute;
 	left: 10px;
@@ -825,13 +836,15 @@ a, a:hover, a:focus {
 	cursor: pointer;
 	padding: 0px 12px;
 }
-.exc-evento-artista{
-	float: right;
-	position: absolute;
-	left: 10px;
-	font-size: 1.1rem;
-	cursor: pointer;
-	padding: 0px 12px;
+.exc-evento-preco{
+	top: 10px;
+}
+.exc-evento-estabelecimento{
+	top: 10px;
+	right: 20px;
+	color: #fff;
+	font-size: 2.5rem;
+	text-align: right;
 }
 .mini-card{
 	border-radius: 0px;
@@ -924,6 +937,7 @@ a, a:hover, a:focus {
 	height: 400px;
 	background-color: #697cff;
 	overflow: hidden;
+	position: relative;
 }
 .localizacao-div > div:first-child{
 	height: 100%;
@@ -952,7 +966,7 @@ a, a:hover, a:focus {
 	text-align: center;
 	background-color: #f7f8fc;
 	border: solid 1px #eaedfa;
-	padding: 50px 30px;
+	padding: 0px;
 	height: 400px;
 	overflow: hidden;
 	float: none !important;
@@ -978,6 +992,16 @@ a, a:hover, a:focus {
 }
 .content.preco .precoDescricao{
 	text-align: left;
+}
+#input-descricao{
+	border-width: 2px !important;
+	border-color: transparent !important;
+}
+#input-descricao:hover{
+	border-color: #e0e2eb !important;
+}
+#input-descricao:focus{
+	border-color: #697cff !important;
 }
 
 
