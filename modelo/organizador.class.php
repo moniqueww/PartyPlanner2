@@ -1,7 +1,7 @@
 <?php
 
 
-class Organizador implements IBaseModelo{
+class Organizador implements ibaseModelo{
     private $id;
     private $nome;
     private $email;

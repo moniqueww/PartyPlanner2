@@ -1,5 +1,4 @@
 <?php include_once 'include/verificaServico.php';?>
-<?php include_once 'include/banco.php';?>
 <?php
     include_once '../autoload.php'; 
     if($_GET['servico']){ // Caso os dados sejam enviados via GET

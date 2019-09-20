@@ -1,7 +1,7 @@
 <?php
 
 
-class Usuario implements IBaseModelo{
+class Usuario implements ibaseModelo{
     private $id;
     private $nome;
     private $email;

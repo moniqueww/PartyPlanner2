@@ -1,5 +1,4 @@
 <?php include_once 'include/verificaOrganizador.php';?>
-<?php include_once 'include/banco.php';?>
 <?php
     include_once '../autoload.php'; 
 	if($_GET['organizador']){ // Caso os dados sejam enviados via GET

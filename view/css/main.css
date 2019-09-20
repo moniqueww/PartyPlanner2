@@ -1009,7 +1009,91 @@ a, a:hover, a:focus {
 
 
 
+/*////////////////////// loader ///////////////////////////////*/
+#loader{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(255,255,255,.9);
+	z-index: 9999;
+}
+.wave-fill{
+	height: 75px;
+	width: 75px;
+	position: absolute;
+	left: 50%;
+	margin-left: -37.5px;
+	top: 50%;
+	margin-top: -37.5px;
+	background-color: transparent;
+	-webkit-mask-image: url('../img/brand/mask.png');
+	-webkit-mask-size: 100%;
+	animation: water-fill 2s linear infinite;
+}
+.wave-fill span{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.wave{
+	background-image: url('../img/brand/wave.png');
+	height: 11px;
+	background-size: contain;
+	animation: wave 1s ease-in-out infinite;
+}
+.deep-water{
+	background: #697cff;
+	height: 100px;
+}
+.water{
+	animation: water 2s ease-in-out infinite;
+}
 
+@keyframes water-fill{
+	0%{
+		transform: rotate(0deg);
+	}
+	49%{
+		transform: rotate(0deg);
+	}
+	50%{
+		transform: rotate(180deg);
+	}
+	99%{
+		transform: rotate(180deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes wave{
+	0%{
+		background-position: 0px 0px;
+	}
+	100%{
+		background-position: 75px 0px;
+	}
+}
+
+@keyframes water{
+	0%{
+		transform: translateY(70%);
+	}
+	50%{
+		transform: translateY(-10%);
+	}
+	100%{
+		transform: translateY(70%);
+	}
+}
+
+
+
+
+/*//////////////////////////////////////////////////*/
 
 
 

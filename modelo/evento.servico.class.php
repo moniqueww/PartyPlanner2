@@ -1,7 +1,7 @@
 <?php
 
 
-class EventoServico implements IBaseModelo{
+class EventoServico implements ibaseModelo{
     private $id;
     private $idEvento;
     private $idServico;

@@ -11,6 +11,7 @@ $(function() {
         $('#cadastrarEvento').attr('disabled', '');
         var nome = $('#nome').val();
         if (nome != "") {
+            $('#loader').fadeIn('fast');
             $.post( "../ajax/cadastraEvento.php", {'nome': nome, 'idUsuario': idUsuario}, function(data){
                 data = $.parseJSON( data );
                 $('#cadastrarEvento').removeAttr('disabled', '');
@@ -49,6 +50,7 @@ $(function() {
                         })
                     ).hide().fadeIn("slow")
                 );
+                $('#loader').fadeOut('fast');
             });
         } else {
             $('#cadastrarEvento').removeAttr('disabled');
@@ -72,6 +74,7 @@ $(function() {
         $('#confirmarExclusao').attr('data-id', eventoId);
     });
     $('#confirmarExclusao').on('click', function(){
+        $('#loader').fadeIn('fast');
         var eventoId = $(this).attr('data-id');
         $.post( "../ajax/excluiEvento.php", {'id': eventoId}, function(data){
             data = $.parseJSON( data );
@@ -82,6 +85,7 @@ $(function() {
                 $('#page > .filtros, #page > .filtros-right').hide();
             }
             $("#cancelarExclusao").click();
+            $('#loader').fadeOut('fast');
         });
     });
 });

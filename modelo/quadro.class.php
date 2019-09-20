@@ -1,7 +1,7 @@
 <?php
 
 
-class Quadro implements IBaseModelo{
+class Quadro implements ibaseModelo{
     private $id;
     private $idEvento;
     private $idServico;

@@ -1,7 +1,7 @@
 <?php
 
 
-class Servico implements IBaseModelo{
+class Servico implements ibaseModelo{
     private $id;
     private $nome;
     private $email;

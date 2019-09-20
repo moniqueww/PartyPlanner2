@@ -1,5 +1,4 @@
 <?php include_once 'include/verificaOrganizador.php';?>
-<?php include_once 'include/banco.php';?>
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEvento();
@@ -139,6 +138,7 @@ include_once('include/head.php');
 		        
 		</div>
     </div>
+    <?php include_once('include/loader.php'); ?>
 	
 </body>
 </html>
