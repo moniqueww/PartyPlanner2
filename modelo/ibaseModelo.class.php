@@ -11,7 +11,7 @@
  *
  * @author Mauri
  */
-interface IBaseModelo {
+interface ibaseModelo {
     public function inserir();
     public function alterar($param);
     public function excluir($param,$param2);

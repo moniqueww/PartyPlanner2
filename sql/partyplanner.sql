@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Set-2019 às 03:58
+-- Generation Time: 20-Set-2019 às 04:08
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -77,8 +77,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`) VALUES
-(127, 20, 'Neon Beats', '', 31, 0, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
-(132, 20, 'Meu aniversário', '', 0, 0, 'D7C4k_yXkAIHkn2.jpg');
+(127, 20, 'Neon Beats', '', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
+(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 0, 'no-image.png');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,9 @@ CREATE TABLE `evento_artista` (
 
 INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
 (16, 127, 22),
-(17, 127, 23);
+(17, 127, 23),
+(18, 128, 23),
+(21, 128, 22);
 
 -- --------------------------------------------------------
 
@@ -120,7 +122,10 @@ CREATE TABLE `evento_preco` (
 
 INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALUES
 (13, 127, 20, 'Normal', 'Nada demais'),
-(14, 127, 40, 'Vip', 'Tem coisas a mais');
+(14, 127, 40, 'Vip', 'Tem coisas a mais'),
+(15, 128, 20, 'Normal', 'Normal'),
+(16, 128, 30, 'VIP', 'Mais coisas'),
+(17, 128, 50, 'Luxo', 'Mais coisas ainda');
 
 -- --------------------------------------------------------
 
@@ -133,6 +138,15 @@ CREATE TABLE `evento_representante` (
   `idEvento` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evento_representante`
+--
+
+INSERT INTO `evento_representante` (`id`, `idEvento`, `idUsuario`) VALUES
+(1, 128, 26),
+(2, 128, 28),
+(3, 128, 29);
 
 -- --------------------------------------------------------
 
@@ -183,39 +197,40 @@ CREATE TABLE `usuario` (
   `tipo` char(1) NOT NULL,
   `cnpj` char(14) DEFAULT NULL,
   `telefone` bigint(20) DEFAULT NULL,
-  `idCategoria` int(11) DEFAULT NULL
+  `idCategoria` int(11) DEFAULT NULL,
+  `imagem` varchar(200) NOT NULL DEFAULT 'no-image.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`, `idCategoria`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 1),
-(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 4),
-(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 3),
-(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 1),
-(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 4),
-(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 3),
-(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 1),
-(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 2),
-(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3),
-(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4),
-(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 5),
-(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4),
-(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3),
-(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2),
-(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL),
-(22, 'Dj khalid fodase', 'ajklw@awkjdyh', '123', 'S', '12093712378', 129873617823, 5),
-(23, 'Aviccii', 'avitifodase@akwjd', '123', 'S', '123987612387', 1982347789124, 5),
-(24, 'Deivid gueta', 'deivid@wajdhjk', '123', 'S', '217367812368', 123124214, 5),
-(25, 'Chatuba', '29837@218937', '123', 'S', '123124124', 123123124, 5),
-(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL),
-(27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL),
-(28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL),
-(29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL),
-(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL),
-(31, 'Cultive Bar', 'cultivebar@gmail.com', '123', 'S', '23534534646', 54996233793, 2);
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`, `idCategoria`, `imagem`) VALUES
+(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 1, 'no-image.png'),
+(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 4, 'no-image.png'),
+(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 3, 'no-image.png'),
+(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 1, 'no-image.png'),
+(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 4, 'no-image.png'),
+(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 3, 'no-image.png'),
+(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 1, 'no-image.png'),
+(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 2, 'no-image.png'),
+(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3, 'no-image.png'),
+(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4, 'no-image.png'),
+(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 5, 'no-image.png'),
+(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4, 'no-image.png'),
+(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3, 'no-image.png'),
+(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2, 'no-image.png'),
+(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL, ''),
+(22, 'Dj khalid fodase', 'ajklw@awkjdyh', '123', 'S', '12093712378', 129873617823, 5, 'no-image.png'),
+(23, 'Aviccii', 'avitifodase@akwjd', '123', 'S', '123987612387', 1982347789124, 5, 'no-image.png'),
+(24, 'Deivid gueta', 'deivid@wajdhjk', '123', 'S', '217367812368', 123124214, 5, 'no-image.png'),
+(25, 'Chatuba', '29837@218937', '123', 'S', '123124124', 123123124, 5, 'no-image.png'),
+(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(31, 'Cultive Bar', 'cultivebar@gmail.com', '123', 'S', '23534534646', 54996233793, 2, 'no-image.png');
 
 --
 -- Indexes for dumped tables
@@ -295,25 +310,25 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `evento_preco`
 --
 ALTER TABLE `evento_preco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `evento_representante`
 --
 ALTER TABLE `evento_representante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
@@ -325,7 +340,7 @@ ALTER TABLE `evento_servico`
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `usuario`

@@ -1,7 +1,7 @@
 <?php
 
 
-class Categoria implements IBaseModelo{
+class Categoria implements ibaseModelo{
     private $id;
     private $nome;
     private $conn;
