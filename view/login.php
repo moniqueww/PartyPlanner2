@@ -76,7 +76,7 @@
               <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
                   <div style="position: relative; top: 25px;" class="col-lg-5 col-md-6">
-                    <h1 class="text-primary2">Login</h1>
+                    <h1 class="text-primary2">LOGIN</h1>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span style="height: 46px;" class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span style="height: 40px;" class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     <input class="form-control" id="email" value="" name="email" placeholder="Email" type="email">
                   </div>
@@ -94,7 +94,7 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span style="height: 46px;" class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      <span style="height: 40px;" class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control" id="senha" value="" name="senha" placeholder="Senha" type="password">
                     <span id="span_alertas"></span>

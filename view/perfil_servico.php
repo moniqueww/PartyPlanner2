@@ -73,10 +73,10 @@ include_once('include/head.php');
                 <div id="visualizar_imagem">
                     <img style="width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>       
-                <form id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
+                <div id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $servicoUnico->getImagem(); ?>"><input>
                     <input id="input-image" name="imagem" type="file">
-                </form>
+                </div>
             <?php } ?>
 
             <!--   ///////////////////////   -->

@@ -1,7 +1,9 @@
 <?php
-	$seusEventosControle = new ControleEvento();
-	$seusEventos = array();
-	$seusEventos = $seusEventosControle->controleAcao("listarTodos", '', $_SESSION['id']);
+	if (isset($_SESSION['usuario'])) {
+		$seusEventosControle = new ControleEvento();
+		$seusEventos = array();
+		$seusEventos = $seusEventosControle->controleAcao("listarTodos", '', $_SESSION['id']);
+	}
 ?>
 <nav id="sidebar">
 				<button id="encolheMenu" class="btn-diferente">

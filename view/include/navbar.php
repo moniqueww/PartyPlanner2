@@ -20,13 +20,17 @@
 							<div class="header-photo circle" style="display: inline-block;">
 								<img src="img/fotosPerfil/noimage5.png"/>
 							</div>
-							<span><?php echo $_SESSION['usuario']; ?></span>
+							<span><?php if (isset($_SESSION['usuario'])) { echo $_SESSION['usuario']; } else { echo "Entrar"; } ?></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
 							<!--<a class="dropdown-item" href="">Action</a>
 							<a class="dropdown-item" href="">Another action</a>
 							<div class="dropdown-divider"></div>-->
+							<?php if (isset($_SESSION['usuario'])) {?>
 							<a class="dropdown-item" href="sair.php">Sair</a>
+							<?php }else{?>
+							<a class="dropdown-item" href="login.php">Logar</a>
+							<?php } ?>
 						</div>
 					</li>
 				</ul>

@@ -1,4 +1,4 @@
-<?php include_once 'include/verificaOrganizador.php';?>
+<?php include_once 'include/verifica.php';?>
 <?php
     $id = isset($eventoUnico) ? $eventoUnico->getId() : "";
     $sql = "SELECT visitas FROM eventos WHERE id='$id'";
@@ -39,17 +39,23 @@
         $eventoPrecos = [];
         $eventoPrecos = $eventoPrecoControle->controleAcao("listarTodos", $_GET["evento"]);
 
+        $publicacaoControle = new ControlePublicacao();
+        $publicacoes = [];
+        $publicacoes = $publicacaoControle->controleAcao("listarTodos", $_GET["evento"]);
+
         $organizadorControle = new ControleOrganizador();
         $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
         
-        if (!$eventoUnico->getStatus()) {
-            if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
-                header("Location: login.php");
-                exit;
-            }
-        } else {
-            if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
-                $convidado = true;
+        if (!isset($convidado)) {
+            if (!$eventoUnico->getStatus()) {
+                if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
+                    header("Location: login.php");
+                    exit;
+                }
+            } else {
+                if (!($_SESSION['id'] == $eventoUnico->getIdUsuario())) {
+                    $convidado = true;
+                }
             }
         }
     }
@@ -148,6 +154,7 @@ include_once('include/head.php');
             <?php include_once('include/procuraArtista.php'); ?>
             <?php include_once('include/procuraRepresentante.php'); ?>
             <?php include_once('include/cadastraPreco.php'); ?>
+            <?php include_once('include/cadastraPublicacao.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
@@ -165,9 +172,9 @@ include_once('include/head.php');
                             <div>
                                 <div class="form-group">
                                 <?php if (!isset($convidado)) {?>
-                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 250px; text-indent: 10%;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione a descrição do seu evento"></textarea>
+                                    <textarea data-descricao="<?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?>" id="input-descricao" style="resize: none; height: 250px; text-indent: 5%; text-align: justify;" class="form-control form-control-alternative form-edita" rows="3" placeholder="Adicione a descrição do seu evento"></textarea>
                                 <?php } else {?>
-                                    <div style="border: none; height: 200px;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
+                                    <div style="border: none; height: 200px; text-indent: 5%; text-align: justify;" class="form-control form-edita"><?= isset($eventoUnico) ? $eventoUnico->getDescricao() : "";?></div>
                                 <?php } ?>
                                 </div>
                             </div>
@@ -285,13 +292,13 @@ include_once('include/head.php');
                                     }
                                     if(!empty($eventoRepresentantes)){
                                         foreach ($eventoRepresentantes as $er) {
-                                            $organizadorUnico = $organizadorControle->controleAcao("listarUnico", $er->getIdUsuario());
+                                            $representanteUnico = $organizadorControle->controleAcao("listarUnico", $er->getIdUsuario());
                                             echo "<div style='float: none; width: 23%;' class='content representante photo' data-id=".$er->getId().">
                                                             <div class='card card-redondo'>
                                                               <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
                                                               <div class='card-body'>
-                                                                <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
-                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
+                                                                <h5 class='card-title'>".$representanteUnico->getNome()."</h5>
+                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$representanteUnico->getEmail()."</h5>
                                                               </div>";
                                             if (!isset($convidado)) {
                                                 echo "<span class='exc exc-evento-representante' data-id='".$er->getId()."' aria-hidden='true'>×</span>";
@@ -306,6 +313,49 @@ include_once('include/head.php');
                             <div class='filtros filtros-evento'>Contate-nos</div>
                             <div>
                                 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--//////////////////////////////////////-->
+
+                    <div id="publicacao" style='display: none;'>
+                        <div class="content big-content">
+                            <div class='filtros'>Publicações</div>
+                            <?php if (!isset($convidado)) {?>
+                            <div class="filtros-right">
+                            <button type='button' class='btn-addPublicacao btn btn-primary' data-toggle='modal' data-target='#modal-publicacao'>
+                                <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
+                            </button>
+                            </div>
+                            <?php } ?>
+                            <div id="publicacoes">
+                                <!--<div class="publicacao-evento">
+                                    <div class="publicacao-usuario">
+                                        <img src="img/fotosPerfil/noimage5.png">
+                                        <span><?php //echo $organizadorUnico->getNome(); ?></span>
+                                    </div>
+                                    <div class="publicacao-titulo">Título</div>
+                                    <div class="publicacao-foto"><img src="img/brand/background-blur.jpg"/></div>
+                                    <div class="publicacao-descricao">Descrição</div>
+                                </div>-->
+                                <?php
+                                    if(!empty($publicacoes)){
+                                        foreach (array_reverse($publicacoes) as $pu) {
+                                            echo "<div class='publicacao-evento' data-id='".$pu->getId()."'>
+                                                    <div class='publicacao-usuario'>
+                                                        <img src='img/fotosPerfil/noimage5.png'>
+                                                        <span>".$organizadorUnico->getNome()."</span>
+                                                    </div>
+                                                    <div class='publicacao-titulo'>".$pu->getTitulo()."</div>";
+                                            if ($pu->getImagem() != "") {
+                                                echo "<div class='publicacao-foto'><img src='img/brand/background-blur.jpg'/></div>";
+                                            }
+                                                    echo "<div class='publicacao-descricao'>".$pu->getDescricao()."</div>
+                                                </div>";
+                                        }
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
