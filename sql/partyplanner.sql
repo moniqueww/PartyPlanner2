@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Set-2019 às 04:08
+-- Generation Time: 21-Set-2019 às 16:57
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -66,7 +66,7 @@ CREATE TABLE `eventos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `idUsuario` bigint(20) NOT NULL,
   `nome` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descricao` varchar(9999) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descricao` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idEstabelecimento` int(11) DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png'
@@ -77,8 +77,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`) VALUES
-(127, 20, 'Neon Beats', '', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
-(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 0, 'no-image.png');
+(127, 20, 'NEON BEATS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed nisi lorem. Aenean vel nisi pretium, varius dolor sit amet, tincidunt nibh. Sed ac posuere nisi. In vehicula lectus ac neque aliquam aliquet. Nulla pulvinar vulputate lorem non malesuada. Suspendisse posuere eu neque et lobortis. Nullam metus purus, mattis sit amet nisl eget, congue ullamcorper nisl. Maecenas nec porttitor orci.\n\nQuisque at sagittis risus, ac fringilla massa. Proin et bibendum sapien, nec aliquet leo. In eget purus ut risus convallis ultrices. Duis lorem lectus, tristique vitae quam nec, dictum tincidunt libero. Aenean a vulputate lorem, eleifend blandit elit. Vivamus laoreet finibus posuere. Nullam non ipsum purus.', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
+(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png');
 
 -- --------------------------------------------------------
 
@@ -97,10 +97,10 @@ CREATE TABLE `evento_artista` (
 --
 
 INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
-(16, 127, 22),
-(17, 127, 23),
 (18, 128, 23),
-(21, 128, 22);
+(21, 128, 22),
+(25, 127, 23),
+(36, 128, 24);
 
 -- --------------------------------------------------------
 
@@ -121,11 +121,11 @@ CREATE TABLE `evento_preco` (
 --
 
 INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALUES
-(13, 127, 20, 'Normal', 'Nada demais'),
 (14, 127, 40, 'Vip', 'Tem coisas a mais'),
 (15, 128, 20, 'Normal', 'Normal'),
 (16, 128, 30, 'VIP', 'Mais coisas'),
-(17, 128, 50, 'Luxo', 'Mais coisas ainda');
+(17, 128, 50, 'Luxo', 'Mais coisas ainda'),
+(18, 127, 20, 'Normal', 'Nada demais');
 
 -- --------------------------------------------------------
 
@@ -163,6 +163,33 @@ CREATE TABLE `evento_servico` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `publicacao`
+--
+
+CREATE TABLE `publicacao` (
+  `id` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descricao` varchar(2000) NOT NULL,
+  `imagem` varchar(100) DEFAULT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `publicacao`
+--
+
+INSERT INTO `publicacao` (`id`, `idEvento`, `titulo`, `descricao`, `imagem`, `data`) VALUES
+(4, 127, 'Minha primeira publicação', 'Vai se show de bola isso aqui', '', '2019-09-20'),
+(5, 127, 'Minha segunda publicação', 'É vdd o q eu disse antes', '', '2019-09-21'),
+(6, 127, 'Minha terceira publicação', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', '2019-09-21'),
+(7, 127, 'Minha quarta publicação', 'saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2019-09-21'),
+(8, 127, 'Mais uma publicação', 'akwjdhawkhsdjkwahdkjhjkhajkwdhjkh\nawjdhkjawhdaw\n\n\n\nawjkdgawjksdghawd\n\n\nawjdygajwdgawdawdwa', '', '2019-09-21'),
+(9, 127, 'Meu deus', 'kajwdhgawdkawsdkjawdwad', '', '2019-09-21');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `quadro`
 --
 
@@ -181,7 +208,13 @@ INSERT INTO `quadro` (`id`, `idEvento`, `idServico`) VALUES
 (12, 127, 9),
 (14, 127, 8),
 (15, 127, 15),
-(17, 127, 23);
+(17, 127, 23),
+(18, 127, 5),
+(20, 127, 10),
+(21, 127, 25),
+(22, 127, 24),
+(23, 127, 22),
+(24, 127, 16);
 
 -- --------------------------------------------------------
 
@@ -279,6 +312,12 @@ ALTER TABLE `evento_servico`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `publicacao`
+--
+ALTER TABLE `publicacao`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `quadro`
 --
 ALTER TABLE `quadro`
@@ -310,13 +349,13 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `evento_preco`
@@ -328,7 +367,7 @@ ALTER TABLE `evento_preco`
 -- AUTO_INCREMENT for table `evento_representante`
 --
 ALTER TABLE `evento_representante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
@@ -337,10 +376,16 @@ ALTER TABLE `evento_servico`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `publicacao`
+--
+ALTER TABLE `publicacao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `usuario`

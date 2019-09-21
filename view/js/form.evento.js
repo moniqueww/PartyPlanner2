@@ -161,13 +161,22 @@
             $('#navegacaoEvento > div').removeClass('selected');
             $(this).addClass('selected');
             $('#edicaoEvento').show();
+            $('#publicacao').hide();
             $('#quadroEvento').hide();
         });
         $('#showQuadro').on('click', function(){
             $('#navegacaoEvento > div').removeClass('selected');
             $(this).addClass('selected');
             $('#edicaoEvento').hide();
+            $('#publicacao').hide();
             $('#quadroEvento').show();
+        });
+        $('#showPublicacao').on('click', function(){
+            $('#navegacaoEvento > div').removeClass('selected');
+            $(this).addClass('selected');
+            $('#edicaoEvento').hide();
+            $('#publicacao').show();
+            $('#quadroEvento').hide();
         });
         $('#cadastrarPreco').on('click', function(){
             var valor = $('#precoValor').val();
@@ -208,7 +217,32 @@
                 })
             } else {
                 $(this).removeAttr('disabled');
-                $('#loader').fadeOut('fast');
+            }
+        });
+        $('#cadastrarPublicacao').on('click', function(){
+            var titulo = $('#publicacaoTitulo').val();
+            var descricao = $('#publicacaoDescricao').val();
+            if (titulo != '' && descricao != '') {
+                $('#loader').fadeIn('fast');
+                $(this).attr('disabled', '');
+                $.post( "../ajax/cadastraPublicacao.php", {'titulo': titulo, 'descricao': descricao, 'idEvento': idEvento}, function(data){
+                    data = $.parseJSON( data );
+                    $('#cancelarCadastroPublicacao').click();
+                    $('#publicacoes').prepend(
+                        $('<div>', {class: 'publicacao-evento', 'data-id': data.id}).append(
+                            $('<div>', {class: 'publicacao-usuario'}).append(
+                                $('<img>', {src: 'img/fotosPerfil/noimage5.png'}),
+                                $('<span>', {html: 'Teste'})
+                            ),
+                            $('<div>', {class: 'publicacao-titulo', html: data.titulo}),
+                            $('<div>', {class: 'publicacao-descricao', html: data.descricao})
+                        )
+                    );
+                    $('#cadastrarPublicacao').removeAttr('disabled');
+                    $('#loader').fadeOut('fast');
+                })
+            } else {
+                $(this).removeAttr('disabled');
             }
         });
     });
