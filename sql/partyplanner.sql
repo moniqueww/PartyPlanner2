@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Set-2019 às 16:57
+-- Generation Time: 22-Set-2019 às 01:04
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -69,16 +69,17 @@ CREATE TABLE `eventos` (
   `descricao` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idEstabelecimento` int(11) DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
-  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png'
+  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png',
+  `visitas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`) VALUES
-(127, 20, 'NEON BEATS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed nisi lorem. Aenean vel nisi pretium, varius dolor sit amet, tincidunt nibh. Sed ac posuere nisi. In vehicula lectus ac neque aliquam aliquet. Nulla pulvinar vulputate lorem non malesuada. Suspendisse posuere eu neque et lobortis. Nullam metus purus, mattis sit amet nisl eget, congue ullamcorper nisl. Maecenas nec porttitor orci.\n\nQuisque at sagittis risus, ac fringilla massa. Proin et bibendum sapien, nec aliquet leo. In eget purus ut risus convallis ultrices. Duis lorem lectus, tristique vitae quam nec, dictum tincidunt libero. Aenean a vulputate lorem, eleifend blandit elit. Vivamus laoreet finibus posuere. Nullam non ipsum purus.', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg'),
-(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png');
+INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`, `visitas`) VALUES
+(127, 20, 'NEON BEATS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed nisi lorem. Aenean vel nisi pretium, varius dolor sit amet, tincidunt nibh. Sed ac posuere nisi. In vehicula lectus ac neque aliquam aliquet. Nulla pulvinar vulputate lorem non malesuada. Suspendisse posuere eu neque et lobortis. Nullam metus purus, mattis sit amet nisl eget, congue ullamcorper nisl. Maecenas nec porttitor orci.\n\nQuisque at sagittis risus, ac fringilla massa. Proin et bibendum sapien, nec aliquet leo. In eget purus ut risus convallis ultrices. Duis lorem lectus, tristique vitae quam nec, dictum tincidunt libero. Aenean a vulputate lorem, eleifend blandit elit. Vivamus laoreet finibus posuere. Nullam non ipsum purus.', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg', 0),
+(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png', 0);
 
 -- --------------------------------------------------------
 
