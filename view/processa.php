@@ -14,13 +14,13 @@ if(!empty($_POST['estrela'])){
 	
 	if(mysqli_insert_id($conexao)){
 		$_SESSION['msg'] = "Avaliação cadastrada com sucesso";
-		header("Location: lista_servico.php");
+		header("Location: perfil_servico.php");
 	}else{
 		$_SESSION['msg'] = "Erro ao cadastrar a avaliação";
-		header("Location: login.php");
+		header("Location: perfil_servico.php");
 	}
 	
 }else{
 	$_SESSION['msg'] = "Necessário selecionar pelo menos 1 estrela";
-	header("Location: login.php");
+	header("Location: perfil_servico.php");
 }
