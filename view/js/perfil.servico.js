@@ -1,5 +1,6 @@
 $(function() {
     idServico = $('#idServico').val();
+    idUsuario = $('#idUsuario').val();
     nome = "";
     primeiroNome = $('#input-nome').val();
     primeiroEmail = $('#input-email').val();
@@ -70,6 +71,16 @@ $(function() {
         $(this).addClass('selected');
         $('#edicaoEvento').hide();
         $('#publicacao').show();
+    });
+    $('.estrela').on('click', function(){
+        var qtdEstrelas = $(this).val();
+        $.post( "../ajax/cadastraEstrela.php", {'idServico': idServico, 'idUsuario': idUsuario, 'qtdEstrelas': qtdEstrelas}, function(data){
+            $('.estrela').each(function(){
+                if ($(this).val() <= qtdEstrelas) {
+                    $(this).attr('checked', true);
+                }
+            });
+        })
     });
 });
 

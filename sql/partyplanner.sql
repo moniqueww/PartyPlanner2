@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Set-2019 às 01:04
+-- Generation Time: 23-Set-2019 às 00:03
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -52,9 +52,18 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 
 CREATE TABLE `estrelas` (
   `id` int(11) NOT NULL,
-  `id_servico` int(11) NOT NULL,
-  `qnt_estrelas` int(11) NOT NULL
+  `idServico` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `qtdEstrelas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `estrelas`
+--
+
+INSERT INTO `estrelas` (`id`, `idServico`, `idUsuario`, `qtdEstrelas`) VALUES
+(2, 1, 20, 4),
+(3, 1, 20, 4);
 
 -- --------------------------------------------------------
 
@@ -344,7 +353,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT for table `estrelas`
 --
 ALTER TABLE `estrelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `eventos`

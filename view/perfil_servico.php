@@ -15,9 +15,13 @@
       
         $servicoUnico = $servicoControle->controleAcao("listarUnico", $_GET["servico"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
       
-        if($_SESSION['id'] != $_GET['servico']){
-          $convidado = true;;
-        } 
+        if (isset($_SESSION['id'])) {
+            if($_SESSION['id'] != $_GET['servico']){
+                $convidado = true;
+            }
+        } else {
+            $convidado = true;
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -57,7 +61,9 @@ include_once('include/head.php');
         <div class="wrapper">
 
         <?php
-        include_once('include/sidebarServico.php');
+        $paginaHome = '';
+        $paginaLista = '';
+        include_once('include/sidebar.php');
         ?>
 
         <div id="page" class="no-padding">
@@ -91,6 +97,7 @@ include_once('include/head.php');
             <div class="filtros">
                 <div class="filtros-tipo">SERVIÇO</div>
                 <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>
+                <input type="hidden" id="idUsuario" name="idUsuario" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : "";?>"/>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
                     <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?>">
@@ -106,21 +113,19 @@ include_once('include/head.php');
 				<input type="radio" id="vazio" name="estrela" value="" checked>
 				
 				<label for="estrela_um"><i class="fa"></i></label>
-				<input type="radio" id="estrela_um" name="estrela" value="1">
+				<input type="radio" id="estrela_um" class="estrela" value="1">
 				
 				<label for="estrela_dois"><i class="fa"></i></label>
-				<input type="radio" id="estrela_dois" name="estrela" value="2">
+				<input type="radio" id="estrela_dois" class="estrela" value="2">
 				
 				<label for="estrela_tres"><i class="fa"></i></label>
-				<input type="radio" id="estrela_tres" name="estrela" value="3">
+				<input type="radio" id="estrela_tres" class="estrela" value="3">
 				
 				<label for="estrela_quatro"><i class="fa"></i></label>
-				<input type="radio" id="estrela_quatro" name="estrela" value="4">
+				<input type="radio" id="estrela_quatro" class="estrela" value="4">
 				
 				<label for="estrela_cinco"><i class="fa"></i></label>
-				<input type="radio" id="estrela_cinco" name="estrela" value="5"><br><br>
-				
-				<input type="submit" value="Cadastrar">
+				<input type="radio" id="estrela_cinco" class="estrela" value="5">
 				
 			</div>
 		</form>
@@ -195,7 +200,12 @@ include_once('include/head.php');
                     ?>
                 </div>
             </div>
-        </div>  
+        </div>
+        <div id="action-bar">
+                
+            </div>
+    </div>
+        <?php include_once('include/loader.php'); ?>
 	
 </body>
 </html>
