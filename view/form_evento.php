@@ -1,11 +1,11 @@
 <?php include_once 'include/verifica.php';?>
 <?php
-    $id = isset($eventoUnico) ? $eventoUnico->getId() : "";
-    // $sql = "SELECT visitar FROM eventos WHERE id='$id'";
-    // $visualizacao = $conexao->query($sql);
-    // $visualizacoes = $visualizacao++;
-    // $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes');";
-    // $query = $conexao->query($sql);
+    /*$id = isset($eventoUnico) ? $eventoUnico->getId() : "";
+    $sql = "SELECT visitar FROM eventos WHERE id='$id'";
+    $visualizacao = $conexao->query($sql);
+    $visualizacoes = $visualizacao++;
+    $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes');";
+    $query = $conexao->query($sql);*/
 ?>
 <?php
     include_once '../autoload.php'; 
