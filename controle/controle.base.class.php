@@ -24,6 +24,9 @@ abstract class ControleBase {
             case "listarUltimo":
                 return $this->listarUltimo($param);
                 break;
+            case "listarRelacionado":
+                return $this->listarRelacionado($param);
+                break;
             default:
                 return "Ação indefinida";
         }

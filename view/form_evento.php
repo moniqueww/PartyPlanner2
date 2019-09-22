@@ -1,12 +1,5 @@
 <?php include_once 'include/verifica.php';?>
-<?php
-    $id = isset($eventoUnico) ? $eventoUnico->getId() : "";
-    $sql = "SELECT visitas FROM eventos WHERE id='$id'";
-    $visualizacao = $conexao->query($sql);
-    $visualizacoes = $visualizacao++;
-    $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes);";
-    $query = $conexao->query($sql);
-?>
+
 <?php
     include_once '../autoload.php'; 
     if($_GET['evento']){ // Caso os dados sejam enviados via GET
