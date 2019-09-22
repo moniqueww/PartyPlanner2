@@ -1,11 +1,11 @@
 <?php include_once 'include/verifica.php';?>
 <?php
     $id = isset($eventoUnico) ? $eventoUnico->getId() : "";
-    $sql = "SELECT visitar FROM eventos WHERE id='$id'";
-    $visualizacao = $conexao->query($sql);
-    $visualizacoes = $visualizacao++;
-    $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes');";
-    $query = $conexao->query($sql);
+    // $sql = "SELECT visitar FROM eventos WHERE id='$id'";
+    // $visualizacao = $conexao->query($sql);
+    // $visualizacoes = $visualizacao++;
+    // $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes');";
+    // $query = $conexao->query($sql);
 ?>
 <?php
     include_once '../autoload.php'; 
@@ -114,6 +114,7 @@ include_once('include/head.php');
                 </div>       
                 <form id="form-image" enctype="multipart/form-data" action="upload-image-evento.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $eventoUnico->getImagem(); ?>"><input>
+                    <input style="display: none;" type="text" id="id" name="id" value="<?= $eventoUnico->getId(); ?>">
                     <input id="input-image" name="imagem" type="file">
                 </form>
             <?php } ?>

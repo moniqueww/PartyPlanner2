@@ -17,10 +17,10 @@
                 $tmp = $_FILES['imagem']['tmp_name'];
                 if (move_uploaded_file($tmp, $pasta_imagens.$nome)) {
                     echo "<img style='width: 250px; height: 250px;' src='img/imagens_organizador/". $nome ."' id='image'>";
-                    if ($imagem_ant != $nome) {
-                        unlink ('img/imagens_organizador/' . $imagem_ant);
-                        $imagem_ant = $nome;
-                    }
+                    // if ($imagem_ant != $nome) {
+                    //     unlink ('img/imagens_organizador/' . $imagem_ant);
+                    //     $imagem_ant = $nome;
+                    // }
                 } else {
                     echo "Falha ao enviar a imagem.";
                 }

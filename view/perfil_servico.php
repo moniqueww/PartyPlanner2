@@ -38,7 +38,7 @@ $tituloHead = 'Edita servico';
 include_once('include/head.php');
 ?>
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
     <script src="js/jquery.js" crossorigin="anonymous"></script>
 	<!-- Meu js -->
@@ -49,8 +49,8 @@ include_once('include/head.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="js/pesquisa.js"></script>
 
     <script src="js/perfil.servico.js"></script>
 
@@ -80,10 +80,10 @@ include_once('include/head.php');
                 <div id="visualizar_imagem">
                     <img style="width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>       
-                <div id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
+                <form id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $servicoUnico->getImagem(); ?>"><input>
                     <input id="input-image" name="imagem" type="file">
-                </div>
+                </form>
             <?php } ?>
 
             <!--   ///////////////////////   -->

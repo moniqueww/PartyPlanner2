@@ -27,7 +27,7 @@ $tituloHead = 'Edita Organizador';
 include_once('include/head.php');
 ?>
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
     <script src="js/jquery.js" crossorigin="anonymous"></script>
 	<!-- Meu js -->
@@ -38,54 +38,10 @@ include_once('include/head.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <script type="text/javascript">
-    $(function() {
-        idOrganizador = $('#idOrganizador').val();
-        nome = "";
-        primeiroNome = $('#input-nome').val();
-        primeiroEmail = $('#input-email').val();
-        $('#input-nome').on('blur', function(){
-            nomeNovo = $('#input-nome').val();
-            if (nomeNovo != primeiroNome) {
-                editarEvento();
-            }
-        });
-        $('#input-email').on('blur', function(){
-            emailNovo = $('#input-email').val();
-            if (emailNovo != primeiroEmail) {
-                editarEvento();
-            }
-        });
-        $('#showEdita').on('click', function(){
-            $('#navegacaoEvento > div').removeClass('selected');
-            $(this).addClass('selected');
-            $('#edicaoEvento').show();
-            $('#publicacao').hide();
-        });
-        $('#showPublicacao').on('click', function(){
-            $('#navegacaoEvento > div').removeClass('selected');
-            $(this).addClass('selected');
-            $('#edicaoEvento').hide();
-            $('#publicacao').show();
-        });
-    });
 
-    function editarEvento() {
-        nomeNovo = $('#input-nome').val();
-        emailNovo = $('#input-email').val();
-        console.log(nomeNovo);
-        console.log(idOrganizador);
-        $.post( "../ajax/editaOrganizador.php", {'nome': nomeNovo, 'email': emailNovo, 'id': idOrganizador}, function(data){
-            alert('Organizador modificado');
-            primeiroNome = nomeNovo;
-            primeiroEmail = emailNovo;
-        })
-    };
-   
-    </script>
+    <script src="js/pesquisa.js"></script>
+
+    <script src="js/perfil.organizador.js"></script>
 
     <div class="wrapper">
 
@@ -104,16 +60,20 @@ include_once('include/head.php');
             <div style="padding-right: 15vw; padding-left: calc(15vw - 30px);">
 
             <!--  Imagem  -->
-            <?php if (isset($convidado)) { ?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
-                    </div>
+            <?php if (isset($convidado)) {?>
+                <div id="visualizar_imagem_convidado">
+                    <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
+                </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
-                    <div id="visualizar_imagem_convidado">
-                        <img style="width: 250px; height: 250px;" id="image_convidado" src="img/brand/no-image-event3.png"/>
-                    </div>
+                <div id="visualizar_imagem">
+                    <img style="width: 250px; height: 250px;" id="image" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
+                </div>       
+                <form id="form-image" enctype="multipart/form-data" action="upload-image-organizador.php" method="POST">
+                    <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $organizadorUnico->getImagem(); ?>"><input>
+                    <input id="input-image" name="imagem" type="file">
+                </form>
             <?php } ?>            
             <!--  -----------  -->
 

@@ -192,7 +192,7 @@ class Organizador implements ibaseModelo{
     public function listarUltimo($nome){
         
         try{
-            $query="SELECT id, nome FROM usuario WHERE nome=:nome";
+            $query="SELECT id, nome, imagem FROM usuario WHERE nome=:nome";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':nome', $nome, PDO::PARAM_INT);
             
