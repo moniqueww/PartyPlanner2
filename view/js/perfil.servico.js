@@ -29,6 +29,7 @@ $(function() {
             editarEvento();
         }
     });
+
     ////////////////////////////////// imagem
 
     nomeImagem = $('#image').attr('src').split('/').pop();
@@ -57,6 +58,19 @@ $(function() {
         }
     });
     ///////////////////////////////////
+    //////////navegacao
+    $('#showEdita').on('click', function(){
+        $('#navegacaoEvento > div').removeClass('selected');
+        $(this).addClass('selected');
+        $('#edicaoEvento').show();
+        $('#publicacao').hide();
+    });
+    $('#showPublicacao').on('click', function(){
+        $('#navegacaoEvento > div').removeClass('selected');
+        $(this).addClass('selected');
+        $('#edicaoEvento').hide();
+        $('#publicacao').show();
+    });
 });
 
 function editarEvento() {
