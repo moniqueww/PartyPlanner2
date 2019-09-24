@@ -1,5 +1,6 @@
 <?php include_once 'include/verifica.php';?>
 <?php
+<<<<<<< Updated upstream
     /*$id = isset($eventoUnico) ? $eventoUnico->getId() : "";
     $sql = "SELECT visitar FROM eventos WHERE id='$id'";
     $visualizacao = $conexao->query($sql);
@@ -8,6 +9,8 @@
     $query = $conexao->query($sql);*/
 ?>
 <?php
+=======
+>>>>>>> Stashed changes
     include_once '../autoload.php'; 
     if($_GET['evento']){ // Caso os dados sejam enviados via GET
         

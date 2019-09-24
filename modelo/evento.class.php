@@ -88,6 +88,8 @@ class Evento implements ibaseModelo{
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':idUsuario', $this->idUsuario, PDO::PARAM_STR);
+            $this->stmt->bindValue(':visitas', $this->visitas, PDO::PARAM_STR);
+
 
             if($this->stmt->execute()){
                return true;
@@ -102,7 +104,7 @@ class Evento implements ibaseModelo{
         try{
             
             //Comando SQL para inserir um aluno
-            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, idEstabelecimento = :idEstabelecimento, status = :status, imagem = :imagem WHERE id=:id ";
+            $query="UPDATE eventos SET nome = :nome, descricao = :descricao, idEstabelecimento = :idEstabelecimento, status = :status, imagem = :imagem, visitas = :visitas WHERE id=:id ";
             $this->stmt= $this->conn->prepare($query);
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
@@ -111,6 +113,7 @@ class Evento implements ibaseModelo{
             $this->stmt->bindValue(':idEstabelecimento', $this->idEstabelecimento, PDO::PARAM_INT);
             $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
             $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_STR);
+            $this->stmt->bindValue(':visitas', $this->visitas, PDO::PARAM_STR);
 
 
 
