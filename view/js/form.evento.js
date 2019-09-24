@@ -180,6 +180,13 @@
             $('#publicacao').show();
             $('#quadroEvento').hide();
         });
+        $('#favoritarEvento').on('click', function(){
+            idUsuario = 30;
+            idEvento = $('#idEvento').val();
+            $.post( "../ajax/favoritaEvento.php", {'idEvento': idEvento, 'idUsuario': idUsuario}, function(data){
+                console.log(data);
+            });     
+        });
         $('#cadastrarPreco').on('click', function(){
             var valor = $('#precoValor').val();
             var nome = $('#precoNome').val();

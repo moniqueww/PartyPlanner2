@@ -144,6 +144,9 @@ include_once('include/head.php');
                 <button id="publica-evento" type="button" class="btn btn-primary btn-add">
                     <span class="circle btn-inner--icon"><i class="<?= ($eventoUnico->getStatus() == 1) ? 'fas fa-eye' : 'fas fa-eye-slash' ?>"></i></span>
                 </button>
+                <button id="favoritarEvento" type="button" class="btn btn-primary btn-add" >
+                    <span class="circle btn-inner--icon"><i class="far fa-heart"></i></span>
+                </button>  
             </div>
             <?php } ?>
             <br clear="all">

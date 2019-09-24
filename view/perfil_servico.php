@@ -129,7 +129,10 @@ include_once('include/head.php');
 				<input type="radio" id="estrela_cinco" class="estrela" value="5">
 				
 			</div>
-		</form>
+        </form>
+                <button id="favoritarServico" type="button" class="btn btn-primary btn-add" >
+                    <span class="circle btn-inner--icon"><i class="far fa-heart"></i></span>
+                </button>  
                 </div>
                    
             </div>
@@ -207,6 +210,14 @@ include_once('include/head.php');
             </div>
     </div>
         <?php include_once('include/loader.php'); ?>
-	
+    <script>
+        $('#favoritarServico').on('click', function(){
+            idUsuario = 30;
+            idServico = $('#idServico').val();
+            $.post( "../ajax/favoritaServico.php", {'idServico': idServico, 'idUsuario': idUsuario}, function(data){
+                console.log(data);
+            }); 
+        });
+    </script>
 </body>
 </html>
