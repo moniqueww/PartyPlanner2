@@ -88,7 +88,6 @@ class Evento implements ibaseModelo{
 
             $this->stmt->bindValue(':nome', $this->nome, PDO::PARAM_STR);
             $this->stmt->bindValue(':idUsuario', $this->idUsuario, PDO::PARAM_STR);
-            $this->stmt->bindValue(':visitas', $this->visitas, PDO::PARAM_STR);
 
 
             if($this->stmt->execute()){
@@ -113,7 +112,7 @@ class Evento implements ibaseModelo{
             $this->stmt->bindValue(':idEstabelecimento', $this->idEstabelecimento, PDO::PARAM_INT);
             $this->stmt->bindValue(':status', $this->status, PDO::PARAM_INT);
             $this->stmt->bindValue(':imagem', $this->imagem, PDO::PARAM_STR);
-            $this->stmt->bindValue(':visitas', $this->visitas, PDO::PARAM_STR);
+            $this->stmt->bindValue(':visitas', $this->visitas, PDO::PARAM_INT);
 
 
 
