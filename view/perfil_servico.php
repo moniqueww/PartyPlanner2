@@ -6,7 +6,7 @@
         $eventoPublicadoControle->setVisao($_GET);
 
 	    $eventos = array();
-	    $eventos = $eventoPublicadoControle->controleAcao("listarRelacionado", $_GET["servico"]);
+	    $eventos = $eventoPublicadoControle->controleAcao("listarRelacionadoServico", $_GET["servico"]);
 
 
         $servicoControle = new ControleServico();
@@ -152,30 +152,30 @@ include_once('include/head.php');
                 <div class="filtros-by">
                     <?php if (!isset($convidado)) {?>
                         EMAIL:
-                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <span>EMAIL:</span>
                         <input type="text" id="input-email" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?>">
                     <?php } else { ?>
-                        <span style="color: rgba(255, 255, 255, 0.7);">EMAIL</span>
+                        <span>EMAIL:</span>
                         <span> <?= isset($servicoUnico) ? $servicoUnico->getEmail() : '';?></span>
                     <?php } ?>
                 </div>   
                 <div class="filtros-by">
                     <?php if (!isset($convidado)) {?>
                         CPNJ:
-                        <span style="color: rgba(255, 255, 255, 0.7);">CNPJ</span>
+                        <span>CNPJ:</span>
                         <input type="text" id="input-cnpj" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>">
                     <?php } else { ?>
-                        <span style="color: rgba(255, 255, 255, 0.7);">CNPJ</span>
+                        <span>CNPJ:</span>
                         <span> <?= isset($servicoUnico) ? $servicoUnico->getCnpj() : '';?></span>
                     <?php } ?>
                 </div>   
                 <div class="filtros-by">
                     <?php if (!isset($convidado)) {?>
                         TELEFONE:
-                        <span style="color: rgba(255, 255, 255, 0.7);">TELEFONE</span>
+                        <span>TELEFONE:</span>
                         <input type="text" id="input-telefone" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?>">
                     <?php } else { ?>
-                        <span style="color: rgba(255, 255, 255, 0.7);">TELEFONE</span>
+                        <span>TELEFONE:</span>
                         <span> <?= isset($servicoUnico) ? $servicoUnico->getTelefone() : '';?></span>
                     <?php } ?>
                 </div>
@@ -193,13 +193,13 @@ include_once('include/head.php');
                                 <div class='card' data-id=".$ev->getId().">
                                     <img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
                                     <div class='card-body'>
-                                        <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getNome()."</h5>
+                                        <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getNome()."</h5>
                                 </div>
                                 </div>
                             </div>";
                             };
                         }else{
-                            echo "teste foda";
+                            echo "O serviço não está relacionado com nenhum evento";
                         }
                     ?>
                 </div>

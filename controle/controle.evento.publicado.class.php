@@ -87,5 +87,11 @@ class ControleEventoPublicado extends ControleBase {
         //Chama o método para listar um produto específico do banco de dados
         return $this->evento->listarRelacionado($param);
     }
+    protected function listarRelacionadoServico($param){
+        
+        
+        //Chama o método para listar um produto específico do banco de dados
+        return $this->evento->listarRelacionadoServico($param);
+    }
 
 }

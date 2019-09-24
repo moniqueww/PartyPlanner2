@@ -218,4 +218,32 @@ class EventoPublicado implements ibaseModelo{
             return null;
         }
     }
+    public function listarRelacionadoServico($idUsuario){
+        try{
+            $query="SELECT id,nome,descricao,imagem FROM eventos WHERE idEstabelecimento=:idUsuario AND status = :status";
+            $this->stmt= $this->conn->prepare($query);
+            $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            $this->stmt->bindValue(':status', 1, PDO::PARAM_INT);
+            
+            if($this->stmt->execute()){
+                // Associa o registro a uma classe aluno
+                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");  
+                
+            }
+            if(empty($eventos)){
+                $query="SELECT evento.id,evento.nome,evento.descricao,evento.imagem FROM eventos as evento JOIN evento_artista ON evento.id = evento_artista.idEvento WHERE idServico=:idUsuario";
+                $this->stmt= $this->conn->prepare($query);
+                $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_INT);
+
+                if($this->stmt->execute()){
+                    $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");
+                }
+            }
+            
+            return $eventos;            
+        } catch(PDOException $e) {
+            echo "<div class='alert alert-danger'>".$e->getMessage()."</div>";   
+            return null;
+        }
+    }
 }
