@@ -1,6 +1,5 @@
 <?php include_once 'include/verifica.php';?>
 <?php
-<<<<<<< Updated upstream
     /*$id = isset($eventoUnico) ? $eventoUnico->getId() : "";
     $sql = "SELECT visitar FROM eventos WHERE id='$id'";
     $visualizacao = $conexao->query($sql);
@@ -9,8 +8,6 @@
     $query = $conexao->query($sql);*/
 ?>
 <?php
-=======
->>>>>>> Stashed changes
     include_once '../autoload.php'; 
     if($_GET['evento']){ // Caso os dados sejam enviados via GET
         
@@ -162,6 +159,7 @@ include_once('include/head.php');
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
+                        <input type="hidden" id="convidado" name="convidado" value="<?= isset($convidado) ? 1 : 0;?>"/>
                         <input type="hidden" id="idEstabelecimento" name="idEstabelecimento" value="<?= isset($eventoUnico) ? $eventoUnico->getIdEstabelecimento() : "";?>"/>
                         <div id="navegacaoEvento">
                             <div id="showEdita" class="selected"><?= isset($convidado) ? "Sobre o evento" : "Edição do evento";?></div>
@@ -200,7 +198,7 @@ include_once('include/head.php');
                                             if($servicoUnico->getIdCategoria() == 5){
                                             echo "<div style='float: none;' class='content atracao photo' data-id=".$ea->getId().">
                                                             <div class='card card-redondo'>
-                                                              <img style='background-color: #fff;' class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
+                                                              <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img style='background-color: #fff;' class='card-img-top' src='img/imagens_servico/".$servicoUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
@@ -229,7 +227,7 @@ include_once('include/head.php');
                                 $localizacaoUnica = $servicoControle->controleAcao('listarUnico', $eventoUnico->getIdEstabelecimento()); ?>
                             <div class="localizacao-div">
                                 <div>
-                                    <img src="img/brand/no-image-localization.png" style="height: 100%;">
+                                    <a href="perfil_servico.php?servico=<?= isset($localizacaoUnica) ? $localizacaoUnica->getId() : "";?>"><img src="img/imagens_servico/<?= isset($localizacaoUnica) ? $localizacaoUnica->getImagem() : "";?>" style="height: 100%;"></a>
                                 </div>
                                 <div>
                                     <div class="filtros" style="color: #fff;"><?= isset($localizacaoUnica) ? $localizacaoUnica->getNome() : "";?></div>
@@ -286,7 +284,7 @@ include_once('include/head.php');
 									if (isset($organizadorUnico)) {
 										echo "<div style='margin-right: 0; float: none; width: 23%;' class='content photo' data-id=".$organizadorUnico->getId().">
                                                             <div class='card card-redondo'>
-                                                              <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
+                                                              <a href='perfil_organizador.php?organizador=".$organizadorUnico->getId()."'><img class='card-img-top' src='img/imagens_organizador/".$organizadorUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
@@ -299,7 +297,7 @@ include_once('include/head.php');
                                             $representanteUnico = $organizadorControle->controleAcao("listarUnico", $er->getIdUsuario());
                                             echo "<div style='float: none; width: 23%;' class='content representante photo' data-id=".$er->getId().">
                                                             <div class='card card-redondo'>
-                                                              <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
+                                                              <a href='perfil_organizador.php?organizador=".$representanteUnico->getId()."'><img class='card-img-top' src='img/imagens_organizador/".$representanteUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$representanteUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$representanteUnico->getEmail()."</h5>
@@ -376,7 +374,7 @@ include_once('include/head.php');
                                 if(!empty($categorias)) {
                                     foreach($categorias as $ca) {
                                         echo "<div style='display: none;' class='categoria' id='categoria".$ca->getId()."'>";
-                                        echo "<div class='filtros categorias'>".$ca->getNome()."</div>";
+                                        echo "<div style='margin-top: 30px;' class='filtros-mini categorias'>".$ca->getNome()."</div>";
                                         echo "<div class='filtros-right'>
                                                 <button type='button' data-categoria='".$ca->getId()."' class='btn-addListaQuadro btn btn-primary' data-toggle='modal' data-target='#modal-form'>
                                                     <span class='btn-inner--icon'><i class='ni ni-fat-add'></i></span>
@@ -389,7 +387,7 @@ include_once('include/head.php');
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
                                                 echo "<div class='content photo quadro' data-id=".$qu->getId().">
                                                                 <div class='card card-redondo'>
-                                                                  <img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'>
+                                                                  <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'></a>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>

@@ -13,7 +13,9 @@
 
         ////////////////////////////////// imagem
 
-        nomeImagem = $('#image').attr('src').split('/').pop();
+        if ($('#convidado').val() == 0) {
+            nomeImagem = $('#image').attr('src').split('/').pop();
+        }
 
         $('#input-image').on('change', function() {
             $('#form-image').ajaxForm({

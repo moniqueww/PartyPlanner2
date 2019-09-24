@@ -78,13 +78,13 @@ include_once('include/head.php');
 
             <?php if (isset($convidado)) {?>
                 <div id="visualizar_imagem_convidado">
-                    <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image_convidado" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
                 <div id="visualizar_imagem">
-                    <img style="width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>       
                 <form id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $servicoUnico->getImagem(); ?>"><input>
@@ -98,6 +98,7 @@ include_once('include/head.php');
                 <div class="filtros-tipo">SERVIÇO</div>
                 <input type="hidden" id="idServico" name="idServico" value="<?= isset($servicoUnico) ? $servicoUnico->getId() : "";?>"/>
                 <input type="hidden" id="idUsuario" name="idUsuario" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : "";?>"/>
+                <input type="hidden" id="convidado" name="convidado" value="<?= isset($convidado) ? 1 : 0;?>"/>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
                     <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getNome() : "";?>">

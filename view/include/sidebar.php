@@ -62,7 +62,7 @@
 	                    <i class="fas fa-home"></i><span>Início</span>
 	                </li>
                 </a>
-                <a href="">
+                <a href="<?= isset($_SESSION['usuario']) ? 'perfil_organizador.php?organizador='.$_SESSION['id'] : '' ?>">
                 	<div class="paginaAtiva"></div>
 					<li>
                     	<i class="fas fa-user"></i><span>Perfil</span>

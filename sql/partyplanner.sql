@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Set-2019 às 00:03
+-- Generation Time: 24-Set-2019 às 04:48
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -78,8 +78,8 @@ CREATE TABLE `eventos` (
   `descricao` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idEstabelecimento` int(11) DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
-  `imagem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png',
-  `visitas` int(11) NOT NULL
+  `imagem` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no-image.png',
+  `visitas` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -87,8 +87,9 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`, `visitas`) VALUES
-(127, 20, 'NEON BEATS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed nisi lorem. Aenean vel nisi pretium, varius dolor sit amet, tincidunt nibh. Sed ac posuere nisi. In vehicula lectus ac neque aliquam aliquet. Nulla pulvinar vulputate lorem non malesuada. Suspendisse posuere eu neque et lobortis. Nullam metus purus, mattis sit amet nisl eget, congue ullamcorper nisl. Maecenas nec porttitor orci.\n\nQuisque at sagittis risus, ac fringilla massa. Proin et bibendum sapien, nec aliquet leo. In eget purus ut risus convallis ultrices. Duis lorem lectus, tristique vitae quam nec, dictum tincidunt libero. Aenean a vulputate lorem, eleifend blandit elit. Vivamus laoreet finibus posuere. Nullam non ipsum purus.', 31, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg', 0),
-(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png', 0);
+(127, 20, 'NEON BEATS', 'awdawdawdawd', 31, 1, 'no-image.png', 15),
+(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png', 0),
+(129, 26, 'Meu aniversário', 'Meu evento', 31, 0, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,8 @@ INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
 (18, 128, 23),
 (21, 128, 22),
 (25, 127, 23),
-(36, 128, 24);
+(36, 128, 24),
+(39, 129, 23);
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,9 @@ INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALU
 (15, 128, 20, 'Normal', 'Normal'),
 (16, 128, 30, 'VIP', 'Mais coisas'),
 (17, 128, 50, 'Luxo', 'Mais coisas ainda'),
-(18, 127, 20, 'Normal', 'Nada demais');
+(18, 127, 20, 'Normal', 'Nada demais'),
+(19, 129, 20, 'Normal', 'Vai ser normal'),
+(20, 129, 30, 'Vip', 'Tem adicionais');
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,11 @@ CREATE TABLE `evento_representante` (
 INSERT INTO `evento_representante` (`id`, `idEvento`, `idUsuario`) VALUES
 (1, 128, 26),
 (2, 128, 28),
-(3, 128, 29);
+(3, 128, 29),
+(4, 129, 29),
+(5, 129, 26),
+(6, 129, 27),
+(8, 129, 28);
 
 -- --------------------------------------------------------
 
@@ -181,7 +189,7 @@ CREATE TABLE `publicacao` (
   `idEvento` int(11) NOT NULL,
   `titulo` varchar(50) NOT NULL,
   `descricao` varchar(2000) NOT NULL,
-  `imagem` varchar(100) DEFAULT NULL,
+  `imagem` varchar(2000) DEFAULT NULL,
   `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -195,7 +203,8 @@ INSERT INTO `publicacao` (`id`, `idEvento`, `titulo`, `descricao`, `imagem`, `da
 (6, 127, 'Minha terceira publicação', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', '2019-09-21'),
 (7, 127, 'Minha quarta publicação', 'saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2019-09-21'),
 (8, 127, 'Mais uma publicação', 'akwjdhawkhsdjkwahdkjhjkhajkwdhjkh\nawjdhkjawhdaw\n\n\n\nawjkdgawjksdghawd\n\n\nawjdygajwdgawdawdwa', '', '2019-09-21'),
-(9, 127, 'Meu deus', 'kajwdhgawdkawsdkjawdwad', '', '2019-09-21');
+(9, 127, 'Meu deus', 'kajwdhgawdkawsdkjawdwad', '', '2019-09-21'),
+(10, 129, 'aaaaaaaaaaaa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis velit sit amet risus aliquet posuere. Pellentesque semper justo placerat, varius ex vel, molestie ex. Aliquam vestibulum, velit eget tempus ultricies, velit urna ornare ante, eget sollicitudin sem est iaculis libero. Aliquam erat volutpat. Phasellus gravida maximus enim nec lacinia. Donec in congue eros, non vulputate leo. Nam et est arcu. Quisque ut laoreet urna.\n\nSuspendisse non fringilla velit. Curabitur ut consectetur mauris. Aenean tristique quam in luctus pellentesque. Etiam bibendum lacinia diam eu commodo. Nullam porta rhoncus nisi at dictum. Vivamus quis ante mauris. Nullam ut vulputate mauris, quis placerat lorem. Phasellus non diam iaculis, luctus libero et, condimentum felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam sed semper risus, ac scelerisque urna. Etiam et sapien faucibus, posuere urna at, tristique orci.\n\nNulla velit ligula, hendrerit non elementum non, condimentum vitae orci. Ut et sollicitudin tortor. Ut tincidunt magna non erat semper, at facilisis elit cursus. Ut leo purus, elementum sed dolor vel, aliquet tempus risus. Integer blandit suscipit varius. Pellentesque scelerisque ut mi vel viverra. Nunc porta auctor feugiat. Donec ac lobortis nunc, et eleifend odio. Nulla ac feugiat nunc.', '', '2019-09-24');
 
 -- --------------------------------------------------------
 
@@ -224,7 +233,10 @@ INSERT INTO `quadro` (`id`, `idEvento`, `idServico`) VALUES
 (21, 127, 25),
 (22, 127, 24),
 (23, 127, 22),
-(24, 127, 16);
+(24, 127, 16),
+(25, 129, 5),
+(26, 129, 13),
+(27, 129, 8);
 
 -- --------------------------------------------------------
 
@@ -263,12 +275,12 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone
 (17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4, 'no-image.png'),
 (18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3, 'no-image.png'),
 (19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2, 'no-image.png'),
-(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL, ''),
+(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL, 'no-image.png'),
 (22, 'Dj khalid fodase', 'ajklw@awkjdyh', '123', 'S', '12093712378', 129873617823, 5, 'no-image.png'),
 (23, 'Aviccii', 'avitifodase@akwjd', '123', 'S', '123987612387', 1982347789124, 5, 'no-image.png'),
 (24, 'Deivid gueta', 'deivid@wajdhjk', '123', 'S', '217367812368', 123124214, 5, 'no-image.png'),
 (25, 'Chatuba', '29837@218937', '123', 'S', '123124124', 123123124, 5, 'no-image.png'),
-(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL, 'singer_1317264.png'),
 (27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL, 'no-image.png'),
 (28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL, 'no-image.png'),
 (29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL, 'no-image.png'),
@@ -359,25 +371,25 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `evento_preco`
 --
 ALTER TABLE `evento_preco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `evento_representante`
 --
 ALTER TABLE `evento_representante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
@@ -389,13 +401,13 @@ ALTER TABLE `evento_servico`
 -- AUTO_INCREMENT for table `publicacao`
 --
 ALTER TABLE `publicacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `usuario`

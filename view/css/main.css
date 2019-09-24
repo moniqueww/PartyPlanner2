@@ -297,14 +297,14 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	background: linear-gradient(45deg, rgba(115, 73, 255, 0.8) 40%, rgba(98, 172, 255, .8)), url(../img/brand/background-blur.jpg);
+	background: linear-gradient(45deg, rgba(115, 73, 255, 1) 40%, rgba(98, 172, 255, 1));
 	/*background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));*/
 	background-size: cover;
 	background-position: center;
-	padding: 0px 0px 100px 30px;
+	padding: 0px 0px 30px 30px;
 }
 #background .filtros{
-	margin-top: 111px;
+	margin-top: 50px;
 	line-height: initial;
 	color: #fff !important;
 	letter-spacing: -0.05rem;

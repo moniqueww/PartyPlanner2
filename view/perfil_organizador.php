@@ -62,13 +62,13 @@ include_once('include/head.php');
             <!--  Imagem  -->
             <?php if (isset($convidado)) {?>
                 <div id="visualizar_imagem_convidado">
-                    <img style="width: 250px; height: 250px;" id="image_convidado" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
+                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image_convidado" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
                 </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
                 <div id="visualizar_imagem">
-                    <img style="width: 250px; height: 250px;" id="image" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
+                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image" src="img/imagens_organizador/<?= $organizadorUnico->getImagem() ?>"/>
                 </div>       
                 <form id="form-image" enctype="multipart/form-data" action="upload-image-organizador.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $organizadorUnico->getImagem(); ?>"><input>
@@ -80,6 +80,7 @@ include_once('include/head.php');
             <div class="filtros">
                 <div class="filtros-tipo">ORGANIZADOR</div>
                 <input type="hidden" id="idOrganizador" name="idOrganizador" value="<?= isset($organizadorUnico) ? $organizadorUnico->getId() : "";?>"/>
+                <input type="hidden" id="convidado" name="convidado" value="<?= isset($convidado) ? 1 : 0;?>"/>
                 <div class="filtros-nome">
                     <?php if (!isset($convidado)) {?>
                     <input type="text" id="input-nome" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($organizadorUnico) ? $organizadorUnico->getNome() : "";?>">

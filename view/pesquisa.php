@@ -30,9 +30,9 @@ include_once('include/head.php');
     <script type="text/javascript">
 	$(function() {
 
-		$('.content .card').on('click', function(){
+		$('.content.mini-card').on('click', function(){
 			eventoId = $(this).attr('data-id');
-			window.location.assign('divulgacao_evento.php?evento='+eventoId);
+			window.location.assign('form_evento.php?evento='+eventoId);
 		});
 
 		$('#geralPesq').focus();
@@ -108,7 +108,10 @@ include_once('include/head.php');
 										$('<div>', {html: data.organizadores[h].nome}),
 										$('<div>', {html: data.organizadores[h].nome})
 									)
-								)
+								).on('click', function(){
+									organizadorId = $(this).attr('data-id');
+									window.location.assign('perfil_organizador.php?organizador='+organizadorId);
+								})
 							);
 						}
 					} else {
@@ -151,12 +154,12 @@ include_once('include/head.php');
 
 			<div id="filtro-recente" class="filtros">Pesquisas Recentes</div>
 			<!-- Page Content -->
-			<div id="recentes">
+			<div id="Populares">
 			<?php
 				if(!empty($eventos)){
                     foreach (array_reverse($eventos) as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-                        echo "<div class='content co-10 mini-card no-padding'>
+                        echo "<div class='content co-10 mini-card no-padding' data-id='".$ev->getId()."'>
 				  <img src='img/imagens_evento/".$ev->getImagem()."'/>
 				  <div>
 				    <div>".$ev->getNome()."</div>
