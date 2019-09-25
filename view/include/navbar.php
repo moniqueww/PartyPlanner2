@@ -18,7 +18,20 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link nav-link-icon" href="" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<div class="header-photo circle" style="display: inline-block;">
-								<img src="img/fotosPerfil/noimage5.png"/>
+								<?php
+									if (isset($_SESSION['usuario'])) {
+										if ($_SESSION['tipo'] == 'O') {
+											$usuarioControle = new ControleOrganizador();
+											$img = "<img style='background-color: #f7f8fc;' src='img/imagens_organizador/";
+										} else {
+											$usuarioControle = new ControleServico();
+											$img = "<img style='background-color: #f7f8fc;' src='img/imagens_servico/";
+										}
+										$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $_SESSION['id']);
+										$img .= $usuarioUnico->getImagem()."'/>";
+										echo $img;
+									}
+								?>
 							</div>
 							<span><?php if (isset($_SESSION['usuario'])) { echo $_SESSION['usuario']; } else { echo "Entrar"; } ?></span>
 						</a>

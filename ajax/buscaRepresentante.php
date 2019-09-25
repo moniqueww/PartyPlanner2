@@ -20,7 +20,7 @@
                     $disabled = 'disabled';
                 }
             }
-            $resposta[] = ['id' => $or->getId(), 'nome' => $or->getNome(), 'email' => $or->getEmail(), 'disabled' => $disabled];
+            $resposta[] = ['id' => $or->getId(), 'nome' => $or->getNome(), 'email' => $or->getEmail(), 'disabled' => $disabled, 'imagem' => $or->getImagem()];
         }
 
         echo json_encode($resposta);

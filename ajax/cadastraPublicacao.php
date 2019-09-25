@@ -8,7 +8,11 @@
 
         if($retorno) {
             $publicacaoUnico = $publicacaoControle->controleAcao('listarUltimo', $_POST['idEvento']);
-            $arrayRetorno = ['id' => $publicacaoUnico->getId(),'idEvento' => $_POST['idEvento'], 'titulo' => $publicacaoUnico->getTitulo(), 'descricao' => $publicacaoUnico->getDescricao(), 'imagem' => $publicacaoUnico->getImagem(), 'data' => $publicacaoUnico->getData()];
+            $eventoControle = new ControleEvento();
+            $eventoUnico = $eventoControle->controleAcao('listarUnico', $_POST['idEvento']);
+            $organizadorControle = new ControleOrganizador();
+            $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
+            $arrayRetorno = ['id' => $publicacaoUnico->getId(),'idEvento' => $_POST['idEvento'], 'titulo' => $publicacaoUnico->getTitulo(), 'descricao' => $publicacaoUnico->getDescricao(), 'imagem' => $publicacaoUnico->getImagem(), 'data' => $publicacaoUnico->getData(), 'nome' => $organizadorUnico->getNome(), 'imagemOrg' => $organizadorUnico->getImagem()];
             echo json_encode($arrayRetorno);
         }
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Set-2019 às 04:48
+-- Generation Time: 25-Set-2019 às 06:36
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.4
 
@@ -57,14 +57,6 @@ CREATE TABLE `estrelas` (
   `qtdEstrelas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `estrelas`
---
-
-INSERT INTO `estrelas` (`id`, `idServico`, `idUsuario`, `qtdEstrelas`) VALUES
-(2, 1, 20, 4),
-(3, 1, 20, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -87,9 +79,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `idUsuario`, `nome`, `descricao`, `idEstabelecimento`, `status`, `imagem`, `visitas`) VALUES
-(127, 20, 'NEON BEATS', 'awdawdawdawd', 31, 1, 'no-image.png', 15),
-(128, 20, 'Meu aniversário', 'Meu aniversário vai ser legal vai ter eu', 31, 1, 'no-image.png', 0),
-(129, 26, 'Meu aniversário', 'Meu evento', 31, 0, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg', 0);
+(132, 36, 'NEON BEATS', 'É uma festa neon muito brilhante e fantástica!', 42, 1, 'molde-abstrato-de-neon-do-partido-do-partido_1370-164.jpg', 0),
+(135, 35, 'NEON BEATS PT. 2', 'Festa muito boa melhor que a do guilherme', 41, 1, 'modelo-de-fundo-neon-circle-party_1370-165.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -108,11 +99,10 @@ CREATE TABLE `evento_artista` (
 --
 
 INSERT INTO `evento_artista` (`id`, `idEvento`, `idServico`) VALUES
-(18, 128, 23),
-(21, 128, 22),
-(25, 127, 23),
-(36, 128, 24),
-(39, 129, 23);
+(50, 132, 44),
+(51, 132, 48),
+(52, 135, 47),
+(53, 135, 45);
 
 -- --------------------------------------------------------
 
@@ -133,13 +123,9 @@ CREATE TABLE `evento_preco` (
 --
 
 INSERT INTO `evento_preco` (`id`, `idEvento`, `valor`, `nome`, `descricao`) VALUES
-(14, 127, 40, 'Vip', 'Tem coisas a mais'),
-(15, 128, 20, 'Normal', 'Normal'),
-(16, 128, 30, 'VIP', 'Mais coisas'),
-(17, 128, 50, 'Luxo', 'Mais coisas ainda'),
-(18, 127, 20, 'Normal', 'Nada demais'),
-(19, 129, 20, 'Normal', 'Vai ser normal'),
-(20, 129, 30, 'Vip', 'Tem adicionais');
+(21, 132, 20, 'Normal', 'Apenas acesso para pista de baixo e sem atrativos'),
+(22, 132, 30, 'Vip', 'Acesso para todas pistas e atrativos'),
+(23, 135, 25, 'Padrão', 'Preço unitário para tudo');
 
 -- --------------------------------------------------------
 
@@ -158,13 +144,8 @@ CREATE TABLE `evento_representante` (
 --
 
 INSERT INTO `evento_representante` (`id`, `idEvento`, `idUsuario`) VALUES
-(1, 128, 26),
-(2, 128, 28),
-(3, 128, 29),
-(4, 129, 29),
-(5, 129, 26),
-(6, 129, 27),
-(8, 129, 28);
+(17, 132, 34),
+(18, 135, 37);
 
 -- --------------------------------------------------------
 
@@ -177,6 +158,37 @@ CREATE TABLE `evento_servico` (
   `idEvento` bigint(20) UNSIGNED NOT NULL,
   `idServico` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `favorita_evento`
+--
+
+CREATE TABLE `favorita_evento` (
+  `id` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `favorita_evento`
+--
+
+INSERT INTO `favorita_evento` (`id`, `idUsuario`, `idEvento`) VALUES
+(17, 36, 132);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `favorita_servico`
+--
+
+CREATE TABLE `favorita_servico` (
+  `id` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idServico` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -198,13 +210,7 @@ CREATE TABLE `publicacao` (
 --
 
 INSERT INTO `publicacao` (`id`, `idEvento`, `titulo`, `descricao`, `imagem`, `data`) VALUES
-(4, 127, 'Minha primeira publicação', 'Vai se show de bola isso aqui', '', '2019-09-20'),
-(5, 127, 'Minha segunda publicação', 'É vdd o q eu disse antes', '', '2019-09-21'),
-(6, 127, 'Minha terceira publicação', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '', '2019-09-21'),
-(7, 127, 'Minha quarta publicação', 'saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2019-09-21'),
-(8, 127, 'Mais uma publicação', 'akwjdhawkhsdjkwahdkjhjkhajkwdhjkh\nawjdhkjawhdaw\n\n\n\nawjkdgawjksdghawd\n\n\nawjdygajwdgawdawdwa', '', '2019-09-21'),
-(9, 127, 'Meu deus', 'kajwdhgawdkawsdkjawdwad', '', '2019-09-21'),
-(10, 129, 'aaaaaaaaaaaa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis velit sit amet risus aliquet posuere. Pellentesque semper justo placerat, varius ex vel, molestie ex. Aliquam vestibulum, velit eget tempus ultricies, velit urna ornare ante, eget sollicitudin sem est iaculis libero. Aliquam erat volutpat. Phasellus gravida maximus enim nec lacinia. Donec in congue eros, non vulputate leo. Nam et est arcu. Quisque ut laoreet urna.\n\nSuspendisse non fringilla velit. Curabitur ut consectetur mauris. Aenean tristique quam in luctus pellentesque. Etiam bibendum lacinia diam eu commodo. Nullam porta rhoncus nisi at dictum. Vivamus quis ante mauris. Nullam ut vulputate mauris, quis placerat lorem. Phasellus non diam iaculis, luctus libero et, condimentum felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam sed semper risus, ac scelerisque urna. Etiam et sapien faucibus, posuere urna at, tristique orci.\n\nNulla velit ligula, hendrerit non elementum non, condimentum vitae orci. Ut et sollicitudin tortor. Ut tincidunt magna non erat semper, at facilisis elit cursus. Ut leo purus, elementum sed dolor vel, aliquet tempus risus. Integer blandit suscipit varius. Pellentesque scelerisque ut mi vel viverra. Nunc porta auctor feugiat. Donec ac lobortis nunc, et eleifend odio. Nulla ac feugiat nunc.', '', '2019-09-24');
+(12, 132, 'Minha festa é muito melhor', 'Vi que o Lorenzo copiou a minha festa e ainda teve audácia de dizer que a dele vai ser melhor, mas é mentira. Não tem como criar uma festa melhor que essa.', '', '2019-09-25');
 
 -- --------------------------------------------------------
 
@@ -217,26 +223,6 @@ CREATE TABLE `quadro` (
   `idEvento` int(11) NOT NULL,
   `idServico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `quadro`
---
-
-INSERT INTO `quadro` (`id`, `idEvento`, `idServico`) VALUES
-(11, 127, 2),
-(12, 127, 9),
-(14, 127, 8),
-(15, 127, 15),
-(17, 127, 23),
-(18, 127, 5),
-(20, 127, 10),
-(21, 127, 25),
-(22, 127, 24),
-(23, 127, 22),
-(24, 127, 16),
-(25, 129, 5),
-(26, 129, 13),
-(27, 129, 8);
 
 -- --------------------------------------------------------
 
@@ -261,31 +247,24 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `tipo`, `cnpj`, `telefone`, `idCategoria`, `imagem`) VALUES
-(1, 'Segurança LTDA', 'emailteste@gmail.com', 'senha123', 'S', '98217389', 5434543454, 1, 'no-image.png'),
-(2, 'Bebidas LTDA', 'emailteste2@gmail.com', 'senha1234', 'S', '127836', 5433443344, 4, 'no-image.png'),
-(5, 'Decoração LTDA', 'emailteste4@gmail.com', 'senha123', 'S', '213123123', 5434556677, 3, 'no-image.png'),
-(8, 'Segurança 2 LTDA', 'emailteste2332@gmail.com', 'senha123', 'S', '123123123', 5434543454, 1, 'no-image.png'),
-(9, 'Bebidas 2 LTDA', 'emailteste128@gmail.com', 'senha123', 'S', '12312321', 5434543454, 4, 'no-image.png'),
-(10, 'Decoração 2 LTDA', 'emailteste218736@gmail.com', 'senha123', 'S', '1298371298', 5434543454, 3, 'no-image.png'),
-(11, 'Serviço 1', 'servico@gmail.com', 'senha 123', 'S', '12345678909876', 5434543454, 1, 'no-image.png'),
-(13, 'servico 2', 'servico2@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 2, 'no-image.png'),
-(14, 'servico 3', 'servico3@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3, 'no-image.png'),
-(15, 'SERVICO4', 'servico4@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4, 'no-image.png'),
-(16, 'servico 5', 'servico5@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 5, 'no-image.png'),
-(17, 'servico 6', 'servico6@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 4, 'no-image.png'),
-(18, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543454, 3, 'no-image.png'),
-(19, 'servico 7', 'servico7@gmail.com', 'senha123', 'S', '12345678909876', 5434543453, 2, 'no-image.png'),
-(20, 'Teste', 'teste', '123', 'O', NULL, NULL, NULL, 'no-image.png'),
-(22, 'Dj khalid fodase', 'ajklw@awkjdyh', '123', 'S', '12093712378', 129873617823, 5, 'no-image.png'),
-(23, 'Aviccii', 'avitifodase@akwjd', '123', 'S', '123987612387', 1982347789124, 5, 'no-image.png'),
-(24, 'Deivid gueta', 'deivid@wajdhjk', '123', 'S', '217367812368', 123124214, 5, 'no-image.png'),
-(25, 'Chatuba', '29837@218937', '123', 'S', '123124124', 123123124, 5, 'no-image.png'),
-(26, 'Grégori', 'gregori', 'gregori123', 'O', NULL, NULL, NULL, 'singer_1317264.png'),
-(27, 'Monique', 'monique', 'monique123', 'O', NULL, NULL, NULL, 'no-image.png'),
-(28, 'Lorenzo', 'lorenzo', 'lorenzo123', 'O', NULL, NULL, NULL, 'no-image.png'),
-(29, 'Guilherme', 'guilherme', 'guilherme123', 'O', NULL, NULL, NULL, 'no-image.png'),
-(30, 'Pedro Lucas', 'pedro', 'pedro123', 'O', NULL, NULL, NULL, 'no-image.png'),
-(31, 'Cultive Bar', 'cultivebar@gmail.com', '123', 'S', '23534534646', 54996233793, 2, 'no-image.png');
+(33, 'Grégori', 'gregori@gmail.com', 'gregori123', 'O', NULL, NULL, NULL, '20190925_004311.jpg'),
+(34, 'Monique', 'monique@gmail.com', 'monique123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(35, 'Lorenzo', 'lorenzo@gmail.com', 'lorenzo123', 'O', NULL, NULL, NULL, '20190925_004015.jpg'),
+(36, 'Guilherme', 'guilherme@gmail.com', 'guilherme123', 'O', NULL, NULL, NULL, '20190925_004004.jpg'),
+(37, 'Pedro lucas', 'pedrolucas@gmail.com', 'pedrolucas123', 'O', NULL, NULL, NULL, 'no-image.png'),
+(38, 'Espaço para Eventos Giuseppe Toniolo', 'toniolo@gmail.com', '123', 'S', '', 5434543454, 2, '19800887_1738456539785817_3600936300851680511_o.jpg'),
+(39, 'Benestare', 'benestare@gmail.com', '123', 'S', '', 5434539155, 2, '4_13_168717-1562344358.jpg'),
+(40, 'Fundaparque', 'fundaparque@gmail.com', '123', 'S', '', 182736237, 2, 'fundaparque-585x384.jpg'),
+(41, 'Cultive Bar', 'cultive@gmail.com', '123', 'S', '', 1234124, 2, 'cultive-bar.jpg'),
+(42, 'Buteco 63', 'buteco@gmail.com', '123', 'S', '', 12341421, 2, '14519814_bZFQm6k9TC8_mJfutKLPjlvlQbOtl7e4JBHnRKDNARY.jpg'),
+(43, 'Eminem', 'eminem@gmail.com', '123', 'S', '', 128736124, 5, 'eminem_photo_by_dave_j_hogan_getty_images_entertainment_getty_187596325.jpg'),
+(44, 'Marshmello', 'marshmello@gmail.com', '123', 'S', '', 124124124, 5, 'ceQbB4LB_400x400.jpg'),
+(45, 'J. Cole', 'jcole@gmail.com', '123', 'S', '', 124124124, 5, '500x500.jpg'),
+(46, 'Anitta', 'anitta@gmail.com', '123', 'S', '', 124124124, 5, 'anitta-consulado-e1499192108725-620x450.jpg'),
+(47, 'Twenty One Pilots', 't1pilots@gmail.com', '123', 'S', '', 182647, 5, 'f8e28a81feb9baa0fbc3d69e12587755745a122d.jpg'),
+(48, 'Dj Rogério', 'djrogerio@gmail.com', '123', 'S', '', 12873612, 5, '292444-271529096284287-1416388445-n.jpg'),
+(49, 'Nome Cantor', 'nomecantor@gmail.com', '123', 'S', '', 15423532, 5, 'no-image.png'),
+(50, 'Artista desconhecido', 'artistadesconhecido@gmail.com', '123', 'S', '124124214', 124124124, 5, 'no-image.png');
 
 --
 -- Indexes for dumped tables
@@ -334,6 +313,18 @@ ALTER TABLE `evento_servico`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `favorita_evento`
+--
+ALTER TABLE `favorita_evento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `favorita_servico`
+--
+ALTER TABLE `favorita_servico`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `publicacao`
 --
 ALTER TABLE `publicacao`
@@ -371,25 +362,25 @@ ALTER TABLE `estrelas`
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `evento_artista`
 --
 ALTER TABLE `evento_artista`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `evento_preco`
 --
 ALTER TABLE `evento_preco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `evento_representante`
 --
 ALTER TABLE `evento_representante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `evento_servico`
@@ -398,22 +389,34 @@ ALTER TABLE `evento_servico`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `favorita_evento`
+--
+ALTER TABLE `favorita_evento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `favorita_servico`
+--
+ALTER TABLE `favorita_servico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `publicacao`
 --
 ALTER TABLE `publicacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `quadro`
 --
 ALTER TABLE `quadro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

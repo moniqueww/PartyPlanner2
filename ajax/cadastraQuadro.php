@@ -11,7 +11,7 @@
             $quadroUnico = $quadroControle->controleAcao('listarUltimo', $_POST['idEvento']);
             $servicoControle = new ControleServico();
             $servicoUnico = $servicoControle->controleAcao("listarUnico", $_POST['idServico']);
-            $arrayRetorno = ['idQuadro' => $quadroUnico->getId(),'idEvento' => $_POST['idEvento'], 'idServico' => $_POST['idServico'], 'nome' => $servicoUnico->getNome(), 'email' => $servicoUnico->getEmail(), 'telefone' => $servicoUnico->getTelefone()];
+            $arrayRetorno = ['idQuadro' => $quadroUnico->getId(),'idEvento' => $_POST['idEvento'], 'idServico' => $_POST['idServico'], 'nome' => $servicoUnico->getNome(), 'email' => $servicoUnico->getEmail(), 'telefone' => $servicoUnico->getTelefone(), 'imagem' => $servicoUnico->getImagem()];
             echo json_encode($arrayRetorno);
         }
     }

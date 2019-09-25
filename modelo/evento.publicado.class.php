@@ -135,10 +135,10 @@ class EventoPublicado implements ibaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 //Pesquisa pelo nome
-                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status AND nome LIKE :nome";
+                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status AND nome LIKE :nome ORDER BY (SELECT count(*) FROM favorita_evento as fe WHERE fe.idEvento = eventos.id) DESC";
             }else{
                 // Pesquisa todos
-                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status";
+                $query="SELECT id,nome,descricao,status,idUsuario,imagem FROM eventos WHERE status = :status ORDER BY (SELECT count(*) FROM favorita_evento as fe WHERE fe.idEvento = eventos.id) DESC";
             }
             $this->stmt= $this->conn->prepare($query);
             if(!is_null($nome))$this->stmt->bindValue(':nome', '%'.$nome.'%', PDO::PARAM_STR);
@@ -201,7 +201,7 @@ class EventoPublicado implements ibaseModelo{
 
     public function listarRelacionado($idUsuario){
         try{
-            $query="SELECT id,nome,descricao,imagem FROM eventos WHERE idUsuario=:idUsuario AND status = :status";
+            $query="SELECT id,nome,descricao,imagem FROM eventos WHERE idUsuario=:idUsuario AND status=:status";
             $this->stmt= $this->conn->prepare($query);
             $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_INT);
             $this->stmt->bindValue(':status', 1, PDO::PARAM_INT);
@@ -231,9 +231,10 @@ class EventoPublicado implements ibaseModelo{
                 
             }
             if(empty($eventos)){
-                $query="SELECT evento.id,evento.nome,evento.descricao,evento.imagem FROM eventos as evento JOIN evento_artista ON evento.id = evento_artista.idEvento WHERE idServico=:idUsuario";
+                $query="SELECT evento.id,evento.nome,evento.descricao,evento.imagem FROM eventos as evento JOIN evento_artista ON evento.id = evento_artista.idEvento WHERE idServico=:idUsuario AND evento.status=:status";
                 $this->stmt= $this->conn->prepare($query);
                 $this->stmt->bindValue(':idUsuario', $idUsuario, PDO::PARAM_INT);
+                $this->stmt->bindValue(':status', 1, PDO::PARAM_INT);
 
                 if($this->stmt->execute()){
                     $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoPublicado");

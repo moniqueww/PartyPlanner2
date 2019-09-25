@@ -1,13 +1,5 @@
 <?php include_once 'include/verifica.php';?>
 <?php
-    /*$id = isset($eventoUnico) ? $eventoUnico->getId() : "";
-    $sql = "SELECT visitar FROM eventos WHERE id='$id'";
-    $visualizacao = $conexao->query($sql);
-    $visualizacoes = $visualizacao++;
-    $sql = "INSERT INTO eventos (visitas) VALUES ('$visualizacoes');";
-    $query = $conexao->query($sql);*/
-?>
-<?php
     include_once '../autoload.php'; 
     if($_GET['evento']){ // Caso os dados sejam enviados via GET
         
@@ -45,6 +37,20 @@
 
         $organizadorControle = new ControleOrganizador();
         $organizadorUnico = $organizadorControle->controleAcao('listarUnico', $eventoUnico->getIdUsuario());
+
+        $eventoFavoritaControle = new ControleEventoFavorita();
+        $eventoFavoritos = $eventoFavoritaControle->controleAcao('listarTodos', $eventoUnico->getId());
+
+        $favorito = false;
+        $curtidas = 0;
+        if (isset($_SESSION['id'])) {
+            foreach ($eventoFavoritos as $favoritos) {
+                if ($favoritos->getIdUsuario() == $_SESSION['id']) {
+                    $favorito = true;
+                }
+                $curtidas++;
+            }
+        }
         
         if (!isset($convidado)) {
             if (!$eventoUnico->getStatus()) {
@@ -136,19 +142,26 @@ include_once('include/head.php');
                 </div>
                 <div class="filtros-by">
                     <span style="color: rgba(255, 255, 255, 0.7);">Por</span>
-                    <span> <?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></span>
+                    <span> <a href="perfil_organizador.php?organizador=<?= isset($organizadorUnico) ? $organizadorUnico->getId() : '';?>"><?= isset($organizadorUnico) ? $organizadorUnico->getNome() : '';?></a></span>
                 </div>   
             </div>
-            <?php if (!isset($convidado)) {?>
             <div class="filtros-right simple-margin-right">
+                <?php if (!isset($convidado)) {?>
                 <button id="publica-evento" type="button" class="btn btn-primary btn-add">
                     <span class="circle btn-inner--icon"><i class="<?= ($eventoUnico->getStatus() == 1) ? 'fas fa-eye' : 'fas fa-eye-slash' ?>"></i></span>
                 </button>
-                <button id="favoritarEvento" type="button" class="btn btn-primary btn-add" >
-                    <span class="circle btn-inner--icon"><i class="far fa-heart"></i></span>
-                </button>  
+                <?php } ?>
+                <?php if (isset($_SESSION['id'])) {?>
+                <button <?= $favorito ? 'disabled' : '';?> id="favoritarEvento" type="button" class="btn btn-primary btn-add" >
+                    <span class="circle btn-inner--icon"><i class="<?= $favorito ? 'fas' : 'far';?> fa-heart"></i></span>
+                </button> 
+                <?php } ?>
+                <div style="display: inline; color: rgba(255, 255, 255, 0.6);">
+                    <?php
+                        echo $curtidas.' curtida(s)';
+                    ?>
+                </div>
             </div>
-            <?php } ?>
             <br clear="all">
             </div>
             </div>
@@ -161,6 +174,7 @@ include_once('include/head.php');
             <?php include_once('include/cadastraPublicacao.php'); ?>
                         <!-- Page Content -->
                         <input type="hidden" id="idEvento" name="idEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getId() : "";?>"/>
+                        <input type="hidden" id="idUsuario" name="idUsuario" value="<?= isset($_SESSION['id']) ? $_SESSION['id'] : "";?>"/>
                         <input type="hidden" id="statusEvento" name="statusEvento" value="<?= isset($eventoUnico) ? $eventoUnico->getStatus() : "";?>"/>
                         <input type="hidden" id="convidado" name="convidado" value="<?= isset($convidado) ? 1 : 0;?>"/>
                         <input type="hidden" id="idEstabelecimento" name="idEstabelecimento" value="<?= isset($eventoUnico) ? $eventoUnico->getIdEstabelecimento() : "";?>"/>
@@ -287,7 +301,7 @@ include_once('include/head.php');
 									if (isset($organizadorUnico)) {
 										echo "<div style='margin-right: 0; float: none; width: 23%;' class='content photo' data-id=".$organizadorUnico->getId().">
                                                             <div class='card card-redondo'>
-                                                              <a href='perfil_organizador.php?organizador=".$organizadorUnico->getId()."'><img class='card-img-top' src='img/imagens_organizador/".$organizadorUnico->getImagem()."' alt='Card image cap'></a>
+                                                              <a href='perfil_organizador.php?organizador=".$organizadorUnico->getId()."'><img class='card-img-top' style='background-color: #fff;' src='img/imagens_organizador/".$organizadorUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
@@ -300,7 +314,7 @@ include_once('include/head.php');
                                             $representanteUnico = $organizadorControle->controleAcao("listarUnico", $er->getIdUsuario());
                                             echo "<div style='float: none; width: 23%;' class='content representante photo' data-id=".$er->getId().">
                                                             <div class='card card-redondo'>
-                                                              <a href='perfil_organizador.php?organizador=".$representanteUnico->getId()."'><img class='card-img-top' src='img/imagens_organizador/".$representanteUnico->getImagem()."' alt='Card image cap'></a>
+                                                              <a href='perfil_organizador.php?organizador=".$representanteUnico->getId()."'><img class='card-img-top' style='background-color: #fff;' src='img/imagens_organizador/".$representanteUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$representanteUnico->getNome()."</h5>
                                                                 <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$representanteUnico->getEmail()."</h5>
@@ -312,12 +326,6 @@ include_once('include/head.php');
                                         }
                                     }
 								?>
-                            </div>
-                        </div>
-                        <div class="content big-content">
-                            <div class='filtros filtros-evento'>Contate-nos</div>
-                            <div>
-                                
                             </div>
                         </div>
                     </div>
@@ -349,7 +357,7 @@ include_once('include/head.php');
                                         foreach (array_reverse($publicacoes) as $pu) {
                                             echo "<div class='publicacao-evento' data-id='".$pu->getId()."'>
                                                     <div class='publicacao-usuario'>
-                                                        <img src='img/fotosPerfil/noimage5.png'>
+                                                        <img src='img/imagens_organizador/".$organizadorUnico->getImagem()."'>
                                                         <span>".$organizadorUnico->getNome()."</span>
                                                     </div>
                                                     <div class='publicacao-titulo'>".$pu->getTitulo()."</div>";

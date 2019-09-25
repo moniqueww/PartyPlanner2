@@ -319,10 +319,11 @@ a, a:hover, a:focus {
 }
 #background .filtros-right button{
 	border-color: #fff !important;
-	background: transparent; !important;
+	color: #fff !important;
+	background: transparent !important;
+	box-shadow: none !important;
 	border-width: 2px;
 	font-size: 1rem;
-	/*color: #697cff !important;*/
 }
 #background .navbar-search-light .input-group{
 	background-color: #fff !important;
@@ -485,7 +486,7 @@ a, a:hover, a:focus {
 	width: 14.6%;
 }
 
-.photo .card > img:active{
+.photo .card img:active{
 	transform: scale(0.97);
 }
 
@@ -493,7 +494,7 @@ a, a:hover, a:focus {
 	background-color: transparent !important;
 }
 
-.photo .card > img:hover{
+.photo .card img:hover{
 	filter: brightness(0.7);
 }
 
@@ -917,10 +918,12 @@ a, a:hover, a:focus {
 	font-size: 0.875rem;
 	font-weight: 600;
 	cursor: pointer;
+	transition: all 0.2s;
 }
 #navegacaoEvento > div.selected{
 	border-bottom: solid 3px #697cff;
 	color: #525f7f;
+	transition: all 0.2s;
 }
 .form-transparente{
 	border: none !important;

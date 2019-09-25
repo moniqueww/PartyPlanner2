@@ -1,7 +1,7 @@
 <?php
 
 
-class ServicoFavorita implements IBaseModelo{
+class Favorita implements IBaseModelo{
     private $id;
     private $idServico;
     private $idUsuario;
@@ -114,7 +114,7 @@ class ServicoFavorita implements IBaseModelo{
             if($this->stmt->execute()){
                 // Associa cada registro a uma classe aluno
                 // Depois, coloca os resultados em um array
-                $servicos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_servico");  
+                $servicos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Favorita");  
                 
             }
             
@@ -135,7 +135,7 @@ class ServicoFavorita implements IBaseModelo{
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $servico = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_servico");  
+                $servico = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Favorita");  
                 
             }
             
@@ -155,7 +155,7 @@ class ServicoFavorita implements IBaseModelo{
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $servico = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_servico");  
+                $servico = $this->stmt->fetchAll(PDO::FETCH_CLASS,"Favorita");  
                 
             }
             

@@ -172,16 +172,16 @@ class Servico implements ibaseModelo{
             //Comando SQL para inserir um aluno
             if(!is_null($nome)){
                 if (!is_null($idCategoria)) {
-                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE nome LIKE :nome AND idCategoria=:idCategoria AND tipo='S'";
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE nome LIKE :nome AND idCategoria=:idCategoria AND tipo='S' ORDER BY (SELECT count(*) FROM favorita_servico as fs WHERE fs.idServico = usuario.id) DESC";
                 }else {
-                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE nome LIKE :nome AND tipo='S'";
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE nome LIKE :nome AND tipo='S' ORDER BY (SELECT count(*) FROM favorita_servico as fs WHERE fs.idServico = usuario.id) DESC";
                 }
                 //Pesquisa pelo nome
             }else{
                 if (!is_null($idCategoria)) {
-                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE idCategoria=:idCategoria AND tipo='S'";
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE idCategoria=:idCategoria AND tipo='S' ORDER BY (SELECT count(*) FROM favorita_servico as fs WHERE fs.idServico = usuario.id) DESC";
                 }else {
-                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE tipo='S'";
+                    $query="SELECT id, nome, email, telefone, senha, cnpj, idCategoria, imagem FROM usuario WHERE tipo='S' ORDER BY (SELECT count(*) FROM favorita_servico as fs WHERE fs.idServico = usuario.id) DESC";
                 }
             }
             $this->stmt= $this->conn->prepare($query);

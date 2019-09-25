@@ -90,25 +90,6 @@
                     	<i class="fas fa-calendar-day"></i><span>Eventos</span>
                 	</li>
                 </a>
-				<p style='padding-top: 30px'>FAVORITOS</p>
-                <a href="">
-                	<div class="paginaAtiva paginaAtiva-menor"></div>
-					<li class='li-menor'>
-                    	<div>Eventos</div>
-                	</li>
-                </a>
-                <a href="">
-                	<div class="paginaAtiva paginaAtiva-menor"></div>
-					<li class='li-menor'>
-                    	<div>Serviços</div>
-                	</li>
-                </a>
-                <a href="">
-                	<div class="paginaAtiva paginaAtiva-menor"></div>
-					<li class='li-menor'>
-                    	<div>Artistas</div>
-                	</li>
-                </a>
                 <?php
                 	if (isset($seusEventos)) {
                 		echo "<p style='padding-top: 30px'>SEUS EVENTOS</p>";

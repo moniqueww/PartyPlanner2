@@ -21,7 +21,7 @@
         ];
 
         foreach($servicos as $se) {
-            $resposta['servicos'][] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'categoria' => $se->getIdCategoria()];
+            $resposta['servicos'][] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'categoria' => $se->getIdCategoria(), 'imagem' => $se->getImagem()];
         }
 
         foreach($eventos as $ev) {
@@ -29,7 +29,7 @@
         }
 
         foreach($organizadores as $og) {
-            $resposta['organizadores'][] = ['id' => $og->getId(), 'nome' => $og->getNome(), 'email' => $og->getEmail()];
+            $resposta['organizadores'][] = ['id' => $og->getId(), 'nome' => $og->getNome(), 'email' => $og->getEmail(), 'imagem' => $og->getImagem()];
         }
 
         echo json_encode($resposta);

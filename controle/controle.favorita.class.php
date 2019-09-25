@@ -1,7 +1,7 @@
 <?php
 
 
-class ControleServicoFavorita extends ControleBase {
+class ControleFavorita extends ControleBase {
     private $visao;
     private $favorita;
     
@@ -17,7 +17,7 @@ class ControleServicoFavorita extends ControleBase {
     
     public function __construct() {
         //Cria uma instância da classe Produto
-        $this->favorita = new ServicoFavorita();
+        $this->favorita = new Favorita();
     }
     
     public function controleAcao($acao,$param=null,$param2=null){

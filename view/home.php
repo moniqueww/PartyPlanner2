@@ -8,6 +8,9 @@
 	}else{
 		$eventosPublicados = $eventoControle->controleAcao("listarTodos");
 	}
+
+	$servicoControle = new ControleServico();
+	$servicos = $servicoControle->controleAcao('listarTodos');
 	$usuarioControle = new ControleOrganizador();
 ?>
 <!DOCTYPE html>
@@ -31,9 +34,13 @@ include_once('include/head.php');
 
     <script type="text/javascript">
 	$(function() {
-		$('.content .card').on('click', function(){
+		$('.content .card:not(.card-redondo)').on('click', function(){
 			eventoId = $(this).attr('data-id');
 			window.location.assign('form_evento.php?evento='+eventoId);
+		});
+		$('.content .card.card-redondo').on('click', function(){
+			servicoId = $(this).attr('data-id');
+			window.location.assign('perfil_servico.php?servico='+servicoId);
 		});
 	});
 	</script>
@@ -55,11 +62,11 @@ include_once('include/head.php');
 			<div class="filtros">Home</div>
 			<!-- Page Content -->
 			<div id="eventos">
-			<div class="filtros-mini">Mais populares</div>
+			<div class="filtros-mini">Eventos populares</div>
 			<div id="mais-populares" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
 				<?php
 					if(!empty($eventosPublicados)){
-						foreach (array_reverse($eventosPublicados) as $ev) {
+						foreach ($eventosPublicados as $ev) {
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
@@ -74,56 +81,16 @@ include_once('include/head.php');
 					}
 				?>
 			</div>
-			<div class="filtros-mini">Mais recentes</div>
+			<div class="filtros-mini">Serviços populares</div>
 			<div id="mais-recentes" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
 				<?php
-					if(!empty($eventosPublicados)){
-						foreach (array_reverse($eventosPublicados) as $ev) {
-							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+					if(!empty($servicos)){
+						foreach ($servicos as $se) {
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
+					<div class='card card-redondo' data-id=".$se->getId().">
+					<img class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
-					</div>
-					</div>
-				</div>";
-						}
-					}
-				?>
-			</div>
-			<div class="filtros-mini">Recomendados</div>
-			<div id="recomendados" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
-				<?php
-					if(!empty($eventosPublicados)){
-						foreach (array_reverse($eventosPublicados) as $ev) {
-							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
-					</div>
-					</div>
-				</div>";
-						}
-					}
-				?>
-			</div>
-			<div class="filtros-mini">Mais próximos</div>
-			<div id="mais-proximos" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
-				<?php
-					if(!empty($eventosPublicados)){
-						foreach (array_reverse($eventosPublicados) as $ev) {
-							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+						<h5 class='card-title'>".$se->getNome()."</h5>
 					</div>
 					</div>
 				</div>";

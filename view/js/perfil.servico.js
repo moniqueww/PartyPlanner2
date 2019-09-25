@@ -61,6 +61,19 @@ $(function() {
     });
     ///////////////////////////////////
     //////////navegacao
+
+    $('#favoritarServico').on('click', function(){
+        $('#loader').fadeIn('fast');
+        $.post( "../ajax/favoritaServico.php", {'idServico': idServico, 'idUsuario': idUsuario}, function(data){
+            $('#favoritarServico').attr('disabled', 'disabled');
+            $('#favoritarServico i').addClass('fas');
+            $('#favoritarServico i').removeClass('far');
+            $('#loader').fadeOut('fast');
+        });
+    });
+
+
+
     $('#showEdita').on('click', function(){
         $('#navegacaoEvento > div').removeClass('selected');
         $(this).addClass('selected');

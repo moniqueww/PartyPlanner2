@@ -114,7 +114,7 @@ class EventoFavorita implements IBaseModelo{
             if($this->stmt->execute()){
                 // Associa cada registro a uma classe aluno
                 // Depois, coloca os resultados em um array
-                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_evento");  
+                $eventos = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoFavorita");  
                 
             }
             
@@ -135,7 +135,7 @@ class EventoFavorita implements IBaseModelo{
             
             if($this->stmt->execute()){
                 // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_evento");  
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoFavorita");  
                 
             }
             
@@ -154,8 +154,8 @@ class EventoFavorita implements IBaseModelo{
             $this->stmt->bindValue(':idEvento', $idEvento, PDO::PARAM_INT);
             
             if($this->stmt->execute()){
-                // Associa o registro a uma classe aluno
-                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"favorita_evento");  
+                // Associa o registro a uma classe EventoFavorita
+                $evento = $this->stmt->fetchAll(PDO::FETCH_CLASS,"EventoFavorita");  
                 
             }
             

@@ -80,7 +80,7 @@ include_once('include/head.php');
 							}
 							$('#servicos .conteudo').append(
 								$('<div>', {'data-id': data.servicos[h].id, id: 'servico_'+data.servicos[h].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {class: 'circle', src: 'img/brand/no-image-service.png'}),
+									$('<img>', {class: 'circle', src: 'img/imagens_servico/'+data.servicos[h].imagem}),
 									$('<div>').append(
 										$('<div>', {html: data.servicos[h].nome}),
 										$('<div>', {html: data.servicos[h].nome})
@@ -103,7 +103,7 @@ include_once('include/head.php');
 							}
 							$('#organizadores .conteudo').append(
 								$('<div>', {'data-id': data.organizadores[h].id, id: 'servico_'+data.organizadores[h].id, class: 'content co-5 mini-card no-padding'}).append(
-									$('<img>', {class: 'circle', src: 'img/brand/no-image-service.png'}),
+									$('<img>', {class: 'circle', src: 'img/imagens_organizador/'+data.organizadores[h].imagem}),
 									$('<div>').append(
 										$('<div>', {html: data.organizadores[h].nome}),
 										$('<div>', {html: data.organizadores[h].nome})
@@ -152,12 +152,12 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
-			<div id="filtro-recente" class="filtros">Pesquisas Recentes</div>
+			<div id="filtro-recente" class="filtros">Populares</div>
 			<!-- Page Content -->
-			<div id="Populares">
+			<div id="recentes">
 			<?php
 				if(!empty($eventos)){
-                    foreach (array_reverse($eventos) as $ev) {
+                    foreach ($eventos as $ev) {
                     	$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
                         echo "<div class='content co-10 mini-card no-padding' data-id='".$ev->getId()."'>
 				  <img src='img/imagens_evento/".$ev->getImagem()."'/>

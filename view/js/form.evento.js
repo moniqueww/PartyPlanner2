@@ -5,6 +5,7 @@
         nomeArtista = "";
         nomeEstabelecimento = "";
         nomeRepresentante = "";
+        idUsuario = $('#idUsuario').val();
         
         primeiroNome = $('#input-nome').val();
         primeiraDescricao = $('#input-descricao').attr('data-descricao');
@@ -181,11 +182,13 @@
             $('#quadroEvento').hide();
         });
         $('#favoritarEvento').on('click', function(){
-            idUsuario = 30;
-            idEvento = $('#idEvento').val();
+            $('#loader').fadeIn('fast');
             $.post( "../ajax/favoritaEvento.php", {'idEvento': idEvento, 'idUsuario': idUsuario}, function(data){
-                console.log(data);
-            });     
+                $('#favoritarEvento').attr('disabled', 'disabled');
+                $('#favoritarEvento i').addClass('fas');
+                $('#favoritarEvento i').removeClass('far');
+                $('#loader').fadeOut('fast');
+            });
         });
         $('#cadastrarPreco').on('click', function(){
             var valor = $('#precoValor').val();
@@ -240,8 +243,8 @@
                     $('#publicacoes').prepend(
                         $('<div>', {class: 'publicacao-evento', 'data-id': data.id}).append(
                             $('<div>', {class: 'publicacao-usuario'}).append(
-                                $('<img>', {src: 'img/fotosPerfil/noimage5.png'}),
-                                $('<span>', {html: 'Teste'})
+                                $('<img>', {src: 'img/imagens_organizador/'+data.imagemOrg}),
+                                $('<span>', {html: data.nome})
                             ),
                             $('<div>', {class: 'publicacao-titulo', html: data.titulo}),
                             $('<div>', {class: 'publicacao-descricao', html: data.descricao})
@@ -265,25 +268,14 @@
                 $('#tabela_servicos tbody').append(
                     $('<tr>', {'data-categoria': data[i].categoria, class: 'btn-addServico '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<td>').append(
+                            $('<img>', {style: 'height: 70px; width: 70px; border-radius: 50%;', src: 'img/imagens_servico/'+data[i].imagem})
+                        ),
+                        $('<td>').append(
                             $('<span>', {style: 'font-weight: bold;'}).append(
                                 data[i].nome
                             ),
                             $('<br>'),
                             data[i].email
-                        ),
-                        $('<td>').append(
-                            $('<div>', {class: 'rating'}).append(
-                                $('<input>', {type: 'radio', id: data[i].id+'-10', name: data[i].id+'-rating', value: '10'}),
-                                $('<label>', {title: 'Rocks', for: data[i].id+'-10', html: '5 stars'}),
-                                $('<input>', {type: 'radio', class: 'star9', id: data[i].id+'-9', name: data[i].id+'-rating', value: '10'}),
-                                $('<label>', {title: 'Rocks', for: data[i].id+'-9', html: '4 stars'}),
-                                $('<input>', {type: 'radio', id: data[i].id+'-8', name: data[i].id+'-rating', value: '10'}),
-                                $('<label>', {title: 'Rocks', for: data[i].id+'-8', html: '3 stars'}),
-                                $('<input>', {type: 'radio', id: data[i].id+'-7', name: data[i].id+'-rating', value: '10'}),
-                                $('<label>', {title: 'Rocks', for: data[i].id+'-7', html: '2 stars'}),
-                                $('<input>', {type: 'radio', id: data[i].id+'-6', name: data[i].id+'-rating', value: '10'}),
-                                $('<label>', {title: 'Rocks', for: data[i].id+'-6', html: '1 stars'})
-                            )
                         )
                     ).on('click', function(){
                         if(!$(this).hasClass('disabled')) {
@@ -299,7 +291,11 @@
                                 $('#categoria'+servicoElement.attr('data-categoria')+" .categoria-eventos").append(
                                     $('<div>', {'data-id': data.idQuadro, class: 'content photo quadro'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
-                                            $('<img>', {class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                                            $('<a>', {src: '#'}).append(
+                                                $('<img>', {class: 'card-img-top', src: 'img/imagens_servico/'+data.imagem}).on('click', function(){
+                                                    window.location.assign('perfil_servico.php?servico='+data.idServico);
+                                                })
+                                            ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
@@ -309,7 +305,6 @@
                                                 idEventoServico = $(this).attr('data-id');
                                                 $.post( "../ajax/excluiQuadro.php", {'id': idEventoServico}, function(data){
                                                     data = $.parseJSON( data );
-                                                    console.log(data);
                                                     $(".content.photo.quadro[data-id="+data.id+"]").remove();
                                                     $(".btn-addServico[data-id="+data.idServico+"]").removeClass('disabled');
                                                     $('#loader').fadeOut('fast');
@@ -341,7 +336,7 @@
                 $('#tabela_artistas').append(
                     $('<div>', {class: 'artista content photo '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<div>', {class: 'card card-redondo'}).append(
-                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/imagens_servico/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
@@ -360,7 +355,11 @@
                                 $('#atracoes').append(
                                     $('<div>', {style: 'float: none;', 'data-id': data.idEventoArtista, class: 'content atracao photo'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
-                                            $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                                            $('<a>', {src: '#'}).append(
+                                                $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/imagens_servico/'+data.imagem}).on('click', function(){
+                                                    window.location.assign('perfil_servico.php?servico='+data.idServico);
+                                                })
+                                            ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
@@ -397,7 +396,7 @@
                 $('#tabela_estabelecimento').append(
                     $('<div>', {class: 'estabelecimento content photo '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<div>', {class: 'card'}).append(
-                            $('<img>', {style: 'height: calc(84vw / 13.96) !important', class: 'card-img-top', src: 'img/brand/no-image-localization.png'}),
+                            $('<img>', {style: 'height: calc(84vw / 13.96) !important', class: 'card-img-top', src: 'img/imagens_servico/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
@@ -426,7 +425,7 @@
                 $('#tabela_representante').append(
                     $('<div>', {class: 'organizador content photo '+data[i].disabled, 'data-id': data[i].id}).append(
                         $('<div>', {class: 'card card-redondo'}).append(
-                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                            $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/imagens_organizador/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
@@ -444,7 +443,11 @@
                                 $('#representantes').append(
                                     $('<div>', {style: 'float: none; width: 23%;', 'data-id': data.idEventoRepresentante, class: 'content representante photo'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
-                                            $('<img>', {class: 'card-img-top', src: 'img/brand/no-image-service.png'}),
+                                            $('<a>', {src: '#'}).append(
+                                                $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/imagens_organizador/'+data.imagem}).on('click', function(){
+                                                    window.location.assign('perfil_organizador.php?organizador='+data.idUsuario);
+                                                })
+                                            ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
                                                 $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
@@ -490,7 +493,9 @@
             $('#estabelecimento').append(
                 $('<div>', {class: 'localizacao-div'}).append(
                     $('<div>').append(
-                        $('<img>', {src: 'img/brand/no-image-localization.png', style: 'height: 100%;'})
+                        $('<img>', {src: 'img/imagens_servico/'+data.imagem, style: 'height: 100%;'}).on('click', function(){
+                            window.location.assign('perfil_servico.php?servico='+data.id);
+                        }),
                     ),
                     $('<div>').append(
                         $('<div>', {class: 'filtros', style: 'color: #fff;', html: data.nome}),

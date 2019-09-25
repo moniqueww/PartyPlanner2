@@ -11,7 +11,7 @@
             $eventoRepresentanteUnico = $eventoRepresentanteControle->controleAcao('listarUltimo', $_POST['idEvento']);
             $organizadorControle = new ControleOrganizador();
             $organizadorUnico = $organizadorControle->controleAcao("listarUnico", $_POST['idUsuario']);
-            $arrayRetorno = ['idEventoRepresentante' => $eventoRepresentanteUnico->getId(),'idEvento' => $_POST['idEvento'], 'idUsuario' => $_POST['idUsuario'], 'nome' => $organizadorUnico->getNome(), 'email' => $organizadorUnico->getEmail()];
+            $arrayRetorno = ['idEventoRepresentante' => $eventoRepresentanteUnico->getId(),'idEvento' => $_POST['idEvento'], 'idUsuario' => $_POST['idUsuario'], 'nome' => $organizadorUnico->getNome(), 'email' => $organizadorUnico->getEmail(), 'imagem' => $organizadorUnico->getImagem()];
             echo json_encode($arrayRetorno);
         }
     }

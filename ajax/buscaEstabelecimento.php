@@ -17,7 +17,7 @@
             if($eventoUnico->getIdEstabelecimento() == $se->getId()){
                 $disabled = 'disabled';
             }
-            $resposta[] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'categoria' => $se->getIdCategoria(),'disabled' => $disabled];
+            $resposta[] = ['id' => $se->getId(), 'nome' => $se->getNome(), 'email' => $se->getEmail(), 'telefone' => $se->getTelefone(), 'categoria' => $se->getIdCategoria(),'disabled' => $disabled, 'imagem' => $se->getImagem()];
         }
 
         echo json_encode($resposta);

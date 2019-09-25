@@ -14,6 +14,18 @@
         $servicoControle->setVisao($_GET);
       
         $servicoUnico = $servicoControle->controleAcao("listarUnico", $_GET["servico"]);  //value="<?= isset($categoriaAlteracao) ? $categoriaAlteracao->getId() : "";
+
+        $favoritaControle = new ControleFavorita();
+        $favoritas = $favoritaControle->controleAcao('listarTodos', $servicoUnico->getId());
+
+        $favorita = false;
+        $curtidas = 0;
+        foreach ($favoritas as $f) {
+            if ($f->getIdUsuario() == $_SESSION['id']) {
+                $favorita = true;
+            }
+            $curtidas++;
+        }
       
         if (isset($_SESSION['id'])) {
             if($_SESSION['id'] != $_GET['servico']){
@@ -78,13 +90,13 @@ include_once('include/head.php');
 
             <?php if (isset($convidado)) {?>
                 <div id="visualizar_imagem_convidado">
-                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image_convidado" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                    <img class="circle" style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image_convidado" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>
             <?php } ?>
 
             <?php if (!isset($convidado)) { ?>
                 <div id="visualizar_imagem">
-                    <img style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
+                    <img class="circle" style="background-color: #f7f8fc; width: 250px; height: 250px;" id="image" src="img/imagens_servico/<?= $servicoUnico->getImagem() ?>"/>
                 </div>       
                 <form id="form-image" enctype="multipart/form-data" action="upload-image-servico.php" method="POST">
                     <input type="text" id="input-image-antiga" name="imagemantiga" value="<?= $servicoUnico->getImagem(); ?>"><input>
@@ -109,7 +121,7 @@ include_once('include/head.php');
                             echo "";
                         }
                     } ?>
-                    <form method="POST" action="processa.php" enctype="multipart/form-data">
+                    <!--<form method="POST" action="processa.php" enctype="multipart/form-data">
 			<div class="estrelas">
 				<input type="radio" id="vazio" name="estrela" value="" checked>
 				
@@ -129,12 +141,18 @@ include_once('include/head.php');
 				<input type="radio" id="estrela_cinco" class="estrela" value="5">
 				
 			</div>
-        </form>
-                <button id="favoritarServico" type="button" class="btn btn-primary btn-add" >
-                    <span class="circle btn-inner--icon"><i class="far fa-heart"></i></span>
-                </button>  
+        </form>-->
+                </div> 
+            </div>
+            <div class="filtros-right simple-margin-right">
+                <button <?= $favorita ? 'disabled' : '';?> id="favoritarServico" type="button" class="btn btn-primary btn-add" >
+                    <span class="circle btn-inner--icon"><i class="<?= $favorita ? 'fas' : 'far';?> fa-heart"></i></span>
+                </button>
+                <div style="display: inline; color: rgba(255, 255, 255, 0.6);">
+                    <?php
+                        echo $curtidas.' curtida(s)';
+                    ?>
                 </div>
-                   
             </div>
             
             <br clear="all">
@@ -149,33 +167,21 @@ include_once('include/head.php');
 
             <div id="edicaoEvento">
                 <div class="content big-content">
+                <div class="filtros">EMAIL</div>
                 <div class="filtros-by">
                     <?php if (!isset($convidado)) {?>
-                        EMAIL:
-                        <span>EMAIL:</span>
                         <input type="text" id="input-email" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getEmail() : "";?>">
                     <?php } else { ?>
-                        <span>EMAIL:</span>
                         <span> <?= isset($servicoUnico) ? $servicoUnico->getEmail() : '';?></span>
                     <?php } ?>
-                </div>   
+                </div>
+                </div>
+                <div class="content big-content"> 
+                <div class="filtros">TELEFONE</div> 
                 <div class="filtros-by">
                     <?php if (!isset($convidado)) {?>
-                        CPNJ:
-                        <span>CNPJ:</span>
-                        <input type="text" id="input-cnpj" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getCnpj() : "";?>">
-                    <?php } else { ?>
-                        <span>CNPJ:</span>
-                        <span> <?= isset($servicoUnico) ? $servicoUnico->getCnpj() : '';?></span>
-                    <?php } ?>
-                </div>   
-                <div class="filtros-by">
-                    <?php if (!isset($convidado)) {?>
-                        TELEFONE:
-                        <span>TELEFONE:</span>
                         <input type="text" id="input-telefone" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($servicoUnico) ? $servicoUnico->getTelefone() : "";?>">
                     <?php } else { ?>
-                        <span>TELEFONE:</span>
                         <span> <?= isset($servicoUnico) ? $servicoUnico->getTelefone() : '';?></span>
                     <?php } ?>
                 </div>
@@ -189,17 +195,19 @@ include_once('include/head.php');
                     <?php 
                         if(!empty($eventos)){
                             foreach($eventos as $ev){
-                                echo "<div class='content photo'>
+                                echo "<div class='content photo' style='width: 23%;'>
                                 <div class='card' data-id=".$ev->getId().">
-                                    <img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
+                                    <a href='form_evento.php?evento=".$ev->getId()."'>
+                                        <img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
+                                    </a>
                                     <div class='card-body'>
-                                        <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getNome()."</h5>
+                                        <h5 class='card-title'>".$ev->getNome()."</h5>
                                 </div>
                                 </div>
                             </div>";
                             };
                         }else{
-                            echo "O serviço não está relacionado com nenhum evento";
+                            echo "O serviço não está relacionado com nenhum evento público";
                         }
                     ?>
                 </div>
@@ -210,14 +218,5 @@ include_once('include/head.php');
             </div>
     </div>
         <?php include_once('include/loader.php'); ?>
-    <script>
-        $('#favoritarServico').on('click', function(){
-            idUsuario = 30;
-            idServico = $('#idServico').val();
-            $.post( "../ajax/favoritaServico.php", {'idServico': idServico, 'idUsuario': idUsuario}, function(data){
-                console.log(data);
-            }); 
-        });
-    </script>
 </body>
 </html>

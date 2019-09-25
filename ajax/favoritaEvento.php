@@ -8,7 +8,7 @@
         //Verifica qual ação (inserir ou alterar) vai passar para o Controle listarUltimo
         $retorno = $favoritaEventoControle->controleAcao('inserir');
         if($retorno){
-            echo "<script>alert('certo')<script>";
+            echo "deu certo";
         }
     }
 ?>
