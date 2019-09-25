@@ -2,7 +2,7 @@
 <nav style="height: 166px;" class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div style="margin-left: 50px;" class="container px-4">
         <a class="navbar-brand" href="#">
-          <img style="width: 300px;" src="img/brand/logo-branco.png" />
+          <img style="width: 200px;" src="img/brand/logo-marca2.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="#">
-                  <img src="img/brand/logo-padrao.png">
+                  <img src="img/brand/logo-marca2.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">
@@ -29,7 +29,7 @@
       </div>
     </nav>
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="header py-7 py-lg-8">
       <div class="separator separator-bottom separator-skew zindex-100">
       </div>
     </div>

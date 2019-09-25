@@ -54,7 +54,7 @@
 
 	</script>
 </head>
-<body class="bg-white">
+<body style="background: #f7f8fc !important; background-image: url('img/brand/background5.png');">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery -->
   <script src="js/jquery.js" crossorigin="anonymous"></script>
@@ -70,8 +70,8 @@
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7">
-          <div style="border: none !important;" class="card bg-secondary">
+        <div class="col-lg-8 col-md-7">
+          <div style="border: solid 1px #eaedfa !important; border-radius: 0 !important;" class="card bg-white">
             <div style="height: 90px;" class="container">
               <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
@@ -85,26 +85,14 @@
               <form novalidate id="form" action="login.php" method="post" name="formLog">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span style="height: 40px;" class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" id="email" value="" name="email" placeholder="Email" type="email">
+                    <input style="background-color: #f7f8fc; border: solid 1px #eaedfa; border-radius: 0px !important;" class="form-control" id="email" value="" name="email" placeholder="Email" type="email">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span style="height: 40px;" class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" id="senha" value="" name="senha" placeholder="Senha" type="password">
+                    <input style="background-color: #f7f8fc; border: solid 1px #eaedfa; border-radius: 0px !important;" class="form-control" id="senha" value="" name="senha" placeholder="Senha" type="password">
                     <span id="span_alertas"></span>
                   </div>
-                </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for="customCheckLogin">
-                    <span class="text-muted">Lembrar de mim</span>
-                  </label>
                 </div>
                 <div class="text-center">
                   <button type="submit" name="entrar" class="btn btn-primary my-4">Entrar</button>
@@ -118,9 +106,6 @@
             </div>
           <div style="position: relative; top: -15px;" class="row mt-3">
             <div class="col-6">
-              <a class="text-primary"><span>Esqueceu sua senha?</span></a>
-            </div>
-            <div class="col-6 text-right">
               <a href="escolhercadastro.php" class="text-primary"><span>Criar nova conta</span></a>
             </div>
           </div>
