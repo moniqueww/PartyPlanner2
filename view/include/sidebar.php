@@ -6,12 +6,16 @@
 	}
 ?>
 <nav id="sidebar">
-				<button id="encolheMenu" class="btn-diferente">
-						<i class="fas fa-angle-left"></i>
-				</button>
-				<button id="expandeMenu" class="btn-diferente" style="display: none">
-                    	<i class="fas fa-angle-right"></i>
-				</button>
+				<a href="home.php"><img src="img/brand/logo-branco.png" style="margin-left: 30px; margin-bottom: 30px; height: 30px;"></a>
+
+					<!--
+										<button id="encolheMenu" class="btn-diferente">
+												<i class="fas fa-angle-left"></i>
+										</button>
+										<button id="expandeMenu" class="btn-diferente" style="display: none">
+						                    	<i class="fas fa-angle-right"></i>
+										</button>
+					-->
     		<!--<ul class="list-unstyled components">
 				<li class="active li-add">
 					<div>
@@ -59,13 +63,13 @@
                 <a <?php echo $paginaHome; ?> href="home.php">
                 	<div class="paginaAtiva"></div>
 	                <li>
-	                    <i class="fas fa-home"></i><span>Início</span>
+	                    <span>Início</span>
 	                </li>
                 </a>
                 <a href="<?= isset($_SESSION['usuario']) ? 'perfil_organizador.php?organizador='.$_SESSION['id'] : '' ?>">
                 	<div class="paginaAtiva"></div>
 					<li>
-                    	<i class="fas fa-user"></i><span>Perfil</span>
+                    	<span>Perfil</span>
                 	</li>
                 </a>
                 <!--<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -87,7 +91,7 @@
 				<a <?php echo $paginaLista; ?> href="lista_evento.php">
 					<div class="paginaAtiva"></div>
 					<li>
-                    	<i class="fas fa-calendar-day"></i><span>Eventos</span>
+                    	<span>Eventos</span>
                 	</li>
                 </a>
                 <?php
@@ -101,12 +105,12 @@
                 				}
                 			}
                 			echo "<a href='form_evento.php?evento=".$sevs->getId()."' class='sidebar-evento ".$eventoSelecionado."'>
-					<div class='paginaAtiva paginaAtiva-menor'></div>
+                			<div class='paginaAtiva paginaAtiva-menor'></div>
 					<li class='li-menor'>
                     	<div>".$sevs->getNome()."</div>
                 	</li>
                 </a>";
-                		}
+                		} //<div class='paginaAtiva paginaAtiva-menor'></div>
                 	}
                 ?>
             </ul>

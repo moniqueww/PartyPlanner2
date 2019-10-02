@@ -63,7 +63,7 @@ include_once('include/head.php');
 			<!-- Page Content -->
 			<div id="eventos">
 			<div class="filtros-mini">Eventos populares</div>
-			<div id="mais-populares" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
+			<div id="mais-populares" style="white-space: nowrap; margin-bottom: 50px;">
 				<?php
 					if(!empty($eventosPublicados)){
 						foreach ($eventosPublicados as $ev) {
@@ -73,7 +73,7 @@ include_once('include/head.php');
 					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$usuarioUnico->getNome()."</h5>
 					</div>
 					</div>
 				</div>";
@@ -82,18 +82,22 @@ include_once('include/head.php');
 				?>
 			</div>
 			<div class="filtros-mini">Serviços populares</div>
-			<div id="mais-recentes" style="white-space: nowrap; overflow: auto; margin-bottom: 100px;">
+			<div id="mais-recentes" style="white-space: nowrap; margin-bottom: 50px;">
 				<?php
 					if(!empty($servicos)){
+						$sevc = 0;
 						foreach ($servicos as $se) {
+							if ($sevc < 6) {
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card card-redondo' data-id=".$se->getId().">
-					<img class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
+					<img style='height: calc((100vw - 480px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$se->getNome()."</h5>
 					</div>
 					</div>
 				</div>";
+							}
+							$sevc++;
 						}
 					}
 				?>

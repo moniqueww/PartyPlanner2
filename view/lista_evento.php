@@ -116,7 +116,7 @@ include_once('include/head.php');
 					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$ev->getNome()."<i class='fas fa-".$publicado."'></i></h5>
-						<h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$organizadorUnico->getNome()."</h5>
 				</div>
 				<div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
 				</div>
