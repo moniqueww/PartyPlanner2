@@ -2338,7 +2338,7 @@ pre code
 
     transition: all .2s cubic-bezier(.68, -.55, .265, 1.55); 
 
-    color: #8898aa;
+    color: #fff;
     border: 1px solid #cad1d7;
     border-radius: .375rem;
     background-color: #fff;
@@ -2359,7 +2359,7 @@ pre code
 }
 .form-control:focus
 {
-    color: #8898aa;
+    color: #fff;
     border-color: #f0438f;
     outline: 0;
     background-color: #fff;
@@ -2368,17 +2368,17 @@ pre code
 .form-control:-ms-input-placeholder
 {
     opacity: 1; 
-    color: #adb5bd;
+    color: #999999;
 }
 .form-control::-ms-input-placeholder
 {
     opacity: 1; 
-    color: #adb5bd;
+    color: #999999;
 }
 .form-control::placeholder
 {
     opacity: 1; 
-    color: #adb5bd;
+    color: #999999;
 }
 .form-control:disabled,
 .form-control[readonly]
@@ -7192,7 +7192,7 @@ button.close
     border: 0 solid rgba(0, 0, 0, .2);
     border-radius: 0;
     outline: 0; 
-    background-color: #fff;
+    background-color: #2d2c2c;
     background-clip: padding-box;
     box-shadow: 0 15px 35px rgba(50, 50, 93, .2), 0 5px 15px rgba(0, 0, 0, .17);
 }
@@ -7226,7 +7226,7 @@ button.close
     position: fixed;
     width: 100%;
     z-index: 9999;
-    background-color: #fff;
+    background-color: #201f1f;
 
     border-bottom: 0 solid #e9ecef;
     border-top-left-radius: /*.4375rem*/0;
@@ -7243,7 +7243,7 @@ button.close
 
 .modal-title
 {
-    line-height: 1.1; 
+    line-height: 20px; 
 
     margin-bottom: 0;
 }
@@ -17656,9 +17656,11 @@ a.btn-icon-only
     width: 1.25rem;
     height: 1.25rem;
 
+    line-height: 20px;
+
     transition: all .15s ease; 
 
-    color: rgba(0, 0, 0, .6);
+    color: #fff;
     border-radius: 50%;
     background-color: transparent;
 }
@@ -18173,10 +18175,10 @@ textarea[resize='horizontal']
 
 .form-control-alternative
 {
-    background-color: #f7f8fc;
+    background-color: #454343;
 	transition: box-shadow .15s ease; 
 
-    border: solid 1px #eaedfa;
+    border: solid 1px #454343;
     border-radius: 0px !important;
     transition: all 0.2s;
     /*box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);*/
@@ -18187,19 +18189,19 @@ textarea[resize='horizontal']
 }
 .form-control-alternative:hover
 {
-    background-color: #f7f8fc;
+    background-color: #454343;
     transition: background-color 0.2s; 
 }
 .form-control-alternative:focus
 {
     /*box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);*/
     box-shadow: none;
-    background-color: rgba(49, 93, 255, 0.1);
+    background-color: rgba(240, 67, 143, .1);
     transition: all 0.2s;
 }
 .form-control-alternative:focus::placeholder
 {
-    color: rgba(105, 124, 255,.8);
+    color: rgba(240, 67, 118, 0.8);
     transition: all 0.2s;
 }
 

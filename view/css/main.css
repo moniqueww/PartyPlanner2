@@ -155,7 +155,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul p {
-    color: #999999;
+    color: #757575;
     padding: 15px 30px 15px 30px;
 	margin-bottom: 0px;
 	letter-spacing: .09em;
@@ -747,12 +747,12 @@ a, a:hover, a:focus {
 	height: 70px;
 	padding: .625rem .75rem;
 	font-size: 1rem;
-	color: #525f7f !important;
-	background-color: #fff;
+	color: #fff !important;
+	background-color: #2d2c2c;
 	border-radius: 0px !important;
 	margin: 0px !important;
 	line-height: 48px !important;
-	border-bottom: solid 1px #f7f8fc;
+	border-bottom: solid 1px #323232;
 	text-align: left;
 	cursor: pointer;
 }
@@ -763,10 +763,12 @@ a, a:hover, a:focus {
 	transform: none !important;
 }
 .btn-addServico.disabled{
-	background-color: rgba(105, 124, 255, .54) !important;
-	color: rgba(255,255,255,.75) !important;
-	border-bottom-color: #fff !important;
+	background-color: rgb(35, 35, 35) !important;
+	color: rgba(255, 255, 255, 0.2) !important;
 	cursor: default !important;
+}
+.btn-addServico.disabled img {
+	opacity: 0.2;
 }
 .btn-addServico:last-child{
 	border-bottom: none;
@@ -788,6 +790,10 @@ a, a:hover, a:focus {
 }*/
 #tabela_servicos th{
 	padding: 10px 20px;
+}
+
+#tabela_servicos td:nth-child(2) {
+    width: 100%;
 }
 
 .content .card .card-img-top{
@@ -853,10 +859,10 @@ a, a:hover, a:focus {
   background: transparent; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #e0e2eb;
+  background: #454343;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b4b9c7; 
+  background: #999999; 
 }
 #semCategoria{
 	width: 100%;
@@ -950,6 +956,10 @@ a, a:hover, a:focus {
 #navegacaoEvento{
 	margin-top: 20px;
 	padding: 0px 15vw;
+	position: sticky;
+	top: 0;
+	background-color: #232323;
+	z-index: 100;
 }
 #navegacaoEvento > div{
 	float: left;

@@ -6,7 +6,7 @@
 	}
 ?>
 <nav id="sidebar">
-				<a href="home.php"><img src="img/brand/logo-branco.png" style="margin-left: 30px; margin-bottom: 30px; height: 30px;"></a>
+				<a href="home.php"><img src="img/brand/logo-branco.png" style="margin-left: 30px; margin-bottom: 25px; margin-top: 25px; height: 30px;"></a>
 
 					<!--
 										<button id="encolheMenu" class="btn-diferente">

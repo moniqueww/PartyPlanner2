@@ -184,6 +184,7 @@ include_once('include/head.php');
                             <?php if (!isset($convidado)) {?>
                             <div id="showQuadro">Quadro de organização</div>
                             <?php } ?>
+                            <br clear="all"/>
                         </div>
                         <div id="edicaoEvento">
                         <div class="content big-content">

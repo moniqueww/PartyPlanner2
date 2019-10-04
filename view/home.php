@@ -81,6 +81,25 @@ include_once('include/head.php');
 					}
 				?>
 			</div>
+			<div class="filtros-mini">Eventos recentes</div>
+			<div id="mais-recentes" style="white-space: nowrap; margin-bottom: 50px;">
+				<?php
+					if(!empty($eventosPublicados)){
+						foreach ($eventosPublicados as $ev) {
+							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
+							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
+					<div class='card' data-id=".$ev->getId().">
+					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
+					<div class='card-body'>
+						<h5 class='card-title'>".$ev->getNome()."</h5>
+						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$usuarioUnico->getNome()."</h5>
+					</div>
+					</div>
+				</div>";
+						}
+					}
+				?>
+			</div>
 			<div class="filtros-mini">Serviços populares</div>
 			<div id="mais-recentes" style="white-space: nowrap; margin-bottom: 50px;">
 				<?php
