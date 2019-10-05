@@ -79,7 +79,6 @@ include_once('include/head.php');
 							</div>
 							<div class="modal-body" style="padding: 60px 1.5rem 1.5rem 1.5rem;">
 								<div class="py-3 text-center">
-									<i class="ni ni-bell-55 ni-3x"></i>
 									<h4 class="heading mt-4">Tem certeza que deseja excluir o evento?</h4>
 								</div>
 							</div>
@@ -118,7 +117,14 @@ include_once('include/head.php');
 						<h5 class='card-title'>".$ev->getNome()."<i class='fas fa-".$publicado."'></i></h5>
 						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$organizadorUnico->getNome()."</h5>
 				</div>
-				<div class='excluirEvento' data-toggle='modal' data-target='#modal-notification'><i class='fas fa-times'></i></div>
+				<div class='optionsEvento'>
+				<a id='navbar-default_dropdown_1' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></a>
+				<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbar-default_dropdown_1'>
+							<a class='dropdown-item'>Editar</a>
+							<div class='dropdown-divider'></div>
+							<a class='dropdown-item excluirEvento' data-toggle='modal' data-target='#modal-notification'>Excluir</a>
+				</div>
+				</div>
 				</div>
 			</div>";
 					}
@@ -127,7 +133,7 @@ include_once('include/head.php');
 	  		</div>
 	  		<div id="not-found" style="display: none; text-align: center; margin-top: 20vh;">
 	  			<img style="width: 20%;" src="img/svg/create-event3.svg">
-				  <div class="filtros" style="font-size: 2rem; margin: 0;">Você não possui eventos criados</div>
+				  <div class="filtros" style="font-size: 1.5rem; margin: 0;">Você não possui eventos criados</div>
 				  <p style="margin-bottom: 35px;">Crie e organize um evento agora mesmo clicando no botão abaixo!</p>
 	  			  <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
 	  				<span class="btn-inner--text">Novo Evento</span>

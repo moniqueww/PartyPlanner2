@@ -1,4 +1,5 @@
 /* CORES
+7347ff
 principal: #697cff
 vermelha: #f5365c
 verde: #72df8c
@@ -142,7 +143,7 @@ a, a:hover, a:focus {
 	width: 4px;
 	margin-top: 9.5px;
 	height: 30px;
-	background-color: #f0438f;
+	background-color: #7347ff;
 }
 #sidebar ul a.active > .paginaAtiva.paginaAtiva-menor{
 	margin-top: 5px !important;
@@ -188,7 +189,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #f0438f;
+    color: #7347ff;
 }
 #sidebar ul ul a {
     font-size: 0.9em !important;
@@ -265,7 +266,7 @@ a, a:hover, a:focus {
 	margin-right: 90px !important;
 	font-size: 1.3rem;
 	font-weight: bold;
-	color: #f0438f !important;
+	color: #7347ff !important;
 }
 .navbar{
 	width: 100%;
@@ -576,7 +577,7 @@ a, a:hover, a:focus {
 	box-sizing: content-box;
 	width: 100%;
 	border: none;
-	background-color: #f0438f;
+	background-color: #7347ff;
 	color: #fff;
 	cursor: pointer;
 	outline: none;
@@ -691,7 +692,7 @@ a, a:hover, a:focus {
 	color: white;
 	font-size: 10px;
 	font-weight: 600;
-	background-color: #f0438f;
+	background-color: #7347ff;
 }
 .novoEvento{
 		position: absolute;
@@ -717,7 +718,7 @@ a, a:hover, a:focus {
 	font-size: 1.5rem !important;
 }
 .listaEventoServico{
-	background-color: #f0438f !important;
+	background-color: #7347ff !important;
 	color: #fff;
 	min-width: 18%;
 }
@@ -757,8 +758,8 @@ a, a:hover, a:focus {
 	cursor: pointer;
 }
 .btn-addServico:hover{
-	background-color: #f3f5ff !important;
-	color: #f0438f !important;
+	background-color: #454343 !important;
+	color: #fff !important;
 	box-shadow: none !important;
 	transform: none !important;
 }
@@ -798,7 +799,7 @@ a, a:hover, a:focus {
 
 .content .card .card-img-top{
 	height: calc((100vw - 480px) / 6.98);
-	background-color: #F7F8FC;
+	background-color: #2e2d2d;
 	border-radius: 0px;
 	box-shadow: 0px 2px 50px 0px #17171717;
 	cursor: pointer;
@@ -811,6 +812,7 @@ a, a:hover, a:focus {
 }
 .card.card-redondo{
 	text-align: center;
+	padding-top: 20px;
 }
 .content.atracao{
 	margin-right: 0 !important;
@@ -827,7 +829,7 @@ a, a:hover, a:focus {
 }
 .card-title i{
     margin-left: 5px;
-    color: #f0438f;
+    color: #7347ff;
 }
 .card-body{
 	padding: 0.8rem 0px !important;
@@ -868,7 +870,7 @@ a, a:hover, a:focus {
 	width: 100%;
 	height: 100px;
 	font-size: 1.2rem;
-	color: #f0438f;
+	color: #7347ff;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -925,30 +927,41 @@ a, a:hover, a:focus {
 .sidebar-evento:hover{
 	background-color: transparent !important;
 }
-.excluirEvento{
-	display: none;
+.photo .card:hover .optionsEvento > a{
+	visibility: visible;
+	color: #fff !important;
+	transition: 0.2s;
+}
+.optionsEvento > a{
+	visibility: hidden;
+	color: transparent !important;
 	position: absolute;
-    left: -10px;
-    top: -10px;
-    font-size: 1.25rem;
-    color: #f7f8fc;
-    width: 1.25rem;
-    height: 1.25rem;
-    line-height: 1.25rem;
-    text-align: center;
-    padding: 0.3rem;
-    box-sizing: content-box;
-    background-color: #f5365c;
-    border-radius: 50%;
-    cursor: pointer;
+	left: 0px;
+	top: 5px;
+	font-size: 1rem;
+	width: 1.25rem;
+	height: 1.25rem;
+	line-height: 1.25rem;
+	text-align: center;
+	padding: 0.3rem;
+	box-sizing: content-box;
+	/* background-color: #f5365c; */
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.2s;
 }
-.excluirEvento:hover{
-	background-color: #ff5f7f;
-	transform: scale(1.05);
+.optionsEvento:hover > a{
+	background-color: #444444;
+	/*transform: scale(1.05);*/
+	transition: 0.2s;
 }
-.excluirEvento:active{
-	background-color: #f5365c;
-	transform: scale(1);
+.optionsEvento:active > a{
+	background-color: #444444;
+	/*transform: scale(1);*/
+}
+.optionsEvento .dropdown-menu.show{
+	top: 30px !important;
+	animation: show-navbar-dropdown .25s ease forwards;
 }
 #atracoes .photo {
 	width: 23% !important;
@@ -973,7 +986,7 @@ a, a:hover, a:focus {
 	transition: all 0.2s;
 }
 #navegacaoEvento > div.selected{
-	border-bottom: solid 3px #f0438f;
+	border-bottom: solid 3px #7347ff;
 	color: #fff;
 	transition: all 0.2s;
 }
@@ -989,7 +1002,7 @@ a, a:hover, a:focus {
 .localizacao-div {
 	width: 100%;
 	height: 400px;
-	background: linear-gradient(45deg, #6758ef, #f0438f);
+	background: linear-gradient(45deg, #f0438f, #6758ef);
 	overflow: hidden;
 	position: relative;
 }
@@ -1034,7 +1047,7 @@ a, a:hover, a:focus {
 .content.preco .precoNome{
 	font-size: 1.3rem;
 	font-weight: 700;
-	background-color: #f0438f;
+	background-color: #7347ff;
 	color: #fff;
 	text-transform: uppercase;
 	margin: 20px 0px;
@@ -1052,7 +1065,7 @@ a, a:hover, a:focus {
 	border-color: #e0e2eb !important;
 }
 #input-descricao:focus{
-	border-color: #f0438f !important;
+	border-color: #7347ff !important;
 }
 .publicacao-evento{
 	border-top: solid 1px #eaedfa;

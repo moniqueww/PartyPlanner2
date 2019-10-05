@@ -64,11 +64,6 @@ $(function() {
         var eventoId = $(this).parents('.card').attr('data-id');
         window.location.assign('form_evento.php?evento='+eventoId);
     });
-    $('.card').mouseover(function() {
-        $(this).children('.excluirEvento').show();
-    }).mouseout(function(){
-        $(this).children('.excluirEvento').hide();
-    });
     $('.excluirEvento').on('click', function(){
         var eventoId = $(this).parents('.card').attr('data-id');
         $('#confirmarExclusao').attr('data-id', eventoId);

@@ -31,7 +31,7 @@
                             margin-right: 20px;
                             letter-spacing: -0.02rem;
                             padding-bottom: 5px;
-                            border-bottom: solid 3px #f0438f;
+                            border-bottom: solid 3px #7347ff;
                         ">Mais populares</div>
                             <div style="
                             display: inline-block;
@@ -48,20 +48,23 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="box-shadow: 0px 2px 50px 0px #17171717;
+                    <div style="//box-shadow: 0px 2px 50px 0px #17171717;
                         width: 49%;
                         height: calc(90vh - 86px - 3rem);
-                        background: #201f1f;
+                        //background: #201f1f;
                         border-radius: 0.3rem;
                         float: right;
+                        text-align: center;
                     ">
                                             
-                        <div style="
+                        <!--<div style="
                         width: 100%;
                         height: 200px;
                         background: linear-gradient(45deg, #f0438f, #6758ef);
                         border-radius: 0.3rem 0.3rem 0 0;
-                    "></div>
+                    ">
+                    </div>-->
+                    <img style="width: 70%; margin-top: 20%;" src="img/svg/personal-info2.svg"/>
                     </div>
                 </div>
             </div>
