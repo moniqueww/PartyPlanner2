@@ -723,7 +723,7 @@ a, a:hover, a:focus {
 	background-color: #72df8c;
 }
 .form-edita{
-	color: #525f7f !important;
+	color: #999999 !important;
 	background-color: transparent !important;
 	padding: 0px !important;
 }
@@ -913,10 +913,11 @@ a, a:hover, a:focus {
 .mini-card{
 	border-radius: 0px;
 	cursor: pointer;
+	color: #fff;
+	transition: 0.2s;
 }
 .mini-card img{
-	width: 70px; height: 70px; float: left; background-color: #F7F8FC; margin-right: 15px;
-	border: solid 1px #eaedfa;
+	width: 70px; height: 70px; float: left; background-color: #2d2c2c; margin-right: 15px;
 }
 .mini-card > div{
 	font-size: 0.875rem; height: 70px; padding-top: 10px;
@@ -928,7 +929,9 @@ a, a:hover, a:focus {
 	font-weight: bold;
 }
 .mini-card:hover{
-	background-color: #F7F8FC;
+	background-color: #fff;
+	color: #505050;
+	transition: 0.2s;
 }
 .mini-card:active{
 	transform: scale(0.97);
@@ -1104,9 +1107,11 @@ a, a:hover, a:focus {
 	border-color: #7347ff !important;
 }
 .publicacao-evento{
-	border-top: solid 1px #eaedfa;
-	padding-top: 30px;
-	margin-bottom: 100px;
+	background-color: #2d2c2c;
+	color: #fff;
+	border-radius: 0.3rem;
+	padding: 30px;
+	margin-bottom: 20px;
 }
 .publicacao-usuario{
 	margin-bottom: 30px;
@@ -1114,8 +1119,7 @@ a, a:hover, a:focus {
 .publicacao-usuario img{
 	width: 30px;
 	border-radius: 50%;
-	background-color: #f7f8fc;
-	border: solid 1px #eaedfa;
+	background-color: #232323;
 }
 .publicacao-usuario span{
 	margin-left: 5px;
@@ -1137,13 +1141,22 @@ a, a:hover, a:focus {
 }
 .publicacao-descricao{
 	margin-top: 30px;
+	color: #999999;
 }
 .banner{
 	width: calc(100% - 30px);
 	height: 250px;
 	margin-top: 20px;
 	border-radius: 0.3rem;
-	background: linear-gradient(45deg, #6758ef, #f0438f);
+	background: url(../img/brand/banner.png), linear-gradient(45deg, #6758ef, #f0438f);
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+}
+.banner img{
+	height: 250px;
+	margin-top: 20px;
+
 }
 .second-title{
 	font-weight: 500;
@@ -1219,7 +1232,7 @@ a, a:hover, a:focus {
 	animation: wave 0.5s ease-in-out infinite;
 }
 .deep-water{
-	background: linear-gradient(to top, #5d59f6, #af4dbc);
+	background: linear-gradient(to top, #dd479b, #9252d0);
 	height: 40px;
 }
 .water{

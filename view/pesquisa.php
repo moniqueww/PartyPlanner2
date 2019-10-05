@@ -60,7 +60,7 @@ include_once('include/head.php');
 									$('<img>', {src: 'img/imagens_evento/'+data.eventos[i].imagem}),
 									$('<div>').append(
 										$('<div>', {html: data.eventos[i].nome}),
-										$('<div>', {html: data.eventos[i].nome})
+										$('<div>', {class: 'second-title', html: data.eventos[i].nome})
 									)
 								).on('click', function(){
 									eventoId = $(this).attr('data-id');
@@ -83,7 +83,7 @@ include_once('include/head.php');
 									$('<img>', {class: 'circle', src: 'img/imagens_servico/'+data.servicos[h].imagem}),
 									$('<div>').append(
 										$('<div>', {html: data.servicos[h].nome}),
-										$('<div>', {html: data.servicos[h].nome})
+										$('<div>', {class: 'second-title', html: data.servicos[h].nome})
 									)
 								).on('click', function(){
 									servicoId = $(this).attr('data-id');
@@ -106,7 +106,7 @@ include_once('include/head.php');
 									$('<img>', {class: 'circle', src: 'img/imagens_organizador/'+data.organizadores[h].imagem}),
 									$('<div>').append(
 										$('<div>', {html: data.organizadores[h].nome}),
-										$('<div>', {html: data.organizadores[h].nome})
+										$('<div>', {class: 'second-title', html: data.organizadores[h].nome})
 									)
 								).on('click', function(){
 									organizadorId = $(this).attr('data-id');
