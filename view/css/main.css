@@ -250,6 +250,13 @@ a, a:hover, a:focus {
 }
 .navigation{
 	width: 100%;
+	position: sticky;
+	top: 0;
+	background-color: #232323;
+	border-top-left-radius: 0.2rem;
+	padding-left: 30px;
+    margin-left: -30px;
+	z-index: 500;
 }
 .navbar ul{
 	float: right;
@@ -277,7 +284,7 @@ a, a:hover, a:focus {
 
 @media (min-width: 992px){
 .navbar-expand-lg {
-    height: 90px;
+    height: 70px;
 }
 }
 .container.container-menu{
@@ -304,12 +311,12 @@ a, a:hover, a:focus {
 	display: inline-block;
 }
 #background{
-	background: linear-gradient(45deg, #f0438f, #6758ef);
+	background: linear-gradient(45deg, #6758ef, #f0438f);
 	/*background: linear-gradient(45deg, rgba(115, 73, 255, 1) 40%, rgba(98, 172, 255, 1));*/
 	/*background: linear-gradient(45deg, rgba(98, 172, 255, 1), rgba(115, 73, 255, 1));*/
 	background-size: cover;
 	background-position: center;
-	padding: 0px 0px 30px 30px;
+	padding: 70px 0px 30px 30px;
 }
 #background .filtros{
 	margin-top: 50px;
@@ -333,12 +340,18 @@ a, a:hover, a:focus {
 	border-width: 2px;
 	font-size: 1rem;
 }
-#background .navbar-search-light .input-group{
-	background-color: #fff !important;
-	border: none !important;
+#background .navigation{
+	position: fixed !important;
+	top: 5vh;
+	padding-left: 30px;
+	margin-left: -30px;
+	width: calc(100vw - 480px - 20px);
+	background-color: transparent !important;
+	transition: background-color 0.2s;
 }
-#background .nav-link{
-	color: #fff !important;
+#background .navigation.dark-nav{
+	background-color: #232323 !important;
+	transition: background-color 0.2s;
 }
 #background .filtros .filtros-nome{
 	white-space: nowrap;
@@ -966,11 +979,34 @@ a, a:hover, a:focus {
 #atracoes .photo {
 	width: 23% !important;
 }
+#navegacaoPage{
+	margin-top: 20px;
+	position: sticky;
+	top: 70px;
+	background-color: #232323;
+	z-index: 100;
+}
+#navegacaoPage > div{
+	float: left;
+	padding: 15px 0px 5px 0px;
+    margin-right: 30px;
+	text-transform: uppercase;
+	color: #505050;
+	font-size: 0.875rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+#navegacaoPage > div.selected{
+	border-bottom: solid 3px #7347ff;
+	color: #fff;
+	transition: all 0.2s;
+}
 #navegacaoEvento{
 	margin-top: 20px;
 	padding: 0px 15vw;
 	position: sticky;
-	top: 0;
+	top: 70px;
 	background-color: #232323;
 	z-index: 100;
 }
@@ -1102,8 +1138,50 @@ a, a:hover, a:focus {
 .publicacao-descricao{
 	margin-top: 30px;
 }
-
-
+.banner{
+	width: calc(100% - 30px);
+	height: 250px;
+	margin-top: 20px;
+	border-radius: 0.3rem;
+	background: linear-gradient(45deg, #6758ef, #f0438f);
+}
+.second-title{
+	font-weight: 500;
+	color: #999999;
+}
+.personal-info{
+	//box-shadow: 0px 2px 50px 0px #17171717;
+	width: 49%;
+	height: calc(90vh - 86px - 3rem);
+	//background: #201f1f;
+	border-radius: 0.3rem;
+	float: right;
+	text-align: center;
+}
+.personal-info > img{
+	width: 70%;
+	margin-top: 20%;
+}
+.modal-navigate{
+	position: sticky;
+	top: 0;
+	background-color: #2d2c2c;
+	z-index: 50;
+}
+.modal-navigate-option{
+	display: inline-block;
+	font-weight: 600;
+	margin-right: 20px;
+	padding-bottom: 5px;
+	text-transform: uppercase;
+	letter-spacing: -0.02rem;
+	color: #505050;
+	margin-right: 15px;
+}
+.modal-navigate-option.active{
+	border-bottom: solid 3px #7347ff;
+	color: #fff;
+}
 
 
 

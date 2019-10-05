@@ -34,7 +34,7 @@ $(function() {
                                     data.nome,
                                     $('<i>', {class: 'fas fa-eye-slash'})
                                 ),
-                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65)',class: 'card-title', html: data.nomeUsuario})
+                                $('<h5>', {class: 'card-title second-title', html: data.nomeUsuario})
                             ),
                             $('<div>', {class: 'novoEvento', html: 'NOVO'}),
                             $('<div>', {class: 'excluirEvento', 'data-toggle': 'modal', 'data-target': '#modal-notification'}).append(
@@ -105,7 +105,7 @@ $(function() {
                         }),
                         $('<div>', {class: 'card-body'}).append(
                             $('<h5>', {class: 'card-title', html: data[i].nome}),
-                            $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65)',class: 'card-title', html: data[i].organizador})
+                            $('<h5>', {class: 'card-title second-title', html: data[i].organizador})
                         ),
                         $('<div>', {class: 'novoEvento', html: 'NOVO'}),
                         $('<div>', {class: 'excluirEvento', 'data-toggle': 'modal', 'data-target': '#modal-notification'}).append(

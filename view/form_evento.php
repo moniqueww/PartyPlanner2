@@ -219,7 +219,7 @@ include_once('include/head.php');
                                                               <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img style='background-color: #fff;' class='card-img-top' src='img/imagens_servico/".$servicoUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
-                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
+                                                                <h5 class='card-title second-title'>".$servicoUnico->getEmail()."</h5>
                                                               </div>";
                                             if (!isset($convidado)) {
                                                 echo "<span class='exc exc-evento-artista' data-id='".$ea->getId()."' aria-hidden='true'>×</span>";
@@ -305,7 +305,7 @@ include_once('include/head.php');
                                                               <a href='perfil_organizador.php?organizador=".$organizadorUnico->getId()."'><img class='card-img-top' style='background-color: #fff;' src='img/imagens_organizador/".$organizadorUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$organizadorUnico->getNome()."</h5>
-                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$organizadorUnico->getEmail()."</h5>
+                                                                <h5 class='card-title second-title'>".$organizadorUnico->getEmail()."</h5>
                                                               </div>
 															</div>
 														</div>";
@@ -318,7 +318,7 @@ include_once('include/head.php');
                                                               <a href='perfil_organizador.php?organizador=".$representanteUnico->getId()."'><img class='card-img-top' style='background-color: #fff;' src='img/imagens_organizador/".$representanteUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$representanteUnico->getNome()."</h5>
-                                                                <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$representanteUnico->getEmail()."</h5>
+                                                                <h5 class='card-title second-title'>".$representanteUnico->getEmail()."</h5>
                                                               </div>";
                                             if (!isset($convidado)) {
                                                 echo "<span class='exc exc-evento-representante' data-id='".$er->getId()."' aria-hidden='true'>×</span>";
@@ -402,7 +402,7 @@ include_once('include/head.php');
                                                                   <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'></a>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
-                                                                    <h5 class='card-title' style='font-weight: 500; color: rgba(50, 50, 93, 0.65);'>".$servicoUnico->getEmail()."</h5>
+                                                                    <h5 class='card-title second-title'>".$servicoUnico->getEmail()."</h5>
                                                                   </div>
                                                                   <span class='exc exc-evento-servico' data-id='".$qu->getId()."' aria-hidden='true'>×</span>
                                                                 </div>

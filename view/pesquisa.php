@@ -163,7 +163,7 @@ include_once('include/head.php');
 				  <img src='img/imagens_evento/".$ev->getImagem()."'/>
 				  <div>
 				    <div>".$ev->getNome()."</div>
-				    <div style='color: rgba(50, 50, 93, 0.65);'>".$usuarioUnico->getNome()."</div>
+				    <div class='second-title'>".$usuarioUnico->getNome()."</div>
 				  </div>
 			</div><br clear='all'/>";
                     }

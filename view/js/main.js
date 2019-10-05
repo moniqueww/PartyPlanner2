@@ -21,4 +21,13 @@ $(function() {
 	  $('#expandeMenu').hide();
 	  $('#encolheMenu').fadeIn();
 	});
+
+  	$('#page').scroll(function() {    
+  	    var scroll = $('#page').scrollTop();    
+  	    if (scroll >= 100) {
+            $('#background .navigation').addClass('dark-nav');
+  	    } else {
+  	        $('#background .navigation').removeClass('dark-nav');
+  	    }
+  	});
 });

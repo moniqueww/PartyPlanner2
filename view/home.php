@@ -59,6 +59,14 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
+    		<div class="banner"></div>
+
+    		<div id="navegacaoPage">
+    		    <div class="selected">Feed</div>
+    		    <div>Descubra</div>
+    		    <br clear="all"/>
+    		</div>
+
 			<div class="filtros">Home</div>
 			<!-- Page Content -->
 			<div id="eventos">

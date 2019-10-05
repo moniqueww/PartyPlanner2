@@ -298,7 +298,7 @@
                                             ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
-                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
+                                                $('<h5>', {class: 'card-title second-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc exc-evento-servico', 'data-id': data.idQuadro, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 $('#loader').fadeIn('fast');
@@ -339,7 +339,7 @@
                             $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/imagens_servico/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
-                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
+                                $('<h5>', {class: 'card-title second-title', html: data[i].email})
                             )
                         )
                     ).on('click', function(){
@@ -362,7 +362,7 @@
                                             ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
-                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
+                                                $('<h5>', {class: 'card-title second-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc exc-evento-artista', 'data-id': data.idEventoArtista, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 $('#loader').fadeIn('fast');
@@ -399,7 +399,7 @@
                             $('<img>', {style: 'height: calc(84vw / 13.96) !important', class: 'card-img-top', src: 'img/imagens_servico/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
-                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
+                                $('<h5>', {class: 'card-title second-title', html: data[i].email})
                             )
                         )
                     ).on('click', function(){
@@ -428,7 +428,7 @@
                             $('<img>', {style: 'height: calc(84vw / 13.96 / 1.2) !important', class: 'card-img-top', src: 'img/imagens_organizador/'+data[i].imagem}),
                             $('<div>', {class: 'card-body'}).append(
                                 $('<h5>', {class: 'card-title', html: data[i].nome}),
-                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data[i].email})
+                                $('<h5>', {class: 'card-title second-title', html: data[i].email})
                             )
                         )
                     ).on('click', function(){
@@ -450,7 +450,7 @@
                                             ),
                                             $('<div>', {class: 'card-body'}).append(
                                                 $('<h5>', {class: 'card-title', html: data.nome}),
-                                                $('<h5>', {style: 'font-weight: 500; color: rgba(50, 50, 93, 0.65);', class: 'card-title', html: data.email})
+                                                $('<h5>', {class: 'card-title second-title', html: data.email})
                                             ),
                                             $('<span>', {class: 'exc exc-evento-representante', 'data-id': data.idEventoRepresentante, 'aria-hidden': 'true', html: '×'}).on('click', function(){
                                                 $('#loader').fadeIn('fast');

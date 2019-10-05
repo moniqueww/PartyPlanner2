@@ -20,27 +20,9 @@
                 <div class="modal-body" style="padding: calc(1.5rem + 86px) 1.5rem 1.5rem 1.5rem;">
                     <div style="width: 49%; max-height: calc(90vh - 86px - 3rem); overflow: auto; float: left;">
 
-                        <div style="    position: sticky;
-    top: 0;
-    background-color: #2d2c2c; z-index: 50;">
-                            <div style="
-                            display: inline-block;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                            color: #fff;
-                            margin-right: 20px;
-                            letter-spacing: -0.02rem;
-                            padding-bottom: 5px;
-                            border-bottom: solid 3px #7347ff;
-                        ">Mais populares</div>
-                            <div style="
-                            display: inline-block;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                            letter-spacing: -0.02rem;
-                            color: #505050;
-                            margin-right: 15px;
-                        ">Seus favoritos</div>
+                        <div class="modal-navigate">
+                            <div class="modal-navigate-option active">Mais populares</div>
+                            <div class="modal-navigate-option">Seus favoritos</div>
                         </div>
 
                         <table id="tabela_servicos" style="width: 100%;">
@@ -48,14 +30,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="//box-shadow: 0px 2px 50px 0px #17171717;
-                        width: 49%;
-                        height: calc(90vh - 86px - 3rem);
-                        //background: #201f1f;
-                        border-radius: 0.3rem;
-                        float: right;
-                        text-align: center;
-                    ">
+                    <div class="personal-info">
                                             
                         <!--<div style="
                         width: 100%;
@@ -64,7 +39,7 @@
                         border-radius: 0.3rem 0.3rem 0 0;
                     ">
                     </div>-->
-                    <img style="width: 70%; margin-top: 20%;" src="img/svg/personal-info2.svg"/>
+                        <img src="img/svg/personal-info2.svg"/>
                     </div>
                 </div>
             </div>

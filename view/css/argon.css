@@ -18553,7 +18553,7 @@ textarea[resize='horizontal']
 .input-group .form-control:not(:first-child)
 {
     padding-left: 0; 
-    height: 40px;
+    height: 36px;
     border-left: 0;
 }
 .input-group .form-control:not(:last-child)
