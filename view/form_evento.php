@@ -379,9 +379,12 @@ include_once('include/head.php');
                     <div id="quadroEvento" style='display: none;'>
                         <div class="content big-content">
                             <div>
-                            <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaQuadro' data-toggle='modal' data-target='#modal-form'>
+                            <div class='filtros'>Quadro de organização</div>
+                            <div class="filtros-right">
+                            <button id="semCategoria" type='button' data-categoria='todos' class='btn-addListaQuadro btn btn-primary' data-toggle='modal' data-target='#modal-form'>
                                 <span class="circle btn-inner--icon"><i class="ni ni-fat-add"></i></span> Adicionar serviço
                             </button>
+                            </div>
                             <?php
                                 if(!empty($categorias)) {
                                     foreach($categorias as $ca) {
