@@ -140,9 +140,6 @@ include_once('include/head.php');
 	  			</button>
 	  		</div>
 		</div>
-		<div id="action-bar">
-		        
-		</div>
     </div>
     <?php include_once('include/loader.php'); ?>
 	

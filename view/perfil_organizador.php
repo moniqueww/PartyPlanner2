@@ -141,9 +141,6 @@ include_once('include/head.php');
                 </div>
             </div>
     </div>
-    <div id="action-bar">
-            
-        </div> 
 </div>
 </body>
 </html>

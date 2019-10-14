@@ -216,7 +216,7 @@ include_once('include/head.php');
                                             if($servicoUnico->getIdCategoria() == 5){
                                             echo "<div style='float: none;' class='content atracao photo' data-id=".$ea->getId().">
                                                             <div class='card card-redondo'>
-                                                              <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img style='background-color: #fff;' class='card-img-top' src='img/imagens_servico/".$servicoUnico->getImagem()."' alt='Card image cap'></a>
+                                                              <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img style='background-color: #232323;' class='card-img-top' src='img/imagens_servico/".$servicoUnico->getImagem()."' alt='Card image cap'></a>
                                                               <div class='card-body'>
                                                                 <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                 <h5 class='card-title second-title'>".$servicoUnico->getEmail()."</h5>
@@ -424,9 +424,6 @@ include_once('include/head.php');
                         </div>
                     </div>
         </div>
-        <div id="action-bar">
-                
-            </div>
     </div>
     <?php include_once('include/loader.php'); ?>
 	

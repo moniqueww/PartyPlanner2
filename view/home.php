@@ -62,8 +62,8 @@ include_once('include/head.php');
     		<div class="banner"></div>
 
     		<div id="navegacaoPage">
-    		    <div class="selected">Feed</div>
-    		    <div>Descubra</div>
+    		    <div class="selected">Destaques</div>
+    		    <div>Feed</div>
     		    <br clear="all"/>
     		</div>
 
@@ -117,7 +117,7 @@ include_once('include/head.php');
 							if ($sevc < 6) {
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card card-redondo' data-id=".$se->getId().">
-					<img style='height: calc((100vw - 480px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
+					<img style='height: calc((100vw - 240px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$se->getNome()."</h5>
 					</div>
@@ -131,9 +131,6 @@ include_once('include/head.php');
 			</div>
 			</div>
 			</div>
-		<div id="action-bar">
-		        
-		</div>
     </div>
 	
 </body>

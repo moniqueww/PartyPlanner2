@@ -213,9 +213,6 @@ include_once('include/head.php');
                 </div>
             </div>
         </div>
-        <div id="action-bar">
-                
-            </div>
     </div>
         <?php include_once('include/loader.php'); ?>
 </body>
