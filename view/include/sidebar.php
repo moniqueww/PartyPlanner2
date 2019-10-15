@@ -114,4 +114,9 @@
                 	}
                 ?>
             </ul>
+            <div style="width: 100%; text-align: center; margin-top: 45px;">
+            	 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
+            		<span class="btn-inner--text">Novo Evento</span>
+            	</button>
+        	</div>
         </nav>

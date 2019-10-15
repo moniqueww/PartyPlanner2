@@ -273,7 +273,7 @@ include_once('include/head.php');
                                     <?php
                                         if(!empty($eventoPrecos)){
                                             foreach ($eventoPrecos as $ep) {
-                                                echo "<div class='content co-3 preco' data-id=".$ep->getId().">
+                                                echo "<div class='content co-25 preco' data-id=".$ep->getId().">
                                                         <div class='card-preco'>
                                                                     <div class='precoValor'><span>R$</span>".$ep->getValor()."</div>
                                                                     <div class='precoNome'>".$ep->getNome()."</div>
@@ -402,7 +402,7 @@ include_once('include/head.php');
                                                 if($ca->getId() == $servicoUnico->getIdCategoria()){
                                                 echo "<div class='content photo quadro' data-id=".$qu->getId().">
                                                                 <div class='card card-redondo'>
-                                                                  <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img class='card-img-top' src='img/brand/no-image-service.png' alt='Card image cap'></a>
+                                                                  <a href='perfil_servico.php?servico=".$servicoUnico->getId()."'><img class='card-img-top' src='img/imagens_servico/".$servicoUnico->getImagem()."' alt='Card image cap'></a>
                                                                   <div class='card-body'>
                                                                     <h5 class='card-title'>".$servicoUnico->getNome()."</h5>
                                                                     <h5 class='card-title second-title'>".$servicoUnico->getEmail()."</h5>
