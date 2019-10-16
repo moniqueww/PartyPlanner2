@@ -66,7 +66,7 @@
 	                    <span>Início</span>
 	                </li>
                 </a>
-                <a href="<?= isset($_SESSION['usuario']) ? 'perfil_organizador.php?organizador='.$_SESSION['id'] : '' ?>">
+                <a <?= isset($paginaPerfil) ? $paginaPerfil : ''?> href="<?= isset($_SESSION['usuario']) ? 'perfil_organizador.php?organizador='.$_SESSION['id'] : '' ?>">
                 	<div class="paginaAtiva"></div>
 					<li>
                     	<span>Perfil</span>
@@ -114,9 +114,9 @@
                 	}
                 ?>
             </ul>
-            <div style="width: 100%; text-align: center; margin-top: 45px;">
+            <!--<div style="width: 100%; text-align: center; margin-top: 45px;">
             	 <button type="button" class="btn btn-primary btn-add" data-toggle="modal" data-target="#modal-form">
             		<span class="btn-inner--text">Novo Evento</span>
             	</button>
-        	</div>
+        	</div>-->
         </nav>

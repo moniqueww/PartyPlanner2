@@ -48,6 +48,9 @@ include_once('include/head.php');
         <?php
         $paginaHome = '';
         $paginaLista = '';
+        if (!isset($convidado)) {
+            $paginaPerfil = "class='active'";
+        }
         include_once('include/sidebar.php');
         ?>
 
@@ -106,7 +109,7 @@ include_once('include/head.php');
 
 
             <div id="edicaoEvento">
-                <div class="content big-content" style="background-color: #fff; border: none;">
+                <div class="content big-content" style="background-color: #2d2c2c; border: none;">
                 <div class="filtros">Email</div>
                     <?php if (!isset($convidado)) {?>
                         <input type="text" id="input-email" class="form-control form-control-alternative form-edita form-title" placeholder="First name" value="<?= isset($organizadorUnico) ? $organizadorUnico->getEmail() : "";?>">

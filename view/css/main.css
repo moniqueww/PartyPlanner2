@@ -4,7 +4,7 @@
 #5d59f5
 principal: #697cff
 vermelha: #f5365c
-verde: #72df8c
+verde: #60ce80
 cinza: #f1f3fa;
 cinza2: #f8f9fa;
 cinza3: #f2f7fc;
@@ -17,7 +17,6 @@ cinza3: #f2f7fc;
 
 principal antiga: #6e69ff;
  */
-
 
 
 
@@ -522,7 +521,7 @@ a, a:hover, a:focus {
 	box-shadow: 0px 2px 50px 0px #12121217;
 	transition: 0.2s;
 }
-.card:hover .exc{
+.card:hover .exc, .preco:hover .exc, .localizacao-div:hover .exc{
 	visibility: visible;
 }
 .photo .card:hover img{
@@ -727,7 +726,7 @@ a, a:hover, a:focus {
 		color: white;
 		font-size: 10px;
 		font-weight: bold;
-	background-color: #72df8c;
+	background-color: #60ce80;
 }
 .form-edita{
 	color: #999999 !important;
@@ -769,7 +768,7 @@ a, a:hover, a:focus {
 	padding: .625rem .75rem;
 	font-size: 1rem;
 	color: #fff !important;
-	background-color: #2d2c2c;
+	background-color: #292929;
 	border-radius: 0px !important;
 	margin: 0px !important;
 	line-height: 48px !important;
@@ -859,7 +858,7 @@ a, a:hover, a:focus {
 	width: 240px;
 	min-height: 100vh;
 	display: inline-block;
-	background-color: #2d2c2c;
+	background-color: #292929;
 	/*border-left: solid 1px #eaedfa;*/
 	transition: width 0.4s;
 }
@@ -912,7 +911,7 @@ a, a:hover, a:focus {
 	transition: 0.2s;
 }
 .mini-card img{
-	width: 70px; height: 70px; float: left; background-color: #2d2c2c; margin-right: 15px;
+	width: 70px; height: 70px; float: left; background-color: #292929; margin-right: 15px;
 }
 .mini-card > div{
 	font-size: 0.875rem; height: 70px; padding-top: 10px;
@@ -1057,14 +1056,14 @@ a, a:hover, a:focus {
 	text-align: center;
 }
 #edicaoEvento .big-content:nth-child(2), #edicaoEvento .big-content:last-child{
-	background-color: #2d2c2c;
+	background-color: #292929;
 }
 #precos{
 	text-align: center;
 }
 .content.preco {
 	text-align: center;
-	background-color: #2d2c2c;
+	background-color: #292929;
 	color: #fff;
 	border-radius: 0.3rem;
 	padding: 0px;
@@ -1105,7 +1104,7 @@ a, a:hover, a:focus {
 	border-color: #0078f2 !important;
 }
 .publicacao-evento{
-	background-color: #2d2c2c;
+	background-color: #292929;
 	color: #fff;
 	border-radius: 0.3rem;
 	padding: 30px;
@@ -1143,7 +1142,7 @@ a, a:hover, a:focus {
 }
 .banner{
 	width: calc(100% - 30px);
-	height: 250px;
+	height: 294px;
 	margin-top: 20px;
 	border-radius: 0.3rem;
 	background: url(../img/brand/banner.png), linear-gradient(45deg, rgba(115, 73, 255, 1), rgba(98, 172, 255, 1));
@@ -1176,7 +1175,7 @@ a, a:hover, a:focus {
 .modal-navigate{
 	position: sticky;
 	top: 0;
-	background-color: #2d2c2c;
+	background-color: #292929;
 	z-index: 50;
 }
 .modal-navigate-option{
@@ -1192,6 +1191,21 @@ a, a:hover, a:focus {
 .modal-navigate-option.active{
 	border-bottom: solid 3px #0078f2;
 	color: #fff;
+}
+.dropdown-item{
+	color: #505050 !important;
+}
+.dropdown-item:hover{
+	cursor: pointer;
+}
+.dropdown-item:active{
+	color: #fff !important;
+}
+.dropdown-item.excluirEvento:active{
+	background-color: #d53232 !important;
+}
+.modal-content .photo img{
+	background-color: #1b1b1b !important;
 }
 
 

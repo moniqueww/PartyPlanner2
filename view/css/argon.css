@@ -2360,7 +2360,7 @@ pre code
 .form-control:focus
 {
     color: #fff;
-    border-color: #0078f2;
+    border-color: #5a5a5a;
     outline: 0;
     background-color: #fff;
     box-shadow: none, none;
@@ -3002,9 +3002,9 @@ fieldset:disabled a.btn
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle
 {
-    color: #94a2ff;
+    /*color: #94a2ff;
     border-color: #94a2ff; 
-    background-color: #fff;
+    background-color: #fff;*/
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -18197,7 +18197,7 @@ textarea[resize='horizontal']
 {
     /*box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);*/
     box-shadow: none;
-    background-color: rgba(115, 71, 255, 0.22);
+    background-color: #5a5a5a;
     transition: all 0.2s;
 }
 .form-control-alternative:focus::placeholder

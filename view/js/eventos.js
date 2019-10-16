@@ -37,17 +37,20 @@ $(function() {
                                 $('<h5>', {class: 'card-title second-title', html: data.nomeUsuario})
                             ),
                             $('<div>', {class: 'novoEvento', html: 'NOVO'}),
-                            $('<div>', {class: 'excluirEvento', 'data-toggle': 'modal', 'data-target': '#modal-notification'}).append(
-                                $('<i>', {class: 'fas fa-times'})
-                            ).on('click', function(){
-                                var eventoId = $(this).parents('.card').attr('data-id');
-                                $('#confirmarExclusao').attr('data-id', eventoId);
-                            })
-                        ).mouseover(function() {
-                            $(this).children('.excluirEvento').show();
-                        }).mouseout(function(){
-                            $(this).children('.excluirEvento').hide();
-                        })
+                            $('<div>', {class: 'optionsEvento'}).append(
+                                $('<a>', {id: 'navbar-default_dropdown_'+data.id, 'role': 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false'}).append(
+                                    $('<i>', {class: 'fas fa-ellipsis-v'})
+                                ),
+                                $('<div>', {class: 'dropdown-menu dropdown-menu-right', 'aria-labelledby': 'navbar-default_dropdown_'+data.id}).append(
+                                    $('<a>', {href: 'form_evento.php?evento='+data.id, class: 'dropdown-item', html: 'Editar'}),
+                                    $('<div>', {class: 'dropdown-divider'}),
+                                    $('<a>', {class: 'dropdown-item excluirEvento', html: 'Excluir', 'data-toggle': 'modal', 'data-target': '#modal-notification'}).on('click', function(){
+                                        var eventoId = $(this).parents('.card').attr('data-id');
+                                        $('#confirmarExclusao').attr('data-id', eventoId);
+                                    })
+                                )
+                            )
+                        )
                     ).hide().fadeIn("slow")
                 );
                 $('#loader').fadeOut('fast');

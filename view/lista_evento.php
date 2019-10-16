@@ -111,22 +111,22 @@ include_once('include/head.php');
 						}
 						$organizadorUnico = $organizadorControle->controleAcao('listarUnico', $ev->getIdUsuario());
 						echo "<div class='content photo'>
-				<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."<i class='fas fa-".$publicado."'></i></h5>
-						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$organizadorUnico->getNome()."</h5>
-				</div>
-				<div class='optionsEvento'>
-				<a id='navbar-default_dropdown_1' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></a>
-				<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbar-default_dropdown_1'>
-							<a class='dropdown-item'>Editar</a>
-							<div class='dropdown-divider'></div>
-							<a class='dropdown-item excluirEvento' data-toggle='modal' data-target='#modal-notification'>Excluir</a>
-				</div>
-				</div>
-				</div>
-			</div>";
+								<div class='card' data-id=".$ev->getId().">
+									<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
+									<div class='card-body'>
+										<h5 class='card-title'>".$ev->getNome()."<i class='fas fa-".$publicado."'></i></h5>
+										<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$organizadorUnico->getNome()."</h5>
+									</div>
+									<div class='optionsEvento'>
+										<a id='navbar-default_dropdown_".$ev->getId()."' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></a>
+										<div class='dropdown-menu dropdown-menu-right' aria-labelledby='navbar-default_dropdown_".$ev->getId()."'>
+											<a href='form_evento.php?evento=".$ev->getId()."' class='dropdown-item'>Editar</a>
+											<div class='dropdown-divider'></div>
+											<a class='dropdown-item excluirEvento' data-toggle='modal' data-target='#modal-notification'>Excluir</a>
+										</div>
+									</div>
+								</div>
+							</div>";
 					}
 				}
 			?>

@@ -2,16 +2,13 @@
 <?php
 	include_once '../autoload.php';
 	$eventoControle = new ControleEventoPublicado();
-	$eventosPublicados = array();
-	if(isset($_GET['procure'])){
-		$eventosPublicados = $eventoControle->controleAcao("listarTodos", $_GET['procure']);
-	}else{
-		$eventosPublicados = $eventoControle->controleAcao("listarTodos");
-	}
+	$eventosPublicados = $eventoControle->controleAcao("listarTodos");
 
 	$servicoControle = new ControleServico();
 	$servicos = $servicoControle->controleAcao('listarTodos');
+
 	$usuarioControle = new ControleOrganizador();
+	$organizadores = $usuarioControle->controleAcao('listarTodos');
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,7 +60,6 @@ include_once('include/head.php');
 
     		<div id="navegacaoPage">
     		    <div class="selected">Destaques</div>
-    		    <div>Feed</div>
     		    <br clear="all"/>
     		</div>
 
@@ -71,10 +67,12 @@ include_once('include/head.php');
 			<!-- Page Content -->
 			<div id="eventos">
 			<div class="filtros-mini">Eventos populares</div>
-			<div id="mais-populares" style="white-space: nowrap; margin-bottom: 50px;">
+			<div id="mais-recentes" style="margin-bottom: 50px;">
 				<?php
 					if(!empty($eventosPublicados)){
+						$even = 0;
 						foreach ($eventosPublicados as $ev) {
+							if ($even < 18) {
 							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
 					<div class='card' data-id=".$ev->getId().">
@@ -86,25 +84,8 @@ include_once('include/head.php');
 					</div>
 				</div>";
 						}
+						$even++;
 					}
-				?>
-			</div>
-			<div class="filtros-mini">Eventos recentes</div>
-			<div id="mais-recentes" style="white-space: nowrap; margin-bottom: 50px;">
-				<?php
-					if(!empty($eventosPublicados)){
-						foreach ($eventosPublicados as $ev) {
-							$usuarioUnico = $usuarioControle->controleAcao('listarUnico', $ev->getIdUsuario());
-							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card' data-id=".$ev->getId().">
-					<img class='card-img-top' src='img/imagens_evento/".$ev->getImagem()."' alt='Card image cap'>
-					<div class='card-body'>
-						<h5 class='card-title'>".$ev->getNome()."</h5>
-						<h5 class='card-title' style='font-weight: 500; color: #999999;'>".$usuarioUnico->getNome()."</h5>
-					</div>
-					</div>
-				</div>";
-						}
 					}
 				?>
 			</div>
@@ -125,6 +106,27 @@ include_once('include/head.php');
 				</div>";
 							}
 							$sevc++;
+						}
+					}
+				?>
+			</div>
+			<div class="filtros-mini">Organizadores populares</div>
+			<div id="mais-recentes" style="white-space: nowrap; margin-bottom: 50px;">
+				<?php
+					if(!empty($organizadores)){
+						$orga = 0;
+						foreach ($organizadores as $org) {
+							if ($orga < 6) {
+							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
+					<div class='card card-redondo' data-id=".$org->getId().">
+					<img style='height: calc((100vw - 240px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_organizador/".$org->getImagem()."' alt='Card image cap'>
+					<div class='card-body'>
+						<h5 class='card-title'>".$org->getNome()."</h5>
+					</div>
+					</div>
+				</div>";
+							}
+							$orga++;
 						}
 					}
 				?>

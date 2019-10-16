@@ -18,7 +18,11 @@
                     </button>
                 </div>
                 <div class="modal-body" style="padding: calc(1.5rem + 86px) 1.5rem 1.5rem 1.5rem;">
-                    <div style="width: 49%; max-height: calc(90vh - 86px - 3rem); overflow: auto; float: left;">
+                    <table id="tabela_servicos" style="width: 100%;">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    <!--<div style="width: 49%; max-height: calc(90vh - 86px - 3rem); overflow: auto; float: left;">
 
                         <div class="modal-navigate">
                             <div class="modal-navigate-option active">Mais populares</div>
@@ -32,15 +36,15 @@
                     </div>
                     <div class="personal-info">
                                             
-                        <!--<div style="
+                        <div style="
                         width: 100%;
                         height: 200px;
                         background: linear-gradient(45deg, #f0438f, #6758ef);
                         border-radius: 0.3rem 0.3rem 0 0;
                     ">
-                    </div>-->
-                        <img src="img/svg/personal-info2.svg"/>
                     </div>
+                        <img src="img/svg/personal-info2.svg"/>
+                    </div>-->
                 </div>
             </div>
         </div>

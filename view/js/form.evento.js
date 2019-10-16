@@ -356,7 +356,7 @@
                                     $('<div>', {style: 'float: none;', 'data-id': data.idEventoArtista, class: 'content atracao photo'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
                                             $('<a>', {src: '#'}).append(
-                                                $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/imagens_servico/'+data.imagem}).on('click', function(){
+                                                $('<img>', {style: 'background-color: #1b1b1b;', class: 'card-img-top', src: 'img/imagens_servico/'+data.imagem}).on('click', function(){
                                                     window.location.assign('perfil_servico.php?servico='+data.idServico);
                                                 })
                                             ),
@@ -444,7 +444,7 @@
                                     $('<div>', {style: 'float: none; width: 23%;', 'data-id': data.idEventoRepresentante, class: 'content representante photo'}).append(
                                         $('<div>', {class: 'card card-redondo'}).append(
                                             $('<a>', {src: '#'}).append(
-                                                $('<img>', {style: 'background-color: #fff;', class: 'card-img-top', src: 'img/imagens_organizador/'+data.imagem}).on('click', function(){
+                                                $('<img>', {style: 'background-color: #1b1b1b;', class: 'card-img-top', src: 'img/imagens_organizador/'+data.imagem}).on('click', function(){
                                                     window.location.assign('perfil_organizador.php?organizador='+data.idUsuario);
                                                 })
                                             ),
