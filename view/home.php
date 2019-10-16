@@ -35,9 +35,13 @@ include_once('include/head.php');
 			eventoId = $(this).attr('data-id');
 			window.location.assign('form_evento.php?evento='+eventoId);
 		});
-		$('.content .card.card-redondo').on('click', function(){
+		$('.content .card.card-redondo.card-servico').on('click', function(){
 			servicoId = $(this).attr('data-id');
 			window.location.assign('perfil_servico.php?servico='+servicoId);
+		});
+		$('.content .card.card-redondo.card-organizador').on('click', function(){
+			organizadorId = $(this).attr('data-id');
+			window.location.assign('perfil_organizador.php?organizador='+organizadorId);
 		});
 	});
 	</script>
@@ -99,7 +103,7 @@ include_once('include/head.php');
 						foreach ($servicos as $se) {
 							if ($sevc < 6) {
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card card-redondo' data-id=".$se->getId().">
+					<div class='card card-redondo card-servico' data-id=".$se->getId().">
 					<img style='height: calc((100vw - 240px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_servico/".$se->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$se->getNome()."</h5>
@@ -120,7 +124,7 @@ include_once('include/head.php');
 						foreach ($organizadores as $org) {
 							if ($orga < 6) {
 							echo "<div class='content photo' style='float: none; margin-right: 2%;'>
-					<div class='card card-redondo' data-id=".$org->getId().">
+					<div class='card card-redondo card-organizador' data-id=".$org->getId().">
 					<img style='height: calc((100vw - 240px) / 6.98) !important; width: 100%;' class='card-img-top' src='img/imagens_organizador/".$org->getImagem()."' alt='Card image cap'>
 					<div class='card-body'>
 						<h5 class='card-title'>".$org->getNome()."</h5>

@@ -273,9 +273,7 @@
                         $('<td>').append(
                             $('<span>', {style: 'font-weight: bold;'}).append(
                                 data[i].nome
-                            ),
-                            $('<br>'),
-                            data[i].email
+                            )
                         )
                     ).on('click', function(){
                         if(!$(this).hasClass('disabled')) {

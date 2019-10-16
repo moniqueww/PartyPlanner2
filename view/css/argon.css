@@ -7295,6 +7295,7 @@ button.close
     {
         max-width: 500px;
         margin: 1.75rem auto;
+        left: 120px;
     }
     .modal-dialog-centered
     {
