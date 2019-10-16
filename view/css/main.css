@@ -1147,7 +1147,7 @@ a, a:hover, a:focus {
 	border-radius: 0.3rem;
 	background: url(../img/brand/banner.png), linear-gradient(45deg, rgba(115, 73, 255, 1), rgba(98, 172, 255, 1));
 	background-size: cover;
-	background-position: center;
+	background-position: left;
 	text-align: center;
 }
 .banner img{
