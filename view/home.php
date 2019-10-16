@@ -56,7 +56,9 @@ include_once('include/head.php');
 
     		<?php include_once('include/navbar.php'); ?>
 
-    		<div class="banner"></div>
+    		<div class="banner">
+    			<img src="img/brand/banner.png"/>
+    		</div>
 
     		<div id="navegacaoPage">
     		    <div class="selected">Destaques</div>

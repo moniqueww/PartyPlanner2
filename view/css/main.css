@@ -1141,18 +1141,14 @@ a, a:hover, a:focus {
 	color: #999999;
 }
 .banner{
-	width: calc(100% - 30px);
-	height: 294px;
 	margin-top: 20px;
 	border-radius: 0.3rem;
-	background: url(../img/brand/banner.png), linear-gradient(45deg, rgba(115, 73, 255, 1), rgba(98, 172, 255, 1));
-	background-size: cover;
-	background-position: left;
+	background: linear-gradient(45deg, rgba(115, 73, 255, 1), rgba(98, 172, 255, 1));
 	text-align: center;
 }
 .banner img{
-	height: 250px;
-	margin-top: 20px;
+	width: calc(100% - 30px);
+	height: auto;
 
 }
 .second-title{
